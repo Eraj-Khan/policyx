@@ -38,7 +38,7 @@ const LoginSignup = () => {
   const handleSignUpClick = async () => {
     try {
       // give api path for calling signUp api on get('/api/signup)
-      const response = await axios.post("http://localhost:5000/api/register", {
+      const response = await axios.post('http://localhost:8000/accounts/auth/users/', {
         first_name,
         last_name,
         username,
@@ -69,8 +69,8 @@ const LoginSignup = () => {
 
   const handleSignInClick = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
-        username,
+      const response = await axios.post('http://localhost:8000/accounts/auth/token/login/', {
+        email,
         password,
       });
       if (response.status === 200) {
