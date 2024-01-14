@@ -3,6 +3,7 @@ def company_x(premium):
 
     if premium <= 32000:
         health_packages = {
+            "Plan_type":"Basic",
             "Total annual Coverage": coverage,
             "Accidental Emergencies": int((25 / 100) * coverage),
             "Hospitalization Room Charges": int((25 / 100) * coverage),
@@ -12,6 +13,7 @@ def company_x(premium):
 
     if premium >= 32000:
         health_packages = {
+            "Plan_type":"Premium",
             "Total annual Coverage": coverage,
             "Accidental Emergencies": int((20 / 100) * coverage),
             "Ambulance Services Expenses": int((20 / 100) * coverage),
@@ -29,6 +31,7 @@ def company_y(premium):
 
     if premium <= 35000:
         health_packages = {
+            "Plan_type":"Basic",
             "Total annual Coverage": coverage,
             "Ambulance Services Expenses": int((20 / 100) * coverage),
             "Hospitalization Room Charges": int((25 / 100) * coverage),
@@ -38,6 +41,7 @@ def company_y(premium):
 
     if premium >= 35000:
         health_packages = {
+            "Plan_type":"Premium",
             "Total annual Coverage": coverage,
             "Accidental Emergencies": int((20 / 100) * coverage),
             "Ambulance Services Expenses": int((20 / 100) * coverage),
@@ -55,6 +59,7 @@ def company_z(premium):
 
     if premium <= 45000:
         health_packages = {
+            "Plan_type":"Basic",
             "Total annual Coverage": coverage,
             "Accidental Emergencies": int((35 / 100) * coverage),
             "Ambulance Services Expenses": int((15 / 100) * coverage),
@@ -64,6 +69,7 @@ def company_z(premium):
 
     if premium >= 45000:
         health_packages = {
+            "Plan_type":"Premium",
             "Total annual Coverage": coverage,
             "Accidental Emergencies": int((20 / 100) * coverage),
             "Ambulance Services Expenses": int((20 / 100) * coverage),
