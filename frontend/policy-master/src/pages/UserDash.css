@@ -1,0 +1,35 @@
+.stats{
+    width: 1193px;
+    margin-left: 292px;
+}
+.stats_content{
+    margin-left: -35px;
+    width: 105%;
+    margin-top: 37px; 
+}
+.chart1{
+  
+    width: 574px;
+    margin-top: 55px;
+    margin-left: -5px;  
+}
+.chart2{
+    width: 650px;
+    margin-top: 90px;
+    margin-left: 275px;
+}
+.chart12{
+    display: flex;
+}
+.content{
+    margin-left: 190px;
+}
+.partner {
+    margin-left: 332px;
+    width: 70%;
+}
+.footer{
+    margin-left: 255px;
+
+    margin-top: 360px;
+}
