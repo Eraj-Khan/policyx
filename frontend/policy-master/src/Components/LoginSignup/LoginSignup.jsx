@@ -20,7 +20,7 @@ const navigation = [
 
 
 const LoginSignup = () => {
-  const [action, setAction] = useState("Sign Up");
+  const [action, setAction] = useState("Sign In");
   // const [formData, setFormData] = useState({
   //   firstname: "",
   //   lastname: "",
@@ -33,8 +33,9 @@ const LoginSignup = () => {
   const [last_name, setLastName] = useState("");
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm_password, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const navigation = useNavigate(null);
   // const [forgetPassword, setForgetPassword] = useState(false);
@@ -45,10 +46,26 @@ const LoginSignup = () => {
   const handleSignIn = () => {
     setAction("Sign In");
   };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordError('');
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    if (password !== e.target.value) {
+      setPasswordError('Passwords do not match');
+    } else {
+      setPasswordError('');
+    }
+  };
+
+
   const handleSignUpClick = async () => {
     try {
       // give api path for calling signUp api on get('/api/signup)
-      const response = await axios.post("http://localhost:5000/api/register", {
+      const response = await axios.post('http://localhost:8000/accounts/auth/users/', {
         first_name,
         last_name,
         username,
@@ -79,7 +96,7 @@ const LoginSignup = () => {
 
   const handleSignInClick = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
+      const response = await axios.post("http://localhost:8000/accounts/auth/token/login/", {
         username,
         password,
       });
@@ -294,7 +311,7 @@ const LoginSignup = () => {
           <input
             type="password"
             placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             value={password}
           />
         </div>
@@ -305,7 +322,7 @@ const LoginSignup = () => {
           <input
             type="password"
             placeholder="ConfirmPassword"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleConfirmPasswordChange}
             value={confirm_password}
           />
         </div>
@@ -374,12 +391,12 @@ const LoginSignup = () => {
             {action}
             {console.log("action:", action)}
           </button>
-          {action === "Sign In" ? (
+          {action === "Sign Up" ? (
             <div></div>
           ) : (
             <div className="account">
               
-             Already have an account? <span onClick={handleSignIn}>Sign In</span>
+             Create an Account <span onClick={handleSignUp}>Sign Up</span>
             </div>
           )}
         </div>
