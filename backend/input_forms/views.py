@@ -5,6 +5,12 @@ from .forms import UserInformationForm, BudgetForm
 import requests
 import json 
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from input_forms.models import Budget , UserInformation
+from ai_prediction.serializers import BudgetSerializer, UserInformationSerializer
+
 def make_ai_prediction_request():
     ai_prediction_endpoint = 'http://127.0.0.1:8000/ai-prediction/all-users/'
     response = requests.get(ai_prediction_endpoint)
@@ -47,3 +53,18 @@ def user_input_view(request):
 
 def success_page(request):
     return render(request, 'success_page.html')
+
+@api_view(['GET'])
+def get_data_by_case_id(request, case_id):
+    try:
+        cases_data = UserInformation.objects.get(case_id=case_id)
+        ai_budget_data = Budget.objects.filter(user_information=cases_data)
+        cases_serializer = UserInformationSerializer(cases_data)
+        ai_budget_serializer = BudgetSerializer(ai_budget_data, many=True)
+        response_data = {
+            'case': cases_serializer.data,
+            'budgetDetails': ai_budget_serializer.data
+        }
+        return Response(response_data)
+    except UserInformation.DoesNotExist:
+        return Response({'message': 'Case not found'}, status=404)

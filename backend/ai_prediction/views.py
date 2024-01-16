@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from .serializers import UserInformationSerializer 
-import requests
 
 @api_view(['GET'])
 def all_users(request):
@@ -42,4 +41,3 @@ def all_users(request):
         else:
             return Response({"error": "No user found"}, status=status.HTTP_404_NOT_FOUND)
 
-  

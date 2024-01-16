@@ -39,7 +39,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('', include('input_forms.urls')),  # Include new input_forms URLs
-    path('ai-prediction/', include('ai_prediction.urls'))
+    path('ai-prediction/', include('ai_prediction.urls')),
+    path('company_dashboard/',include('dashboard.urls'))
 ]
 
 
