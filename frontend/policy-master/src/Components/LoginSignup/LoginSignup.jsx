@@ -37,7 +37,8 @@ const LoginSignup = () => {
   const [confirm_password, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const navigation = useNavigate(null);
+  const navigate = useNavigate();
+  
   // const [forgetPassword, setForgetPassword] = useState(false);
 
   const handleSignUp = () => {
@@ -94,10 +95,30 @@ const LoginSignup = () => {
     }
   };
 
+  // const handleSignInClick = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:8000/accounts/auth/token/login/", {
+  //       username,
+  //       password,
+  //     });
+  //     if (response.status === 200) {
+  //       setIsLoggedIn(true);
+  //       // sessionStorage.clear();
+  //       sessionStorage.setItem("username", username);
+  //       sessionStorage.setItem("password", password);
+  //       navigation('/userDashboard');
+  //       swal("Successfully Logged In")
+  //     } else {
+  //       swal("Please sign in with correct credentials.");
+  //     }
+  //   } catch (error) {
+  //     console.log("Error: ", error);
+  //   }
+  // };
   const handleSignInClick = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/accounts/auth/token/login/", {
-        username,
+      const response = await axios.post('http://localhost:8000/accounts/auth/token/login/', {
+        email,
         password,
       });
       if (response.status === 200) {
@@ -105,7 +126,7 @@ const LoginSignup = () => {
         // sessionStorage.clear();
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("password", password);
-        navigation('/userDashboard');
+        navigate('/userDash');
         swal("Successfully Logged In")
       } else {
         swal("Please sign in with correct credentials.");
@@ -397,6 +418,14 @@ const LoginSignup = () => {
             <div className="account">
               
              Create an Account <span onClick={handleSignUp}>Sign Up</span>
+            </div>
+          )}
+            {action === "Sign In" ? (
+            <div></div>
+          ) : (
+            <div className="account">
+              
+             <span onClick={handleSignIn}>Sign In</span>
             </div>
           )}
         </div>

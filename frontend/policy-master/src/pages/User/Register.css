@@ -32,7 +32,7 @@
     width: 100%;
    
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
   }
   
@@ -60,14 +60,14 @@
   
   .contentimg{
    
-   margin-left: 250px;
+   margin-left: 90px;
    top: 200px;
   }
  
   .age{
     display: flex;
     gap: 10px;
-    margin-left: -220px;
+    width: 100%;
 
   }
   .select3{
@@ -75,60 +75,93 @@
     gap: 15px;
   }
   .bmi{
-    gap: 10px;
-    margin-left: -5px;
-    display: flex;
+   display: flex;
+    gap:10px;
+    width:100%;
   }
-  .children{
-    gap: 10px;
+  .height{
     display: flex;
+    width:100%;
+    
+
+  }
+  .weight{
+    display: flex;
+    width:100%;
+    margin-left: 5px;
+
+  }
+  .calculate{
+    display: flex;
+    gap:10px;
+    width: 100%;
+
+  }
+  
+
+
+
+  .children{
+    display: flex;
+  width: 100%;
+  gap: 5px;
   }
 input{
   padding: 2px;
 
 }
 .gender{
- margin-left: -285px;
+  width: 100%;
+  margin-left: 15px;
 
 }
-.smoker{
-  margin-left: -325px;
+.gender label{
+  margin-right: 10px;
+}
+.smoker label{
+margin-right: 5px;
 
 }
-.region{
-  margin-left: -225px;
-
+.region label{
+margin-right: 5px;
 }
 .marin{
   display: flex;
   margin-left: -5px;
 }
 
-.martial {
+.marital {
   display: flex;
+  width: 100%;
 }
 .martial select{
   padding-top: 10px;
 }
 .income{
-  display: flex;
+ display: flex;
+ width: 100%;
 }
-.martialheading{
-  width: 100px;
+.maritalheading{
+  width: 105px;
   
 }
 .incomeheading{
-margin-left: 10px;
-margin-right: 10px;}
+  width: 125px;
+}
+
 .education{
   display: flex;
-    margin-left: -6px;
-    gap: 10px;
-    width: 470px;
+  gap: 5px;
+ 
+    width: 100%;
 
 }
 .employment{
-margin-left: -170px;
+  width: 100%;
+  margin-left: 15px;
+}
+.employment label{
+  margin-right: 10px;
 }
 .button{
   margin-left: -8px;
@@ -152,9 +185,15 @@ margin-left: -170px;
     display: flex;
   }
   .budget{
-    margin-left: 5px;
-    width: 472px;
-    gap: 10px;
-    margin-right: 10px;
+  
+    width: 100%;
     display: flex;
+  }
+  .smore{
+    display:flex;
+   gap:30px;
+    
+  }
+ .marital .maritalcolor{
+    color: grey;
   }

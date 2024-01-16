@@ -122,7 +122,7 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', href: '/' },
 ]
 const stats = [
     { id: 1, name: 'Total Users', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
