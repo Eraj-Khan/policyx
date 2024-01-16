@@ -8,13 +8,13 @@ class UserInformationForm(forms.ModelForm):
     class Meta:
         model = UserInformation
         fields = '__all__'
-        exclude = ['hash_key'] 
+        exclude = ['hash_key','case_id'] 
 
 class BudgetForm(forms.ModelForm):
     class Meta:
         model = Budget
         fields = '__all__'
-        exclude = ['user_information'] 
+        exclude = ['user_information','ai_suggested'] 
         
 
 @receiver(pre_save, sender=UserInformation)
