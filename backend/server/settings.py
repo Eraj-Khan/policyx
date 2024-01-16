@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-&rd#)qvlwhxdlx1a2nibmew1%$8+#3njmb_b39xn^sdz($2@y)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000']
 
 
 # Application definition
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'corsheaders',
     
     # local
     'accounts',
@@ -65,7 +67,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/policy-master/src/pages/User')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -164,3 +166,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# settings.py
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    # Add other trusted origins as needed
+]
