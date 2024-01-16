@@ -38,7 +38,7 @@ def all_users(request):
             # prediction_value = response_scoring.json()['predictions'][0]['values'][0][0]
             # return "prediction_value"
             prediction_value = 1700.2321
-            return Response({"Ai Suggested Premium": prediction_value}, status=status.HTTP_200_OK)
+            return Response({"Ai Suggested Premium": int(prediction_value)}, status=status.HTTP_200_OK)
         else:
             return Response({"error": "No user found"}, status=status.HTTP_404_NOT_FOUND)
 
