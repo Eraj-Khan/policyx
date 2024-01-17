@@ -43,7 +43,7 @@ def user_input_view(request):
             children=data['children'],
             smoker=smoker,
             region=data['region'],
-            martial_status=data['marital_status'],  # Correct the field name here
+            marital_status=data['marital_status'],  # Correct the field name here
             income=data['income'],
             education=data['education'],
             employment_status=data['employment_status'],
@@ -72,7 +72,6 @@ def get_data_by_case_id(request, case_id):
         ai_budget_serializer = BudgetSerializer(ai_budget_data, many=True)
         response_data = {
             'case': cases_serializer.data,
-            'budgetDetails': ai_budget_serializer.data
         }
         return Response(response_data)
     except UserInformation.DoesNotExist:

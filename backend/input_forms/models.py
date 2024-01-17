@@ -7,7 +7,7 @@ class UserInformation(models.Model):
     children = models.IntegerField()
     smoker = models.BooleanField()
     region = models.CharField(max_length=50)
-    martial_status = models.CharField(max_length=20)
+    marital_status = models.CharField(max_length=20)
     income = models.FloatField()
     education = models.CharField(max_length=50)
     employment_status = models.CharField(max_length=50)
