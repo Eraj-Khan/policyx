@@ -8,7 +8,7 @@ class UserInformationForm(forms.ModelForm):
     class Meta:
         model = UserInformation
         fields = '__all__'
-        exclude = ['hash_key','case_id'] 
+        exclude = ['hash_key','case_id']
 
 class BudgetForm(forms.ModelForm):
     class Meta:

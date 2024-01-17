@@ -24,4 +24,4 @@ class Budget(models.Model):
 
 
     class Meta:
-        db_table = 'bidding_data'
+        db_table = 'Budget'
