@@ -240,7 +240,11 @@ const Register = () => {
       education,
       employment,
       budget,
-    });
+    } ,{
+      headers: {
+        'Content-Type': 'application/json',      },
+    }
+    );
     console.log("hi there", response.status);
     if (response) {
       // console.log(");
