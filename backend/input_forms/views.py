@@ -14,14 +14,13 @@ from rest_framework import status
 from input_forms.models import Budget , UserInformation
 from ai_prediction.serializers import BudgetSerializer, UserInformationSerializer
 
-@csrf_exempt
-@require_POST
-
 def make_ai_prediction_request():
     ai_prediction_endpoint = 'http://127.0.0.1:8000/ai-prediction/all-users/'
     response = requests.get(ai_prediction_endpoint)
     return response.status_code, response.text if response.status_code == 200 else None
 
+@csrf_exempt
+@require_POST
 def user_input_view(request):
     try:
         print('Received POST request:')
