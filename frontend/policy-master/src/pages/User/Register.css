@@ -1,0 +1,199 @@
+
+.mt-6 {
+    margin-top: 1.5rem;
+  }
+  
+ 
+  .space-y-6 {
+    display: flex;
+    /* margin-left: 50px; */
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 25px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    align-items: center;
+    border-radius: 20px;
+
+    width: 517px;
+    background-color: #f4f4f4;
+  
+  }
+  
+  /* Form element styles */
+  label {
+    margin-bottom: 0.5rem;
+    margin-top: 8px;
+  }
+  
+  input[type="number"],
+  input[type="text"],
+  select {
+    width: 100%;
+   
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  /* Radio button styles */
+  .space-y-1 input[type="radio"] {
+    margin-right: 0.25rem;
+  }
+  
+  /* Submit button styles */
+  button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  /* Hover effect on submit button */
+  button:hover {
+    background-color: #4338ca;
+  }
+  
+  .contentimg{
+   
+   margin-left: 90px;
+   top: 200px;
+  }
+ 
+  .age{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+  }
+  .select3{
+    display: flex;
+    gap: 15px;
+  }
+  .bmi{
+   display: flex;
+    gap:10px;
+    width:100%;
+  }
+  .height{
+    display: flex;
+    width:100%;
+    
+
+  }
+  .weight{
+    display: flex;
+    width:100%;
+    margin-left: 5px;
+
+  }
+  .calculate{
+    display: flex;
+    gap:10px;
+    width: 100%;
+
+  }
+  
+
+
+
+  .children{
+    display: flex;
+  width: 100%;
+  gap: 5px;
+  }
+input{
+  padding: 2px;
+
+}
+.gender{
+  width: 100%;
+  margin-left: 15px;
+
+}
+.gender label{
+  margin-right: 10px;
+}
+.smoker label{
+margin-right: 5px;
+
+}
+.region label{
+margin-right: 5px;
+}
+.marin{
+  display: flex;
+  margin-left: -5px;
+}
+
+.marital {
+  display: flex;
+  width: 100%;
+}
+.martial select{
+  padding-top: 10px;
+}
+.income{
+ display: flex;
+ width: 100%;
+}
+.maritalheading{
+  width: 105px;
+  
+}
+.incomeheading{
+  width: 125px;
+}
+
+.education{
+  display: flex;
+  gap: 5px;
+ 
+    width: 100%;
+
+}
+.employment{
+  width: 100%;
+  margin-left: 15px;
+}
+.employment label{
+  margin-right: 10px;
+}
+.button{
+  margin-left: -8px;
+  width: 466px;}
+  .object-img{
+    width: 400px;
+  }
+  .heading1{
+    font-size: 40px;
+    margin-left: -40px;
+
+  }
+  .heading2{
+    font-size: 40px;
+    font-weight: bolder;
+    margin-left: -40px;
+
+
+  }
+  .main{
+    display: flex;
+  }
+  .budget{
+  
+    width: 100%;
+    display: flex;
+  }
+  .smore{
+    display:flex;
+   gap:30px;
+    
+  }
+ .marital .maritalcolor{
+    color: grey;
+  }
