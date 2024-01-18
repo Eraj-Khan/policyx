@@ -43,10 +43,10 @@ def user_input_view(request):
             children=data['children'],
             smoker=smoker,
             region=data['region'],
-            marital_status=data['marital_status'],  # Correct the field name here
+            marital_status=data['maritalStatus'],  # Correct the field name here
             income=data['income'],
             education=data['education'],
-            employment_status=data['employment_status'],
+            employment_status=data['employment'],
             case_id=hash_key,
         )
 
