@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-&rd#)qvlwhxdlx1a2nibmew1%$8+#3njmb_b39xn^sdz($2@y)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000']
 
 
 # Application definition
@@ -43,10 +44,14 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'corsheaders',
+
     
     # local
     'accounts',
     'input_forms',
+    'ai_prediction',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -65,7 +71,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/policy-master/src/pages/User')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,14 +99,13 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'policyx',
-        'USER': 'policyx',
-        'PASSWORD': 'eraj',
+        'NAME': 'policyX',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
-        'PORT': '5433',          # Leave empty to use the default PostgreSQL port (usually 5432)
+        'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -164,3 +169,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# settings.py
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    # Add other trusted origins as needed
+]
