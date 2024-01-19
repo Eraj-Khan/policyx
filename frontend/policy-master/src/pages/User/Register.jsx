@@ -619,7 +619,7 @@ const Register = () => {
                     </div>
                 
 
-                  {/* <div className="budget">
+                  <div className="budget">
                     <input
                       type="number"
                       name="budget"
@@ -628,7 +628,7 @@ const Register = () => {
                       onChange={(e) => setBudget(e.target.value)}
                       placeholder="Budget(PKR)"
                     />
-                  </div> */}
+                  </div>
 
                   <div className="button">
                     <button
