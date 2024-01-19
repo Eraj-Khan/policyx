@@ -4,8 +4,8 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-import "../User/Register.css";
-import { useState } from "react";
+import "../User/Review.css";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -185,95 +185,49 @@ const footerNavigation = {
   ],
 };
 
-const Register = () => {
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [bmi, setBmi] = useState("");
-  const [children, setChildren] = useState("");
-  const [smoker, setSmoker] = useState("");
-  const [region, setRegion] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("");
-  const [income, setIncome] = useState("");
-  const [education, setEducation] = useState("");
-  const [employment, setEmployment] = useState("");
-  const [budget, setBudget] = useState("");
+const Review = () => {
+  const [predictedAI, setPredictedAI] = useState(false);
+  const [budget, setBudget] = useState(false);
+  const [data, setData] = useState(null);
 
-  const calculateBmi = () => {
-    if (height && weight) {
-      const heightInMeters = height / 100;
-      const weightInKg = weight;
-
-      const calculatedBmi = (
-        weightInKg /
-        (heightInMeters * heightInMeters)
-      ).toFixed(2);
-
-      setBmi(calculatedBmi);
-    } else {
-      setBmi("");
+  const handleCheckBoxChange = (checkboxName) => {
+    if (checkboxName === "predictedAI") {
+      setPredictedAI(!predictedAI);
+      setBudget(false);
+    } else if (checkboxName === "budget") {
+      setBudget(!budget);
+      setPredictedAI(false);
     }
   };
-  const handleHeightChange = (e) => {
-    setHeight(e.target.value);
-    calculateBmi();
+
+  const handleSubmit = () => {
+    if (predictedAI) {
+      console.log("User selected Predicted AI");
+    } else if (budget) {
+      console.log("User selected Budget");
+    } else {
+      console.log("Please select one checkbox");
+    }
   };
 
-  const handleWeightChange = (e) => {
-    setWeight(e.target.value);
-    calculateBmi();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const response = axios.post(
-      "http://127.0.0.1:8000/",
-      {
-        age,
-        gender,
-        bmi,
-        children,
-        smoker,
-        region,
-        maritalStatus,
-        income,
-        education,
-        employment,
-        budget,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/get_data_by_case_id/"
+        );
+  
+        console.log("API Response:", response.data);
+  
+        // Set the entire JSON object to data
+        setData(response.data.case);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    );
-    console.log("hi there", response.status);
-    if (response) {
-      // console.log(");
-
-      swal("form submitted successfully");
-    } else {
-      swal("unsuccessful");
-    }
-
-    const formData = {
-      age,
-      gender,
-      bmi,
-      children,
-      smoker,
-      region,
-      maritalStatus,
-      income,
-      education,
-      employment,
-      budget,
     };
-    // Here you can handle the form submission, for example, send the data to an API.
-    console.log("Form submitted:", formData);
-  };
+  
+    fetchData();
+  }, []);
 
   return (
     <div className=" ">
@@ -320,11 +274,11 @@ const Register = () => {
                 Log out
               </a>
               {/* <a
-                  href="#"
-                  className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
-                >
-                  Start free trial
-                </a> */}
+                    href="#"
+                    className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
+                  >
+                    Start free trial
+                  </a> */}
             </div>
           </nav>
         </div>
@@ -392,267 +346,87 @@ const Register = () => {
         </Transition>
       </Popover>
 
-      <div className=" main">
-        <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm ">
-            <div>
-              <h2 className="mt-6 text-4xl font-bold tracking-tight text-sky-600">
-                Registration
-              </h2>
-            </div>
 
-            <div className="mt-8">
-              <div className="mt-6">
-                <form
-                  action="#"
-                  method="POST"
-                  className="space-y-6"
-                  onSubmit={handleSubmit}
-                >
-                  <div className="age">
-                    <input
-                      type="number"
-                      name="age"
-                      id="age"
-                      value={age}
-                      onChange={(e) => setAge(e.target.value)}
-                      placeholder="Age"
-                      required
-                    />
-                  </div>
 
-                  <div className="gender">
-                    <label>Gender </label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="male"
-                      value="Male"
-                      checked={gender === "Male"}
-                      onChange={() => setGender("Male")}
-                      required
-                    />
-                    <label htmlFor="male"> Male </label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      id="female"
-                      value="Female"
-                      checked={gender === "Female"}
-                      onChange={() => setGender("Female")}
-                    />
-                    <label htmlFor="female"> Female </label>
-                  </div>
-                  {/* <div className="select3">
-                  <div className="bmi">
-                    <label htmlFor="bmi" id="bmi_label">
-                      BMI:
-                    </label>
-                    <input
-                      type="text"
-                      name="bmi"
-                      id="bmi"
-                      value={bmi}
-                      onChange={(e) => setBmi(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="children">
-                    <label htmlFor="children">Children:</label>
-                    <input
-                      type="number"
-                      name="children"
-                      id="children"
-                      value={children}
-                      onChange={(e) => setChildren(e.target.value)}
-                    />
-                  </div>
-                </div> */}
-
-                  <div className="calculate">
-                    <input
-                      type="number"
-                      value={height}
-                      onChange={handleHeightChange}
-                      placeholder="Height(ft)"
-                    />
-
-                    <input
-                      type="number"
-                      value={weight}
-                      onChange={handleWeightChange}
-                      placeholder="Weight(kg)"
-                    />
-                  </div>
-                  <div className="bmi">
-                    <input
-                      type="text"
-                      value={bmi}
-                      readOnly
-                      required
-                      placeholder="BMI"
-                    />
-                  </div>
-
-                  <div className="employment">
-                    <label> Employment </label>
-                    <input
-                      type="radio"
-                      name="employment"
-                      id="employed"
-                      value="Employed"
-                      checked={employment === "Employed"}
-                      onChange={() => setEmployment("Employed")}
-                    />
-                    <label htmlFor="employed"> Employed </label>
-                    <input
-                      type="radio"
-                      name="employment"
-                      id="unemployed"
-                      value="Unemployed"
-                      checked={employment === "Unemployed"}
-                      onChange={() => setEmployment("Unemployed")}
-                    />
-                    <label htmlFor="unemployed"> Unemployed </label>
-                  </div>
-
-                  <div className="income">
-                    <input
-                      type="number"
-                      name="income"
-                      id="income"
-                      value={income}
-                      onChange={(e) => setIncome(e.target.value)}
-                      placeholder="Monthly Income"
-                    />
-                  </div>
-                  <div className="marital">
-                    <select
-                      name="maritalStatus"
-                      id="maritalStatus"
-                      value={maritalStatus}
-                      onChange={(e) => setMaritalStatus(e.target.value)}
-                    >
-                      <option value="" disabled selected hidden>
-                        <span className="maritalcolor">Marital Status</span>
-                      </option>
-                      <option value="Married">Married</option>
-                      <option value="Unmarried">Unmarried</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <div className="children">
-                    <input
-                      type="number"
-                      name="children"
-                      id="children"
-                      value={children}
-                      onChange={(e) => setChildren(e.target.value)}
-                      placeholder="Children"
-                    />
-                  </div>
-                  <div className="education">
-                    {/* <label htmlFor="education">
-    {" "}
-    <h1 className="educationheading"> Education </h1>
-  </label> */}
-                    <select
-                      name="education"
-                      id="education"
-                      value={education} // Initially set to an empty string
-                      onChange={(e) => setEducation(e.target.value)}
-                    >
-                      <option value="" disabled selected hidden>
-                        Education
-                      </option>
-                      <option value="HighSchool Graduate">
-                        High School or Below
-                      </option>
-                      <option value="Associate Degree">College</option>
-                      <option value="Bachelors Degree">Bachelors</option>
-                      <option value="Professional Degree">Masters</option>
-                    </select>
-                  </div>
-                  
-                    <div className="smoker">
-                      <label> Smoker </label>
-                      <input
-                        type="radio"
-                        name="smoker"
-                        id="smokerYes"
-                        value="Yes"
-                        checked={smoker === "Yes"}
-                        onChange={() => setSmoker("Yes")}
-                      />
-                      <label htmlFor="smokerYes"> Yes </label>
-                      <input
-                        type="radio"
-                        name="smoker"
-                        id="smokerNo"
-                        value="No"
-                        checked={smoker === "No"}
-                        onChange={() => setSmoker("No")}
-                      />
-                      <label htmlFor="smokerNo"> No </label>
-                    </div>
-
-                    <div className="region">
-                      {/* <label htmlFor="education">
-    {" "}
-    <h1 className="educationheading"> Education </h1>
-  </label> */}
-                      <select
-                        name="region"
-                        id="region"
-                        value={education} // Initially set to an empty string
-                        onChange={(e) => setRegion(e.target.value)}
-                      >
-                        <option value="" disabled selected hidden>
-                          Region
-                        </option>
-                        <option value="Northwest">Northwest</option>
-                        <option value="Southwest">Southwest</option>
-                      </select>
-                    </div>
-                
-
-                  {/* <div className="budget">
-                    <input
-                      type="number"
-                      name="budget"
-                      id="budget"
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      placeholder="Budget(PKR)"
-                    />
-                  </div> */}
-
-                  <div className="button">
-                    <button
-                      type="submit"
-                      className="flex w-full justify-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      Proceed
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+      <div className="mid">
+      {/* <table>
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>BMI</th>
+            <th>Children</th>
+            <th>Smoker</th>
+            <th>Region</th>
+            <th>Marital_status</th>
+            <th>Income</th>
+            <th>Education</th>
+            <th>Employment_status</th>
+            <th>Case_id</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.id}>
+                <td>{item.age}</td>
+                <td>{item.gender}</td>
+                <td>{item.bmi}</td>
+                <td>{item.children}</td>
+                <td>{item.smoker}</td>
+                <td>{item.marital_status}</td>
+                <td>{item.region}</td>
+                <td>{item.employment_status}</td>
+                <td>{item.income}</td>
+                <td>{item.education}</td>
+                <td>{item.case_id}</td>
+           
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+      {data && (
+        <div>
+          {/* Access and display properties of the JSON object */}
+          <p>Age: {data.Age}</p>
+          <p>Gender: {data.gender} </p>
+          <p>Marital Status: {data.marital_status}</p>
+          <p>BMI: {data.bmi}</p>
+          <p>Income: {data.income}</p>
+          <p>Region: {data.region}</p>
+          <p>Employment Status: {data.employment_status}</p>
+          <p>Children: {data.children}</p>
+          <p>Smoker: {data.smoker}</p>
+          <p>Education: {data.education}</p>
+          <p>Case ID: {data.case_id}</p>
+          {/* Add more properties as needed */}
         </div>
-        <div className="content"></div>
-        <div className="relative hidden w-30 flex-1 h-1 lg:block contentimg">
-          <img
-            className="object-contain object-img"
-            src="https://d1e6cjojnyo6nm.cloudfront.net/webp_images/product_new/healthcampiegn_img_3.png"
-            alt="#"
-          />
-          <h1 className="w-100 heading1 text-sky-600">
-            Get The Best Life Plan For
-          </h1>
-          <h2 className="heading2  text-sky-600">
-            Yourself, Family or Parents
-          </h2>
+      )}
+        <div className="checked">
+          <label>
+            <input
+              className="checkone"
+              type="checkbox"
+              name="predictedAI"
+              checked={predictedAI}
+              onChange={() => handleCheckBoxChange("predictedAI")}
+            />
+            Predicted AI
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="budget"
+              checked={budget}
+              onChange={() => handleCheckBoxChange("budget")}
+            />
+            Budget
+          </label>
+
+          <button className="proceed" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       </div>
       <footer className="bg-sky-300" aria-labelledby="footer-heading">
@@ -764,4 +538,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Review;

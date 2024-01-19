@@ -1,0 +1,36 @@
+.mid{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    gap: 10px;
+    width: 20%;
+}
+.checked{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.checked label{
+    display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.checked input{
+    margin-right: 5px;
+}
+.checkone{
+    margin-left: 33px;
+}
+.proceed{
+    padding: 10px 15px;
+  font-size: 16px;
+  background-color: #4299e1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-left: 143px;
+    gap: 5px;
+    margin-top: 33px;
+}

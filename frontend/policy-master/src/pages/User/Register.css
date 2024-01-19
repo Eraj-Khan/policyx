@@ -197,3 +197,12 @@ margin-right: 5px;
  .marital .maritalcolor{
     color: grey;
   }
+  .region{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+  .smoker{
+    align-self: start;
+    margin-left: 8px;
+  }

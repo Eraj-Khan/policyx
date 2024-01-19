@@ -1,0 +1,25 @@
+.com-signup{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.sign-up-input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.text-sign{
+    color: #63b3ed;
+    font-size: 48px;
+    font-weight: 700;
+}
+.underline-sign{
+    width:61px;
+    height:7px;
+    background: #63b3ed;
+    border-radius: 9px;
+    margin-left: 186px;
+}
