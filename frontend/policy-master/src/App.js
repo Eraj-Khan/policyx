@@ -21,7 +21,7 @@ function App() {
           <Route path='/login' element={<LoginSignup/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
         <Route path='/userDash' element={<UserDash/>}></Route>
-        <Route path='/review' element={<Review/>}></Route>
+        <Route path='/review/:case_id' element={<Review/>}></Route>
         <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
         </Routes>
       </BrowserRouter>  

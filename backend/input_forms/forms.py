@@ -17,9 +17,9 @@ class BudgetForm(forms.ModelForm):
         exclude = ['user_information','ai_suggested'] 
         
 
-@receiver(pre_save, sender=UserInformation)
-def generate_hash_key(sender, instance, **kwargs):
-    # Generate a hash using all fields from the instance
-    hash_data = ''.join([str(getattr(instance, field.attname)) for field in instance._meta.fields]).encode('utf-8')
-    hash_key = hashlib.sha256(hash_data).hexdigest()
-    instance.case_id = hash_key
+# @receiver(pre_save, sender=UserInformation)
+# def generate_hash_key(sender, instance, **kwargs):
+#     # Generate a hash using all fields from the instance
+#     hash_data = ''.join([str(getattr(instance, field.attname)) for field in instance._meta.fields]).encode('utf-8')
+#     hash_key = hashlib.sha256(hash_data).hexdigest()
+#     instance.case_id = hash_key
