@@ -8,6 +8,7 @@ import "../User/Register.css";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { useNavigate } from "react-router";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -224,6 +225,7 @@ const Register = () => {
     setWeight(e.target.value);
     calculateBmi();
   };
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -257,6 +259,7 @@ const Register = () => {
     } else {
       swal("unsuccessful");
     }
+    navigate("/review");
 
     const formData = {
       age,

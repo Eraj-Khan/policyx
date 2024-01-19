@@ -118,6 +118,8 @@ const navigation = [
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Customer Service', href: '#', icon: UsersIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  { name: 'Apply For Insurance', href: '/register', icon: InboxIcon, current: false },
+
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },

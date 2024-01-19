@@ -22,10 +22,7 @@ const SignUp = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-   
-
-  
-    navigate("/");
+     navigate("/");
   };
 
   return (
