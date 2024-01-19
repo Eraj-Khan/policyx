@@ -1,163 +1,132 @@
-// SignUp.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CompanySignUp.css";
 
-
 const SignUp = () => {
-const navigate = useNavigate();
- 
+  const navigate = useNavigate();
 
-  // State for form fields
-  const [companyName, setCompanyName] = useState('');
-  const [businessType, setBusinessType] = useState('');
-  const [businessAddress, setBusinessAddress] = useState('');
-  const [contactPerson, setContactPerson] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [companyName, setCompanyName] = useState("");
+  const [businessType, setBusinessType] = useState("");
+  const [businessAddress, setBusinessAddress] = useState("");
+  const [contactPerson, setContactPerson] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
 
-  // Function to handle form submission
+ 
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    // Perform sign-up logic here (e.g., API request)
+   
 
-    // Redirect to home page after successful sign-up
-    navigate('/');
+  
+    navigate("/");
   };
 
   return (
-    <div className='com-signup'>
-        
-        
-     <div className="text-sign">Company Sign Up</div>
-     <div className="underline-sign"></div>
-      <form onSubmit={handleSignUp}>
-        <label>
-          Company Name:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
-            required
-          />
-        </label>
-    
+    <div className="com-signup">
+      <div className="text-sign">Company Sign Up</div>
+      <div className="underline-sign"></div>
+      <form className="inputs-cont" onSubmit={handleSignUp}>
+        <input
+          className="sign-up-input"
+          type="text"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+          placeholder=" Company Name"
+          required
+        />
 
-        <label>
-          Business Type:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={businessType}
-            onChange={(e) => setBusinessType(e.target.value)}
-            required
-          />
-        </label>
-    
+        <input
+          className="sign-up-input"
+          type="text"
+          value={businessType}
+          onChange={(e) => setBusinessType(e.target.value)}
+          placeholder=" Business Type"
+          required
+        />
 
-        <label>
-          Business Address:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={businessAddress}
-            onChange={(e) => setBusinessAddress(e.target.value)}
-            required
-          />
-        </label>
-       
+        <input
+          className="sign-up-input"
+          type="text"
+          value={businessAddress}
+          onChange={(e) => setBusinessAddress(e.target.value)}
+          placeholder=" Business Address"
+          required
+        />
 
-        <label>
-          Contact Person:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={contactPerson}
-            onChange={(e) => setContactPerson(e.target.value)}
-            required
-          />
-        </label>
-     
+        <input
+          className="sign-up-input"
+          type="text"
+          value={contactPerson}
+          onChange={(e) => setContactPerson(e.target.value)}
+          placeholder="Contact Person"
+          required
+        />
 
-        <label>
-          Email Address:
-          <input
-          className='sign-up-input'
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-    
+        <input
+          className="input-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email Address"
+          required
+        />
 
-        <label>
-          Phone Number:
-          <input
-          className='sign-up-input'
-            type="tel"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </label>
- 
+        <input
+          className="input-phonenumber"
+          type="tel"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          placeholder="Phone Number"
+          required
+        />
 
-        <label>
-          Industry:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={industry}
-            onChange={(e) => setIndustry(e.target.value)}
-            required
-          />
-        </label>
-    
+        <input
+          className="sign-up-input"
+          type="text"
+          value={industry}
+          onChange={(e) => setIndustry(e.target.value)}
+          placeholder="Industry"
+          required
+        />
 
-        <label>
-          Username:
-          <input
-          className='sign-up-input'
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-     
+        <input
+          className="sign-up-input"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          required
+        />
 
-        <label>
-          Password:
-          <input
-          className='sign-up-input'
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-     
+        <input
+          className="input-password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
 
         <label>
           Terms and Conditions Acceptance:
           <input
-
             type="checkbox"
             checked={termsAccepted}
             onChange={() => setTermsAccepted(!termsAccepted)}
             required
           />
         </label>
-    
 
-        <button type="submit">Sign Up</button>
+        <button className="submit_btn" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );
