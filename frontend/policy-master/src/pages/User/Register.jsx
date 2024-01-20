@@ -227,10 +227,22 @@ const Register = () => {
   };
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = axios.post(
+// console.log("data",  {
+//   age,
+//   gender,
+//   bmi,
+//   children,
+//   smoker,
+//   region,
+//   marital_status: maritalStatus,
+//   income,
+//   education,
+//   employment_status: employment,
+//   budget,
+// })
+    const response = await axios.post(
       "http://127.0.0.1:8000/",
       {
         age,
@@ -239,10 +251,10 @@ const Register = () => {
         children,
         smoker,
         region,
-        maritalStatus,
+        marital_status: maritalStatus,
         income,
         education,
-        employment,
+        employment_status: employment,
         budget,
       },
       {
@@ -253,13 +265,13 @@ const Register = () => {
     );
     console.log("hi there", response.status);
     if (response) {
-      // console.log(");
+      console.log(response.data);
 
       swal("form submitted successfully");
     } else {
       swal("unsuccessful");
     }
-    navigate("/review");
+    navigate(`/review/${response.data.case_id}`);
 
     const formData = {
       age,
@@ -607,7 +619,7 @@ const Register = () => {
                       <select
                         name="region"
                         id="region"
-                        value={education} // Initially set to an empty string
+                        value={region} // Initially set to an empty string
                         onChange={(e) => setRegion(e.target.value)}
                       >
                         <option value="" disabled selected hidden>

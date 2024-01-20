@@ -37,6 +37,7 @@ const LoginSignup = () => {
   const [confirm_password, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[passwordMatch, setPasswordMatch] = useState(true);
   const navigate = useNavigate();
   
   // const [forgetPassword, setForgetPassword] = useState(false);
@@ -51,48 +52,55 @@ const LoginSignup = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError('');
+    setPasswordMatch(e.target.value === confirm_password)
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
-    if (password !== e.target.value) {
-      setPasswordError('Passwords do not match');
-    } else {
-      setPasswordError('');
-    }
+    setPasswordMatch(e.target.value === password)
   };
 
 
   const handleSignUpClick = async () => {
-    try {
-      // give api path for calling signUp api on get('/api/signup)
-      const response = await axios.post('http://localhost:8000/accounts/auth/users/', {
-        first_name,
-        last_name,
-        username,
-        email,
-        password,
-        confirm_password,
-      });
-
-      console.log(response.data);
-      if (response.status === 201) {
-        // setIsLoggedIn(true);
-        sessionStorage.clear();
-        sessionStorage.setItem("firstname", first_name);
-        sessionStorage.setItem("lastname", last_name);
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("password", password);
-        sessionStorage.setItem("confirmpassword", confirm_password);
-        // navigation('/home');
-        swal("User Created Successfully!");
-      } else {
-        swal("Sign-Up failed... Please try again.");
+    if(passwordMatch){
+      try {
+        // give api path for calling signUp api on get('/api/signup)
+        const response = await axios.post('http://localhost:8000/accounts/auth/users/', {
+          first_name,
+          last_name,
+          username,
+          email,
+          password,
+          confirm_password,
+        });
+  
+        console.log(response.data);
+        if (response.status === 201) {
+          // setIsLoggedIn(true);
+          sessionStorage.clear();
+          sessionStorage.setItem("firstname", first_name);
+          sessionStorage.setItem("lastname", last_name);
+          sessionStorage.setItem("username", username);
+          sessionStorage.setItem("email", email);
+          sessionStorage.setItem("password", password);
+          sessionStorage.setItem("confirmpassword", confirm_password);
+          // navigation('/home');
+          swal("User Created Successfully!");
+        } else {
+          swal("Sign-Up failed... Please try again.");
+        }
+      } catch (error) {
+        console.log("Error:", error);
       }
-    } catch (error) {
-      console.log("Error:", error);
     }
+
+     else{
+      swal("password not matched.");  
+     }
+     
+
+      
+   
   };
 
   // const handleSignInClick = async () => {
