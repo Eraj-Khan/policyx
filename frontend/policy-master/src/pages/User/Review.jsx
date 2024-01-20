@@ -392,6 +392,7 @@ const Review = () => {
         {data && (
         <div>
           {/* Access and display properties of the JSON object */}
+          <label>Case ID: {data.case_id}</label>
           <label>Age: {data.Age}</label>
           <label>Gender: {data.gender}</label>
           <label>Marital Status: {data.marital_status}</label>
@@ -402,7 +403,7 @@ const Review = () => {
           <label>Children: {data.children}</label>
           <label>Smoker: {data.smoker ? "yes":"no"}</label>
           <label>Education: {data.education}</label>
-          <label>Case ID: {data.case_id}</label>
+         
         
         
         </div>
