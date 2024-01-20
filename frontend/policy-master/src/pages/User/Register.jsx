@@ -3,15 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
 import "../User/Register.css";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-<<<<<<< HEAD
-=======
 import { useNavigate } from "react-router";
->>>>>>> 090fe525388868b3c8943007651689da404614be
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -228,20 +224,6 @@ const Register = () => {
     setWeight(e.target.value);
     calculateBmi();
   };
-<<<<<<< HEAD
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    // Validate the budget
-    if (budget && budget.toString().length < 4) {
-      swal("Budget must be at least 4 digits");
-      return;
-    }
-  
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/", {
-=======
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -250,7 +232,6 @@ const Register = () => {
     const response = axios.post(
       "http://127.0.0.1:8000/",
       {
->>>>>>> 090fe525388868b3c8943007651689da404614be
         age,
         gender,
         bmi,
@@ -262,27 +243,6 @@ const Register = () => {
         education,
         employment,
         budget,
-<<<<<<< HEAD
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      console.log("hi there", response.status);
-  
-      if (response.status === 200) {
-        swal("Form submitted successfully");
-      } else {
-        swal("Unsuccessful");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      swal("Error submitting form");
-    }
-  };
-  
-=======
       },
       {
         headers: {
@@ -316,7 +276,6 @@ const Register = () => {
     // Here you can handle the form submission, for example, send the data to an API.
     console.log("Form submitted:", formData);
   };
->>>>>>> 090fe525388868b3c8943007651689da404614be
 
   return (
     <div className=" ">
@@ -576,13 +535,8 @@ const Register = () => {
                       value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
                     >
-<<<<<<< HEAD
-                      <option  value="" disabled selected hidden>
-                        <span className="maritalcolor">Marital Status</span> 
-=======
                       <option value="" disabled selected hidden>
                         <span className="maritalcolor">Marital Status</span>
->>>>>>> 090fe525388868b3c8943007651689da404614be
                       </option>
                       <option value="Married">Married</option>
                       <option value="Unmarried">Unmarried</option>
@@ -621,11 +575,7 @@ const Register = () => {
                       <option value="Professional Degree">Masters</option>
                     </select>
                   </div>
-<<<<<<< HEAD
-                  <div className="smore">
-=======
                   
->>>>>>> 090fe525388868b3c8943007651689da404614be
                     <div className="smoker">
                       <label> Smoker </label>
                       <input
@@ -649,29 +599,6 @@ const Register = () => {
                     </div>
 
                     <div className="region">
-<<<<<<< HEAD
-                      <label> Region </label>
-                      <input
-                        type="radio"
-                        name="region"
-                        id="southwest"
-                        value="Southwest"
-                        checked={region === "Southwest"}
-                        onChange={() => setRegion("Southwest")}
-                      />
-                      <label htmlFor="southwest"> Southwest </label>
-                      <input
-                        type="radio"
-                        name="region"
-                        id="northwest"
-                        value="Northwest"
-                        checked={region === "Northwest"}
-                        onChange={() => setRegion("Northwest")}
-                      />
-                      <label htmlFor="northwest"> Northwest </label>
-                    </div>
-                  </div>
-=======
                       {/* <label htmlFor="education">
     {" "}
     <h1 className="educationheading"> Education </h1>
@@ -690,7 +617,6 @@ const Register = () => {
                       </select>
                     </div>
                 
->>>>>>> 090fe525388868b3c8943007651689da404614be
 
                   <div className="budget">
                     <input
@@ -708,11 +634,7 @@ const Register = () => {
                       type="submit"
                       className="flex w-full justify-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-<<<<<<< HEAD
-                      Submit
-=======
                       Proceed
->>>>>>> 090fe525388868b3c8943007651689da404614be
                     </button>
                   </div>
                 </form>

@@ -1,6 +1,7 @@
 import { Fragment, useState,  } from 'react'
 import React from 'react'
 import { Dialog, Menu, Transition   } from '@headlessui/react'
+
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -118,11 +119,8 @@ const navigation = [
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Customer Service', href: '#', icon: UsersIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-<<<<<<< HEAD
-=======
   { name: 'Apply For Insurance', href: '/register', icon: InboxIcon, current: false },
 
->>>>>>> 090fe525388868b3c8943007651689da404614be
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
