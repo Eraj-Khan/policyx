@@ -64,7 +64,7 @@ def user_input_view(request):
         budget = Budget.objects.create(
             user_information=user_info,
             budget=data['budget'],
-            ai_suggested = ai_suggested_value
+            # ai_suggested = ai_suggested_value
 
         )
 
