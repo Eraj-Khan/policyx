@@ -11,7 +11,7 @@ import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
 import Biding from './pages/Biding';
-
+import Notification from './pages/Notification';
 
 function App() {
   
@@ -31,9 +31,9 @@ function App() {
      <LoginSignup/> */}
      {/* <Company/> */}
      {/* <UserDash/> */}
+<Notification/>
 
-
-<Biding/>
+{/* <Biding/> */}
     </div>
   );
 }
