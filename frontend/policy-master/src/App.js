@@ -10,30 +10,26 @@ import UserDash from './pages/UserDash'
 import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
-import Biding from './pages/Biding';
-import Notification from './pages/Notification';
+import {Notification} from './pages/Notification.jsx'
 
 function App() {
   
     return (
     <div>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<LoginSignup/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
         <Route path='/userDash' element={<UserDash/>}></Route>
         <Route path='/review' element={<Review/>}></Route>
-        <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
-        </Routes>
-      </BrowserRouter>   */}
-    {/* <Home/>
-     <LoginSignup/> */}
-     {/* <Company/> */}
-     {/* <UserDash/> */}
-<Notification/>
+        <Route path='/company' element={<Company/>}></Route>
 
-{/* <Biding/> */}
+        <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
+        <Route path='/notification' element={<Notification/>}></Route>
+        </Routes>
+      </BrowserRouter>  
+ 
     </div>
   );
 }
