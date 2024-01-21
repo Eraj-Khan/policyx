@@ -113,15 +113,16 @@ export const Notification = () => {
         </button>
       </div>
 
-      <div>
+      <div className="notification-container">
         {notificationinfo.map((data) => (
-        <>  <li>
-        
-            {data.case_id}
-            </li>
-            <li>{data.age}</li>
-       
-            </>
+          <>
+            
+            <div key={data.case_id} className="notification-item">
+        <li className="case_id"> CASE ID: {data.case_id}</li>
+        <li className="age">AGE:  {data.age}</li>
+        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li>
+      </div>
+          </>
         ))}
       </div>
     </div>

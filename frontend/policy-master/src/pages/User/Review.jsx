@@ -410,25 +410,27 @@ const Review = () => {
         </tbody>
       </table> */}
   
-        <div className="checked">
+        <div className="checked-container">
         {data && (
         <div>
+          
           {/* Access and display properties of the JSON object */}
-          <label>Case ID: {data.case_id}</label>
-          <label>Age: {data.Age}</label>
-          <label>Gender: {data.gender}</label>
-          <label>Marital Status: {data.marital_status}</label>
-          <label>BMI: {data.bmi}</label>
-          <label>Income: {data.income}</label>
-          <label>Region: {data.region}</label>
-          <label>Employment Status: {data.employment_status}</label>
-          <label>Children: {data.children}</label>
-          <label>Smoker: {data.smoker ? "yes":"no"}</label>
-          <label>Education: {data.education}</label>
+          <label className="checked-label">Case ID: {data.case_id}</label>
+          <label className="checked-label">Age: {data.Age}</label>
+          <label className="checked-label">Gender: {data.gender}</label>
+          <label className="checked-label">Marital Status: {data.marital_status}</label>
+          <label className="checked-label">BMI: {data.bmi}</label>
+          <label className="checked-label">Income: {data.income}</label>
+          <label className="checked-label">Region: {data.region}</label>
+          <label className="checked-label">Employment Status: {data.employment_status}</label>
+          <label className="checked-label">Children: {data.children}</label>
+          <label className="checked-label">Smoker: {data.smoker ? "yes":"no"}</label>
+          <label className="checked-label">Education: {data.education}</label>
          
-          <label>
+         <div>
+          <label className="checked-label">
             <input
-              className="checkone"
+              className="check-input"
               type="checkbox"
               name="predictedAI"
               checked={predictedAI}
@@ -439,6 +441,7 @@ const Review = () => {
 
           <label>
             <input
+             className="check-input"
               type="checkbox"
               name="budget"
               checked={budget}
@@ -446,7 +449,7 @@ const Review = () => {
             />
             Budget {data?.budget}
           </label>
-        
+        </div>
         </div>
       )}
 
