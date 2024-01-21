@@ -10,6 +10,7 @@ import UserDash from './pages/UserDash'
 import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
+import {Notification} from './pages/Notification.jsx'
 
 function App() {
   
@@ -23,13 +24,10 @@ function App() {
         <Route path='/userDash' element={<UserDash/>}></Route>
         <Route path='/review/:case_id' element={<Review/>}></Route>
         <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
-        </Routes>
+        <Route path='/company' element={<Company/>}></Route>
+        <Route path='/notification' element={<Notification/>}></Route>
+           </Routes>
       </BrowserRouter>  
-    {/* <Home/>
-     <LoginSignup/> */}
-     {/* <Company/> */}
-     {/* <UserDash/> */}
-
     </div>
   );
 }

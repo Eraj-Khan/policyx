@@ -1,0 +1,14 @@
+.notification{
+    justify-content: right;}
+    .notification-heading{
+        font-size: 50px;
+        margin-left: 20px;
+        font-weight: bold;
+        margin-top: -65px;
+    }
+    .bellicon{
+        display: flex;
+    }
+    .bellicon button{
+        margin-top: -55px;
+    }

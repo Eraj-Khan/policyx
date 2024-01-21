@@ -286,13 +286,14 @@ export const Company = () => {
           
           </div>
           <div className="ml-4 flex items-center md:ml-6">
-            <button
-              type="button"
-              className="rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="h-6 w-6 " aria-hidden="true" />
-            </button>
+          <a
+  href="/notification"
+  className="rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+>
+  <span className="sr-only">View notifications</span>
+  <BellIcon className="h-6 w-6" aria-hidden="true" />
+</a>
+
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
@@ -300,7 +301,7 @@ export const Company = () => {
                 <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-20 rounded-full"
+                    className="w-5 rounded-full"
                     src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                     alt=""
                   />
