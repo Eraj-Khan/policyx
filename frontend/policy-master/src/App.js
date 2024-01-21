@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LoginSignup from './Components/LoginSignup/LoginSignup';
+import toast, { Toaster } from 'react-hot-toast';
 
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -28,6 +29,7 @@ function App() {
         <Route path='/notification' element={<Notification/>}></Route>
            </Routes>
       </BrowserRouter>  
+      <Toaster/>
     </div>
   );
 }

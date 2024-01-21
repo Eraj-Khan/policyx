@@ -191,8 +191,11 @@ const Review = () => {
   const [predictedAI, setPredictedAI] = useState();
   const [budget, setBudget] = useState();
   const [data, setData] = useState(null);
+  const [recommendedValue, setRecommendedValue] = useState("");
 
-  const handleCheckBoxChange = (checkboxName) => {
+  const handleCheckBoxChange = (value, checkboxName) => {
+    setRecommendedValue(value)
+
     if (checkboxName === "predictedAI") {
       setPredictedAI(!predictedAI);
       setBudget(false);
@@ -203,13 +206,32 @@ const Review = () => {
   };
 
   const handleSubmit = () => {
-    if (predictedAI) {
-      console.log("User selected Predicted AI");
-    } else if (budget) {
-      console.log("User selected Budget");
-    } else {
-      console.log("Please select one checkbox");
-    }
+   
+   
+ 
+     let payload = Object.assign(data, {
+      recommended_value:recommendedValue,
+      age:data.Age
+    });
+    axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
+    .then((response)=>{
+      console.log("response", response.data)
+    })
+    .catch((error)=>{
+      console.log("error", error)
+    })
+     console.log("payload", payload)
+
+
+    
+    // if (predictedAI) {
+
+    //   console.log("User selected Predicted AI");
+    // } else if (budget) {
+    //   console.log("User selected Budget");
+    // } else {
+    //   console.log("Please select one checkbox");
+    // }
   };
 
   useEffect(() => {
@@ -404,18 +426,13 @@ const Review = () => {
           <label>Smoker: {data.smoker ? "yes":"no"}</label>
           <label>Education: {data.education}</label>
          
-        
-        
-        </div>
-      )}
-
           <label>
             <input
               className="checkone"
               type="checkbox"
               name="predictedAI"
               checked={predictedAI}
-              onChange={() => handleCheckBoxChange("predictedAI")}
+              onChange={() => handleCheckBoxChange(data.ai_suggested,"predictedAI")}
             />
             Predicted AI  {data?.ai_suggested}
           </label>
@@ -425,10 +442,15 @@ const Review = () => {
               type="checkbox"
               name="budget"
               checked={budget}
-              onChange={() => handleCheckBoxChange("budget")}
+              onChange={() => handleCheckBoxChange(data.budget,"budget")}
             />
             Budget {data?.budget}
           </label>
+        
+        </div>
+      )}
+
+        
 
           <button className="proceed" onClick={handleSubmit}>
             Submit
