@@ -87,12 +87,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+#     }}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'policyx',
+        'NAME': 'nabeelx',
         'USER': 'policyx',
         'PASSWORD': 'policyx',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
