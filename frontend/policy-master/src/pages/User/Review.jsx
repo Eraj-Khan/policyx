@@ -8,6 +8,7 @@ import "../User/Review.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { useParams } from "react-router";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -186,6 +187,7 @@ const footerNavigation = {
 };
 
 const Review = () => {
+  const {case_id} = useParams();
   const [predictedAI, setPredictedAI] = useState(false);
   const [budget, setBudget] = useState(false);
   const [data, setData] = useState(null);
@@ -214,7 +216,7 @@ const Review = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/get_data_by_case_id/1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+          `http://127.0.0.1:8000/get_data_by_case_id/${case_id}` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
   
         console.log("API Response:", response.data);
