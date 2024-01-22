@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
+from . import views
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -40,7 +40,9 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('', include('input_forms.urls')),  # Include new input_forms URLs
     path('ai-prediction/', include('ai_prediction.urls')),
-    path('company_dashboard/',include('dashboard.urls'))
+    path('company_dashboard/',include('company.urls')),
+    path('api/add-entry-and-notify/',views.add_entry_and_notify, name='add_entry_and_notify'),
+
 ]
 
 

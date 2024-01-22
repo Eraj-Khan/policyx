@@ -45,13 +45,15 @@ INSTALLED_APPS = [
     'djoser',
     'drf_yasg',
     'corsheaders',
+    'background_task',
 
     
     # local
     'accounts',
     'input_forms',
     'ai_prediction',
-    'dashboard'
+    'dashboard',
+    'company'
 ]
 
 MIDDLEWARE = [
@@ -167,10 +169,29 @@ DJOSER = {
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_VERIFICATION = "none"
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# Optional: Change the default `django-background-tasks` settings
+BACKGROUND_TASK_RUN_ASYNC = True  # Run tasks asynchronously (in the background)
+BACKGROUND_TASK_QUEUE = 'default'  # Specify the queue for tasks
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'aliumair9316@gmail.com'
+EMAIL_HOST_PASSWORD = 'csnf suxh lxpd ucrb'
+DEFAULT_FROM_EMAIL = 'aliumair9316@gmail.com'
 # settings.py
+# settings.py
+
+# # Celery Configuration
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

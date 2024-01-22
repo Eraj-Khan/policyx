@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CompanyDashboard,CompanyPackages
+from .models import CompanyDashboard,Packages,CompanyDetails
 
 class CompanyDashboardSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,5 +8,11 @@ class CompanyDashboardSerializer(serializers.ModelSerializer):
         
 class CompanyPackagesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CompanyPackages
+        model = Packages
         fields = '__all__'
+        
+class CompanyDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyDetails
+        fields = '__all__'
+        

@@ -1,7 +1,7 @@
 from django.db import models
 
 class CompanyDashboard(models.Model):
-    case_id = models.CharField(max_length=255, unique=True, default=1)
+    case_id = models.CharField(max_length=255, unique=True,primary_key=True, default=1)
     age = models.IntegerField(max_length=255, null=True, blank=True)
     gender =  models.CharField(max_length=255, default='', null=True, blank=True)
     bmi = models.FloatField(max_length=255, default=25, null=True)
@@ -16,12 +16,21 @@ class CompanyDashboard(models.Model):
 
     
     def __str__(self):
-        return self.case_id
+        return str(self.case_id)
+    
+class CompanyDetails(models.Model):
+    company_id=models.AutoField(default=0,primary_key=True)
+    name=models.CharField(max_length=255, unique=True)
+    
+    def __str__(self):
+        return str(self.company_id)
 
 
-class CompanyPackages(models.Model):
-    package_id =models.OneToOneField(CompanyDashboard,on_delete=models.CASCADE,primary_key=True,null=False)
-    case_id = models.CharField(max_length=255, unique=True, default=1)
+class Packages(models.Model):
+    id=models.BigAutoField(default=0,primary_key=True)
+    case_id =models.ForeignKey(CompanyDashboard,on_delete=models.CASCADE,default="",null=False)
+    company_id=models.ForeignKey(CompanyDetails,null=True,on_delete=models.CASCADE)
+    # case_id = models.CharField(max_length=255, unique=True, default=1)
     company_name = models.CharField(max_length=255, null=True, blank=True)
     total_annual_coverage = models.IntegerField(max_length=255, null=True, blank=True)
     accidental_emergencies= models.IntegerField(max_length=255, null=True, blank=True)
@@ -34,3 +43,5 @@ class CompanyPackages(models.Model):
     
     def __str__(self):
         return self.case_id
+    # class Meta:
+    #     db_table = 'PackageDetails'

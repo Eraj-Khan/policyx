@@ -61,19 +61,19 @@ def user_input_view(request):
         #     # budget.ai_suggested = ai_suggested_value
         #     # budget.save()
 
-        budget = Budget.objects.create(
-            user_information=user_info,
-            budget=data['budget'],
-            ai_suggested = ai_suggested_value
+            budget = Budget.objects.create(
+                user_information=user_info,budget=data["budget"],
+                
+                ai_suggested = ai_suggested_value
 
-        )
+            )
 
         return JsonResponse(
             {'message': 'Form submitted successfully',
-             'case_id': hash_key,
+            'case_id': hash_key,
             #  'Budget': data['budget'],
-            #  'Ai_suggested': ai_suggested_value,  
-             })
+            'Ai_suggested': ai_suggested_value,  
+            })
     except Exception as e:
         print(f"Error: {e}")
         return JsonResponse({'error': str(e)})
@@ -85,16 +85,7 @@ def success_page(request):
 def get_data_by_case_id(request, case_id):
     try:
         cases_data = UserInformation.objects.get(case_id=case_id)
-        ai_budget_data = cases_data.budget
-        cases_serializer = UserInformationSerializer(cases_data)
-        ai_budget_serializer = BudgetSerializer(ai_budget_data)
-        response_data = {
-            'case': {
-                **cases_serializer.data,
-                'budget': ai_budget_serializer.data['budget'],
-                'ai_suggested': ai_budget_serializer.data['ai_suggested'],
-            },
-        }
+    
 
         return Response(response_data)
     except UserInformation.DoesNotExist:
