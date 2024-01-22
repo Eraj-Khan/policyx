@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserInformation, Budget
+from .models import UserInformation
 import hashlib
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -10,11 +10,11 @@ class UserInformationForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['hash_key','case_id']
 
-class BudgetForm(forms.ModelForm):
-    class Meta:
-        model = Budget
-        fields = '__all__'
-        exclude = ['user_information','ai_suggested'] 
+# class BudgetForm(forms.ModelForm):
+#     class Meta:
+#         model = Budget
+#         fields = '__all__'
+#         exclude = ['user_information','ai_suggested'] 
         
 
 # @receiver(pre_save, sender=UserInformation)
