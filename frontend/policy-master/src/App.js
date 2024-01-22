@@ -12,6 +12,8 @@ import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
 import {Notification} from './pages/Notification.jsx'
+import UserList from './pages/Company/UserList.jsx';
+import Bid from './pages/Company/Bid.jsx';
 
 function App() {
   
@@ -27,6 +29,8 @@ function App() {
         <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
         <Route path='/company' element={<Company/>}></Route>
         <Route path='/notification' element={<Notification/>}></Route>
+        <Route path='/userList' element={<UserList/>}></Route>
+        <Route path='/bid' element={<Bid/>}></Route>
            </Routes>
       </BrowserRouter>  
       <Toaster/>
