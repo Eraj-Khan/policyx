@@ -21,7 +21,7 @@ class CompanyDashboard(models.Model):
 
 class CompanyPackages(models.Model):
     package_id =models.OneToOneField(CompanyDashboard,on_delete=models.CASCADE,primary_key=True,null=False)
-    case_id = models.CharField(max_length=255, unique=True, default=1)
+    case_id = models.CharField(max_length=255, default=1)
     company_name = models.CharField(max_length=255, null=True, blank=True)
     total_annual_coverage = models.IntegerField(max_length=255, null=True, blank=True)
     accidental_emergencies= models.IntegerField(max_length=255, null=True, blank=True)

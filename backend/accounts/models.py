@@ -22,13 +22,12 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         if role == 'company' and additional_data:
-             
-
             company_user_data = {
                 'user': user,
                 'company_name':  additional_data.get('company_name', ''),
                 'business_type': additional_data.get('business_type', ''),
                 'business_address': additional_data.get('business_address', ''),
+                'email':additional_data.get('email',''),
                 'contact_person': additional_data.get('contact_person', ''),
                 'phone_number': additional_data.get('phone_number', ''),
                 'industry': additional_data.get('industry', ''),
@@ -91,6 +90,7 @@ class CompanyUser(models.Model):
     contact_person = models.CharField(max_length=100, null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     industry = models.CharField(max_length=100, null=True, blank=True)
+    email=models.EmailField(max_length=255, null=True)
     terms_and_conditions_accepted = models.BooleanField(default=False, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
