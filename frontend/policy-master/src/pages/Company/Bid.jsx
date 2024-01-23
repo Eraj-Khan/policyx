@@ -23,12 +23,7 @@ const Bid = () => {
       console.log("error", error)
     })
   };
-
   useEffect(() => {
-    
-  
-    
-
     console.log("Bid placed (after state update):", bidAmount);
   }, [bidAmount]);
   function companyX(premium) {
@@ -81,11 +76,7 @@ const Bid = () => {
    
 
     console.log("Company X:", xResult);
-   
   }
-
- 
-
   return (
     <div>
       <label htmlFor="bidInput">Enter Bid Amount:</label>

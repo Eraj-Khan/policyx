@@ -14,12 +14,13 @@ import CompanySignUp from "./pages/Company/CompanySignUp"
 import {Notification} from './pages/Notification.jsx'
 import UserList from './pages/Company/UserList.jsx';
 import Bid from './pages/Company/Bid.jsx';
+import Homex from './pages/Homex.jsx'
 
 function App() {
   
     return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<LoginSignup/>}></Route>
@@ -32,8 +33,10 @@ function App() {
         <Route path='/userList' element={<UserList/>}></Route>
         <Route path='/bid' element={<Bid/>}></Route>
            </Routes>
-      </BrowserRouter>  
+      </BrowserRouter>   */}
       <Toaster/>
+
+      <Homex/>
     </div>
   );
 }
