@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LoginSignup from './Components/LoginSignup/LoginSignup';
+import toast, { Toaster } from 'react-hot-toast';
 
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -10,6 +11,9 @@ import UserDash from './pages/UserDash'
 import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
+import {Notification} from './pages/Notification.jsx'
+import UserList from './pages/Company/UserList.jsx';
+import Bid from './pages/Company/Bid.jsx';
 
 function App() {
   
@@ -23,13 +27,13 @@ function App() {
         <Route path='/userDash' element={<UserDash/>}></Route>
         <Route path='/review/:case_id' element={<Review/>}></Route>
         <Route path='/companySignUp' element={<CompanySignUp/>}></Route>
-        </Routes>
+        <Route path='/company' element={<Company/>}></Route>
+        <Route path='/notification' element={<Notification/>}></Route>
+        <Route path='/userList' element={<UserList/>}></Route>
+        <Route path='/bid' element={<Bid/>}></Route>
+           </Routes>
       </BrowserRouter>  
-    {/* <Home/>
-     <LoginSignup/> */}
-     {/* <Company/> */}
-     {/* <UserDash/> */}
-
+      <Toaster/>
     </div>
   );
 }

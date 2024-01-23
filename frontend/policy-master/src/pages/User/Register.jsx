@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
 import "../User/Register.css";
 import { useState } from "react";
 import axios from "axios";
@@ -229,7 +228,19 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+// console.log("data",  {
+//   age,
+//   gender,
+//   bmi,
+//   children,
+//   smoker,
+//   region,
+//   marital_status: maritalStatus,
+//   income,
+//   education,
+//   employment_status: employment,
+//   budget,
+// })
     const response = await axios.post(
       "http://127.0.0.1:8000/",
       {
@@ -607,7 +618,7 @@ const Register = () => {
                       <select
                         name="region"
                         id="region"
-                        value={education} // Initially set to an empty string
+                        value={region} // Initially set to an empty string
                         onChange={(e) => setRegion(e.target.value)}
                       >
                         <option value="" disabled selected hidden>
