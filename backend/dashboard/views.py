@@ -4,7 +4,7 @@ from .models import CompanyDashboard,CompanyPackages
 from .serializers import CompanyDashboardSerializer,CompanyPackagesSerializer
 from rest_framework.response import Response
 from rest_framework import status
-
+from .company_plans import Adamjee_insurance, Jubilee_insurance, EFU_insurance
 
 @api_view(['POST'])
 def recieve_data_on_dashboard(requests):
@@ -42,3 +42,16 @@ def list_all_packages(request):
         }
 
     return Response(data)
+import inspect
+
+@api_view(['GET'])
+def choose_package(request,company_name,premium):
+    if company_name == 'Adamjee insurance':
+        result=Adamjee_insurance(premium)
+    if company_name == 'Jubilee insurance':
+        result=Jubilee_insurance(premium)
+    if company_name == 'Efu insurance':
+        result=EFU_insurance(premium)
+
+    return Response(result)
+
