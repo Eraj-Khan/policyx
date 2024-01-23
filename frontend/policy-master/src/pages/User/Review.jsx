@@ -8,6 +8,7 @@ import "../User/Review.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { useParams } from "react-router";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -186,11 +187,15 @@ const footerNavigation = {
 };
 
 const Review = () => {
-  const [predictedAI, setPredictedAI] = useState(false);
-  const [budget, setBudget] = useState(false);
+  const {case_id} = useParams();
+  const [predictedAI, setPredictedAI] = useState();
+  const [budget, setBudget] = useState();
   const [data, setData] = useState(null);
+  const [recommendedValue, setRecommendedValue] = useState("");
 
-  const handleCheckBoxChange = (checkboxName) => {
+  const handleCheckBoxChange = (value, checkboxName) => {
+    setRecommendedValue(value)
+
     if (checkboxName === "predictedAI") {
       setPredictedAI(!predictedAI);
       setBudget(false);
@@ -201,20 +206,39 @@ const Review = () => {
   };
 
   const handleSubmit = () => {
-    if (predictedAI) {
-      console.log("User selected Predicted AI");
-    } else if (budget) {
-      console.log("User selected Budget");
-    } else {
-      console.log("Please select one checkbox");
-    }
+   
+   
+ 
+     let payload = Object.assign(data, {
+      recommended_value:recommendedValue,
+      age:data.Age
+    });
+    axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
+    .then((response)=>{
+      console.log("response", response.data)
+    })
+    .catch((error)=>{
+      console.log("error", error)
+    })
+     console.log("payload", payload)
+
+
+    
+    // if (predictedAI) {
+
+    //   console.log("User selected Predicted AI");
+    // } else if (budget) {
+    //   console.log("User selected Budget");
+    // } else {
+    //   console.log("Please select one checkbox");
+    // }
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/get_data_by_case_id/1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+          `http://127.0.0.1:8000/get_data_by_case_id/${case_id}` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
   
         console.log("API Response:", response.data);
@@ -385,44 +409,51 @@ const Review = () => {
           ))}
         </tbody>
       </table> */}
-      {data && (
+  
+        <div className="checked-container">
+        {data && (
         <div>
+          
           {/* Access and display properties of the JSON object */}
-          <p>Age: {data.Age}</p>
-          <p>Gender: {data.gender} </p>
-          <p>Marital Status: {data.marital_status}</p>
-          <p>BMI: {data.bmi}</p>
-          <p>Income: {data.income}</p>
-          <p>Region: {data.region}</p>
-          <p>Employment Status: {data.employment_status}</p>
-          <p>Children: {data.children}</p>
-          <p>Smoker: {data.smoker}</p>
-          <p>Education: {data.education}</p>
-          <p>Case ID: {data.case_id}</p>
-          {/* Add more properties as needed */}
-        </div>
-      )}
-        <div className="checked">
-          <label>
+          <label className="checked-label">Case ID: {data.case_id}</label>
+          <label className="checked-label">Age: {data.Age}</label>
+          <label className="checked-label">Gender: {data.gender}</label>
+          <label className="checked-label">Marital Status: {data.marital_status}</label>
+          <label className="checked-label">BMI: {data.bmi}</label>
+          <label className="checked-label">Income: {data.income}</label>
+          <label className="checked-label">Region: {data.region}</label>
+          <label className="checked-label">Employment Status: {data.employment_status}</label>
+          <label className="checked-label">Children: {data.children}</label>
+          <label className="checked-label">Smoker: {data.smoker ? "yes":"no"}</label>
+          <label className="checked-label">Education: {data.education}</label>
+         
+         <div>
+          <label className="checked-label">
             <input
-              className="checkone"
+              className="check-input"
               type="checkbox"
               name="predictedAI"
               checked={predictedAI}
-              onChange={() => handleCheckBoxChange("predictedAI")}
+              onChange={() => handleCheckBoxChange(data.ai_suggested,"predictedAI")}
             />
-            Predicted AI
+            Predicted AI  {data?.ai_suggested}
           </label>
 
           <label>
             <input
+             className="check-input"
               type="checkbox"
               name="budget"
               checked={budget}
-              onChange={() => handleCheckBoxChange("budget")}
+              onChange={() => handleCheckBoxChange(data.budget,"budget")}
             />
-            Budget
+            Budget {data?.budget}
           </label>
+        </div>
+        </div>
+      )}
+
+        
 
           <button className="proceed" onClick={handleSubmit}>
             Submit
@@ -539,3 +570,4 @@ const Review = () => {
 };
 
 export default Review;
+
