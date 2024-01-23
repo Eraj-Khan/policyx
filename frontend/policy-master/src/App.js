@@ -12,7 +12,6 @@ import { useState } from 'react';
 import Review from './pages/User/Review';
 import CompanySignUp from "./pages/Company/CompanySignUp"
 import {Notification} from './pages/Notification.jsx'
-import {Notification} from './pages/Notification.jsx'
 import UserList from './pages/Company/UserList.jsx';
 import Bid from './pages/Company/Bid.jsx';
 

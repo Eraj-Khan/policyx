@@ -189,11 +189,8 @@ export const Company = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/company_dashboard/list_users` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+          "http://127.0.0.1:8000/company_dashboard/list_users/"
         );
-  
-       
-  
         // Set the entire JSON object to data
         let count = localStorage.getItem("notification")
         if(count == response.data.length){
@@ -214,6 +211,7 @@ export const Company = () => {
     fetchData();
   }, []);
   return (
+  
     <div className="main-dashboard">
       <div className="sidebar">
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -429,60 +427,7 @@ export const Company = () => {
               </div>
             </div>
           </div>
-          
-          </div>
-          <div className="ml-4 flex items-center md:ml-6">
-          <a
-  href="/notification"
-  className="rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
->
-  <span className="sr-only">View notifications</span>
-  <BellIcon className="h-6 w-6" aria-hidden="true" />
-</a>
-            {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
-              <div>
-                <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="w-5 rounded-full"
-                    src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
-                    alt=""
-                  />
-                </Menu.Button>
-              </div>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {userNavigation.map((item) => (
-                    <Menu.Item key={item.name}>
-                      {({ active }) => (
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  ))}
-                </Menu.Items>
-              </Transition>
-            </Menu>
-          </div>
-        </div>
-      </div>
-
+<></>
           <main>
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
@@ -780,6 +725,7 @@ export const Company = () => {
         </footer>
       </div>
     </div>
+    
   );
 };
 
