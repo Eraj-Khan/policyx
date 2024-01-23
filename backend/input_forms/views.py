@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from .forms import UserInformationForm
+from django.shortcuts import render
 import requests
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -36,6 +35,7 @@ def user_input_view(request):
 
         hash_data = ''.join([str(data[field]) for field in data]).encode('utf-8')
         hash_key = hashlib.sha256(hash_data).hexdigest()
+        hash_key = 'PX' + hash_key[:4]
 
         user_info = UserInformation.objects.create(
             Age=data['age'],
