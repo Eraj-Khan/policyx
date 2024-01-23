@@ -17,11 +17,11 @@ class UserInformation(models.Model):
     class Meta:
         db_table = 'UserInformation'
 
-class Budget(models.Model):
-    user_information = models.OneToOneField(UserInformation, on_delete=models.CASCADE, primary_key=True)
-    budget = models.FloatField()
-    ai_suggested = models.FloatField(null=True, blank=True)
+# class Budget(models.Model):
+#     user_information = models.OneToOneField(UserInformation, on_delete=models.CASCADE, primary_key=True)
+#     budget = models.FloatField()
+#     ai_suggested = models.FloatField(null=True, blank=True)
 
 
-    class Meta:
-        db_table = 'Budget'
+#     class Meta:
+#         db_table = 'Budget'
