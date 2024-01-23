@@ -22,16 +22,16 @@ from drf_yasg import openapi
 from . import views
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Snippets API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+openapi.Info(
+    title="Snippets API",
+    default_version='v1',
+    description="Test description",
+    terms_of_service="https://www.google.com/policies/terms/",
+    contact=openapi.Contact(email="contact@snippets.local"),
+    license=openapi.License(name="BSD License"),
+),
+public=True,
+permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [
@@ -40,7 +40,7 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('', include('input_forms.urls')),  # Include new input_forms URLs
     path('ai-prediction/', include('ai_prediction.urls')),
-    path('company_dashboard/',include('company.urls')),
+    path('company_dashboard/',include('dashboard.urls')),
     path('api/add-entry-and-notify/',views.add_entry_and_notify, name='add_entry_and_notify'),
 
 ]

@@ -39,7 +39,7 @@ def user_input_view(request):
         hash_key = hashlib.sha256(hash_data).hexdigest()
 
         user_info = UserInformation.objects.create(
-            Age=data['age'],
+            age=data['age'],
             gender=data['gender'],
             bmi=data['bmi'],
             children=data['children'],
@@ -54,6 +54,8 @@ def user_input_view(request):
         # print(hash_key)
         print(hash_key)
         status_code, ai_prediction_response = make_ai_prediction_request(hash_key)
+        print(status_code)
+
         if status_code == 200:
             print(ai_prediction_response)
             prediction_data = json.loads(ai_prediction_response)
@@ -64,16 +66,16 @@ def user_input_view(request):
             budget = Budget.objects.create(
                 user_information=user_info,budget=data["budget"],
                 
-                ai_suggested = ai_suggested_value
+                ai_suggested = ai_prediction_response
 
             )
 
-        return JsonResponse(
-            {'message': 'Form submitted successfully',
-            'case_id': hash_key,
-            #  'Budget': data['budget'],
-            'Ai_suggested': ai_suggested_value,  
-            })
+            return JsonResponse(
+                {'message': 'Form submitted successfully',
+                'case_id': hash_key,
+                #  'Budget': data['budget'],
+                'Ai_suggested': ai_suggested_value,  
+                })
     except Exception as e:
         print(f"Error: {e}")
         return JsonResponse({'error': str(e)})

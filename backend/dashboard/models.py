@@ -13,6 +13,10 @@ class CompanyDashboard(models.Model):
     education = models.CharField(max_length=255, default='', null=True, blank=True)
     employment_status = models.CharField(max_length=255, default='', null=True, blank=True)
     recommended_value = models.IntegerField(max_length=255, default='', null=True, blank=True)
+    created_at=models.DateTimeField(auto_now_add=True,null=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    is_completed=models.BooleanField(default=False,null=True)
+    active=models.BooleanField(default=True,null=True)
 
     
     def __str__(self):
@@ -21,13 +25,13 @@ class CompanyDashboard(models.Model):
 class CompanyDetails(models.Model):
     company_id=models.AutoField(default=0,primary_key=True)
     name=models.CharField(max_length=255, unique=True)
-    
+    email=models.EmailField(max_length=255, null=True)
     def __str__(self):
         return str(self.company_id)
 
 
 class Packages(models.Model):
-    id=models.BigAutoField(default=0,primary_key=True)
+    # id=models.(primary_key=True)
     case_id =models.ForeignKey(CompanyDashboard,on_delete=models.CASCADE,default="",null=False)
     company_id=models.ForeignKey(CompanyDetails,null=True,on_delete=models.CASCADE)
     # case_id = models.CharField(max_length=255, unique=True, default=1)
@@ -40,6 +44,9 @@ class Packages(models.Model):
     dental_and_vision_care = models.IntegerField(max_length=255, null=True, blank=True)
     other_medical_expenses = models.IntegerField(max_length=255, null=True, blank=True)
     company_bid = models.IntegerField(max_length=255, default=0, null=True, blank=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    is_accepted=models.BooleanField(default=True,null=True)
+
     
     def __str__(self):
         return self.case_id

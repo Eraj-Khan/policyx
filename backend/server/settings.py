@@ -52,8 +52,7 @@ INSTALLED_APPS = [
     'accounts',
     'input_forms',
     'ai_prediction',
-    'dashboard',
-    'company'
+    'dashboard'
 ]
 
 MIDDLEWARE = [
