@@ -18,13 +18,13 @@ def user_by_case_id(request, case_id):
         serializer = UserInformationSerializer(user_info)
 
         fields_to_retrieve = [
-                "Age", "bmi", "children", "smoker", "gender",
+                "age", "bmi", "children", "smoker", "gender",
                 "region"
             ]
         data_dict = {key: serializer.data.get(key, None) for key in fields_to_retrieve}
 
         data_encoded = pd.DataFrame({
-            'age': [data_dict['Age']],  
+            'age': [data_dict['age']],  
             'bmi': [data_dict['bmi']],  
             'children': [data_dict['children']],  
             'smoker_yes': [int(data_dict['smoker'])],  

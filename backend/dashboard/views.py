@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.core.mail import send_mass_mail
 from django.conf import settings
+from django.db import models, IntegrityError
 from accounts.models import CompanyUser
 
 
@@ -35,11 +36,16 @@ def list_all_cases(request):
 
 @api_view(['POST'])
 def place_package(requests):
-    package_place_serializer= CompanyPackagesSerializer(data=requests.data)
-    if package_place_serializer.is_valid():
-        package_place_serializer.save()
-        return Response(package_place_serializer.data, status=status.HTTP_201_CREATED)
-    return Response(package_place_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    try:
+        package_place_serializer= CompanyPackagesSerializer(data=requests.data)
+        if package_place_serializer.is_valid():
+            package_place_serializer.save()
+            return Response(package_place_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(package_place_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except IntegrityError as integ_err:
+        return Response({'error':f'Error!! {integ_err}'})
+    except Exception as e:
+        return Response({'error':f'error occurred {e}'})
 
 
 @api_view(['GET'])

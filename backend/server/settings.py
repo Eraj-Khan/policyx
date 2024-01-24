@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'accounts',
     'input_forms',
     'ai_prediction',
-    'dashboard'
+    'dashboard',
+    'django_bg_task'
 ]
 
 MIDDLEWARE = [
