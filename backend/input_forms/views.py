@@ -30,10 +30,6 @@ def user_input_view(request):
         hash_data = ''.join([str(data[field]) for field in data]).encode('utf-8')
         hash_key = hashlib.sha256(hash_data).hexdigest()
         hash_key = 'PX' + hash_key[:4]
-<<<<<<< HEAD
-=======
-
->>>>>>> main
         user_info = UserInformation.objects.create(
             age=data['age'],
             gender=data['gender'],
