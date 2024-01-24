@@ -32,7 +32,7 @@ def user_by_case_id(request, case_id):
             'region_northwest': [1 if data_dict['region'] == 'northwest' else 0],  
             'region_southeast': [1 if data_dict['region'] == 'southeast' else 0],
             'region_southwest': [1 if data_dict['region'] == 'southwest' else 0]
-        })
+    })
 
         model_path = os.path.join(settings.BASE_DIR, 'ai_prediction', 'model', 'xgboost_model_insurance.joblib')
         loaded_model = joblib.load(model_path)

@@ -1,7 +1,11 @@
 from django.db import models
 
 class UserInformation(models.Model):
+<<<<<<< HEAD
     age = models.IntegerField(null=True)
+=======
+    age = models.IntegerField()
+>>>>>>> main
     gender = models.CharField(max_length=10)
     bmi = models.FloatField()
     children = models.IntegerField()
