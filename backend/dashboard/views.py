@@ -66,3 +66,25 @@ def list_all_packages(request,case_id):
         }
 
     return Response(data)
+
+@api_view(['PUT'])
+def update_bid(requests,case_id,company_name):
+    print(company_name)
+    try:
+        company_package_update = CompanyPackages.objects.get(case_id=case_id, company_name=company_name)
+    except CompanyPackages.DoesNotExist:
+        return Response("Data Not Found!!", status=status.HTTP_404_NOT_FOUND)
+    
+    # Use the retrieved instance to update data
+    update_serializer = CompanyPackagesSerializer(company_package_update, data=requests.data)
+    
+    if update_serializer.is_valid():
+        update_serializer.save()
+        return Response(update_serializer.data)
+    
+    return Response(update_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    
+
+
