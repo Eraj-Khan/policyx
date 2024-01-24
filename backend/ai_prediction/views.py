@@ -18,7 +18,7 @@ def user_by_case_id(request, case_id):
         serializer = UserInformationSerializer(user_info)
 
         fields_to_retrieve = [
-                "Age", "bmi", "children", "smoker", "gender",
+                "age", "bmi", "children", "smoker", "gender",
                 "region"
             ]
         data_dict = {key: serializer.data.get(key, None) for key in fields_to_retrieve}

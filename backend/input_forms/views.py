@@ -38,7 +38,7 @@ def user_input_view(request):
         hash_key = 'PX' + hash_key[:4]
 
         user_info = UserInformation.objects.create(
-            Age=data['age'],
+            age=data['age'],
             gender=data['gender'],
             bmi=data['bmi'],
             children=data['children'],
