@@ -21,6 +21,10 @@ import {
 
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
+import "../Insurrance/UserList.css";
+import blue from "../../image/blue.jpg";
+
+
 import { Link } from "react-router-dom";
 
 const navigation = [
@@ -121,23 +125,52 @@ const UserList = () => {
           </button>
         </div>
   
-        <div className="notification-container">
+        {/* <div className="notification-container">
           {notificationinfo.map((data) => (
             <>
+
               
-              <div key={data.case_id} className="notification-item">
+              <div key={data.case_id} className="user-item">
           <li className="case_id"> CASE ID: {data.case_id}</li>
           <li className="age">AGE:  {data.age}</li>
           <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li>
           <a href={`/bid?case_id=${data.case_id}`}>
-              <button onClick={() => handleBidClick(data.case_id)}>
+              <button className="bid-place" onClick={() => handleBidClick(data.case_id)}>
                 Place bid
               </button>
             </a>
         </div>
             </>
           ))}
+        </div> */}
+
+<div className="notifi-container">
+      {notificationinfo.map((data) => (
+        <div key={data.case_id} className="user-item">
+          <img
+            className="user-image"
+            src={blue} // Add the image source to each data item
+            alt={`Profile - ${data.case_id}`}
+          />
+          <ul>
+            <li className="case_id">CASE ID: {data.case_id}</li>
+            <div className="inline-info">
+              <li className="age">AGE: {data.age}</li>
+              <li className="income">Income: {data.income}</li>
+            </div>
+            <li className="recommended">SELECTED VALUE: {data.recommended_value}</li>
+          </ul>
+          <a href={`/bid?case_id=${data.case_id}`}>
+            <button className="bid-place" onClick={() => handleBidClick(data.case_id)}>
+              Place bid
+            </button>
+          </a>
+          <div className="icon-container">
+            <i className="fas fa-heart"></i>
+          </div>
         </div>
+      ))}
+    </div>
       </div>
     );
   };

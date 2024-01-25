@@ -10,10 +10,10 @@ import { Company } from './pages/Company';
 import UserDash from './pages/UserDash'
 import { useState } from 'react';
 import Review from './pages/User/Review';
-import CompanySignUp from "./pages/Company/CompanySignUp"
+import CompanySignUp from "./pages/Insurrance/CompanySignUp.jsx"
 import {Notification} from './pages/Notification.jsx'
-import UserList from './pages/Company/UserList.jsx';
-import Bid from './pages/Company/Bid.jsx';
+import UserList from './pages/Insurrance/UserList.jsx';
+import Bid from './pages/Insurrance/Bid.jsx';
 
 function App() {
   

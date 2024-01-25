@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./LoginSignup.css";
-import user_icon from "../Assets/person.png";
-import email_icon from "../Assets/email.png";
-import password_icon from "../Assets/password.png";
+import "../Insurrance/CompanySignUp.css";
+import user_icon from "../../Components/Assets/person.png";
+import email_icon from "../../Components/Assets/email.png";
+import password_icon from "../../Components/Assets/password.png";
 import swal from "sweetalert";
 import axios from "axios";
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +19,7 @@ const navigation = [
 
 
 
-const LoginSignup = () => {
+const CompanySignup = () => {
   const [action, setAction] = useState("Sign In");
   // const [formData, setFormData] = useState({
   //   firstname: "",
@@ -29,20 +29,22 @@ const LoginSignup = () => {
   //   password: "",
   //   confirmpassword: "",
   // });
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [username, setUserName] = useState("");
+  const [company_name, setCompanyName] = useState("");
+  const [business_type, setBusinessType] = useState("");
+  const [business_address, setBusinessAddress] = useState("");
+  const [contact_person, setContactPerson] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState('');
-  const [confirm_password, setConfirmPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const[passwordMatch, setPasswordMatch] = useState(true);
- 
+  const [phone_number, setPhoneNumber] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [terms_and_conditions_accepted, setTermsAccepted] = useState(false);
+  const[loggedIn, setIsLoggedIn] = useState("");
   const navigate = useNavigate();
   
   // const [forgetPassword, setForgetPassword] = useState(false);
-const role= "normal";
+
+  const role= "company";
 
   const handleSignUp = () => {
     setAction("Sign Up");
@@ -51,43 +53,52 @@ const role= "normal";
     setAction("Sign In");
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordError('');
-    setPasswordMatch(e.target.value === confirm_password)
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  //   setPasswordError('');
+  //   setPasswordMatch(e.target.value === confirm_password)
+  // };
 
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-    setPasswordMatch(e.target.value === password)
-  };
+  // const handleConfirmPasswordChange = (e) => {
+  //   setConfirmPassword(e.target.value);
+  //   setPasswordMatch(e.target.value === password)
+  // };
 
 
   const handleSignUpClick = async () => {
-    if(passwordMatch){
+   
       try {
         // give api path for calling signUp api on get('/api/signup)
-        const response = await axios.post('http://localhost:8000/accounts/api/auth/users/', {
-          first_name,
-          last_name,
-          username,
+        const response = await axios.post('http://127.0.0.1:8000/accounts/auth/users/', {
           email,
+          username,
+          first_name: null,
+          last_name: null,
+          role,
           password,
-          confirm_password,
-          role
+          company_name,
+          business_type,
+          business_address,
+          contact_person,
+          phone_number,
+          industry,
+          terms_and_conditions_accepted,
         });
   
         console.log(response.data);
         if (response.status === 201) {
           // setIsLoggedIn(true);
           sessionStorage.clear();
-          sessionStorage.setItem("firstname", first_name);
-          sessionStorage.setItem("lastname", last_name);
-          sessionStorage.setItem("username", username);
+          sessionStorage.setItem("company_name", company_name);
+          sessionStorage.setItem("business_type", business_type);
+          sessionStorage.setItem("business_address", business_address);
+          sessionStorage.setItem("contact_person", contact_person);
           sessionStorage.setItem("email", email);
+          sessionStorage.setItem("phone_number", phone_number);
+          sessionStorage.setItem("industry", industry);
+          sessionStorage.setItem("username", username);
           sessionStorage.setItem("password", password);
-          sessionStorage.setItem("confirmpassword", confirm_password);
-          sessionStorage.setItem("role", role);
+          sessionStorage.setItem("terms_and_conditions_accepted", terms_and_conditions_accepted)
           // navigation('/home');
           swal("User Created Successfully!");
         } else {
@@ -96,11 +107,9 @@ const role= "normal";
       } catch (error) {
         console.log("Error:", error);
       }
-    }
+    
 
-     else{
-      swal("password not matched.");  
-     }
+   
      
 
       
@@ -138,7 +147,7 @@ const role= "normal";
         // sessionStorage.clear();
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("password", password);
-        navigate('/userDash');
+        navigate('/company');
         swal("Successfully Logged In")
       } else {
         swal("Please sign in with correct credentials.");
@@ -176,29 +185,35 @@ const role= "normal";
         <div className="inputsmall">
           <img src={user_icon} alt="" />
           <input
-            type="text"
-            placeholder="Firstname"
-            onChange={(e) => setFirstName(e.target.value)}
-            value={first_name}
-          />
+          className="sign-up-input"
+          type="text"
+          value={company_name}
+          onChange={(e) => setCompanyName(e.target.value)}
+          placeholder=" Company Name"
+          required
+        />
 
           <img src={user_icon} alt="" />
           <input
-            type="text"
-            placeholder="Lastname"
-            onChange={(e) => setLastName(e.target.value)}
-            value={last_name}
-          />
+          className="sign-up-input"
+          type="text"
+          value={business_type}
+          onChange={(e) => setBusinessType(e.target.value)}
+          placeholder=" Business Type"
+          required
+        />
         </div>
 
         <div className="input">
           <img src={user_icon} alt="" />
           <input
-            type="text"
-            placeholder="Username"
-            onChange={(e) => setUserName(e.target.value)}
-            value={username}
-          />
+          className="sign-up-input"
+          type="text"
+          value={business_address}
+          onChange={(e) => setBusinessAddress(e.target.value)}
+          placeholder=" Business Address"
+          required
+        />
         </div>
       </div>
     );
@@ -329,38 +344,96 @@ const role= "normal";
       </div>
       <div className="inputs">
         {dynamicFields}
-
+        {
+          action === "Sign In" ? <div></div> : 
         <div className="input">
           <img src={email_icon} alt="" />
           <input
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
+          className="sign-up-input"
+          type="text"
+          value={contact_person}
+          onChange={(e) => setContactPerson(e.target.value)}
+          placeholder="Contact Person"
+          required
+        />
         </div>
+}
         <div className="input">
           <img src={password_icon} alt="" />
           <input
-            type="password"
-            placeholder="Password"
-            onChange={handlePasswordChange}
-            value={password}
-          />
+          className="input-email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email Address"
+          required
+        />
         </div>
         {
           action === "Sign In" ? <div></div> : 
           <div className="input">
           <img src={password_icon} alt="" />
           <input
-            type="password"
-            placeholder="ConfirmPassword"
-            onChange={handleConfirmPasswordChange}
-            value={confirm_password}
-          />
+          className="input-phonenumber"
+          type="tel"
+          value={phone_number}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          placeholder="Phone Number"
+          required
+        />
         </div>
-        }      
-          
+        }       
+          {
+          action === "Sign In" ? <div></div> : 
+          <div className="input">
+          <img src={password_icon} alt="" />
+          <input
+          className="sign-up-input"
+          type="text"
+          value={industry}
+          onChange={(e) => setIndustry(e.target.value)}
+          placeholder="Industry"
+          required
+        />
+        </div>
+        }  
+           {
+          action === "Sign In" ? <div></div> : 
+          <div className="input">
+          <img src={password_icon} alt="" />
+          <input
+          className="sign-up-input"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          required
+        />
+        </div>
+        }  
+         <div className="input">
+          <img src={password_icon} alt="" />
+          <input
+          className="input-password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
+        </div>
+        {
+          action === "Sign In" ? <div></div> : 
+        <label>
+          Terms and Conditions Acceptance:
+          <input
+            type="checkbox"
+            checked={terms_and_conditions_accepted}
+            onChange={(e) => setTermsAccepted(e.target.value)}
+            required
+          />
+        </label>
+}
       </div>
       {/* {(action === 'Sign Up' || action === 'Login') && (
         <div className='forgot-password' onClick={() => setAction('Forgot Password')}>
@@ -449,4 +522,141 @@ const role= "normal";
   );
 };
 
-export default LoginSignup;
+export default CompanySignup;
+
+
+
+
+
+
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import "./CompanySignUp.css";
+
+// const SignUp = () => {
+//   const navigate = useNavigate();
+
+
+//   const [companyName, setCompanyName] = useState("");
+//   const [businessType, setBusinessType] = useState("");
+//   const [businessAddress, setBusinessAddress] = useState("");
+//   const [contactPerson, setContactPerson] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [phoneNumber, setPhoneNumber] = useState("");
+//   const [industry, setIndustry] = useState("");
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [termsAccepted, setTermsAccepted] = useState(false);
+
+ 
+//   const handleSignUp = (e) => {
+//     e.preventDefault();
+
+//      navigate("/");
+//   };
+
+//   return (
+//     <div className="com-signup">
+//       <div className="text-sign">Company Sign Up</div>
+//       <div className="underline-sign"></div>
+//       <form className="inputs-cont" onSubmit={handleSignUp}>
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={companyName}
+//           onChange={(e) => setCompanyName(e.target.value)}
+//           placeholder=" Company Name"
+//           required
+//         />
+
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={businessType}
+//           onChange={(e) => setBusinessType(e.target.value)}
+//           placeholder=" Business Type"
+//           required
+//         />
+
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={businessAddress}
+//           onChange={(e) => setBusinessAddress(e.target.value)}
+//           placeholder=" Business Address"
+//           required
+//         />
+
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={contactPerson}
+//           onChange={(e) => setContactPerson(e.target.value)}
+//           placeholder="Contact Person"
+//           required
+//         />
+
+//         <input
+//           className="input-email"
+//           type="email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           placeholder="Email Address"
+//           required
+//         />
+
+//         <input
+//           className="input-phonenumber"
+//           type="tel"
+//           value={phoneNumber}
+//           onChange={(e) => setPhoneNumber(e.target.value)}
+//           placeholder="Phone Number"
+//           required
+//         />
+
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={industry}
+//           onChange={(e) => setIndustry(e.target.value)}
+//           placeholder="Industry"
+//           required
+//         />
+
+//         <input
+//           className="sign-up-input"
+//           type="text"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           placeholder="Username"
+//           required
+//         />
+
+//         <input
+//           className="input-password"
+//           type="password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           placeholder="Password"
+//           required
+//         />
+
+//         <label>
+//           Terms and Conditions Acceptance:
+//           <input
+//             type="checkbox"
+//             checked={termsAccepted}
+//             onChange={() => setTermsAccepted(!termsAccepted)}
+//             required
+//           />
+//         </label>
+
+//         <button className="submit_btn" type="submit">
+//           Sign Up
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default SignUp;

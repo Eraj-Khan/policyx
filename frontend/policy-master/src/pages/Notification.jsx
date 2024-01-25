@@ -60,7 +60,7 @@ export const Notification = () => {
   }, []);
   return (
     <div>
-      <div className="ml-4 flex items-center md:ml-6 notification">
+      <div className="ml-4 flex items-center md:ml-6 notification bg-sky-600">
         {/* Profile dropdown */}
         <Menu as="div" className="relative ml-3">
           <div>
@@ -104,13 +104,19 @@ export const Notification = () => {
       </div>
       <div className="bellicon">
         <h1 className="notification-heading text-sky-600">Notifications</h1>
-        <button
-          type="button"
-          className="w-10  rounded-full hover:bg-white bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-        >
-          <span className="sr-only">View notifications</span>
-          <BellIcon className="h-10 w-10 " aria-hidden="true" />
-        </button>
+       
+         
+         
+        
+          {/* <span className="sr-only">View notifications</span> */}
+          
+          <div className="bellicon">
+    
+          <BellIcon className="h-20 w-10 " aria-hidden="true" />
+
+</div>
+
+       
       </div>
 
       <div className="notification-container">

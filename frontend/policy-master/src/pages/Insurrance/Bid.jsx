@@ -6,9 +6,30 @@ const Bid = () => {
   const [bidAmount, setBidAmount] = useState("");
  const location= useLocation().search;
  const case_id = new URLSearchParams(location).get("case_id")
+ const [bidInfo, setBidInfo] = ([""])
+
+
+
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/company_dashboard/list_users` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+      );
+
+      // Set the entire JSON object to data
+      setBidInfo(response.data);
+      console.log("data", response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchData();
+}, []);
 
   const handleBid = () => {
-    // State update is asynchronous, so the value might not be updated immediately
+   
     let plan = companyX (bidAmount)
     // let payload = Object.assign(generatePlan(bidAmount),{
     //     company_id:1,
@@ -48,7 +69,7 @@ const Bid = () => {
         "company_id":1,
         "company_name": "jubilee insurance",
         "company_bid": 5400,
-       "package_id": 1
+       "package_id": 5
 
       };
     }
@@ -67,7 +88,7 @@ const Bid = () => {
         "company_id":1,
         "company_name": "jubilee insurance",
         "company_bid": 5400,
-        "package_id": 2
+        "package_id": 6
       };
     }
 
@@ -95,8 +116,10 @@ const Bid = () => {
         value={bidAmount}
         onChange={(e) => setBidAmount(e.target.value)}
       />
-      <button onClick={handleBid}>Place Bid</button>
-    </div>
+      <button onClick={handleBid}>Place Bid</button> 
+      </div>
+      
+    
   );
 };
 
