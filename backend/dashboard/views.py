@@ -7,13 +7,13 @@ from rest_framework import status
 from django.core.mail import send_mass_mail
 from django.conf import settings
 from django.db import models, IntegrityError
-from accounts.models import CompanyUser
+from accounts.models import User
 
 
     
 @api_view(['POST'])
 def recieve_data_on_dashboard(requests):
-    company_details=CompanyUser.objects.all()
+    company_details=User.objects.filter(role='company')
     company_emails=[email.email for email in company_details]
     subject = 'New Insurance Case Received'
     message = f'Hello,\n\nA new insurance case has been received. Please log in to your dashboard to review and place a bid.'
