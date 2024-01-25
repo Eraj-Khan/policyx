@@ -235,6 +235,7 @@ const Review = () => {
   };
 
   useEffect(() => {
+    localStorage.setItem("case_id", case_id)
     const fetchData = async () => {
       try {
         const response = await axios.get(

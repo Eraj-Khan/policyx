@@ -145,8 +145,18 @@ const CompanySignup = () => {
       if (response.status === 200) {
         setIsLoggedIn(true);
         // sessionStorage.clear();
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("password", password);
+        // sessionStorage.setItem("username", username);
+        // sessionStorage.setItem("password", password);
+        let data= {
+          id:18,
+          role:"company",
+          auth_token:response.data.auth_token
+
+        }
+        let parseData = JSON.stringify(data)
+        console.log("data",data)
+        localStorage.setItem("auth",parseData)
+        
         navigate('/company');
         swal("Successfully Logged In")
       } else {
