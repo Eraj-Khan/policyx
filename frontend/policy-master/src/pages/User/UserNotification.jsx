@@ -134,9 +134,15 @@ export const UserNotification = () => {
             
             <div key={data.case_id} className="notification-item">
         <li className="case_id"> CASE ID: {data.case_id}</li>
-        <li className="age">AGE:  {data.company_name}</li>
-        <li className="recommended">dental:  {data.dental_and_vision_care}</li>
-      </div>
+        <li className="age">Company Name:  {data.company_name}</li>
+        <li className="recommended"> Company Bid: {data.company_bid}</li>
+        <li className="recommended">dental:  {data.dental_and_vision_care}</li>  
+        <li className="recommended"> Annual Coverage: {data.total_annual_coverage}</li>
+        <li className="recommended"> Accidental Emergencies: {data.accidental_emergencies}</li>
+        <li className="recommended"> Hospitalization Room Charges: {data.hospitalization_room_charges}</li>
+        <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li>
+        
+      </div> 
           </>
         ))}
       </div>

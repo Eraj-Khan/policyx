@@ -339,7 +339,7 @@ export const UserDash = () => {
                 <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-20 rounded-full"
+                    className="w-6 rounded-full"
                     src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                     alt=""
                   />

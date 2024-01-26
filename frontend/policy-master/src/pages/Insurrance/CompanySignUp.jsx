@@ -148,7 +148,7 @@ const CompanySignup = () => {
         // sessionStorage.setItem("username", username);
         // sessionStorage.setItem("password", password);
         let data= {
-          id:18,
+          id:19,
           role:"company",
           auth_token:response.data.auth_token
 
