@@ -14,7 +14,6 @@ import CompanySignUp from "./pages/Company/CompanySignUp"
 import {Notification} from './pages/Notification.jsx'
 import UserList from './pages/Company/UserList.jsx';
 import Bid from './pages/Company/Bid.jsx';
-import Homex from './pages/Homex.jsx'
 
 function App() {
   
@@ -36,7 +35,6 @@ function App() {
       </BrowserRouter>  
       <Toaster/>
 
-      {/* <Homex/> */}
     </div>
   );
 }
