@@ -20,7 +20,7 @@ function App() {
   
     return (
     <div>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<LoginSignup/>}></Route>
@@ -33,10 +33,10 @@ function App() {
         <Route path='/userList' element={<UserList/>}></Route>
         <Route path='/bid' element={<Bid/>}></Route>
            </Routes>
-      </BrowserRouter>   */}
+      </BrowserRouter>  
       <Toaster/>
 
-      <Homex/>
+      {/* <Homex/> */}
     </div>
   );
 }
