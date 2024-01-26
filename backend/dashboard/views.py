@@ -8,7 +8,7 @@ from django.core.mail import send_mass_mail
 from django.conf import settings
 from django.db import models, IntegrityError
 from accounts.models import User
-
+from .company_plans import Adamjee_insurance, Jubilee_insurance, EFU_insurance
 
     
 @api_view(['POST'])
@@ -86,5 +86,14 @@ def update_bid(requests,case_id,company_name):
 
     
     
+@api_view(['GET'])
+def choose_package(request,company_name,premium):
+    if company_name == 'Adamjee insurance':
+        # result = "Hello"
+        result=Adamjee_insurance(premium)
+    if company_name == 'Jubilee insurance':
+        result=Jubilee_insurance(premium)
+    if company_name == 'Efu insurance':
+        result=EFU_insurance(premium)
 
-
+    return Response(result)
