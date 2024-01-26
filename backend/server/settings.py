@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-&rd#)qvlwhxdlx1a2nibmew1%$8+#3njmb_b39xn^sdz($2@y)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:3000']
 
 
 # Application definition
@@ -43,10 +44,19 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+<<<<<<< HEAD
     'rest_framework_simplejwt',
+=======
+    'corsheaders',
+
+>>>>>>> main
     
     # local
-    'accounts'
+    'accounts',
+    'input_forms',
+    'ai_prediction',
+    'dashboard',
+    'django_bg_task'
 ]
 
 MIDDLEWARE = [
@@ -65,7 +75,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/policy-master/src/pages/User')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,16 +98,16 @@ WSGI_APPLICATION = 'server.wsgi.application'
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
-#     }}
-
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'nabeelx',
+        'NAME': 'policyx_main_data',
         'USER': 'policyx',
-        'PASSWORD': 'policyx',
+        'PASSWORD': 'eraj',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
-        'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
+        'PORT': '5433',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
 
@@ -164,3 +174,20 @@ CORS_ALLOW_CREDENTIALS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+BACKGROUND_TASK_RUN_ASYNC = True  # Run tasks asynchronously (in the background)
+BACKGROUND_TASK_QUEUE = 'default'  # Specify the queue for tasks
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'aliumair9316@gmail.com'
+EMAIL_HOST_PASSWORD = 'csnf suxh lxpd ucrb'
+DEFAULT_FROM_EMAIL = 'aliumair9316@gmail.com'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    # Add other trusted origins as needed
+]

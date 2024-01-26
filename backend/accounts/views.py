@@ -45,6 +45,7 @@ class CustomUserRegistrationView(UserViewSet):
             'contact_person': self.request.data.get('contact_person', None),
             'phone_number': self.request.data.get('phone_number', None),
             'industry' : self.request.data.get('industry', None),
+            'email': self.request.data.get('email', None),
             'terms_and_conditions_accepted': self.request.data.get('terms_and_conditions_accepted', None)
         }
         
