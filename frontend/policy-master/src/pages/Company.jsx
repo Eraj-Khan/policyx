@@ -33,7 +33,10 @@ const navigation = [
 ];
 
 const handlelogOut = () => {
-  localStorage.removeItem("auth");
+  localStorage.removeItem("user");
+   localStorage.removeItem("token");
+   localStorage.removeItem("refresh-token");
+   window.location.reload();
   window.location.reload();
 }
 

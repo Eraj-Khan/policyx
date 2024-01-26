@@ -2,10 +2,10 @@ import React, { Children } from "react";
 import { Navigate, Outlet } from "react-router";
 
 const ProtectedCompany = ({ children, ...rest }) => {
-  let auth = localStorage.getItem("auth");
- console.log("auth",JSON.parse(auth))
- let parseAuth = JSON.parse(auth)
-  return parseAuth?.role==='company' ?  <Outlet /> : <Navigate to="/companysignup" />; 
+    let token = localStorage.getItem("token");
+    let user = localStorage.getItem("user");
+    let parseUser = JSON.parse(user)
+  return parseUser?.role==='company' && token ?  <Outlet /> : <Navigate to="/companysignup" />; 
 
 };
 

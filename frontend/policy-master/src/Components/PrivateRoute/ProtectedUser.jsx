@@ -2,9 +2,10 @@ import React, { Children } from "react";
 import { Navigate, Outlet } from "react-router";
 
 const ProtectedUser = ({ children, ...rest }) => {
-  let auth = localStorage.getItem("auth");
-  let parseAuth = JSON.parse(auth)
-  return parseAuth?.role==='normal' ?  <Outlet /> : <Navigate to="/login" />; 
+  let token = localStorage.getItem("token");
+  let user = localStorage.getItem("user");
+  let parseUser = JSON.parse(user)
+  return parseUser?.role==='normal' && token?  <Outlet /> : <Navigate to="/login" />; 
 
 };
 

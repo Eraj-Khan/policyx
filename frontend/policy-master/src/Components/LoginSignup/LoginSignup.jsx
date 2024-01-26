@@ -129,7 +129,7 @@ const role= "normal";
   // };
   const handleSignInClick = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/accounts/auth/token/login/', {
+      const response = await axios.post('http://127.0.0.1:8000/accounts/api/auth/login/', {
         email,
         password,
       });
@@ -138,18 +138,29 @@ const role= "normal";
         // sessionStorage.clear();
         // sessionStorage.setItem("username", username);
         // sessionStorage.setItem("password", password);
+       const {refresh,access,user_name,role,id,email,company_name} = response.data;
+       localStorage.setItem("token", access)
+       localStorage.setItem("refresh-token", refresh)
         let data= {
-          id:17,
-          role:"normal",
-          auth_token:response.data.auth_token
+
+          id:id,
+          role:role,
+          user_name:user_name,
+          email:email,
+          
+
+          
 
         }
-        let parseData = JSON.stringify(data)
-        console.log("data",data)
-        localStorage.setItem("auth",parseData)
         
-        navigate('/userDash');
-        swal("Successfully Logged In")
+        console.log("data",data)
+        localStorage.setItem("user",JSON.stringify(data))
+        setTimeout(()=>{
+          navigate('/userDash')
+          swal("Successfully Logged In")
+        },100)
+      
+        
       } else {
         swal("Please sign in with correct credentials.");
       }
