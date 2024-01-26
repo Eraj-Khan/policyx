@@ -1,0 +1,24 @@
+.bid_button{
+    flex-direction: column;
+    display: flex;
+    margin: auto;
+    width: 50%;
+    margin-top: 300px;
+}
+.bid_button button{
+    margin-top: 30px;
+    color: white;
+    font-weight:bold;
+    font-size: 20px;
+}
+.bid_button label {
+    font-size: 40px;
+    color: white;
+    font-weight:bold;
+}
+ video{
+position: fixed;
+z-index: -1;
+opacity: 0.8;
+width: 100%;
+}

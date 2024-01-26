@@ -18,9 +18,10 @@ import {
   CursorArrowRaysIcon,
   EnvelopeOpenIcon,
 } from "@heroicons/react/24/outline";
-import "../pages/Notification.css";
+import "../../pages/Notification.css";
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
+import { useParams } from "react-router";
 
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -38,26 +39,34 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-export const Notification = () => {
-  const [notificationinfo, setNotificationInfo] = useState([]);
+export const UserNotification = () => {
+   
+ 
+    const [notification, setNotification] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/company_dashboard/list_users/"
-        );
+    useEffect(()=>
+    {
+   let case_id =localStorage.getItem("case_id")
+   const fetchData = async () => {
+    try {
+      const response = await axios.get(
+      `http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/${case_id}`
+        //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+      );
 
-        // Set the entire JSON object to data
-        setNotificationInfo(response.data);
-        console.log("data", response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+      // Set the entire JSON object to data
+      const {Bids}= response.data;
+    
+      setNotification(Bids);
+      console.log("data", response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+    }, [])
+ 
   return (
     <div>
       <div className="ml-4 flex items-center md:ml-6 notification bg-sky-600">
@@ -120,18 +129,25 @@ export const Notification = () => {
       </div>
 
       <div className="notification-container">
-        {notificationinfo.map((data) => (
+        {notification.map((data) => (
           <>
             
             <div key={data.case_id} className="notification-item">
         <li className="case_id"> CASE ID: {data.case_id}</li>
-        <li className="age">AGE:  {data.age}</li>
-        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li>
-      </div>
+        <li className="age">Company Name:  {data.company_name}</li>
+        <li className="recommended"> Company Bid: {data.company_bid}</li>
+        <li className="recommended">dental:  {data.dental_and_vision_care}</li>  
+        <li className="recommended"> Annual Coverage: {data.total_annual_coverage}</li>
+        <li className="recommended"> Accidental Emergencies: {data.accidental_emergencies}</li>
+        <li className="recommended"> Hospitalization Room Charges: {data.hospitalization_room_charges}</li>
+        <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li>
+        
+      </div> 
           </>
         ))}
       </div>
     </div>
   );
 };
-export default Notification;
+export default UserNotification;
+
