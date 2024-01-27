@@ -11,11 +11,16 @@ from rest_framework.response import Response
 from rest_framework import status
 from input_forms.models import UserInformation
 from ai_prediction.serializers import UserInformationSerializer
+from accounts.models import User
+
+
 def make_ai_prediction_request(case_id):
     # ai_prediction_endpoint = 'http://127.0.0.1:8000/ai-prediction/all-users/'
     get_user_by_case_id = f'http://127.0.0.1:8000/ai-prediction/user_by_case_id/{case_id}'
     response = requests.get(get_user_by_case_id)
     return response.status_code, response.text if response.status_code == 200 else None
+
+
 @csrf_exempt
 @require_POST
 def user_input_view(request):
@@ -30,7 +35,13 @@ def user_input_view(request):
         hash_data = ''.join([str(data[field]) for field in data]).encode('utf-8')
         hash_key = hashlib.sha256(hash_data).hexdigest()
         hash_key = 'PX' + hash_key[:4]
+        
+        get_id = request.user.id
+        
+        user = User.objects.get(get_id)
+
         user_info = UserInformation.objects.create(
+            user_id=user,
             age=data['age'],
             gender=data['gender'],
             bmi=data['bmi'],
@@ -68,6 +79,8 @@ def user_input_view(request):
         return JsonResponse({'error': str(e)})
 def success_page(request):
     return render(request, 'success_page.html')
+
+
 @api_view(['GET'])
 def get_ai_recommendation(request, case_id):
     try:
