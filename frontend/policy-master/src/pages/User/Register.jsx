@@ -241,6 +241,7 @@ const Register = () => {
 //   employment_status: employment,
 //   budget,
 // })
+    const token = localStorage.getItem('token');
     const response = await axios.post(
       "http://127.0.0.1:8000/",
       {
@@ -259,9 +260,11 @@ const Register = () => {
       {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
+    console.log(token)
     console.log("hi there", response.status);
     if (response) {
       console.log(response.data);
