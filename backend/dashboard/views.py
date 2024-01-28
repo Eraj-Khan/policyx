@@ -9,6 +9,7 @@ from django.conf import settings
 from django.db import models, IntegrityError
 from accounts.models import User
 from .company_plans import Adamjee_insurance, Jubilee_insurance, EFU_insurance
+from .company_plans_static import Adamjee_insurance1, Jubilee_insurance1, EFU_insurance1
 
     
 @api_view(['POST'])
@@ -95,5 +96,17 @@ def choose_package(request,company_name,premium):
         result=Jubilee_insurance(premium)
     if company_name == 'Efu insurance':
         result=EFU_insurance(premium)
+
+    return Response(result)
+
+@api_view(['GET'])
+def company_plans(request,company_name):
+    if company_name == 'Adamjee insurance':
+        # result = "Hello"
+        result=Adamjee_insurance1()
+    if company_name == 'Jubilee insurance':
+        result=Jubilee_insurance1()
+    if company_name == 'Efu insurance':
+        result=EFU_insurance1()
 
     return Response(result)

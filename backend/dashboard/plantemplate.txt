@@ -1,0 +1,93 @@
+def Adamjee_insurance1():
+    basic = {
+    "Plan_type":"basic",      
+    "Total Annual Coverage": 50000,
+    "Accidental Emergencies": 15000,
+    "Hospitalization Room Charges": 20000,
+    "Dental and Vision Care": 15000,
+    }
+    standard = {
+    "Plan_type":"standard",      
+    "Total Annual Coverage": 70000,
+    "Accidental Emergencies": 20000,
+    "Ambulance Services Expenses": 8000,
+    "Hospitalization Room Charges": 20000,
+    "Routine Checkups": 4000,
+    "Surgery": 10000,
+    "Dental and Vision Care": 8000,
+    }
+    premium= {
+    "Plan_type":"premium",      
+    "Total Annual Coverage": 90000,
+    "Accidental Emergencies": 30000,
+    "Ambulance Services Expenses": 5000,
+    "Hospitalization Room Charges": 10000,
+    "Routine Checkups": 10000,
+    "Surgery": 5000,
+    "Dental and Vision Care": 25000,
+    "Other Medical Expenses": 5000,
+    }
+    return [basic, standard, premium]
+def Jubilee_insurance1():
+    basic = {
+    "Plan_type":"basic",      
+    "Total Annual Coverage": 30000,
+    "Accidental Emergencies": 10000,
+    "Hospitalization Room Charges": 12000,
+    "Routine Checkups": 6000,
+    "Other Medical Expenses":2000
+    }
+    standard = {
+    "Plan_type":"standard",      
+    "Total Annual Coverage": 50000,
+    "Accidental Emergencies": 15000,
+    "Ambulance Services Expenses": 5000,
+    "Hospitalization Room Charges": 20000,
+    "Routine Checkups": 5000,
+    "Surgery": 3000,
+    "Dental and Vision Care": 2000,
+    }
+    premium = {
+    "Plan_type":"premium",      
+    "Total Annual Coverage": 70000,
+    "Accidental Emergencies": 8000,
+    "Ambulance Services Expenses": 7000,
+    "Hospitalization Room Charges": 32000,
+    "Routine Checkups": 10000,
+    "Surgery": 3500,
+    "Dental and Vision Care": 2000,
+    "Other Medical Expenses": 7500,
+    }
+    return [basic, standard, premium]
+
+def EFU_insurance1():
+    basic = {
+    "Plan_type":"basic",      
+    "Total Annual Coverage": 40000,
+    "Accidental Emergencies": 10000,
+    "Hospitalization Room Charges": 15000,
+    "Dental and Vision Care": 13000,
+    "Routine Checkups":2000
+    }
+    standard = {
+    "Plan_type":"standard",      
+    "Total Annual Coverage": 60000,
+    "Accidental Emergencies": 11000,
+    "Ambulance Services Expenses": 6000,
+    "Hospitalization Room Charges": 25000,
+    "Routine Checkups": 8000,
+    "Surgery": 3000,
+    "Dental and Vision Care": 7000,
+    }
+    premium = {
+    "Plan_type":"premium",      
+    "Total Annual Coverage": 80000,
+    "Accidental Emergencies": 12000,
+    "Ambulance Services Expenses": 8000,
+    "Hospitalization Room Charges": 35000,
+    "Routine Checkups": 2000,
+    "Surgery": 4500,
+    "Dental and Vision Care": 12000,
+    "Other Medical Expenses": 6500,
+    }
+    return [basic, standard, premium]
