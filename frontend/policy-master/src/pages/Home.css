@@ -1,25 +1,97 @@
 
+.nav-bar{
+  background-color: #3498DB;
 
-.bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    will-change: opacity;
-  }
+}
+
   .main-images{
-    width: 130%;
-  margin-top: 100px;
+    width: 90%;
+    margin-top: 40px;
   }
+  .main-images .animate__animated.animate__pulse{
+    animation-iteration-count: infinite;
+    --animate-duration: 4s;
+
+  } 
 
   .main{
     display: flex;
   }
+  .rounded-heading .animate__animated.animate__pulse {
+    --animate-duration: 4s;
+    animation-iteration-count: infinite;
 
-  .hero-section{
-    margin-top: -710px;
-    
   }
+ 
+.rounded-heading span{
+  font-family: "Poppins";
+
+}
+.main-img{
+  display: flex;
+  gap: 30px;
+}
+.content_img{
+  margin-right: 110px;
+  margin-top: 20px;
+}
+
+.container__inner img{
+margin-left: 120px;
+width: 80%;
+}
+  .main-heading .animate__animated.animate__bounce{
+    --animate-duration: 2s;
+
+    margin-top: 40px;
+    font-family: "Space Grotesk";
+    font-size: 50px;
+    color: #3498DB;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+  }
+  .main-heading  .animate__animated.animate__bounce span{
+    color: #0b5485;
+  }
+  /* @keyframes myframes {
+    0%   {color: red;}
+    15%  {color: yellow;}
+    25%  {color: blue;}
+    35% {color: green;}
+    45%  {color: yellow;}
+    55%  {color: blue;}
+    65% {color: green;}
+    75%  {color: yellow;}
+    85%  {color: blue;}
+    95% {color: green;}
+    100%  {color: yellow;}
+    
+  } */
+  .main-paragraph{
+    font-size: 20px;
+    font-family: "Poppins";
+    margin-top: 40px;
+    color: #54647a;
+  }
+  .hero-section{
+    margin-left: 100px;
+  }
+  .content_img h2{
+    color: #3498DB;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    font-size: 45px;
+    font-weight: 900;
+    font-family: "Space Grotesk";
+
+  }
+  .content_img p{
+    color: #54647a;
+    line-height: 29px;
+    font-family: "Poppins";
+
+    letter-spacing: -0.34px;
+    font-size: 20px;
+  }
+ 

@@ -14,7 +14,6 @@ import CompanySignUp from "./pages/Company/CompanySignUp"
 import {Notification} from './pages/Notification.jsx'
 import UserList from './pages/Company/UserList.jsx';
 import Bid from './pages/Company/Bid.jsx';
-
 function App() {
   
     return (

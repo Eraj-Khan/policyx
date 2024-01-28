@@ -1,5 +1,11 @@
 import React, { useLayoutEffect, useState, Fragment } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@fontsource/poppins";
+import "@fontsource/poppins/800.css";
+import "@fontsource/space-grotesk";
+
+import 'animate.css';
+import "@fontsource/poppins";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   useSpringRef,
@@ -9,19 +15,21 @@ import {
 } from '@react-spring/web'
 
 import { Popover, Transition } from "@headlessui/react";
-import img1 from "../image/main.jpg";
 import img2 from "../image/adamjee.jpg"
 import img3 from "../image/jubilee.jpg"
 import img4 from "../image/askari.jpg"
 import img5 from "../image/takaful.png"
 import img6 from "../image/ubl.png"
 import styles from './Home.css'
-import bg from "../image/life.png"
+import img7 from "../image/4412.jpg"
+
 
 const IMAGES = [
-  'https://img.freepik.com/free-photo/close-up-doctor-holding-wooden-cube_23-2149191359.jpg?w=996&t=st=1706026308~exp=1706026908~hmac=8111edea2eaf061917c09121e62dd6e86457f1e5e8fccbcce12a4c22d62225d7',
-  'https://img.freepik.com/free-photo/i-am-glad-that-we-managed-reach-agreement_637285-11084.jpg?w=996&t=st=1706026405~exp=1706027005~hmac=e6ab4a3b21c092cfd5195e432999e29132e89ba0fde44dad3d18af511a9c5d88',
-  'https://img.freepik.com/free-photo/young-family-with-their-sons-home-having-fun_1303-20999.jpg?w=996&t=st=1706030902~exp=1706031502~hmac=b35962883c161c0a0796025a35ef61600ff0fdce6003cc43bda6199f802f2cf0']
+ ' https://img.freepik.com/free-photo/i-am-glad-that-we-managed-reach-agreement_637285-11084.jpg?w=996&t=st=1706390126~exp=1706390726~hmac=d5ff3167281f3c60ca82116f370b71090725140e5019fea88db830a880c5899b',  
+  'https://img.freepik.com/free-photo/standard-quality-control-concept-m_23-2150041842.jpg?w=996&t=st=1706390225~exp=1706390825~hmac=d8a2417da7338e3bafd51185e3952f1a3aa26eb5dce2638606a35dcfa9c4454a',
+
+'https://img.freepik.com/free-photo/smiling-couple-insurance-agent-going-through-real-estate-plans-during-meeting-office-focus-is-man_637285-2808.jpg?w=996&t=st=1706390283~exp=1706390883~hmac=b7bfb12550417ab08680903a625b5e2f042c9167b8740c4301f804c79ce37785',]
+  
 const navigation = [
   { name: "Home", href: "#" },
   { name: "Insurance", href: "#" },
@@ -219,7 +227,7 @@ export default function App() {
     },
     exitBeforeEnter: true,
     config: {
-      duration: 4000,
+      duration: 1500,
     },
     delay: 1000,
     ref: springApi,
@@ -249,7 +257,7 @@ export default function App() {
       <div className="bg-white">
         <div className="relative overflow-hidden">
           <Popover as="header" className="relative">
-            <div className="bg-sky-300 pb-6 pt-6">
+            <div className="nav-bar pb-6 pt-6">
               <nav
                 className="relative mx-auto flex max-w-7xl items-center justify-between px-6"
                 aria-label="Global"
@@ -347,7 +355,7 @@ export default function App() {
                     <div className="mt-6 px-5">
                       <a
                         href="#"
-                        className="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
+                        className="block w-full rounded-md py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
                       >
                         Start free trial
                       </a>
@@ -365,44 +373,38 @@ export default function App() {
               </Popover.Panel>
             </Transition>
           </Popover>
-          <main>
-            <div className=" select-main pt-10 sm:pt-16 lg:overflow-hidden lg:pt-0 ">
-            <img
-                  className="h-full w-full object-cover bg-opacity-20"
-                  src={bg}
-                  alt="People working on laptops"
-                />
-              <div className="mx-auto max-w-7xl lg:px-8 ">
-           
-                <div className="lg:grid lg:grid-cols-2 lg:gap-8 hero-section">
-               
-                  <div className="mx-auto max-w-md px-6 sm:max-w-2xl sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
-                
-                    <div className="lg:py-24 ">
-                      <a
-                        href="#"
-                        className="inline-flex items-center rounded-full bg-sky-500 p-2 pr-4 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base"
-                      >
-                        <span className="rounded-full bg-gradient-to-r from-sky-500 to-sky-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
-                          Get The Best
-                        </span>
-                        <span className="ml-4 text-sm">
-                          Life Insurance Plan
-                        </span>
-                        {/* <ChevronRightIcon className="ml-2 h-5 w-5 text-gray-500" aria-hidden="true" /> */}
-                      </a>
-                      <h1 className="mt-4 text-1xl font-bold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-5xl">
-                        <span className="block">We have helped power </span>
-                        <span className="block bg-sky-600 bg-clip-text pb-3 text-transparent sm:pb-5">
-                          3,622,639 comparisons
-                        </span>
-                      </h1>
-                      <p className="text-base text-white sm:text-xl lg:text-lg xl:text-xl">
-                        Thousands of customers have already benefitted through our free, reliable and expert services. Become a customer now and be rewarded with smart choices for significant savings.
 
-                      </p>
-                      <div className="mt-10 sm:mt-12  grid gap-x-8 gap-y-6 grid-cols-3">
-                        {/* <form
+          <div className="pt-10 sm:pt-16 lg:overflow-hidden lg:pt-0 ">
+
+          </div>
+          <div className="">
+
+            <div className="lg:grid lg:grid-cols-2 lg:gap-8 hero-section">
+
+              <div className="mx-auto max-w-md px-6 sm:max-w-2xl sm:text-center lg:flex lg:items-center lg:px-0 lg:text-left">
+
+                <div className="lg:py-40 ">
+                  <a
+                    href="#"
+                    className="inline-flex items-center rounded-full bg-sky-500 p-2 pr-4 pl-4 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base"
+                  >
+                    <div className="rounded-heading">
+                      <div className='animate__animated animate__pulse'>
+                        <h1 className="rounded-full bg-gradient-to-r from-sky-400 to-sky-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white">
+                          Get The Best  <span>  Life Insurance Plan
+                          </span>
+                        </h1>
+                      </div>
+                    </div>
+                    {/* <ChevronRightIcon className="ml-2 h-5 w-5 text-gray-500" aria-hidden="true" /> */}
+                  </a>
+                  <div className='main-heading'>
+                    <h1 className=" animate__animated animate__bounce "> We have helped power <br></br><span>3 ,621,473 comparisons
+                    </span> </h1>
+                    <p className='main-paragraph'>Thousands of customers have already benefitted through our free, reliable and expert services. Become a customer now and be rewarded with smart choices for significant savings</p>
+                  </div>
+                  <div className="mt-10 sm:mt-12  grid gap-x-8 gap-y-6 grid-cols-3">
+                    {/* <form
                         action="#"
                         className="sm:mx-auto sm:max-w-xl lg:mx-0"
                       >
@@ -436,7 +438,7 @@ export default function App() {
                           .
                         </p>
                       </form> */}
-                        <div className="bt1">
+                    {/* <div className="bt1">
 
                           <button
 
@@ -454,9 +456,9 @@ export default function App() {
                           >
                             Home Insurance
                           </button>
-                        </div>
-                      </div>
-                      <div className="mt-10 sm:mt-12 grid gap-x-4 gap-y-4 grid-cols-3">
+                        </div> */}
+                  </div>
+                  {/* <div className="mt-10 sm:mt-12 grid gap-x-4 gap-y-4 grid-cols-3">
                         <div className="bt3">
                           <button
                             type="button"
@@ -473,234 +475,101 @@ export default function App() {
                             Travel Insurance
                           </button>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-images">
-                    <div className={styles.container__inner}>
-                      {transitions((springs, item) => (
-                        <animated.div className=".img_container" style={springs}>
-                          <img src={IMAGES[item]} />
-                        </animated.div>
-                      ))}
-                      <div className={styles.ticker}>
-                        <div />
-                        {/* <animated.svg
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            style={springs}>
-            <path d="M19.9999 38.5001C17.5704 38.5001 15.1648 38.0216 12.9203 37.0919C10.6758 36.1622 8.63633 34.7995 6.91845 33.0816C5.20058 31.3638 3.83788 29.3243 2.90817 27.0798C1.97846 24.8353 1.49995 22.4296 1.49995 20.0002C1.49995 17.5707 1.97846 15.1651 2.90817 12.9206C3.83788 10.6761 5.20058 8.63663 6.91846 6.91875C8.63634 5.20087 10.6758 3.83818 12.9203 2.90847C15.1648 1.97876 17.5705 1.50024 19.9999 1.50024C22.4293 1.50024 24.835 1.97876 27.0795 2.90847C29.324 3.83818 31.3635 5.20088 33.0813 6.91876C34.7992 8.63663 36.1619 10.6761 37.0916 12.9206C38.0213 15.1651 38.4998 17.5707 38.4998 20.0002C38.4998 22.4296 38.0213 24.8353 37.0916 27.0798C36.1619 29.3243 34.7992 31.3638 33.0813 33.0816C31.3635 34.7995 29.324 36.1622 27.0795 37.0919C24.835 38.0216 22.4293 38.5001 19.9999 38.5001L19.9999 38.5001Z" />
-          </animated.svg> */}
-                      </div>
-                    </div>
-                  </div>
+                      </div> */}
                 </div>
+              </div>
+              <div className="main-images ">
+                <img className='animate__animated animate__pulse ' src={img7} alt="" />
+             
               </div>
             </div>
+          </div>
 
-            {/* Feature section with screenshot */}
-            <div className="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-32 ">
-              <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8 ">
-                <div>
-                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
-                    We have helped power 3,621,473 comparisons
-                  </h2>
 
-                  <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
-                    Thousands of customers have already benefitted through our free, reliable and expert services. Become a customer now and be rewarded with smart choices for significant savings
-                  </p>
-                </div>
-              </div>
-              {/* Logo Cloud */}
-              <div className="bg-white pt-20">
-                <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
-                  <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl text-center">
-                    Our Partners
-                  </h2>
-                  <p className="mx-auto mt-5 max-w-prose text-2xl text-sky-400">
-                    Our panel consists of trusted household names from the
-                    insurance industry.
-                  </p>
-                  <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-20" src={img2} alt="#" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-20" src={img3} alt="#" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                      <img className="h-20" src={img4} alt="#" />
-                    </div>
-                    <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                      <img className="h-20" src={img5} alt="#" />
-                    </div>
-                    <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-                      <img className="h-20" src={img6} alt="#" />
-                    </div>
+          {/* Feature section with screenshot */}
+          <div className="relative bg-gray-50 pt-16 sm:pt-24 lg:pt-20  pb-20">
+            <div className="main-img px-6  lg:px-2  ">
+            <div className='container__inner'>
+                  {transitions((springs, item) => (
+                    <animated.div className=".img_container" style={springs}>
+                      <img src={IMAGES[item]} />
+                    </animated.div>
+                  ))}
+                  <div className={styles.ticker}>
+                    <div/>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Feature section with grid */}
-            <div className="relative bg-white py-16 sm:py-24  ">
-              <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-                <p className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
-                  Why Choose us
+              <div className='content_img'> 
+                <h2 className="mt-2  ">
+                  We have helped power 3,621,473 comparisons
+                </h2>
+                <p className="mx-auto mt-5 max-w-prose text-xl  max-w-100">
+                  Thousands of customers have already benefitted through our free, reliable and expert services. Become a customer now and be rewarded with smart choices for significant savings
                 </p>
-                <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
-                  To provide solutions that protect the future of our customers
+              </div>
+             
+            </div>
+            </div>
+            {/* Logo Cloud */}
+            <div className="bg-white pt-20">
+              <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
+                <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl text-center">
+                  Our Partners
+                </h2>
+                <p className="mx-auto mt-5 max-w-prose text-2xl text-sky-400">
+                  Our panel consists of trusted household names from the
+                  insurance industry.
                 </p>
-                <div className="mt-12">
-                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 pb-12 ">
-                    {features.map((feature) => (
-                      <div key={feature.name} className="pt-6">
-                        <div className="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-                          <div className="-mt-6">
-                            <div>
-                              <span className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-sky-500 to-sky-300 p-3 shadow-lg">
-                                <FontAwesomeIcon
-                                  className="h-6 w-6 text-white"
-                                  aria-hidden="true"
-                                />
-                              </span>
-                            </div>
-                            <h3 className="mt-8 text-lg font-medium tracking-tight text-sky-600">
-                              {feature.name}
-                            </h3>
-                            <p className="mt-5 text-base text-sky-400">
-                              {feature.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+                  <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                    <img className="h-20" src={img2} alt="#" />
+                  </div>
+                  <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                    <img className="h-20" src={img3} alt="#" />
+                  </div>
+                  <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                    <img className="h-20" src={img4} alt="#" />
+                  </div>
+                  <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
+                    <img className="h-20" src={img5} alt="#" />
+                  </div>
+                  <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
+                    <img className="h-20" src={img6} alt="#" />
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Testimonial section */}
-            <div className="bg-gradient-to-r from-sky-500 to-sky-300 pb-16 lg:relative lg:z-10 lg:pb-0">
-              <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
-                <div className="relative lg:-my-8">
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
-                  />
-                  <div className="mx-auto max-w-md px-6 sm:max-w-3xl lg:h-full lg:p-0">
-                    <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                      <img
-                        className="object-cover lg:h-full lg:w-full"
-                        src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
-                  <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0 lg:py-20">
-                    <blockquote>
-                      <div>
-                        <svg
-                          className="h-12 w-12 text-white opacity-25"
-                          fill="currentColor"
-                          viewBox="0 0 32 32"
-                          aria-hidden="true"
-                        >
-                          <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                        </svg>
-                        <p className="mt-6 text-2xl font-medium text-white">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          Sed urna nulla vitae laoreet augue. Amet feugiat est
-                          integer dolor auctor adipiscing nunc urna, sit.
-                        </p>
-                      </div>
-                      <footer className="mt-6">
-                        <p className="text-base font-medium text-white">
-                          Judith Black
-                        </p>
-                        <p className="text-base font-medium text-white">
-                          CEO at PureInsights
-                        </p>
-                      </footer>
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Blog section */}
-            <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
-              <div className="relative">
-                <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-sky-600 sm:text-5xl">
-                    Promotions
-                  </p>
-                  {/* <p className="mx-auto mt-5 max-w-prose text-xl text-orange-400">
-                  Phasellus lorem quam molestie id quisque diam aenean nulla in.
-                  Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
-                  condimentum id viverra nulla.
-                </p> */}
-                </div>
-                <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-3 lg:px-8">
-                  {blogPosts.map((post) => (
-                    <div
-                      key={post.id}
-                      className="flex flex-col overflow-hidden rounded-lg shadow-lg"
-                    >
-                      <div className="flex-shrink-0">
-                        <img
-                          className="h-40 w-full   object-cover"
-                          src={post.imageUrl}
-                          alt=""
-                        />
-                      </div>
-                      <div className="flex flex-1 flex-col justify-between bg-white p-6">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-sky-600">
-                            <a
-                              href={post.category.href}
-                              className="hover:underline"
-                            >
-                              {post.category.name}
-                            </a>
-                          </p>
-                          <a href={post.href} className="mt-2 block">
-                            <p className="text-xl font-semibold text-sky-600">
-                              {post.title}
-                            </p>
-                            <p className="mt-3 text-base text-sky-400">
-                              {post.preview}
-                            </p>
-                          </a>
-                        </div>
-                        <div className="mt-6 flex items-center">
-                          <div className="flex-shrink-0">
-                            <a href={post.author.href}>
-                              <img
-                                className="h-10 w-10 rounded-full"
-                                src={post.author.imageUrl}
-                                alt={post.author.name}
+          {/* Feature section with grid */}
+          <div className="relative bg-white py-16 sm:py-24  ">
+            <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
+              <p className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
+                Why Choose us
+              </p>
+              <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
+                To provide solutions that protect the future of our customers
+              </p>
+              <div className="mt-12">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 pb-12 ">
+                  {features.map((feature) => (
+                    <div key={feature.name} className="pt-6">
+                      <div className="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                        <div className="-mt-6">
+                          <div>
+                            <span className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-sky-500 to-sky-300 p-3 shadow-lg">
+                              <FontAwesomeIcon
+                                className="h-6 w-6 text-white"
+                                aria-hidden="true"
                               />
-                            </a>
+                            </span>
                           </div>
-                          <div className="ml-3">
-                            <p className="text-sm font-medium text-sky-600">
-                              <a
-                                href={post.author.href}
-                                className="hover:underline"
-                              >
-                                {post.author.name}
-                              </a>
-                            </p>
-                            <div className="flex space-x-1 text-sm text-sky-400">
-                              <time dateTime={post.datetime}>{post.date}</time>
-                              <span aria-hidden="true">&middot;</span>
-                              <span>{post.readingLength} read</span>
-                            </div>
-                          </div>
+                          <h3 className="mt-8 text-lg font-medium tracking-tight text-sky-600">
+                            {feature.name}
+                          </h3>
+                          <p className="mt-5 text-base text-sky-400">
+                            {feature.description}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -708,56 +577,185 @@ export default function App() {
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* CTA Section */}
-            <div className="relative bg-gradient-to-r from-sky-500 to-sky-300">
-              <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-                <img
-                  className="h-full w-full object-cover"
-                  src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100"
-                  alt=""
-                />
+          {/* Testimonial section */}
+          <div className="bg-gradient-to-r from-sky-500 to-sky-300 pb-16 lg:relative lg:z-10 lg:pb-0">
+            <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+              <div className="relative lg:-my-8">
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-r from-sky-500 mix-blend-multiply"
+                  className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
                 />
+                <div className="mx-auto max-w-md px-6 sm:max-w-3xl lg:h-full lg:p-0">
+                  <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
+                    <img
+                      className="object-cover lg:h-full lg:w-full"
+                      src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="relative mx-auto max-w-md py-12 px-6 sm:max-w-7xl sm:py-20 md:py-28 lg:px-8 lg:py-32">
-                <div className="md:ml-auto md:w-1/2 md:pl-10">
-                  {/* <h2 className="text-lg font-semibold text-gray-300">
+              <div className="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
+                <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0 lg:py-20">
+                  <blockquote>
+                    <div>
+                      <svg
+                        className="h-12 w-12 text-white opacity-25"
+                        fill="currentColor"
+                        viewBox="0 0 32 32"
+                        aria-hidden="true"
+                      >
+                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                      </svg>
+                      <p className="mt-6 text-2xl font-medium text-white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed urna nulla vitae laoreet augue. Amet feugiat est
+                        integer dolor auctor adipiscing nunc urna, sit.
+                      </p>
+                    </div>
+                    <footer className="mt-6">
+                      <p className="text-base font-medium text-white">
+                        Judith Black
+                      </p>
+                      <p className="text-base font-medium text-white">
+                        CEO at PureInsights
+                      </p>
+                    </footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Blog section */}
+          <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+            <div className="relative">
+              <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
+                <p className="mt-2 text-xl font-bold tracking-tight text-sky-600 sm:text-5xl">
+                  Promotions
+                </p>
+                {/* <p className="mx-auto mt-5 max-w-prose text-xl text-orange-400">
+                  Phasellus lorem quam molestie id quisque diam aenean nulla in.
+                  Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
+                  condimentum id viverra nulla.
+                </p> */}
+              </div>
+              <div className="mx-auto mt-12 grid max-w-md gap-8 px-6 sm:max-w-lg lg:max-w-7xl lg:grid-cols-3 lg:px-8">
+                {blogPosts.map((post) => (
+                  <div
+                    key={post.id}
+                    className="flex flex-col overflow-hidden rounded-lg shadow-lg"
+                  >
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-40 w-full   object-cover"
+                        src={post.imageUrl}
+                        alt=""
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col justify-between bg-white p-6">
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-sky-600">
+                          <a
+                            href={post.category.href}
+                            className="hover:underline"
+                          >
+                            {post.category.name}
+                          </a>
+                        </p>
+                        <a href={post.href} className="mt-2 block">
+                          <p className="text-xl font-semibold text-sky-600">
+                            {post.title}
+                          </p>
+                          <p className="mt-3 text-base text-sky-400">
+                            {post.preview}
+                          </p>
+                        </a>
+                      </div>
+                      <div className="mt-6 flex items-center">
+                        <div className="flex-shrink-0">
+                          <a href={post.author.href}>
+                            <img
+                              className="h-10 w-10 rounded-full"
+                              src={post.author.imageUrl}
+                              alt={post.author.name}
+                            />
+                          </a>
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-sm font-medium text-sky-600">
+                            <a
+                              href={post.author.href}
+                              className="hover:underline"
+                            >
+                              {post.author.name}
+                            </a>
+                          </p>
+                          <div className="flex space-x-1 text-sm text-sky-400">
+                            <time dateTime={post.datetime}>{post.date}</time>
+                            <span aria-hidden="true">&middot;</span>
+                            <span>{post.readingLength} read</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="relative bg-gradient-to-r from-sky-500 to-sky-300">
+            <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+              <img
+                className="h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100"
+                alt=""
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-r from-sky-500 mix-blend-multiply"
+              />
+            </div>
+            <div className="relative mx-auto max-w-md py-12 px-6 sm:max-w-7xl sm:py-20 md:py-28 lg:px-8 lg:py-32">
+              <div className="md:ml-auto md:w-1/2 md:pl-10">
+                {/* <h2 className="text-lg font-semibold text-gray-300">
                   Award winning support
                 </h2> */}
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                    About Us
-                  </p>
-                  <p className="mt-3 text-lg text-white">
-                    Pakistan has one of the lowest penetration of insurance in the
-                    region, with less than 10 Million population of 220 Million
-                    having any kind of insurance coverage. Vast majority of
-                    population considers insurance as investment product rather
-                    protection from financial loss. This has been primarily due to
-                    large number of customers opting for life insurance as
-                    compared to other risk based protection products like health
-                    insurance, home insurance and etc. All procedures, such as
-                    claims, are the same as in traditional insurance
-                    organizations. The distinction lies within the nature of the
-                    agreement, not within the processes.
-                  </p>
-                  <div className="mt-8">
-                    <div className="inline-flex rounded-md shadow">
-                      <a
-                        href="#"
-                        className="inline-flex items-center justify-center rounded-md border border-transparent bg-sky-600 px-5 py-3 text-base font-medium text-white hover:bg-sky-400"
-                      >
-                        Visit the help center
-                        {/* <ArrowTopRightOnSquareIcon className="-mr-1 ml-3 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
-                      </a>
-                    </div>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                  About Us
+                </p>
+                <p className="mt-3 text-lg text-white">
+                  Pakistan has one of the lowest penetration of insurance in the
+                  region, with less than 10 Million population of 220 Million
+                  having any kind of insurance coverage. Vast majority of
+                  population considers insurance as investment product rather
+                  protection from financial loss. This has been primarily due to
+                  large number of customers opting for life insurance as
+                  compared to other risk based protection products like health
+                  insurance, home insurance and etc. All procedures, such as
+                  claims, are the same as in traditional insurance
+                  organizations. The distinction lies within the nature of the
+                  agreement, not within the processes.
+                </p>
+                <div className="mt-8">
+                  <div className="inline-flex rounded-md shadow">
+                    <a
+                      href="#"
+                      className="inline-flex items-center justify-center rounded-md border border-transparent bg-sky-600 px-5 py-3 text-base font-medium text-white hover:bg-sky-400"
+                    >
+                      Visit the help center
+                      {/* <ArrowTopRightOnSquareIcon className="-mr-1 ml-3 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-          </main>
+          </div>
+
           <div className="footer1 mt-60">
             <footer className="bg-sky-300 " aria-labelledby="footer-heading">
               <h2 id="footer-heading" className="sr-only">
@@ -873,8 +871,6 @@ export default function App() {
           </div>
         </div>
       </div>
-
-    </div>
 
 
   )
