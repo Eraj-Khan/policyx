@@ -198,11 +198,8 @@ export const Company = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/company_dashboard/list_users` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+          "http://127.0.0.1:8000/company_dashboard/list_users/"
         );
-  
-       
-  
         // Set the entire JSON object to data
         let count = localStorage.getItem("notification")
         if(count == response.data.length){
@@ -223,6 +220,7 @@ export const Company = () => {
     fetchData();
   }, []);
   return (
+  
     <div className="main-dashboard">
       <div className="sidebar">
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -439,7 +437,7 @@ export const Company = () => {
               </div>
             </div>
           </div>
-
+<></>
           <main>
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
@@ -737,6 +735,7 @@ export const Company = () => {
         </footer>
       </div>
     </div>
+    
   );
 };
 

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
 import "../User/Register.css";
 import { useState } from "react";
 import axios from "axios";
@@ -242,6 +241,7 @@ const Register = () => {
 //   employment_status: employment,
 //   budget,
 // })
+    const token = localStorage.getItem('token');
     const response = await axios.post(
       "http://127.0.0.1:8000/",
       {
@@ -260,9 +260,11 @@ const Register = () => {
       {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
+    console.log(token)
     console.log("hi there", response.status);
     if (response) {
       console.log(response.data);
