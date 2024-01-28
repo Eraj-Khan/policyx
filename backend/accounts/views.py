@@ -10,6 +10,41 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from djoser.views import TokenCreateView
+
+
+class CustomTokenCreateView(TokenCreateView):
+
+    def _action(self, serializer):
+        response = super()._action(serializer)
+        
+        if serializer.user.role == 'company':
+            company = CompanyUser.objects.get(user_id = serializer.user.id)
+            company_name = company.company_name
+            company_id = company.id
+
+            user_data = {
+            'user_name': serializer.user.username,
+            'email': serializer.user.email,
+            # 'user_id': serializer.user.id,
+            'role' : serializer.user.role,
+            'company_name' : company_name,
+            'company_id' : company_id
+            }
+
+        else:
+            user_data = {
+            'user_name': serializer.user.username,
+            'email': serializer.user.email,
+            'user_id': serializer.user.id,
+            'role' : serializer.user.role,
+            }     
+
+        response.data.update({'user': user_data})
+
+        return response
+
+
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
