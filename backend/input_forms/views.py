@@ -36,12 +36,12 @@ def user_input_view(request):
         hash_key = hashlib.sha256(hash_data).hexdigest()
         hash_key = 'PX' + hash_key[:4]
         
-        get_id = request.user.id
+        # get_id = request.user.id
         
-        user = User.objects.get(get_id)
+        # user = User.objects.get(get_id)
 
         user_info = UserInformation.objects.create(
-            user_id=user,
+            # user_id=user,
             age=data['age'],
             gender=data['gender'],
             bmi=data['bmi'],

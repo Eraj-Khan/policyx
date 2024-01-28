@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'policyx_main_data',
+        'NAME': 'policyx_testing',
         'USER': 'policyx',
         'PASSWORD': 'eraj',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
