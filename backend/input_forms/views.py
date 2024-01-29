@@ -89,6 +89,8 @@ def get_ai_recommendation(request, case_id):
             print(ai_prediction_response)
             prediction_data = json.loads(ai_prediction_response)
             ai_suggested_value = float(prediction_data.get("Ai_Suggested_Premium", 0.0))
+        else:
+            print(status_code)
         #     # budget.ai_suggested = ai_suggested_value
         #     # budget.save()
         response_data = {

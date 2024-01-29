@@ -84,7 +84,29 @@ def update_bid(requests,case_id,company_name):
     
     return Response(update_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
-    
+@api_view(['PUT'])
+def accept_package(request, case_id, company_name):
+    try:
+        company_package = CompanyPackages.objects.get(case_id=case_id, company_name=company_name)
 
+
+        if not company_package.is_accepted:
+            company_package.is_accepted = True
+            company_package.save()
+            company_dashboard = CompanyDashboard.objects.get(case_id=case_id)
+            company_dashboard.is_completed = True
+            company_dashboard.save()
+
+            return Response({'message': 'Package accepted and company notified.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Package already accepted.'}, status=status.HTTP_200_OK)
+
+    except CompanyPackages.DoesNotExist:
+        return Response({'error': 'Company package not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    except CompanyDashboard.DoesNotExist:
+        return Response({'error': 'Company dashboard not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    except Exception as e:
+        return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

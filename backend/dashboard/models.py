@@ -36,9 +36,9 @@ class CompanyPackages(models.Model):
     surgery = models.IntegerField(max_length=255, null=True, blank=True)
     dental_and_vision_care = models.IntegerField(max_length=255, null=True, blank=True)
     other_medical_expenses = models.IntegerField(max_length=255, null=True, blank=True)
-    company_bid = models.IntegerField(max_length=255, default=0, null=True, blank=True)
+    monthly_coverage= models.IntegerField(max_length=255, default=0, null=True, blank=True)
     updated_at=models.DateTimeField(auto_now=True)
-    is_accepted=models.BooleanField(default=True,null=True)
+    is_accepted=models.BooleanField(default=False,null=True)
     is_expired = models.BooleanField(default=False)
 
     
