@@ -52,3 +52,16 @@
   height: 100px; /* Adjust the height based on your design */
   object-fit: cover;
 }
+.notification-heading{
+  font-size: 26px;
+  margin-left: 80px;
+  font-weight: bold;
+  margin-top: -20px;
+  background: #5c9bce;
+  color: white;
+  border-radius: 100px;
+  height: 54px;
+  width: 287px;
+  text-align: center;
+  font-family: fangsong;
+}

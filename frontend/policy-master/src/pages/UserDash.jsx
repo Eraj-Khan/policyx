@@ -533,7 +533,7 @@ export const UserDash = () => {
 </div>
 
 </div>
-<div className="bg-white pt-10 partner">
+{/* <div className="bg-white pt-10 partner">
               <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
                 <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl text-center">
                   Our Partners
@@ -560,7 +560,7 @@ export const UserDash = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <footer className="bg-sky-400 footer" aria-labelledby="footer-heading">
           <h2 id="footer-heading" className="sr-only">
             Footer

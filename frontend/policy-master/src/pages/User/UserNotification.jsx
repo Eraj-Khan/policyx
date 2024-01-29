@@ -50,7 +50,7 @@ export const UserNotification = () => {
    const fetchData = async () => {
     try {
       const response = await axios.get(
-      `http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/${case_id}`
+      `http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/PXe5ae`
         //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
       );
 

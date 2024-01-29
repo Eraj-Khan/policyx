@@ -9,6 +9,7 @@ const Bid = () => {
   const case_id = new URLSearchParams(location).get("case_id");
   const Id = new URLSearchParams(location).get("id");
   const [data, setData] = useState(null);
+  const [submittedData, setSubmittedData] = useState(null);
   // const [id, setId] = useState("");
   const [plan_type, setPlan_type] = useState("");
   let payload = localStorage.getItem('user');
@@ -31,12 +32,13 @@ const Bid = () => {
     case_id: case_id,
     company_id: parsedPayload?.id,
     company_name: parsedPayload?.company_name,
-    company_bid: 0,
+    monthly_coverage: 0,
     ambulance_services_expenses: 0,
     surgery: 0,
    
   });
 
+  
   // useEffect(() => {
   //   let data = localStorage.getItem("auth");
   //   const parseData = JSON.parse(data);
@@ -44,7 +46,20 @@ const Bid = () => {
   //   setId(id);
   // }, []);
 
+const handleSubmit = () =>{
+   axios
+      .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, submittedData)
+      .then((response) => {
+        console.log("response", response.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+}
+
+
   const handleBid = () => {
+    
     
     // let payload = Object.assign(generatePlan(bidAmount),{
     //     company_id:1,
@@ -56,6 +71,7 @@ const Bid = () => {
       delete temp.ambulance_services_expenses
     }
     console.log("formData", temp);
+    setSubmittedData(temp); 
     // axios
     //   .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, plan)
     //   .then((response) => {
@@ -105,17 +121,19 @@ const Bid = () => {
 
   //   return healthPackages;
   // }
+  
 
   return (
-    <main className="main">
-      <video autoPlay loop muted id="video">
+    <main className="panel">
+      {/* <video autoPlay loop muted id="video">
         {" "}
         <source src={videomain} type="video/mp4" />
-      </video>
+      </video> */}
 
-      <div className="bid_button">
-        <label htmlFor="bidInput">Select Plan:</label>
+      <div className="bid_cont">
+        <label className="bid-label" htmlFor="bidInput">Select Plan:</label>
         <select
+        className="bid-select"
           name="selectPlan"
           id=""
           value={plan_type}
@@ -129,8 +147,9 @@ const Bid = () => {
           ))}
         </select>
 
-        <label htmlFor="bidInput">Total Annual Coverage:</label>
+        <label  className="bid-label" htmlFor="bidInput">Total Annual Coverage:</label>
         <input
+        className="bid-input"
           type="number"
           id="total_annual_coverage"
           value={formData.total_annual_coverage}
@@ -138,8 +157,9 @@ const Bid = () => {
             setFormData({...formData, total_annual_coverage: e.target.value })
           }
         />
-        <label htmlFor="bidInput">Accidental Emergencies:</label>
+        <label  className="bid-label" htmlFor="bidInput">Accidental Emergencies:</label>
         <input
+        className="bid-input"
           type="number"
           id="accidental_emergencies"
           value={formData.accidental_emergencies}
@@ -148,8 +168,9 @@ const Bid = () => {
           }
         />
 
-        <label htmlFor="bidInput">Hospitalization Room Charges:</label>
+        <label className="bid-label" htmlFor="bidInput">Hospitalization Room Charges:</label>
         <input
+        className="bid-input"
           type="number"
           id="hospitalization_room_charges"
           value={formData.hospitalization_room_charges}
@@ -158,8 +179,9 @@ const Bid = () => {
           }
         />
 
-        <label htmlFor="bidInput">Hospitalization Room Charges:</label>
+        <label className="bid-label" htmlFor="bidInput">Dental and Vision Care:</label>
         <input
+        className="bid-input"
           type="number"
           id="dental_and_vision_care"
           value={formData.dental_and_vision_care}
@@ -168,8 +190,9 @@ const Bid = () => {
           }
         />
 
-        <label htmlFor="bidInput">Other Medical Expenses:</label>
+        <label className="bid-label" htmlFor="bidInput">Other Medical Expenses:</label>
         <input
+        className="bid-input"
           type="number"
           id="other_medical_expenses"
           value={formData.other_medical_expenses}
@@ -179,8 +202,9 @@ const Bid = () => {
         />
         {plan_type === "Premium" && (
           <>
-            <label htmlFor="bidInput">Ambulance Services Expenses:</label>
+            <label className="bid-label" htmlFor="bidInput">Ambulance Services Expenses:</label>
             <input
+            className="bid-input"
               type="number"
               id="ambulance_services_expenses"
               value={formData.ambulance_services_expenses}
@@ -193,8 +217,9 @@ const Bid = () => {
 
         {plan_type === "Premium" && (
           <>
-            <label htmlFor="bidInput">Surgery:</label>
+            <label className="bid-label" htmlFor="bidInput">Surgery:</label>
             <input
+            className="bid-input"
               type="number"
               id="surgery"
               value={formData.surgery}
@@ -203,15 +228,35 @@ const Bid = () => {
           </>
         )}
 
-        <label htmlFor="bidInput">Enter Bid Amount:</label>
+        <label className="bid-label" htmlFor="bidInput">Enter Monthly Coverage:</label>
         <input
+        className="bid-input"
           type="number"
           id="bidInput"
-          value={formData.company_bid}
-          onChange={(e) => setFormData({...formData,  company_bid: e.target.value })}
+          value={formData.monthly_coverage}
+          onChange={(e) => setFormData({...formData,  monthly_coverage: e.target.value })}
         />
-        <button onClick={handleBid}>Place Bid</button>
+        <button className="place-bid" onClick={handleBid}>Place Bid</button>
       </div>
+        
+      {submittedData && (
+        <div className="card-style">
+          <h3 className="card-styleh3">Insurrance Package</h3>
+          <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
+          <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
+          <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
+          <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
+          <p>Company Id: {submittedData.company_id}</p>
+          <p>Company Name: {submittedData.company_name}</p>
+          <p>Monthly Coverage: {submittedData.monthly_coverage}</p>
+          <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
+          <p>Surgery: {submittedData.surgery}</p>
+   
+          <button className="send-button" onClick={handleSubmit}>
+            Send
+          </button>
+        </div>
+      )}
     </main>
   );
 };

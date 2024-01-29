@@ -1,0 +1,8 @@
+.buttons{
+    width: 35%;
+    height: 50px;
+}
+.main_button {
+   gap: 10px;
+   display: flex;
+}

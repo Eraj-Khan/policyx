@@ -115,7 +115,7 @@ const UserList = () => {
           </Menu>
         </div>
         <div className="bellicon">
-          <h1 className="notification-heading text-sky-600">User Information</h1>
+          <h1 className="notification-heading text-sky-600">Insurrance Requests</h1>
           <button
             type="button"
             className="w-10  rounded-full hover:bg-white bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
@@ -146,12 +146,13 @@ const UserList = () => {
 
 <div className="notifi-container">
       {notificationinfo.map((data) => (
-        <div key={data.case_id} className="user-item">
+        <div style={{position:"relative"}} key={data.case_id} className="user-item">
           <img
             className="user-image"
             src={blue} // Add the image source to each data item
             alt={`Profile - ${data.case_id}`}
           />
+          <span style={{position:"absolute", top:0, right:10}}>{!data?.is_expired ? "active": "expired"}</span>
           <ul>
             <li className="case_id">CASE ID: {data.case_id}</li>
             <div className="inline-info">
