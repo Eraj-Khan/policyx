@@ -48,26 +48,38 @@ def place_package(requests):
 
 
 @api_view(['GET'])
-def list_all_packages(request,case_id,case_user):
+def list_all_packages(request,case_id):
     company_dashboard_data = CompanyDashboard.objects.get(case_id=case_id)
     company_packages_data = CompanyPackages.objects.filter(case_id=case_id)
-    company_user_data = CompanyPackages.objects.filter(case_user=case_user)
+
     if not company_dashboard_data:
         return Response("Data Not Found!!")
     if not company_packages_data:
         return Response("Package Not Found!!")
+
+    company_dashboard_serializer = CompanyDashboardSerializer(company_dashboard_data)
+    company_packages_serializer = CompanyPackagesSerializer(company_packages_data, many=True)
+
+    data = {
+            "Case":company_dashboard_serializer.data,
+            "Placed Packages": company_packages_serializer.data,
+    }
+
+    return Response(data)
+
+
+@api_view(['GET'])
+def list_user_packages(request,case_user):
+    company_user_data = CompanyPackages.objects.filter(case_user=case_user)
+
     if not company_user_data:
         return Response("user Not Found!!")
     
-    company_dashboard_serializer = CompanyDashboardSerializer(company_dashboard_data)
-    company_packages_serializer = CompanyPackagesSerializer(company_packages_data, many=True)
     company_user_serializer = CompanyPackagesSerializer(company_user_data, many=True)
 
 
     data = {
-            "Case":company_dashboard_serializer.data,
-            # "Bids": company_packages_serializer.data,
-            "Placed Package": company_user_serializer.data
+            "Packages With Respect to Case_ID": company_user_serializer.data
         }
 
     return Response(data)
