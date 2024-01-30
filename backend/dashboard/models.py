@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 class CompanyDashboard(models.Model):
     case_id = models.CharField(max_length=255, unique=True, default=1)
@@ -25,7 +26,7 @@ class CompanyDashboard(models.Model):
 
 
 class CompanyPackages(models.Model):
-    # package_id =models.OneToOneField(CompanyDashboard,on_delete=models.CASCADE,primary_key=True,null=False)
+    case_user =models.ForeignKey(User,on_delete=models.CASCADE,null=False)
     id=models.AutoField(primary_key=True)
     case_id = models.CharField(max_length=255, default=1)
     company_name = models.CharField(max_length=255, null=True, blank=True)
@@ -43,7 +44,7 @@ class CompanyPackages(models.Model):
 
     
     class Meta:
-        unique_together = ('case_id', 'company_name')
+        unique_together = ('case_user','case_id', 'company_name')
     
     def __str__(self):
         return self.case_id
