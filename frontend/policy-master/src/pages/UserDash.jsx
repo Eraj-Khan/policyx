@@ -116,7 +116,7 @@ const footerNavigation = {
 };
 const navigation = [
   { name: 'User Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Insurance Offers', href: '#', icon: FolderIcon, current: false },
+  { name: 'Insurance Offers', href: '/insurranceoffer', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Customer Service', href: '#', icon: UsersIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
@@ -157,11 +157,12 @@ export const UserDash = () => {
 
     useEffect(()=>
     {
-   let case_id =localStorage.getItem("case_id")
+      let user =localStorage.getItem("user")
+      let parsedPayload = JSON.parse(user)
    const fetchData = async () => {
     try {
       const response = await axios.get(
-      `http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/${case_id}`
+        `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
         //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
       );
 

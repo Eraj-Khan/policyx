@@ -1,7 +1,7 @@
 .notification {
   justify-content: right;
 }
-.notification-heading {
+.notification-head {
     font-style: normal;
     font-size: 26px;
     margin-left: 80px;
@@ -61,3 +61,56 @@
     font-weight: bold;
     color: #76797c;
   }
+/* Notification.css */
+
+/* .notification-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.notification-item {
+  background: linear-gradient(135deg, #fd868c, #fe9a8b);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.notification-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.notification-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.case_id {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.age,
+.recommended {
+  color: #f0f0f0;
+}
+
+.notification-head {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #2d3436;
+}
+
+.bellicon {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+} */

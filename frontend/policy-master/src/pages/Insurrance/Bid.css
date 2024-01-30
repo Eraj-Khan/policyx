@@ -1,114 +1,112 @@
 .panel {
-    display: flex;
-  gap:45px;
-   
+  display: flex;
+  gap: 45px;
 
-    padding: 20px;
-    background-color: #afbfd4;
-    border-radius: 12px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease; 
-    background-image: linear-gradient(to bottom right, #9fb2bc, #f0f0f0);
-  }
-  
-  .bid_cont {
+  padding: 20px;
+  background-color: #afbfd4;
+  /* border-radius: 12px;  */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-image: linear-gradient(to bottom right, #9fb2bc, #f0f0f0);
+}
 
-    background-color: #f9f9f9; 
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    padding: 25px;
-    border: 1px solid #ddd; 
-    transition: box-shadow 0.3s ease; 
-    width:40%;
-   
-  
+.bid_cont {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease;
+  width: 40%;
 
-    background-image: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-  }
-  
-  .bid-label {
-    display: block;
-    margin-bottom: 1px;
-    color: #333;
-    font-size: 20px; 
-    font-weight: bold; 
-    letter-spacing: 0.5px; 
-    transition: color 0.3s ease; 
-  }
+  background-image: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+}
 
-  .card-styleh3{
-    font-size: 34px;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    font-family: auto;
-  }
-  .card-style p{
-    font-size: 20px;
-    margin-bottom: 15px;
-    margin-left: 20px;
-  }
-  
+.bid-label {
+  display: block;
+  margin-bottom: 1px;
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
 
+.card-styleh3 {
+  font-size: 34px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  font-family: auto;
+}
+.card-style p {
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
 
-  
-  bid-select, bid-input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border: 1px solid #ddd; 
-    border-radius: 4px;
-    background-color: #fff; 
-    transition: border-color 0.3s ease; 
-  }
-  
-  bid-select:focus, bid-input:focus {
-    outline: none;
-    border-color: #4caf50; 
-  }
-  
-  .place-bid {
-    background-color: #4c6daf;
-    color: #fff;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-    margin-top: 10px;
-  }
-  
-  .place-bid:hover {
-    background-color: #396291;
-  }
-  
-  .card-style {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 26%;
-    background: #f9f9f9;
-    height: 603px;
-  }
-  
-  .send-button {
-    background-color: #4c6daf;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 315px;
-    margin-left: 20px;
-  }
+bid-select,
+bid-input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
 
-  .send-button :hover{
-    background-color: #396291;
-  }
+bid-select:focus,
+bid-input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
 
+.place-bid {
+  background-color: #4c6daf;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.place-bid:hover {
+  background-color: #396291;
+}
+
+.card-style {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 26%;
+  background: #f9f9f9;
+  height: 603px;
+}
+
+.send-button {
+  background-color: #4c6daf;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 315px;
+  margin-left: 20px;
+}
+
+.send-button :hover {
+  background-color: #396291;
+}
+.nav {
+  background: rgb(96, 158, 217);
+  height: 76px;
+}
 
 /* .bid_button{
     flex-direction: column;

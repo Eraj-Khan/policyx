@@ -223,6 +223,7 @@ const Review = () => {
     axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
     .then((response)=>{
       console.log("response", response.data)
+      swal("Case Submitted Successfully")
     })
     .catch((error)=>{
       console.log("error", error)

@@ -1,13 +1,18 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
+import React from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 import { useLocation } from "react-router";
 import bid from "../Insurrance/Bid.css";
 import videomain from "../../image/mainvideo.mp4";
 const Bid = () => {
   const [bidAmount, setBidAmount] = useState("");
-  const location = useLocation().search;
-  const case_id = new URLSearchParams(location).get("case_id");
-  const Id = new URLSearchParams(location).get("id");
+  const statePayload = useLocation()
+
+  const case_id = statePayload.state.case_id;
+  const Id = statePayload.state.case_user;
+  console.log("id",Id)
+
   const [data, setData] = useState(null);
   const [submittedData, setSubmittedData] = useState(null);
   // const [id, setId] = useState("");
@@ -35,6 +40,8 @@ const Bid = () => {
     monthly_coverage: 0,
     ambulance_services_expenses: 0,
     surgery: 0,
+    case_user:Id
+   
    
   });
 
@@ -47,8 +54,10 @@ const Bid = () => {
   // }, []);
 
 const handleSubmit = () =>{
+
    axios
-      .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, submittedData)
+      .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, submittedData
+    )
       .then((response) => {
         console.log("response", response.data);
       })
@@ -56,7 +65,18 @@ const handleSubmit = () =>{
         console.log("error", error);
       });
 }
-
+const NavBar = () => {
+  // Add your navigation bar content and styling here
+  return (
+    <nav className="navbar">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+  );
+};
 
   const handleBid = () => {
     
@@ -124,11 +144,50 @@ const handleSubmit = () =>{
   
 
   return (
+    <>
+
+<div className="nav">
+<div className="ml-4 flex items-center md:ml-6 notification">
+        {/* Profile dropdown */}
+        <Menu as="div" className="relative ml-3">
+          <div>
+            <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+              <span className="sr-only">Open user menu</span>
+              <img
+                className="w-10 rounded-full"
+                src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
+                alt=""
+              />
+            </Menu.Button>
+          </div>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            
+            </Menu.Items>
+          </Transition>
+        </Menu>
+      </div>
+      <div className="bellicon">
+        <h1 className="notification-heading text-sky-600">
+          Insurrance Requests
+        </h1>
+
+        <span className="sr-only">View notifications</span>
+      </div>
+      </div>
+  
     <main className="panel">
-      {/* <video autoPlay loop muted id="video">
-        {" "}
-        <source src={videomain} type="video/mp4" />
-      </video> */}
+      
+
+
 
       <div className="bid_cont">
         <label className="bid-label" htmlFor="bidInput">Select Plan:</label>
@@ -258,6 +317,7 @@ const handleSubmit = () =>{
         </div>
       )}
     </main>
+    </>
   );
 };
 
