@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useState, Fragment } from 'react'
-import React, { useLayoutEffect, useState, Fragment } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fontsource/poppins";
 import "@fontsource/poppins/800.css";
@@ -512,12 +511,12 @@ export default function App() {
             </div>
             </div>
             {/* Logo Cloud */}
-            <div className="bg-white pt-20">
+            <div className=" ourpartners bg-white pt-20 ">
               <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
-                <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl text-center">
+                <h2 className="mt-2 text-3xl font-bold tracking-tight  sm:text-4xl text-center">
                   Our Partners
                 </h2>
-                <p className="mx-auto mt-5 max-w-prose text-2xl text-sky-400">
+                <p className="mx-auto mt-5 max-w-prose text-2xl">
                   Our panel consists of trusted household names from the
                   insurance industry.
                 </p>

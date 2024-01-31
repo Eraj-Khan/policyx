@@ -94,4 +94,14 @@ width: 80%;
     letter-spacing: -0.34px;
     font-size: 20px;
   }
- 
+  .ourpartners h2 {
+    font-family: "Space Grotesk";
+    font-weight: 900;
+
+    color: #3498DB;
+  }
+ .ourpartners p{
+  color: #54647a;
+  font-family: "Poppins";
+
+ }
