@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import recieve_data_on_dashboard,list_all_cases,place_package,list_all_packages,update_bid,accept_package,list_all_users,list_user_packages
+from .views import recieve_data_on_dashboard,list_all_cases,place_package,list_all_packages,update_bid,accept_package,list_all_users,list_user_packages,list_company_packages
 urlpatterns = [
     path('create_case/', recieve_data_on_dashboard, name='create_case'),
     path('list_users/', list_all_cases, name='list_users'),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('list_user_packages/<str:case_user>/', list_user_packages, name='all_bids'),
     path('list_all_users/<str:case_id>/', list_all_users, name='all_users'),
     path('accept_package/<str:case_id>/<str:company_name>', accept_package, name='accept_package'),
+    path('list_company_packages/<str:company_name>/', list_company_packages, name='list_company_packages'),
 
 ]

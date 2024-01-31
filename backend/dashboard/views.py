@@ -84,6 +84,28 @@ def list_user_packages(request,case_user):
 
     return Response(data)
 
+
+@api_view(['GET'])
+def list_company_packages(request, company_name):
+    try:
+        # Retrieve all packages for the specified company
+        company_user_data = CompanyPackages.objects.filter(company_name=company_name)
+
+        if not company_user_data:
+            return Response("No Packages Found for the specified company.")
+
+        company_user_serializer = CompanyPackagesSerializer(company_user_data, many=True)
+
+        data = {
+            "Packages With Respect to Company": company_user_serializer.data
+        }
+
+        return Response(data)
+
+    except Exception as e:
+        return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 @api_view(['GET'])
 def list_all_users(requests, case_id):
     user_dashboard_data = UserInformation.objects.get(case_id=case_id)
@@ -116,13 +138,16 @@ def accept_package(request, case_id, company_name):
     try:
         company_package = CompanyPackages.objects.get(case_id=case_id, company_name=company_name)
 
-
         if not company_package.is_accepted:
             company_package.is_accepted = True
             company_package.save()
+
             company_dashboard = CompanyDashboard.objects.get(case_id=case_id)
             company_dashboard.is_completed = True
             company_dashboard.save()
+
+            # Notify the company via email
+            notify_company_email(company_name)
 
             return Response({'message': 'Package accepted and company notified.'}, status=status.HTTP_200_OK)
         else:
@@ -137,3 +162,22 @@ def accept_package(request, case_id, company_name):
     except Exception as e:
         return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+def notify_company_email(company_name):
+    try:
+        company_details = User.objects.filter(role='company')
+        company_emails = [email.email for email in company_details]
+
+        # Replace this with your actual email notification logic
+        subject = 'Bid Accepted Notification'
+        message = f'Congratulations! Your bid has been accepted by the user.'
+        from_email = 'noreply@example.com'
+
+        # Create a list of tuples with (subject, message, from_email, recipient_list)
+        email_data = [(subject, message, from_email, [recipient_email]) for recipient_email in company_emails]
+
+        # Use send_mass_mail with the list of tuples
+        send_mass_mail(email_data, fail_silently=False)
+
+    except User.DoesNotExist:
+        # Handle the case where the company is not found in the database
+        pass
