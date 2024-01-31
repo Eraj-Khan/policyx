@@ -7,13 +7,11 @@ import bid from "../Insurrance/Bid.css";
 import videomain from "../../image/mainvideo.mp4";
 const Bid = () => {
   const [bidAmount, setBidAmount] = useState("");
-  const statePayload = useLocation()
-
+  const statePayload = useLocation();
+  const [data, setData] = useState(null);
   const case_id = statePayload.state.case_id;
   const Id = statePayload.state.case_user;
-  console.log("id",Id)
 
-  const [data, setData] = useState(null);
   const [submittedData, setSubmittedData] = useState(null);
   // const [id, setId] = useState("");
   const [plan_type, setPlan_type] = useState("");
@@ -44,6 +42,20 @@ const Bid = () => {
    
    
   });
+  const dataPayload = statePayload.state.payload;
+ useEffect(()=> {
+ 
+  if(dataPayload) {
+    setFormData(dataPayload)
+  }
+ },[])
+ 
+  console.log("id",Id)
+
+
+  
+
+
 
   
   // useEffect(() => {
@@ -55,6 +67,16 @@ const Bid = () => {
 
 const handleSubmit = () =>{
 
+  if(dataPayload){ axios
+    .put(`http://127.0.0.1:8000/company_dashboard/update_packages/${case_id}/${parsedPayload?.company_name}`, submittedData
+  )
+    .then((response) => {
+      console.log("response", response.data);
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });}
+  else{
    axios
       .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, submittedData
     )
@@ -64,7 +86,7 @@ const handleSubmit = () =>{
       .catch((error) => {
         console.log("error", error);
       });
-}
+}}
 const NavBar = () => {
   // Add your navigation bar content and styling here
   return (
@@ -80,11 +102,8 @@ const NavBar = () => {
 
   const handleBid = () => {
     
-    
-    // let payload = Object.assign(generatePlan(bidAmount),{
-    //     company_id:1,
-    //     company_name: "jubilee insurance",
-    // })
+   
+  
     let temp = formData;
     if(plan_type === 'Basic'){
       delete temp.surgery;
@@ -92,55 +111,10 @@ const NavBar = () => {
     }
     console.log("formData", temp);
     setSubmittedData(temp); 
-    // axios
-    //   .post(`http://127.0.0.1:8000/company_dashboard/send_packages/`, plan)
-    //   .then((response) => {
-    //     console.log("response", response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log("error", error);
-    //   });
-  };
+   
+    };
 
-  // function companyX(premium) {
-  //   const coverage = Math.floor(premium * 40);
-
-  //   let healthPackages;
-
-  //   if (premium <= 32000) {
-  //     healthPackages = {
-  //       Plan_type: "Basic",
-  //       total_annual_coverage: coverage,
-  //       accidental_emergencies: Math.floor((25 / 100) * coverage),
-  //       hospitalization_room_charges: Math.floor((25 / 100) * coverage),
-  //       dental_and_vision_care: Math.floor((35 / 100) * coverage),
-  //       other_medical_expenses: Math.floor((15 / 100) * coverage),
-  //       case_id: case_id,
-  //       company_id: id,
-  //       company_name: "jubilee insurance",
-  //       company_bid: bidAmount,
-  //     };
-  //   }
-
-  //   if (premium >= 32000) {
-  //     healthPackages = {
-  //       Plan_type: "Premium",
-  //       total_annual_coverage: coverage,
-  //       accidental_emergencies: Math.floor((20 / 100) * coverage),
-  //       ambulance_services_expenses: Math.floor((20 / 100) * coverage),
-  //       hospitalization_room_charges: Math.floor((10 / 100) * coverage),
-  //       surgery: Math.floor((15 / 100) * coverage),
-  //       dental_and_vision_care: Math.floor((30 / 100) * coverage),
-  //       other_medical_expenses: Math.floor((5 / 100) * coverage),
-  //       case_id: case_id,
-  //       company_id: id,
-  //       company_name: "jubilee insurance",
-  //       company_bid: bidAmount,
-  //     };
-  //   }
-
-  //   return healthPackages;
-  // }
+ 
   
 
   return (
@@ -190,6 +164,7 @@ const NavBar = () => {
 
 
       <div className="bid_cont">
+
         <label className="bid-label" htmlFor="bidInput">Select Plan:</label>
         <select
         className="bid-select"
@@ -312,7 +287,7 @@ const NavBar = () => {
           <p>Surgery: {submittedData.surgery}</p>
    
           <button className="send-button" onClick={handleSubmit}>
-            Send
+            {dataPayload? "Update": "Send"}
           </button>
         </div>
       )}

@@ -52,7 +52,8 @@ const UserList = () => {
     // For now, it just logs the caseI
     navigation("/bid",{state:{
       case_id: caseId,
-      case_user:case_user
+      case_user:case_user,
+      payload:null
     }})
     console.log(`Place bid for case ID: ${caseId}`);
   };
