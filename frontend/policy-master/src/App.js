@@ -49,8 +49,8 @@ function App() {
         </Routes>
       </BrowserRouter> */}
       <Toaster />
-      {/* <UserDash/> */}
-      <Company/>
+      <UserDash/>
+      {/* <Company/> */}
     </div>
   );
 }
