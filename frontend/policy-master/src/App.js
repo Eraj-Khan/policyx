@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import LoginSignup from './Components/LoginSignup/LoginSignup';
-import toast, { Toaster } from 'react-hot-toast';
+import logo from "./logo.svg";
+import "./App.css";
+import LoginSignup from "./Components/LoginSignup/LoginSignup";
+import toast, { Toaster } from "react-hot-toast";
 
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -15,8 +15,7 @@ import {Notification} from './pages/Notification.jsx'
 import UserList from './pages/Company/UserList.jsx';
 import Bid from './pages/Company/Bid.jsx';
 function App() {
-  
-    return (
+  return (
     <div>
       <BrowserRouter>
         <Routes>
@@ -33,7 +32,6 @@ function App() {
            </Routes>
       </BrowserRouter>  
       <Toaster/>
-
     </div>
   );
 }

@@ -31,10 +31,19 @@ const navigation = [
   { name: "Documents", href: "#", icon: InboxIcon, current: false },
   { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
 ];
+
+const handlelogOut = () => {
+  localStorage.removeItem("user");
+   localStorage.removeItem("token");
+   localStorage.removeItem("refresh-token");
+   window.location.reload();
+  window.location.reload();
+}
+
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+ 
 ];
 const stats = [
   {
@@ -421,6 +430,7 @@ export const Company = () => {
                           )}
                         </Menu.Item>
                       ))}
+                       <button onClick={handlelogOut}>Sign Out</button>
                     </Menu.Items>
                   </Transition>
                 </Menu>

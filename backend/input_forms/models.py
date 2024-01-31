@@ -1,7 +1,9 @@
 from django.db import models
+from accounts.models import User
 
 class UserInformation(models.Model):
-    Age = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_information')
+    age = models.IntegerField(null=True)
     gender = models.CharField(max_length=10)
     bmi = models.FloatField()
     children = models.IntegerField()

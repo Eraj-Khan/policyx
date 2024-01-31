@@ -10,3 +10,6 @@ class CompanyPackagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyPackages
         fields = '__all__'
+    def create(self,validated_data):
+        validated_data['company_name']=validated_data['company_name'].lower()
+        return CompanyPackages.objects.create(**validated_data)

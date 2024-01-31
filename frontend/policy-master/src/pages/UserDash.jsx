@@ -1,4 +1,4 @@
-import { Fragment, useState,  } from 'react'
+import { Fragment, useEffect, useState,  } from 'react'
 import React from 'react'
 import { Dialog, Menu, Transition   } from '@headlessui/react'
 
@@ -23,6 +23,7 @@ import img3 from "../image/jubilee.jpg";
 import img4 from "../image/askari.jpg";
 import img5 from "../image/takaful.png";
 import img6 from "../image/ubl.png";
+import axios from 'axios'
 
 const footerNavigation = {
   solutions: [
@@ -122,10 +123,17 @@ const navigation = [
   { name: 'Apply For Insurance', href: '/register', icon: InboxIcon, current: false },
 
 ]
+ const handlelogOut = () => {
+   localStorage.removeItem("user");
+   localStorage.removeItem("token");
+   localStorage.removeItem("refresh-token");
+   window.location.reload();
+}
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '/' },
+ 
+
 ]
 const stats = [
     { id: 1, name: 'Total Users', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
@@ -145,6 +153,32 @@ function classNames(...classes) {
 
 export const UserDash = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const [notificationCount, setNotificationCount] = useState(0);
+
+    useEffect(()=>
+    {
+   let case_id =localStorage.getItem("case_id")
+   const fetchData = async () => {
+    try {
+      const response = await axios.get(
+      `http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/${case_id}`
+        //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+      );
+
+      // Set the entire JSON object to data
+      const {Bids}= response.data;
+      setNotificationCount(Bids.length);
+      console.log("data", response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchData();
+    }, [])
+    
+
+
   return (
     <div>
     <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -291,13 +325,16 @@ export const UserDash = () => {
             </form> */}
           </div>
           <div className="ml-4 flex items-center md:ml-6">
-            <button
-              type="button"
-              className="rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="h-6 w-6 " aria-hidden="true" />
-            </button>
+          <a 
+                  href="/usernotification"
+                  className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                >
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-0.5 text-sm font-medium text-red-800">
+                  {notificationCount}
+                  </span>
+                </a>
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
@@ -305,7 +342,7 @@ export const UserDash = () => {
                 <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-20 rounded-full"
+                    className="w-6 rounded-full"
                     src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                     alt=""
                   />
@@ -323,6 +360,7 @@ export const UserDash = () => {
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   {userNavigation.map((item) => (
                     <Menu.Item key={item.name}>
+
                       {({ active }) => (
                         <a
                           href={item.href}
@@ -336,6 +374,7 @@ export const UserDash = () => {
                       )}
                     </Menu.Item>
                   ))}
+                  <button onClick={handlelogOut}>Sign Out</button>
                 </Menu.Items>
               </Transition>
             </Menu>

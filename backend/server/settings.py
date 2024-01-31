@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+from datetime import timedelta
 import os
 
 from pathlib import Path
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'drf_yasg',
+    'rest_framework_simplejwt',
     'corsheaders',
 
     
@@ -51,20 +53,21 @@ INSTALLED_APPS = [
     'accounts',
     'input_forms',
     'ai_prediction',
-    'dashboard'
+    'dashboard',
+    'django_bg_task'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Place CorsMiddleware before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
 ]
+
 
 ROOT_URLCONF = 'server.urls'
 
@@ -99,19 +102,14 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-<<<<<<< HEAD
-        'NAME': 'policyX',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-=======
-        'NAME': 'policyx',
-        'USER': 'abeera',
-        'PASSWORD': 'abeera',
->>>>>>> 090fe525388868b3c8943007651689da404614be
+        'NAME': 'policyx_',
+        'USER': 'policyx',
+        'PASSWORD': 'eraj',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
-        'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
+        'PORT': '5433',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -176,9 +174,33 @@ CORS_ALLOW_CREDENTIALS = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
-# settings.py
+BACKGROUND_TASK_RUN_ASYNC = True  # Run tasks asynchronously (in the background)
+BACKGROUND_TASK_QUEUE = 'default'  # Specify the queue for tasks
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'aliumair9316@gmail.com'
+EMAIL_HOST_PASSWORD = 'csnf suxh lxpd ucrb'
+DEFAULT_FROM_EMAIL = 'aliumair9316@gmail.com'
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     # Add other trusted origins as needed
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # Add other authentication classes as needed
+    ),
+    # ... other REST_FRAMEWORK settings ...
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
