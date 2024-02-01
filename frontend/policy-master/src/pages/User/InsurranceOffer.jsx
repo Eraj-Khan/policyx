@@ -26,6 +26,7 @@ import bluess from "../../image/bluess.jpg";
 import "../User/InsurranceOffer.css";
 
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
 
 const navigation = [
@@ -59,6 +60,9 @@ const InsurranceOffer = () => {
       )
       .then((response) => {
         console.log(response.data);
+        setTimeout(()=>{
+            swal("Package Accepted and Notified to Company")
+          },100)
       })
       .catch((error) => {
         console.log(error);
@@ -154,10 +158,10 @@ const InsurranceOffer = () => {
             <span style={{ position: "absolute", top: 0, right: 10 }}>
               {!data?.is_expired ? "active" : "expired"}
             </span>
-            <div key={data.case_id} className="notification-item">
+            <div key={data.case_id} className="notif-item">
               <li className="case_id"> CASE ID: {data.case_id}</li>
               <li className="age">Company Name: {data.company_name}</li>
-              <li className="recommended"> Company Bid: {data.company_bid}</li>
+              <li className="recommended"> Monthly Coverage: {data.monthly_coverage}</li>
               <li className="recommended">
                 dental: {data.dental_and_vision_care}
               </li>

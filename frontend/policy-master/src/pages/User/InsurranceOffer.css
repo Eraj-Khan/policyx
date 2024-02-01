@@ -20,5 +20,20 @@
 
 .insur-place {
     background-color: #4c6daf;
-    margin-top:205px;
+    width: 425px;
+    margin-left: 21px;
+    margin-top: -13px;
 }
+
+.notif-item{
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #b3cde2;
+    margin-top: 10px;
+}
+.notif-item li {
+    list-style-type: none;
+    margin-bottom: 8px;
+  }

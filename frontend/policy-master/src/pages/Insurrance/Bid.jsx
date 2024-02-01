@@ -5,6 +5,7 @@ import { Dialog, Menu, Transition } from "@headlessui/react";
 import { useLocation } from "react-router";
 import bid from "../Insurrance/Bid.css";
 import videomain from "../../image/mainvideo.mp4";
+import swal from "sweetalert";
 const Bid = () => {
   const [bidAmount, setBidAmount] = useState("");
   const statePayload = useLocation();
@@ -82,6 +83,9 @@ const handleSubmit = () =>{
     )
       .then((response) => {
         console.log("response", response.data);
+        setTimeout(()=>{
+          swal("Package Send")
+        },100)
       })
       .catch((error) => {
         console.log("error", error);

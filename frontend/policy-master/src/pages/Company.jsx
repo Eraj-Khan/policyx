@@ -26,7 +26,7 @@ import axios from "axios";
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
   { name: "Users", href: "/userList", icon: UsersIcon, current: false },
-  { name: "Users Review", href: "/packages", icon: FolderIcon, current: false },
+  { name: "Packages Offered", href: "/packages", icon: FolderIcon, current: false },
   { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
   { name: "Documents", href: "#", icon: InboxIcon, current: false },
   { name: "Reports", href: "#", icon: ChartBarIcon, current: false },

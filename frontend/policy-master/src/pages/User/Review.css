@@ -64,36 +64,50 @@
 .checked-container {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 20px;
   margin-top: 70px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition to transform */
   width: 465px;
   margin-left: 66px;
-  background: rgb(225, 228, 232);
   margin-bottom: 85px;
+  padding-bottom: 20px;
 }
 
-.checked-container:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05); /* Scale up on hover */
-}
+
 
 .checked-label {
   display: block;
   margin-bottom: 10px;
   font-size: 15px;
+  padding-top: 5px;
+  padding-left: 20px;
   color: #333;
-  font-family: cursive;
-  padding-left: 65px;
+  font-family: "poppins";
+}
+.checked-selection_2 {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "poppins";
+  font-size: 15px;
+  text-align: start;
+  margin-left: 14px;
+  padding: 12px;
+  color: white;
+   background-color: #3498DB;
+  ;
+  border-radius: 10px;
+  width: 415px;
 }
 .checked-labelid{
   display: block;
   margin-bottom: 12px;
-  font-size: 18px;
-  color: #314987;
-  text-align: center;
-  font-family: fantasy;
+  font-size: 25px;
+padding-top: 20px;
+  text-align: start;
+  font-weight: 800;
+  color:#3498DB ;
+  padding-left: 20px;
+  font-family: "poppins";
 }
 
 .check-input {
@@ -112,15 +126,16 @@
 }
 
 .proceed-button {
-  background-color:  rgb(63, 110, 151);;
+  background-color: rgb(63, 110, 151);
   color: #ffffff;
   padding: 14px 28px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 415px;
   font-size: 16px;
-  transition: background-color 0.3s ease;
 }
 
 .proceed-button:hover {
@@ -135,16 +150,31 @@
 .checked-selection{
   display: block;
   margin-bottom: 10px;
+  font-family: "poppins";
   font-size: 15px;
+  padding: 12px;
   color: #333;
-  font-family: cursive;
+  text-align: start;
   background: rgb(63, 110, 151);
   border-radius: 10px;
-  width: 200px;
-  height: 38px;
-  margin-left: 98px;
-  color:azure;
+  width: 415px;
+  color: white;
 }
 .check-select{
-  margin-right: 10px;
+text-align: start;
+font-size: 20px;
+padding-left: 15px;
+
+font-family: "poppins";
+}
+.budget-input-container{
+margin-left: 21px;
+width: 415px;
+}
+.check-select p{
+  margin-top: 20px;
+  font-family: "poppins";
+font-weight: 800;
+font-size: 20px;
+  color:#3498DB ;
 }

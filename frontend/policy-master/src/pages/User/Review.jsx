@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-
+import "@fontsource/poppins";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/400.css";
 import "../User/Review.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -223,7 +225,9 @@ const Review = () => {
     axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
     .then((response)=>{
       console.log("response", response.data)
-      swal("Case Submitted Successfully")
+      setTimeout(()=>{
+        swal("Successfully Logged In")
+      },100)
     })
     .catch((error)=>{
       console.log("error", error)
@@ -451,7 +455,7 @@ const Review = () => {
           </label>
           </div>
 
-          <label className="checked-selection">
+          <label className="checked-selection_2">
             <input
               className="check-input"
               type="checkbox"

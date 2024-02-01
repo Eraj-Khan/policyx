@@ -1,0 +1,11 @@
+.user-pack{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width:350px;
+    margin-top: 15px;
+}

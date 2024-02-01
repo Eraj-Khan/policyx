@@ -18,7 +18,7 @@ import {
   CursorArrowRaysIcon,
   EnvelopeOpenIcon,
 } from "@heroicons/react/24/outline";
-import "../../pages/Notification.css";
+import "../User/UserNotification.css";
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -40,34 +40,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 export const UserNotification = () => {
-   
- 
-    const [notification, setNotification] = useState([]);
+  const [notification, setNotification] = useState([]);
 
-    useEffect(()=>
-    {
-   let user =localStorage.getItem("user")
-   let parsedPayload = JSON.parse(user)
-   const fetchData = async () => {
-    try {
-      const response = await axios.get(
-      `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-        //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
-      );
+  useEffect(() => {
+    let user = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(user);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
+        );
 
-      // Set the entire JSON object to data
-      const {Bids}= response.data;
-    
-      setNotification(Bids);
-      console.log("data", response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+        const { Bids } = response.data;
 
-  fetchData();
-    }, [])
- 
+        setNotification(Bids);
+        console.log("data", response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="ml-4 flex items-center md:ml-6 notification bg-sky-600">
@@ -114,41 +109,38 @@ export const UserNotification = () => {
       </div>
       <div className="bellicon">
         <h1 className="notification-heading text-sky-600">Notifications</h1>
-       
-         
-         
-        
-          {/* <span className="sr-only">View notifications</span> */}
-          
-          <div className="bellicon">
-    
+
+      
+
+        <div className="bellicon">
           <BellIcon className="h-20 w-10 " aria-hidden="true" />
-
-</div>
-
-       
+        </div>
       </div>
 
-      <div className="notification-container">
+      <div className="notif-contain">
+        <div className="notif-itm">
+
         {notification.map((data) => (
           <>
-            
-            <div key={data.case_id} className="notification-item">
-        <li className="case_id"> CASE ID: {data.case_id}</li>
-        <li className="age">Company Name:  {data.company_name}</li>
+            <div key={data.case_id} className="notif-itm">
+              <div className="notif">
+                Package received from Company <span className="notif_company_name">{data.company_name}</span> against this case
+                <span className="notif_case_id">  {data.case_id}</span>
+              </div>
+              
+              {/* <li className="age">Company Name:  {data.company_name}</li>
         <li className="recommended"> Company Bid: {data.company_bid}</li>
         <li className="recommended">dental:  {data.dental_and_vision_care}</li>  
         <li className="recommended"> Annual Coverage: {data.total_annual_coverage}</li>
         <li className="recommended"> Accidental Emergencies: {data.accidental_emergencies}</li>
         <li className="recommended"> Hospitalization Room Charges: {data.hospitalization_room_charges}</li>
-        <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li>
-        
-      </div> 
+        <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li> */}
+            </div>
           </>
         ))}
+      </div>
       </div>
     </div>
   );
 };
 export default UserNotification;
-
