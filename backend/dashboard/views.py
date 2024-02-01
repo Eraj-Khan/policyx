@@ -8,8 +8,7 @@ from django.core.mail import send_mass_mail
 from django.conf import settings
 from django.db import models, IntegrityError
 from accounts.models import User
-
-
+from input_forms.views import UserInformation,UserInformationSerializer
     
 @api_view(['POST'])
 def recieve_data_on_dashboard(requests):
@@ -52,20 +51,70 @@ def place_package(requests):
 def list_all_packages(request,case_id):
     company_dashboard_data = CompanyDashboard.objects.get(case_id=case_id)
     company_packages_data = CompanyPackages.objects.filter(case_id=case_id)
+
     if not company_dashboard_data:
         return Response("Data Not Found!!")
     if not company_packages_data:
         return Response("Package Not Found!!")
-    
+
     company_dashboard_serializer = CompanyDashboardSerializer(company_dashboard_data)
     company_packages_serializer = CompanyPackagesSerializer(company_packages_data, many=True)
 
     data = {
             "Case":company_dashboard_serializer.data,
-            "Bids": company_packages_serializer.data
+            "Placed Packages": company_packages_serializer.data,
+    }
+
+    return Response(data)
+
+
+@api_view(['GET'])
+def list_user_packages(request,case_user):
+    company_user_data = CompanyPackages.objects.filter(case_user=case_user)
+
+    if not company_user_data:
+        return Response("user Not Found!!")
+    
+    company_user_serializer = CompanyPackagesSerializer(company_user_data, many=True)
+
+
+    data = {
+            "Packages With Respect to Case_ID": company_user_serializer.data
         }
 
     return Response(data)
+
+
+@api_view(['GET'])
+def list_company_packages(request, company_name):
+    try:
+        # Retrieve all packages for the specified company
+        company_user_data = CompanyPackages.objects.filter(company_name=company_name)
+
+        if not company_user_data:
+            return Response("No Packages Found for the specified company.")
+
+        company_user_serializer = CompanyPackagesSerializer(company_user_data, many=True)
+
+        data = {
+            "Packages With Respect to Company": company_user_serializer.data
+        }
+
+        return Response(data)
+
+    except Exception as e:
+        return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+def list_all_users(requests, case_id):
+    user_dashboard_data = UserInformation.objects.get(case_id=case_id)
+
+    if not user_dashboard_data:
+        return Response("Data Not Found!!")
+    userdashboardserializer = UserInformationSerializer(user_dashboard_data)
+    
+    return Response(userdashboardserializer.data)
 
 @api_view(['PUT'])
 def update_bid(requests,case_id,company_name):
@@ -84,7 +133,51 @@ def update_bid(requests,case_id,company_name):
     
     return Response(update_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
-    
+@api_view(['PUT'])
+def accept_package(request, case_id, company_name):
+    try:
+        company_package = CompanyPackages.objects.get(case_id=case_id, company_name=company_name)
 
+        if not company_package.is_accepted:
+            company_package.is_accepted = True
+            company_package.save()
 
+            company_dashboard = CompanyDashboard.objects.get(case_id=case_id)
+            company_dashboard.is_completed = True
+            company_dashboard.save()
+
+            # Notify the company via email
+            notify_company_email(company_name)
+
+            return Response({'message': 'Package accepted and company notified.'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Package already accepted.'}, status=status.HTTP_200_OK)
+
+    except CompanyPackages.DoesNotExist:
+        return Response({'error': 'Company package not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    except CompanyDashboard.DoesNotExist:
+        return Response({'error': 'Company dashboard not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    except Exception as e:
+        return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+def notify_company_email(company_name):
+    try:
+        company_details = User.objects.filter(role='company')
+        company_emails = [email.email for email in company_details]
+
+        # Replace this with your actual email notification logic
+        subject = 'Bid Accepted Notification'
+        message = f'Congratulations! Your bid has been accepted by the user.'
+        from_email = 'noreply@example.com'
+
+        # Create a list of tuples with (subject, message, from_email, recipient_list)
+        email_data = [(subject, message, from_email, [recipient_email]) for recipient_email in company_emails]
+
+        # Use send_mass_mail with the list of tuples
+        send_mass_mail(email_data, fail_silently=False)
+
+    except User.DoesNotExist:
+        # Handle the case where the company is not found in the database
+        pass
