@@ -22,7 +22,7 @@ import LoginProtected from "./Components/PrivateRoute/LoginProtected.jsx";
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
 
@@ -47,8 +47,10 @@ function App() {
           <Route path="/bid" element={<Bid />}></Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
       <Toaster />
+      <UserDash/>
+      {/* <Company/> */}
     </div>
   );
 }
