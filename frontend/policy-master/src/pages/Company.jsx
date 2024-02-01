@@ -1,5 +1,10 @@
 import { Fragment, useEffect, useState } from "react";
 import React from "react";
+import "@fontsource/poppins";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/400.css";
+
+import "@fontsource/space-grotesk";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   Bars3BottomLeftIcon,
@@ -8,11 +13,14 @@ import {
   ChartBarIcon,
   FolderIcon,
   HomeIcon,
+  CheckCircleIcon,
+  ChevronRightIcon,
+  EnvelopeIcon,
   InboxIcon,
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
@@ -23,6 +31,81 @@ import "../pages/Company.css";
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 
+const applications = [
+
+  {
+    applicant: {
+      name: 'Ricardo Cooper',
+      email: 'ricardo.cooper@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$350',
+    href: '#',
+  },
+  {
+    applicant: {
+      name: 'Kristen Ramos',
+      email: 'kristen.ramos@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$450',
+    href: '#',
+  },
+  {
+    applicant: {
+      name: 'Ted Fox',
+      email: 'ted.fox@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$300',
+    href: '#',
+  },
+  {
+    applicant: {
+      name: 'Kristen Ramos',
+      email: 'kristen.ramos@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$200',
+    href: '#',
+  },
+  {
+    applicant: {
+      name: 'Ted Fox',
+      email: 'ted.fox@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$800',
+    href: '#',
+  },
+  {
+    applicant: {
+      name: 'Ted Fox',
+      email: 'ted.fox@example.com',
+      imageUrl:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    date: '2020-01-07',
+    dateFull: 'January 7, 2020',
+    stage: '$600',
+    href: '#',
+  },
+]
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
   { name: "Users", href: "/userList", icon: UsersIcon, current: false },
@@ -34,42 +117,50 @@ const navigation = [
 
 const handlelogOut = () => {
   localStorage.removeItem("user");
-   localStorage.removeItem("token");
-   localStorage.removeItem("refresh-token");
-   window.location.reload();
+  localStorage.removeItem("token");
+  localStorage.removeItem("refresh-token");
+  window.location.reload();
   window.location.reload();
 }
 
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
+  { name: "Company Profile", href: "#" },
   { name: "Settings", href: "#" },
- 
+
 ];
 const stats = [
   {
     id: 1,
-    name: "Total Users",
-    stat: "71,897",
+    name: "Cases",
+    stat: "11,897",
     icon: UsersIcon,
     change: "122",
     changeType: "increase",
   },
   {
     id: 2,
-    name: "Sales",
+    name: "Users",
     stat: "58.16%",
     icon: EnvelopeOpenIcon,
     change: "5.4%",
     changeType: "increase",
   },
-  {
+  , {
     id: 3,
+    name: "Leads",
+    stat: "35.8%",
+    icon: CursorArrowRaysIcon,
+    change: "3.2%",
+    changeType: "decrease",
+  },
+  {
+    id: 4,
     name: "Revenue",
     stat: "24.57%",
     icon: CursorArrowRaysIcon,
     change: "3.2%",
     changeType: "decrease",
-  },
+  }
 ];
 const metrics = [
   {
@@ -202,25 +293,25 @@ export const Company = () => {
         );
         // Set the entire JSON object to data
         let count = localStorage.getItem("notification")
-        if(count == response.data.length){
+        if (count == response.data.length) {
           setNotificationCount(response.data.length);
         }
-        else{
-          localStorage.setItem("notification",response.data.length)
+        else {
+          localStorage.setItem("notification", response.data.length)
           setNotificationCount(response.data.length);
           toast.success("you have a new notification")
         }
-       
-       
+
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
   return (
-  
+
     <div className="main-dashboard">
       <div className="sidebar">
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -316,7 +407,7 @@ export const Company = () => {
         {/* Static sidebar for desktop */}
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
+          <div className=" sidebar-menu flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
             <div className="flex flex-shrink-0 items-center px-4">
               {/* <img
             className="h-12 w-auto"
@@ -328,7 +419,7 @@ export const Company = () => {
               </div>
             </div>
             <div className="mt-5 flex flex-1 flex-col">
-              <nav className="flex-1 space-y-1 px-2 pb-4">
+              <nav className="flex-1 space-y-2 px-2 ">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -337,7 +428,7 @@ export const Company = () => {
                       item.current
                         ? "bg-sky-600 text-white"
                         : "text-indigo-100 hover:bg-sky-600",
-                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                      "group flex items-center px-2 py-2 text-md font-medium rounded-md"
                     )}
                   >
                     <item.icon
@@ -382,13 +473,13 @@ export const Company = () => {
             </form> */}
               </div>
               <div className="ml-4 flex items-center md:ml-6">
-                <a 
+                <a
                   href="/notification"
-                  className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                  className="flex justify-center items-center rounded-full hover:bg-sky-500 bg-white p-1 text-gray-400 hover:text-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-0.5 text-sm font-medium text-red-800">
+                  <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
                     {notificationCount}
                   </span>
                 </a>
@@ -396,7 +487,7 @@ export const Company = () => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="w-5 rounded-full"
@@ -414,15 +505,15 @@ export const Company = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className=" signout-menu absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {userNavigation.map((item) => (
                         <Menu.Item key={item.name}>
                           {({ active }) => (
                             <a
                               href={item.href}
                               className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
+                                active ? "bg-sky-500" : "",
+                                "block px-4 py-2 rounded-md hover:text-white"
                               )}
                             >
                               {item.name}
@@ -430,18 +521,18 @@ export const Company = () => {
                           )}
                         </Menu.Item>
                       ))}
-                       <button onClick={handlelogOut}>Sign Out</button>
+                      <button className="signout-button  hover:text-white hover:rounded-md hover:bg-sky-500 p-2 pl-4" onClick={handlelogOut}>Sign Out</button>
                     </Menu.Items>
                   </Transition>
                 </Menu>
               </div>
             </div>
           </div>
-<></>
+          <></>
           <main>
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">
+                <h1 className="dashboard">
                   Dashboard
                 </h1>
               </div>
@@ -456,18 +547,18 @@ export const Company = () => {
           </main>
         </div>
         <div className="stats">
-          <h3 className="text-lg font-medium leading-6 text-gray-900 ">
-            Last 30 days
+          <h3 className=" ">
+            Last 3 Months
           </h3>
 
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((item) => (
               <div
                 key={item.id}
-                className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6"
+                className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6"
               >
                 <dt>
-                  <div className="absolute rounded-md bg-sky-500 p-3">
+                  <div className=" icons absolute rounded-md p-3 ">
                     <item.icon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
@@ -485,7 +576,7 @@ export const Company = () => {
                     className={classNames(
                       item.changeType === "increase"
                         ? "text-green-600"
-                        : "text-red-600",
+                        : "text-green-600",
                       "ml-2 flex items-baseline text-sm font-semibold"
                     )}
                   >
@@ -495,8 +586,8 @@ export const Company = () => {
                         aria-hidden="true"
                       />
                     ) : (
-                      <ArrowDownIcon
-                        className="h-5 w-5 flex-shrink-0 self-center text-red-500"
+                      <ArrowUpIcon
+                        className="h-5 w-5 flex-shrink-0 self-center text-green-500"
                         aria-hidden="true"
                       />
                     )}
@@ -510,14 +601,14 @@ export const Company = () => {
                     </span>
                     {item.change}
                   </p>
-                  <div className="absolute inset-x-0 bottom-0 bg-gray-50 px-4 py-4 sm:px-6">
-                    <div className="text-sm">
+                  <div className="absolute inset-x-0 bottom-0 bg-gray-100 px-4 py-4 sm:px-6">
+                    <div className="text-md reports">
                       <a
                         href="#"
                         className="font-medium text-sky-600 hover:text-sky-400"
                       >
+                        See Reports
                         {" "}
-                        View all
                         <span className="sr-only"> {item.name} stats</span>
                       </a>
                     </div>
@@ -527,8 +618,15 @@ export const Company = () => {
             ))}
           </dl>
         </div>
-        <div className="chart12">
-          <div className="chart2">
+       
+        <div className="chartmain">
+
+          <div className="chart22">
+          <div className="sales">
+          <h1>
+            Sales
+          </h1>
+        </div>
             <CChart
               type="line"
               data={{
@@ -541,11 +639,12 @@ export const Company = () => {
                   "June",
                   "July",
                 ],
+
                 datasets: [
                   {
                     label: "Highest Sale",
                     backgroundColor: "rgba(220, 220, 220, 0.2)",
-                    borderColor: "rgba(220, 220, 220, 1)",
+                    borderColor: "#3498DB",
                     pointBackgroundColor: "rgba(220, 220, 220, 1)",
                     pointBorderColor: "#fff",
                     data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
@@ -553,7 +652,7 @@ export const Company = () => {
                   {
                     label: "Lowest Sale",
                     backgroundColor: "rgba(151, 187, 205, 0.2)",
-                    borderColor: "rgba(151, 187, 205, 1)",
+                    borderColor: "#0b5485",
                     pointBackgroundColor: "rgba(151, 187, 205, 1)",
                     pointBorderColor: "#fff",
                     data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
@@ -589,7 +688,58 @@ export const Company = () => {
               }}
             />
           </div>
-          <div className="chart1">
+          <div className='chart33'>
+          <div className="Insurrancepackages">
+          <h1>
+            Packages
+          </h1>
+        </div>
+            <CChart
+              type="bar"
+              data={{
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                  {
+                    label: 'Packages',
+                    backgroundColor: '#3498DB',
+                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+                  },
+                ],
+              }}
+              labels="months"
+              options={{
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: ('--cui-body-color'),
+                    }
+                  }
+                },
+                scales: {
+                  x: {
+                    grid: {
+                      color: ('--cui-border-color-translucent'),
+                    },
+                    ticks: {
+                      color: ('--cui-body-color'),
+                    },
+                  },
+                  y: {
+                    grid: {
+                      color: ('--cui-border-color-translucent'),
+                    },
+                    ticks: {
+                      color: ('--cui-body-color'),
+                    },
+                  },
+                },
+              }}
+            />
+          </div>
+        </div>
+        <div className="        chartleads
+">
+          <div className="chart11">
             <CChart
               type="doughnut"
               data={{
@@ -622,119 +772,57 @@ export const Company = () => {
               }}
             />
           </div>
-        </div>
+          <div className="leads">
+            <div className="overflow-hidden bg-white sm:rounded-md">
+            <div className="recentleads"> <h1>Recent Leads</h1></div>
 
-        <footer className="bg-sky-300 footer" aria-labelledby="footer-heading">
-          <h2 id="footer-heading" className="sr-only">
-            Footer
-          </h2>
-          <div className="mx-auto max-w-md px-6 pt-12 sm:max-w-7xl lg:px-8 lg:pt-16">
-            <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-              <div className="space-y-8 xl:col-span-1">
-                <img
-                  className="h-10"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
-                  alt="Company name"
-                />
-                <p className="text-base text-white">
-                  Making the world a better place through constructing elegant
-                  hierarchies.
-                </p>
-                <div className="flex space-x-6">
-                  {footerNavigation.social.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-white hover:text-gray-500"
-                    >
-                      <span className="sr-only">{item.name}</span>
-                      {/* <item.//icon className="h-6 w-6" aria-hidden="true" /> */}
+              <ul role="list" className="divide-y divide-gray-200">
+
+                {applications.map((application) => (
+                  <li key={application.applicant.email}>
+                    <a href={application.href} className="block hover:bg-gray-50">
+                      
+                      <div className="flex items-center px-4 py-4 sm:px-6">
+
+                        <div className="flex min-w-0 flex-1 items-center">
+                          <div className="flex-shrink-0 ">
+                            <img className="h-12 w-12 rounded-full" src={application.applicant.imageUrl} alt="" />
+                          </div>
+                          <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                            <div>
+                              
+                              <p className="truncate text-sm font-medium text-indigo-600">{application.applicant.name}</p>
+                              <p className="mt-2 flex items-center text-sm text-gray-500">
+                                <EnvelopeIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                <span className="truncate">{application.applicant.email}</span>
+                              </p>
+                            </div>
+                            <div className="hidden md:block">
+                              <div>
+                                <p className="text-sm text-gray-500">
+                                  Applied on <time dateTime={application.date}>{application.dateFull}</time>
+                                </p>
+                                <p className="mt-2 flex items-center text-sm ">
+                                  {/* <CheckCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" aria-hidden="true" /> */}
+                                  {application.stage}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
                     </a>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-                <div className="md:grid md:grid-cols-2 md:gap-8">
-                  <div>
-                    <h3 className="text-base font-medium text-white">
-                      Solutions
-                    </h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.solutions.map((item) => (
-                        <li key={item.name}>
-                          <a
-                            href={item.href}
-                            className="text-base text-white hover:text-sky-900"
-                          >
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-white">
-                      Support
-                    </h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.support.map((item) => (
-                        <li key={item.name}>
-                          <a
-                            href={item.href}
-                            className="text-base text-white hover:text-sky-900"
-                          >
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="md:grid md:grid-cols-2 md:gap-8">
-                  <div>
-                    <h3 className="text-base font-medium text-white">
-                      Company
-                    </h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.company.map((item) => (
-                        <li key={item.name}>
-                          <a
-                            href={item.href}
-                            className="text-base text-white hover:text-sky-900"
-                          >
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="mt-12 md:mt-0">
-                    <h3 className="text-base font-medium text-white">Legal</h3>
-                    <ul role="list" className="mt-4 space-y-4">
-                      {footerNavigation.legal.map((item) => (
-                        <li key={item.name}>
-                          <a
-                            href={item.href}
-                            className="text-base text-white hover:text-sky-900"
-                          >
-                            {item.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-12 border-t border-gray-200 py-8">
-              <p className="text-base text-gray-600 xl:text-center">
-                &copy; 2020 Your Company, Inc. All rights reserved.
-              </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </footer>
-      </div>
+        </div>
+        </div>
+      
     </div>
+    
     
   );
 };

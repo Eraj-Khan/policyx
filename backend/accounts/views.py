@@ -89,7 +89,6 @@ class CompanyUserCreateView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             token = get_tokens_for_user(user)
-           
             return Response(
                 {"token": token, }
             )

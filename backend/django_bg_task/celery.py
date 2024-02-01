@@ -18,7 +18,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {  
     'completed-cleanup-task': {
         'task': 'django_bg_task.tasks.cleanup_dashboard_records',
-        'schedule': crontab(minute='*/5'),  # Run every 2 minutes
+        'schedule': crontab(minute='*/5'),  # Run every 5 minutes
     },
 }
 
