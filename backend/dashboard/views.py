@@ -79,7 +79,7 @@ def list_user_packages(request,case_user):
 
 
     data = {
-            "Packages With Respect to Case_ID": company_user_serializer.data
+            "Bids": company_user_serializer.data
         }
 
     return Response(data)
@@ -97,7 +97,7 @@ def list_company_packages(request, company_name):
         company_user_serializer = CompanyPackagesSerializer(company_user_data, many=True)
 
         data = {
-            "Packages With Respect to Company": company_user_serializer.data
+            "Packages": company_user_serializer.data
         }
 
         return Response(data)
