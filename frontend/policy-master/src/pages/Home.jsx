@@ -25,11 +25,10 @@ import img7 from "../image/4412.jpg"
 
 
 const IMAGES = [
- ' https://img.freepik.com/free-photo/i-am-glad-that-we-managed-reach-agreement_637285-11084.jpg?w=996&t=st=1706390126~exp=1706390726~hmac=d5ff3167281f3c60ca82116f370b71090725140e5019fea88db830a880c5899b',  
-  'https://img.freepik.com/free-photo/standard-quality-control-concept-m_23-2150041842.jpg?w=996&t=st=1706390225~exp=1706390825~hmac=d8a2417da7338e3bafd51185e3952f1a3aa26eb5dce2638606a35dcfa9c4454a',
-
-'https://img.freepik.com/free-photo/smiling-couple-insurance-agent-going-through-real-estate-plans-during-meeting-office-focus-is-man_637285-2808.jpg?w=996&t=st=1706390283~exp=1706390883~hmac=b7bfb12550417ab08680903a625b5e2f042c9167b8740c4301f804c79ce37785',]
-  
+  'https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  'https://images.pexels.com/photos/7731323/pexels-photo-7731323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+  'https://images.pexels.com/photos/4894569/pexels-photo-4894569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+]
 const navigation = [
   { name: "Home", href: "#" },
   { name: "Insurance", href: "#" },

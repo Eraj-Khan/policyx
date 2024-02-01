@@ -16,6 +16,9 @@ import {
   HomeIcon,
   InboxIcon,
   UsersIcon,
+  UserIcon,
+  HandThumbUpIcon,
+  CheckIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
@@ -30,7 +33,83 @@ import img5 from "../image/takaful.png";
 import img6 from "../image/ubl.png";
 import axios from 'axios';
 import img7 from "../image/health.png";
-import img8 from "../image/balls.png"
+import img8 from "../image/balls.png";
+import img9 from "../image/coin.jpg"
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
+
+const eventTypes = {
+
+
+  applied: { icon: UserIcon, bgColorClass: 'bg-gray-400' },
+  advanced: { icon: HandThumbUpIcon, bgColorClass: 'bg-blue-500' },
+  completed: { icon: CheckIcon, bgColorClass: 'bg-green-500' },
+}
+
+const timeline = [
+
+
+  {
+    id: 1,
+    type: eventTypes.applied,
+    content: 'Applied to',
+    target: 'Front End Developer',
+    date: 'Sep 20',
+    datetime: '2020-09-20',
+  },
+  {
+    id: 2,
+    type: eventTypes.advanced,
+    content: 'Advanced to phone screening by',
+    target: 'Bethany Blake',
+    date: 'Sep 22',
+    datetime: '2020-09-22',
+  },
+  {
+    id: 3,
+    type: eventTypes.completed,
+    content: 'Completed phone screening with',
+    target: 'Martha Gardner',
+    date: 'Sep 28',
+    datetime: '2020-09-28',
+  },
+  {
+    id: 4,
+    type: eventTypes.advanced,
+    content: 'Advanced to interview by',
+    target: 'Bethany Blake',
+    date: 'Sep 30',
+    datetime: '2020-09-30',
+  },
+  {
+    id: 5,
+    type: eventTypes.completed,
+    content: 'Completed interview with',
+    target: 'Katherine Snyder',
+    date: 'Oct 4',
+    datetime: '2020-10-04',
+  },
+]
+const people = [
+
+
+  {
+    value: '10',
+    text: 'Total Cases',
+imageUrl:"https://img.icons8.com/?size=50&id=21449&format=png"  },
+    
+
+   { 
+    value: '5',
+    text: 'Companies',
+   imageUrl:"https://img.icons8.com/?size=50&id=24836&format=png"
+  },
+  {
+    value: '3,000',
+    text: 'Total Paid',
+    imageUrl:"https://img.icons8.com/?size=50&id=8322&format=png"
+  },
+  
+]
 const footerNavigation = {
   solutions: [
     { name: "Marketing", href: "#" },
@@ -267,7 +346,7 @@ export const UserDash = () => {
       {/* Static sidebar for desktop */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
+        <div className=" user_nav flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
           <div className="flex flex-shrink-0 items-center px-4">
             {/* <img
             className="h-12 w-auto"
@@ -281,7 +360,7 @@ export const UserDash = () => {
             </div>
           </div>
           <div className="mt-5 flex flex-1 flex-col">
-            <nav className="flex-1 space-y-1 px-2 pb-4">
+            <nav className="flex-1 space-y-2 px-2">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -386,23 +465,23 @@ export const UserDash = () => {
             </div>
           </div>
         </div>
-<div className=''>
-        <main className='image_color_background ' >
-          <div className='color-image'>
-            <h1>
-              Welcome
-            </h1>
-           
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae eligendi officiis deserunt corrupti! Recusandae facilis, at fuga, id aliquid nisi unde reprehenderit minima magnam eum delectus cumque aliquam. Cumque, est?</p>
-          <img className='image8 animate__animated animate__pulse' src={img8} alt="" />
-          </div>
-          <div className='image7 '>
+        <div className=''>
+          <main className='image_color_background ' >
+            <div className='color-image'>
+              <h1>
+                Welcome
+              </h1>
 
-            <img src={img7} alt="" />
-          </div>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae eligendi officiis deserunt corrupti! Recusandae facilis, at fuga, id aliquid nisi unde reprehenderit minima magnam eum delectus cumque aliquam. Cumque, est?</p>
+              <img className='image8 animate__animated animate__pulse' src={img8} alt="" />
+            </div>
+            <div className='image7 '>
 
-        </main>
-</div>
+              <img src={img7} alt="" />
+            </div>
+
+          </main>
+        </div>
       </div>
       {/* <div className='stats'>
       <h3 className="text-lg font-medium leading-6 text-gray-900 ">Last 30 days</h3>
@@ -468,217 +547,159 @@ export const UserDash = () => {
               </div>
            
             </div> */}
-      <div className='chart12'>
+      <div className='icon_cards'>
+        <ul role="list" className="grid grid-cols-1 lg:grid-cols-3">
+          {people.map((person) => (
+            <li
+              key={person.email}
+              className="animate__animated animate__pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+            >
+              <div className="flex flex-1 flex-col p-6">
+                <div className=" money_icon flex-shrink-0 rounded-full" alt="" >
+                <img className="mx-auto h-30 w-30 flex-shrink-0 " src={person.imageUrl} alt="" />                  </div>
 
+                <h3 className="mt-6 text-lg font-medium text-gray-900">{person.value}</h3>
+                <dl className="mt-1 flex flex-grow flex-col justify-between">
+                  <dt className="sr-only">Title</dt>
+                  <dd className="text-lg text-gray-500">{person.text}</dd>
+                  <dt className="sr-only">Role</dt>
+                </dl>
+              </div>
+            </li>
 
-        <div className='chart2'>
-          <CChart
-            type="bar"
-            data={{
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-              datasets: [
-                {
-                  label: 'GitHub Commits',
-                  backgroundColor: '#f87979',
-                  data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
-                },
-              ],
-            }}
-            labels="months"
-            options={{
-              plugins: {
-                legend: {
-                  labels: {
-                    color: ('--cui-body-color'),
-                  }
-                }
-              },
-              scales: {
-                x: {
-                  grid: {
-                    color: ('--cui-border-color-translucent'),
-                  },
-                  ticks: {
-                    color: ('--cui-body-color'),
-                  },
-                },
-                y: {
-                  grid: {
-                    color: ('--cui-border-color-translucent'),
-                  },
-                  ticks: {
-                    color: ('--cui-body-color'),
-                  },
-                },
-              },
-            }}
-          />
-        </div>
-        <div className='chart1'>
-          <CChart
-            type="doughnut"
-            data={{
-              labels: ['Life Insurance', 'Travel Insurance', 'Car Insurance', 'Health Insurance'],
-              datasets: [
-                {
-                  backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                  data: [40, 20, 80, 10],
-                },
-              ],
-            }}
-            options={{
-              plugins: {
-                legend: {
-                  labels: {
-                    color: ('--cui-body-color'),
-                  }
-                }
-              },
-            }}
-          />
-        </div>
+          ))}
 
+        </ul>
       </div>
-      <div className="bg-white pt-10 partner">
-        <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl text-center">
-            Our Partners
-          </h2>
-          <p className="mx-auto mt-5 max-w-prose text-2xl text-sky-400">
-            Our panel consists of trusted household names from the
-            insurance industry.
-          </p>
-          <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-20" src={img2} alt="#" />
-            </div>
-            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-20" src={img3} alt="#" />
-            </div>
-            <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-20" src={img4} alt="#" />
-            </div>
-            <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-              <img className="h-20" src={img5} alt="#" />
-            </div>
-            <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-              <img className="h-20" src={img6} alt="#" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer className="bg-sky-400 footer" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="mx-auto max-w-md px-6 pt-12 sm:max-w-7xl lg:px-8 lg:pt-16">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8 xl:col-span-1">
-              <img
-                className="h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
-                alt="Company name"
-              />
-              <p className="text-base text-white">
-                Making the world a better place through constructing elegant
-                hierarchies.
-              </p>
-              <div className="flex space-x-6">
-                {footerNavigation.social.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-white hover:text-gray-500"
+      <div className="main_cards">
+      <section aria-labelledby="timeline-title" className=" card_table lg:col-span-1 lg:col-start-3">
+              <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
+                <h2 id="timeline-title" className="text-lg font-medium text-gray-900">
+                  Timeline
+                </h2>
+
+                {/* Activity Feed */}
+                <div className="mt-6 flow-root">
+                  <ul role="list" className="-mb-8">
+                    {timeline.map((item, itemIdx) => (
+                      <li key={item.id}>
+                        <div className="relative pb-8">
+                          {itemIdx !== timeline.length - 1 ? (
+                            <span
+                              className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
+                              aria-hidden="true"
+                            />
+                          ) : null}
+                          <div className="relative flex space-x-3">
+                            <div>
+                              <span
+                                className={classNames(
+                                  item.type.bgColorClass,
+                                  'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white'
+                                )}
+                              >
+                                <item.type.icon className="h-5 w-5 text-white" aria-hidden="true" />
+                              </span>
+                            </div>
+                            <div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                              <div>
+                                <p className="text-sm text-gray-500">
+                                  {item.content}{' '}
+                                  <a href="#" className="font-medium text-gray-900">
+                                    {item.target}
+                                  </a>
+                                </p>
+                              </div>
+                              <div className="whitespace-nowrap text-right text-sm text-gray-500">
+                                <time dateTime={item.datetime}>{item.date}</time>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="justify-stretch mt-6 flex flex-col">
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
-                    <span className="sr-only">{item.name}</span>
-                    {/* <item.//icon className="h-6 w-6" aria-hidden="true" /> */}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-base font-medium text-white">
-                    Solutions
-                  </h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.solutions.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-sky-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-white">
-                    Support
-                  </h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.support.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-sky-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                    Advance to offer
+                  </button>
                 </div>
               </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-base font-medium text-white">
-                    Company
-                  </h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.company.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-sky-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-white">
-                    Legal
-                  </h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.legal.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-sky-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 border-t border-gray-200 py-8">
-            <p className="text-base text-gray-600 xl:text-center">
-              &copy; 2020 Your Company, Inc. All rights reserved.
-            </p>
-          </div>
+            </section>
+        <div className="chart44">
+          <div className="sales">
+          <h1>
+            Sales
+          </h1>
         </div>
-      </footer>
+            <CChart
+              type="line"
+              data={{
+                labels: [
+                  "January",
+                  "February",
+                  "March",
+                  "April",
+                  "May",
+                  "June",
+                  "July",
+                ],
+
+                datasets: [
+                  {
+                    label: "Highest Sale",
+                    backgroundColor: "rgba(220, 220, 220, 0.2)",
+                    borderColor: "#3498DB",
+                    pointBackgroundColor: "rgba(220, 220, 220, 1)",
+                    pointBorderColor: "#fff",
+                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+                  },
+                  {
+                    label: "Lowest Sale",
+                    backgroundColor: "rgba(151, 187, 205, 0.2)",
+                    borderColor: "#0b5485",
+                    pointBackgroundColor: "rgba(151, 187, 205, 1)",
+                    pointBorderColor: "#fff",
+                    data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+                  },
+                ],
+              }}
+              options={{
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: "--cui-body-color",
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    grid: {
+                      color: "--cui-border-color-translucent",
+                    },
+                    ticks: {
+                      color: "--cui-body-color",
+                    },
+                  },
+                  y: {
+                    grid: {
+                      color: "--cui-border-color-translucent",
+                    },
+                    ticks: {
+                      color: "--cui-body-color",
+                    },
+                  },
+                },
+              }}
+            />
+          </div>
+      </div>
     </div>
+
   )
 }
 
