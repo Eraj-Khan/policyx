@@ -200,21 +200,22 @@ const Register = () => {
   const [employment, setEmployment] = useState("");
   const [budget, setBudget] = useState("");
 
+
   const calculateBmi = () => {
     if (height && weight) {
-      const heightInMeters = height / 100;
+      // Convert height from feet to meters
+      const heightInMeters = height * 0.3048;
       const weightInKg = weight;
-
-      const calculatedBmi = (
-        weightInKg /
-        (heightInMeters * heightInMeters)
-      ).toFixed(2);
-
+  
+      const calculatedBmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
+  
       setBmi(calculatedBmi);
     } else {
       setBmi("");
     }
   };
+  
+  
   const handleHeightChange = (e) => {
     setHeight(e.target.value);
     calculateBmi();
@@ -632,7 +633,7 @@ const Register = () => {
                       </select>
                     </div>
                 
-
+{/* 
                   <div className="budget">
                     <input
                       type="number"
@@ -642,7 +643,7 @@ const Register = () => {
                       onChange={(e) => setBudget(e.target.value)}
                       placeholder="Budget(PKR)"
                     />
-                  </div>
+                  </div> */}
 
                   <div className="button">
                     <button

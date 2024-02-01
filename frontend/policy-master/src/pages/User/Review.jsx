@@ -192,6 +192,7 @@ const Review = () => {
   const [budget, setBudget] = useState();
   const [data, setData] = useState(null);
   const [recommendedValue, setRecommendedValue] = useState("");
+  const [budgetValue, setBudgetValue] = useState("");
 
   const handleCheckBoxChange = (value, checkboxName) => {
     setRecommendedValue(value)
@@ -204,18 +205,25 @@ const Review = () => {
       setPredictedAI(false);
     }
   };
-
+  const handleBudgetInputChange = (e) => {
+    const enteredValue = e.target.value;
+    setBudgetValue(enteredValue);
+    setRecommendedValue(enteredValue);
+    // setData({ ...data, budgetValue: enteredValue }); // Update data.budgetValue
+    setBudget(!!enteredValue); // Set the checkbox based on whether a value is entered
+  };
   const handleSubmit = () => {
    
    
  
      let payload = Object.assign(data, {
       recommended_value:recommendedValue,
-      age:data.Age
+      age:data.age
     });
     axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
     .then((response)=>{
       console.log("response", response.data)
+      swal("Case Submitted Successfully")
     })
     .catch((error)=>{
       console.log("error", error)
@@ -416,8 +424,8 @@ const Review = () => {
         <div>
           
           {/* Access and display properties of the JSON object */}
-          <label className="checked-label">Case ID: {data.case_id}</label>
-          <label className="checked-label">Age: {data.Age}</label>
+          <label className="checked-labelid">Case ID: {data.case_id}</label>
+          <label className="checked-label">Age: {data.age}</label>
           <label className="checked-label">Gender: {data.gender}</label>
           <label className="checked-label">Marital Status: {data.marital_status}</label>
           <label className="checked-label">BMI: {data.bmi}</label>
@@ -428,8 +436,10 @@ const Review = () => {
           <label className="checked-label">Smoker: {data.smoker ? "yes":"no"}</label>
           <label className="checked-label">Education: {data.education}</label>
          
-         <div>
-          <label className="checked-label">
+         <div className="value-selection">
+          <div className="check-select">
+          <p>Pick one of the following</p>
+          <label className="checked-selection">
             <input
               className="check-input"
               type="checkbox"
@@ -439,24 +449,39 @@ const Review = () => {
             />
             Predicted AI  {data?.ai_suggested}
           </label>
+          </div>
 
-          <label>
+          <label className="checked-selection">
             <input
-             className="check-input"
+              className="check-input"
               type="checkbox"
               name="budget"
               checked={budget}
-              onChange={() => handleCheckBoxChange(data.budget,"budget")}
+              onChange={() => handleCheckBoxChange(data.budgetValue,"budget")}
             />
-            Budget {data?.budget}
+            Budget {data?.budgetValue}
           </label>
         </div>
+        {budget && (
+        <div className="budget-input-container">
+          <label htmlFor="budgetInput" className="checked-label">
+            Enter Budget:
+          </label>
+          <input
+          
+            type="text"
+            id="budgetInput"
+            value={budgetValue}
+            onChange={handleBudgetInputChange}
+          />
+        </div>
+      )}
         </div>
       )}
 
         
 
-          <button className="proceed" onClick={handleSubmit}>
+          <button className="proceed-button" onClick={handleSubmit}>
             Submit
           </button>
         </div>

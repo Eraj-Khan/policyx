@@ -18,6 +18,9 @@ import UserNotification from "./pages/User/UserNotification.jsx";
 import ProtectedUser from "./Components/PrivateRoute/ProtectedUser.jsx";
 import ProtectedCompany from "./Components/PrivateRoute/ProtectedCompany.jsx";
 import LoginProtected from "./Components/PrivateRoute/LoginProtected.jsx";
+import CompanyBids from "./pages/User/CompanyBids.jsx";
+import InsurranceOffer from "./pages/User/InsurranceOffer.jsx";
+import Packages from "./pages/Insurrance/Packages.jsx";
 
 function App() {
   return (
@@ -38,6 +41,8 @@ function App() {
               element={<UserNotification />}
             ></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/companybids" element={<CompanyBids/>}></Route>
+            <Route path="/insurranceoffer" element={<InsurranceOffer/>}></Route>
           </Route>
 
           <Route element={<ProtectedCompany/>}>
@@ -45,6 +50,7 @@ function App() {
           <Route path="/notification" element={<Notification />}></Route>
           <Route path="/userList" element={<UserList />}></Route>
           <Route path="/bid" element={<Bid />}></Route>
+          <Route path="/packages" element={<Packages/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter> */}

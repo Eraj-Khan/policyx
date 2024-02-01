@@ -52,3 +52,23 @@
   height: 100px; /* Adjust the height based on your design */
   object-fit: cover;
 }
+.notification-heading{
+  font-size: 25px;
+    margin-left: 80px;
+    font-weight: bold;
+    margin-top: -19px;
+    background: #4c6daf;
+    color: white;
+    border-radius: 100px;
+    height: 44px;
+    width: 271px;
+    text-align: center;
+    font-family: fangsong;
+}
+.bid-place{
+  background-color:#4c6daf;
+}
+.notification {
+  justify-content: right;
+  background: rgb(96, 158, 217);
+}

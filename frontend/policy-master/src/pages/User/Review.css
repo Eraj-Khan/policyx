@@ -1,4 +1,4 @@
-.mid{
+/* .mid{
     padding-top: 50px;
     padding-bottom: 50px;
     display: flex;
@@ -37,4 +37,114 @@
   cursor: pointer;
   font-size: 16px;
   margin-top: 20px;
+} */
+
+/* body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+
+
+
+
+/* .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+} */
+
+
+
+
+.checked-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 70px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition to transform */
+  width: 465px;
+  margin-left: 66px;
+  background: rgb(225, 228, 232);
+  margin-bottom: 85px;
+}
+
+.checked-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Scale up on hover */
+}
+
+.checked-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333;
+  font-family: cursive;
+  padding-left: 65px;
+}
+.checked-labelid{
+  display: block;
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #314987;
+  text-align: center;
+  font-family: fantasy;
+}
+
+.check-input {
+  margin-right: 10px;
+}
+
+.checkbox-group {
+  margin-top: 15px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.proceed-button {
+  background-color:  rgb(63, 110, 151);;
+  color: #ffffff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.proceed-button:hover {
+  background-color: rgb(71, 116, 156);;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.value-selection{
+  text-align: center;
+  margin-left: 7px;
+}
+.checked-selection{
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333;
+  font-family: cursive;
+  background: rgb(63, 110, 151);
+  border-radius: 10px;
+  width: 200px;
+  height: 38px;
+  margin-left: 98px;
+  color:azure;
+}
+.check-select{
+  margin-right: 10px;
 }

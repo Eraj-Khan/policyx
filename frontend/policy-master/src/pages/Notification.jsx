@@ -103,7 +103,7 @@ export const Notification = () => {
         </Menu>
       </div>
       <div className="bellicon">
-        <h1 className="notification-heading text-sky-600">Notifications</h1>
+        <h1 className="notification-head text-sky-600">Notifications</h1>
        
          
          

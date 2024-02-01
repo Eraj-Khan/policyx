@@ -22,9 +22,11 @@ import {
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 import "../Insurrance/UserList.css";
-import blue from "../../image/blue.jpg";
+import bluess from "../../image/bluess.jpg";
+import "../User/InsurranceOffer.css";
 
-import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -43,30 +45,42 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const UserList = () => {
+const InsurranceOffer = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
-  const navigation = useNavigate();
 
-  const handleBidClick = (caseId, case_user) => {
+  const handleBidClick = (caseId, company_name) => {
     // Handle the click event and redirect to the next page using React Router
-    // For now, it just logs the caseI
-    navigation("/bid",{state:{
-      case_id: caseId,
-      case_user:case_user,
-      payload:null
-    }})
+    // For now, it just logs the caseId
     console.log(`Place bid for case ID: ${caseId}`);
+    axios
+      .put(
+        `http://127.0.0.1:8000/company_dashboard/accept_package/${caseId}/${company_name}`,
+        {}
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
+  const [notification, setNotification] = useState([]);
   useEffect(() => {
+    let user = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(user);
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/company_dashboard/list_users` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
+          `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
+          //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
 
         // Set the entire JSON object to data
-        setNotificationInfo(response.data);
+        const { Bids } = response.data;
+
+        setNotification(Bids);
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -120,29 +134,52 @@ const UserList = () => {
         </Menu>
       </div>
       <div className="bellicon">
-        <h1 className="notification-heading text-sky-600">
-          Insurrance Requests
-        </h1>
+        <h1 className="notification-heading text-sky-600">Insurrance Offers</h1>
 
         <span className="sr-only">View notifications</span>
       </div>
 
       <div className="notifi-container">
-        {notificationinfo.map((data) => (
+        {notification.map((data) => (
           <div
             style={{ position: "relative" }}
             key={data.case_id}
-            className="user-item"
+            className="insurrance-item"
           >
             <img
-              className="user-image"
-              src={blue} // Add the image source to each data item
+              className="insur-image"
+              src={bluess} // Add the image source to each data item
               alt={`Profile - ${data.case_id}`}
             />
             <span style={{ position: "absolute", top: 0, right: 10 }}>
               {!data?.is_expired ? "active" : "expired"}
             </span>
-            <ul>
+            <div key={data.case_id} className="notification-item">
+              <li className="case_id"> CASE ID: {data.case_id}</li>
+              <li className="age">Company Name: {data.company_name}</li>
+              <li className="recommended"> Company Bid: {data.company_bid}</li>
+              <li className="recommended">
+                dental: {data.dental_and_vision_care}
+              </li>
+              <li className="recommended">
+                {" "}
+                Annual Coverage: {data.total_annual_coverage}
+              </li>
+              <li className="recommended">
+                {" "}
+                Accidental Emergencies: {data.accidental_emergencies}
+              </li>
+              <li className="recommended">
+                {" "}
+                Hospitalization Room Charges:{" "}
+                {data.hospitalization_room_charges}
+              </li>
+              <li className="recommended">
+                {" "}
+                Other Medical Expenses: {data.other_medical_expenses}
+              </li>
+            </div>
+            {/* <ul>
               <li className="case_id">CASE ID: {data.case_id}</li>
               <div className="inline-info">
                 <li className="age">AGE: {data.age}</li>
@@ -151,15 +188,15 @@ const UserList = () => {
               <li className="recommended">
                 SELECTED VALUE: {data.recommended_value}
               </li>
-            </ul>
-           
-              <button
-                className="bid-place"
-                onClick={() => handleBidClick(data.case_id, data.id)}
-              >
-                Place bid
-              </button>
-           
+            </ul> */}
+
+            <button
+              className="insur-place"
+              onClick={() => handleBidClick(data.case_id, data.company_name)}
+            >
+              Accept
+            </button>
+
             <div className="icon-container">
               <i className="fas fa-heart"></i>
             </div>
@@ -170,4 +207,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default InsurranceOffer;
