@@ -1,0 +1,112 @@
+
+ #chatCon .chat-box { 
+  width: 100%;
+  height: 500px; 
+  transition: height 0.3s ease-in-out; 
+  border-radius: 25px;
+  background-color: #d2cdcd;
+} #chatCon {
+  width: 20%;
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+}
+
+#chatCon .open .chat-box {
+  height: 500px; /* Adjust the height as needed */
+}
+
+#chatCon .chat-box .header {
+  background-color: #3498DB;
+  padding: 15px;
+  border-radius: 20px 20px 0 0;
+  color: #fff;
+  font-size: 20px;
+}
+
+#chatCon .chat-box .msg-area {
+  overflow: auto;
+  height: 370px;
+  padding: 15px;
+}
+body::-webkit-scrollbar {
+  display: none; 
+}
+#chatCon .chat-box .msg-area  ::-webkit-scrollbar {
+  display: none; 
+}
+
+#chatCon .chat-box .msg-area .left span {
+  display: inline-block;
+  font-size: 17.5px;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #ddd;
+}
+
+#chatCon .chat-box .msg-area .right {
+  text-align: right;
+}
+
+#chatCon .chat-box .msg-area .right span {
+  display: inline-block;
+  font-size: 17.5px;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #d2cdcd;
+}
+
+#chatCon .chat-box .footer {
+  padding: 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+#chatCon .chat-box .footer input {
+  border: 1px solid #fff;
+  padding: 10px;
+  width: 80%;
+  border-radius: 15px;
+}
+
+#chatCon .chat-box .footer input:focus {
+  outline: none;
+}
+
+#chatCon .chat-box .footer button {
+  border: none;
+  font-size: 22.5px;
+  color:#0B60B0;
+  cursor: pointer;
+  background-color: #d2cdcd;
+ 
+}
+
+#chatCon .pop {
+  width: 100%;
+  height: 25%;
+  cursor: pointer;
+}
+
+#chatCon .pop p {
+  text-align: right;
+}
+
+#chatCon .pop img {
+  border-radius: 50%;
+  width: 25%;
+}
+
+
+
+
+
+
+
+
+
+
