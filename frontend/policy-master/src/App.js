@@ -21,6 +21,7 @@ import LoginProtected from "./Components/PrivateRoute/LoginProtected.jsx";
 import CompanyBids from "./pages/User/CompanyBids.jsx";
 import InsurranceOffer from "./pages/User/InsurranceOffer.jsx";
 import Packages from "./pages/Insurrance/Packages.jsx";
+import SignUpForm from "./Components/SignUpForm.jsx";
 
 function App() {
   return (
@@ -53,9 +54,9 @@ function App() {
           <Route path="/packages" element={<Packages/>}></Route>
           </Route>
         </Routes>
-      </BrowserRouter>
-      <Toaster />
-   
+      </BrowserRouter> 
+      {/* <Toaster />
+   {/* <SignUpForm/> */}
     </div>
   );
 }

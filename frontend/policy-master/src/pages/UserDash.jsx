@@ -283,7 +283,7 @@ export const UserDash = () => {
                 key={item.name}
                 href={item.href}
                 className={classNames(
-                  item.current ? 'bg-sky-600 text-white' : 'text-indigo-100 hover:bg-sky-600',
+                  item.current ? 'bg-sky-900 text-white' : 'text-white hover:bg-sky-600',
                   'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                 )}
               >

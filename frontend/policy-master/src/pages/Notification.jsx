@@ -40,6 +40,7 @@ function classNames(...classes) {
 }
 export const Notification = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
+  const [isCompleted, setIsCompleted] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +50,11 @@ export const Notification = () => {
         );
 
         // Set the entire JSON object to data
-        setNotificationInfo(response.data);
+       
+        let isRemainingNotifications = response.data?.filter((e)=> e.is_completed === false);
+        setNotificationInfo(isRemainingNotifications);
+        let isCompletedData = response.data?.filter((e)=> e.is_completed === true);
+        setIsCompleted(isCompletedData);
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -118,8 +123,21 @@ export const Notification = () => {
 
        
       </div>
-
+       <div className="notification-container">
+        <h1>Completed</h1>
+       {isCompleted.map((data) => (
+          <>
+            
+            <div key={data.case_id} className="notification-item">
+        <li className="case_id"> CASE ID: {data.case_id}</li>
+        <li className="age">AGE:  {data.age}</li>
+        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li>
+      </div>
+          </>
+        ))}
+        </div>                   
       <div className="notification-container">
+      <h1>Pending</h1>
         {notificationinfo.map((data) => (
           <>
             

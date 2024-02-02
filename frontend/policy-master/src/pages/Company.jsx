@@ -20,7 +20,7 @@ import {
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
@@ -32,84 +32,88 @@ import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 
 const applications = [
-
   {
     applicant: {
-      name: 'Ricardo Cooper',
-      email: 'ricardo.cooper@example.com',
+      name: "Ricardo Cooper",
+      email: "ricardo.cooper@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$350',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$350",
+    href: "#",
   },
   {
     applicant: {
-      name: 'Kristen Ramos',
-      email: 'kristen.ramos@example.com',
+      name: "Kristen Ramos",
+      email: "kristen.ramos@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$450',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$450",
+    href: "#",
   },
   {
     applicant: {
-      name: 'Ted Fox',
-      email: 'ted.fox@example.com',
+      name: "Ted Fox",
+      email: "ted.fox@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$300',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$300",
+    href: "#",
   },
   {
     applicant: {
-      name: 'Kristen Ramos',
-      email: 'kristen.ramos@example.com',
+      name: "Kristen Ramos",
+      email: "kristen.ramos@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$200',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$200",
+    href: "#",
   },
   {
     applicant: {
-      name: 'Ted Fox',
-      email: 'ted.fox@example.com',
+      name: "Ted Fox",
+      email: "ted.fox@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$800',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$800",
+    href: "#",
   },
   {
     applicant: {
-      name: 'Ted Fox',
-      email: 'ted.fox@example.com',
+      name: "Ted Fox",
+      email: "ted.fox@example.com",
       imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: '$600',
-    href: '#',
+    date: "2020-01-07",
+    dateFull: "January 7, 2020",
+    stage: "$600",
+    href: "#",
   },
-]
+];
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
   { name: "Users", href: "/userList", icon: UsersIcon, current: false },
-  { name: "Packages Offered", href: "/packages", icon: FolderIcon, current: false },
+  {
+    name: "Packages Offered",
+    href: "/packages",
+    icon: FolderIcon,
+    current: false,
+  },
   { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
   { name: "Documents", href: "#", icon: InboxIcon, current: false },
   { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
@@ -121,47 +125,13 @@ const handlelogOut = () => {
   localStorage.removeItem("refresh-token");
   window.location.reload();
   window.location.reload();
-}
+};
 
 const userNavigation = [
   { name: "Company Profile", href: "#" },
   { name: "Settings", href: "#" },
+];
 
-];
-const stats = [
-  {
-    id: 1,
-    name: "Cases",
-    stat: "11,897",
-    icon: UsersIcon,
-    change: "122",
-    changeType: "increase",
-  },
-  {
-    id: 2,
-    name: "Users",
-    stat: "58.16%",
-    icon: EnvelopeOpenIcon,
-    change: "5.4%",
-    changeType: "increase",
-  },
-  , {
-    id: 3,
-    name: "Leads",
-    stat: "35.8%",
-    icon: CursorArrowRaysIcon,
-    change: "3.2%",
-    changeType: "decrease",
-  },
-  {
-    id: 4,
-    name: "Revenue",
-    stat: "24.57%",
-    icon: CursorArrowRaysIcon,
-    change: "3.2%",
-    changeType: "decrease",
-  }
-];
 const metrics = [
   {
     id: 1,
@@ -284,7 +254,90 @@ function classNames(...classes) {
 export const Company = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [statistic, setStatistic] = useState(null);
+  const [countBid, setCountBid] = useState([0,0]);
+  const [packageStats, setPackageStats] = useState(
+    {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+        {
+          label: "Packages",
+          backgroundColor: "#3498DB",
+          data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+        },
+      ],
+    }
+  );
+  
+  const getStats = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/company_dashboard/statistics/"
+      );
+      // Set the entire JSON object to data
+      // {
+      //   "total_cases": 8,
+      //   "total_completed_cases": 3,
+      //   "average_age": 44.333333333333336,
+      //   "total_accepted_packages": 3,
+      //   "total_revenue": 8872
+      // }
+      setStatistic(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  const countBidGet = async () =>{
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/company_dashboard/count_bids/adam/"
+      );
+      // Set the entire JSON object to data
+      // {
+      //   "total_cases": 8,
+      //   "total_completed_cases": 3,
+      //   "average_age": 44.333333333333336,
+      //   "total_accepted_packages": 3,
+      //   "total_revenue": 8872
+      // }
+      const {
+        total_bids_count,
+        accepted_bids_count
+      } = response.data
+      setCountBid([total_bids_count,accepted_bids_count]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  const getPackages = async () =>{
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/"
+      );
+
+      const mappedData = packageStats.labels.map((label, index) => {
+        const monthData = response.data.find((data) => data.month_name === index + 1);
+        const count = monthData ? monthData.count : 0;
+
+        return count;
+      });
+
+      setPackageStats(prevChartData => ({
+        ...prevChartData,
+        datasets: [
+          {
+            ...prevChartData.datasets[0],
+            data: mappedData,
+          },
+        ],
+      }));
+     
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -292,26 +345,29 @@ export const Company = () => {
           "http://127.0.0.1:8000/company_dashboard/list_users/"
         );
         // Set the entire JSON object to data
-        let count = localStorage.getItem("notification")
+        let count = localStorage.getItem("notification");
         if (count == response.data.length) {
           setNotificationCount(response.data.length);
-        }
-        else {
-          localStorage.setItem("notification", response.data.length)
+        } else {
+          localStorage.setItem("notification", response.data.length);
           setNotificationCount(response.data.length);
-          toast.success("you have a new notification")
+          toast.success("you have a new notification");
         }
-
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
+    getStats();
+    getPackages();
+    countBidGet();
   }, []);
-  return (
 
+
+
+ 
+  return (
     <div className="main-dashboard">
       <div className="sidebar">
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -521,7 +577,12 @@ export const Company = () => {
                           )}
                         </Menu.Item>
                       ))}
-                      <button className="signout-button  hover:text-white hover:rounded-md hover:bg-sky-500 p-2 pl-4" onClick={handlelogOut}>Sign Out</button>
+                      <button
+                        className="signout-button  hover:text-white hover:rounded-md hover:bg-sky-500 p-2 pl-4"
+                        onClick={handlelogOut}
+                      >
+                        Sign Out
+                      </button>
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -532,9 +593,7 @@ export const Company = () => {
           <main>
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                <h1 className="dashboard">
-                  Dashboard
-                </h1>
+                <h1 className="dashboard">Dashboard</h1>
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
@@ -547,86 +606,101 @@ export const Company = () => {
           </main>
         </div>
         <div className="stats">
-          <h3 className=" ">
-            Last 3 Months
-          </h3>
+          <h3 className=" ">Last 3 Months</h3>
 
           <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((item) => (
-              <div
-                key={item.id}
-                className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6"
-              >
-                <dt>
-                  <div className=" icons absolute rounded-md p-3 ">
-                    <item.icon
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+              <dt>
+                <div className=" icons absolute rounded-md p-3 ">
+                  {/* <item.icon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    />
-                  </div>
-                  <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                    {item.name}
-                  </p>
-                </dt>
-                <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                  <p className="text-2xl font-semibold text-gray-900">
-                    {item.stat}
-                  </p>
-                  <p
-                    className={classNames(
-                      item.changeType === "increase"
-                        ? "text-green-600"
-                        : "text-green-600",
-                      "ml-2 flex items-baseline text-sm font-semibold"
-                    )}
-                  >
-                    {item.changeType === "increase" ? (
-                      <ArrowUpIcon
-                        className="h-5 w-5 flex-shrink-0 self-center text-green-500"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <ArrowUpIcon
-                        className="h-5 w-5 flex-shrink-0 self-center text-green-500"
-                        aria-hidden="true"
-                      />
-                    )}
+                    /> */}
+                </div>
+                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                  Total Cases
+                </p>
+              </dt>
+              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_cases}</p>
+              </dd>
+            </div>
 
-                    <span className="sr-only">
-                      {" "}
-                      {item.changeType === "increase"
-                        ? "Increased"
-                        : "Decreased"}{" "}
-                      by{" "}
-                    </span>
-                    {item.change}
-                  </p>
-                  <div className="absolute inset-x-0 bottom-0 bg-gray-100 px-4 py-4 sm:px-6">
-                    <div className="text-md reports">
-                      <a
-                        href="#"
-                        className="font-medium text-sky-600 hover:text-sky-400"
-                      >
-                        See Reports
-                        {" "}
-                        <span className="sr-only"> {item.name} stats</span>
-                      </a>
-                    </div>
-                  </div>
-                </dd>
-              </div>
-            ))}
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+              <dt>
+                <div className=" icons absolute rounded-md p-3 ">
+                  {/* <item.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    /> */}
+                </div>
+                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                  Total Completed Cases
+                </p>
+              </dt>
+              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_completed_cases}</p>
+              </dd>
+            </div>
+
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+              <dt>
+                <div className=" icons absolute rounded-md p-3 ">
+                  {/* <item.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    /> */}
+                </div>
+                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                  Average Age
+                </p>
+              </dt>
+              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                <p className="text-2xl font-semibold text-gray-900">{statistic?.average_age?.toFixed(1)}</p>
+              </dd>
+            </div>
+
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+              <dt>
+                <div className=" icons absolute rounded-md p-3 ">
+                  {/* <item.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    /> */}
+                </div>
+                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                  Total Accepted Package
+                </p>
+              </dt>
+              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_accepted_packages}</p>
+              </dd>
+            </div>
+
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+              <dt>
+                <div className=" icons absolute rounded-md p-3 ">
+                  {/* <item.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    /> */}
+                </div>
+                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                  Total Revenue
+                </p>
+              </dt>
+              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_revenue}</p>
+              </dd>
+            </div>
           </dl>
         </div>
-       
-        <div className="chartmain">
 
+        <div className="chartmain">
           <div className="chart22">
-          <div className="sales">
-          <h1>
-            Sales
-          </h1>
-        </div>
+            <div className="sales">
+              <h1>Sales</h1>
+            </div>
             <CChart
               type="line"
               data={{
@@ -688,48 +762,37 @@ export const Company = () => {
               }}
             />
           </div>
-          <div className='chart33'>
-          <div className="Insurrancepackages">
-          <h1>
-            Packages
-          </h1>
-        </div>
+          <div className="chart33">
+            <div className="Insurrancepackages">
+              <h1>Packages</h1>
+            </div>
             <CChart
               type="bar"
-              data={{
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [
-                  {
-                    label: 'Packages',
-                    backgroundColor: '#3498DB',
-                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
-                  },
-                ],
-              }}
+              data={packageStats}
               labels="months"
               options={{
                 plugins: {
                   legend: {
                     labels: {
-                      color: ('--cui-body-color'),
-                    }
-                  }
+                      color: "--cui-body-color",
+                    },
+                  },
                 },
                 scales: {
                   x: {
                     grid: {
-                      color: ('--cui-border-color-translucent'),
+                      color: "--cui-border-color-translucent",
                     },
                     ticks: {
-                      color: ('--cui-body-color'),
+                      color: "--cui-body-color",
                     },
                   },
                   y: {
                     grid: {
-                      color: ('--cui-border-color-translucent'),
+                      color: "--cui-border-color-translucent",
                     },
                     ticks: {
-                      color: ('--cui-body-color'),
+                      color: "--cui-body-color",
                     },
                   },
                 },
@@ -737,27 +800,27 @@ export const Company = () => {
             />
           </div>
         </div>
-        <div className="        chartleads
-">
+        <div
+          className="        chartleads
+"
+        >
           <div className="chart11">
             <CChart
               type="doughnut"
               data={{
                 labels: [
-                  "Life Insurance",
-                  "Travel Insurance",
-                  "Car Insurance",
-                  "Health Insurance",
+                  "Total Bids Count",
+                  "Total Bids Accepted",
+                
                 ],
                 datasets: [
                   {
                     backgroundColor: [
                       "#41B883",
                       "#E46651",
-                      "#00D8FF",
-                      "#DD1B16",
+                     
                     ],
-                    data: [40, 20, 80, 10],
+                    data: countBid,
                   },
                 ],
               }}
@@ -774,33 +837,49 @@ export const Company = () => {
           </div>
           <div className="leads">
             <div className="overflow-hidden bg-white sm:rounded-md">
-            <div className="recentleads"> <h1>Recent Leads</h1></div>
+              <div className="recentleads">
+                {" "}
+                <h1>Recent Leads</h1>
+              </div>
 
               <ul role="list" className="divide-y divide-gray-200">
-
                 {applications.map((application) => (
                   <li key={application.applicant.email}>
-                    <a href={application.href} className="block hover:bg-gray-50">
-                      
+                    <a
+                      href={application.href}
+                      className="block hover:bg-gray-50"
+                    >
                       <div className="flex items-center px-4 py-4 sm:px-6">
-
                         <div className="flex min-w-0 flex-1 items-center">
                           <div className="flex-shrink-0 ">
-                            <img className="h-12 w-12 rounded-full" src={application.applicant.imageUrl} alt="" />
+                            <img
+                              className="h-12 w-12 rounded-full"
+                              src={application.applicant.imageUrl}
+                              alt=""
+                            />
                           </div>
                           <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                             <div>
-                              
-                              <p className="truncate text-sm font-medium text-indigo-600">{application.applicant.name}</p>
+                              <p className="truncate text-sm font-medium text-indigo-600">
+                                {application.applicant.name}
+                              </p>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <EnvelopeIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                                <span className="truncate">{application.applicant.email}</span>
+                                <EnvelopeIcon
+                                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+                                  aria-hidden="true"
+                                />
+                                <span className="truncate">
+                                  {application.applicant.email}
+                                </span>
                               </p>
                             </div>
                             <div className="hidden md:block">
                               <div>
                                 <p className="text-sm text-gray-500">
-                                  Applied on <time dateTime={application.date}>{application.dateFull}</time>
+                                  Applied on{" "}
+                                  <time dateTime={application.date}>
+                                    {application.dateFull}
+                                  </time>
                                 </p>
                                 <p className="mt-2 flex items-center text-sm ">
                                   {/* <CheckCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" aria-hidden="true" /> */}
@@ -810,7 +889,6 @@ export const Company = () => {
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </a>
                   </li>
@@ -819,11 +897,8 @@ export const Company = () => {
             </div>
           </div>
         </div>
-        </div>
-      
+      </div>
     </div>
-    
-    
   );
 };
 

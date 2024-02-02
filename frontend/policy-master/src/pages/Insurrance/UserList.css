@@ -72,29 +72,33 @@
   justify-content: right;
   background: rgb(96, 158, 217);
 } */
-
+tbody{
+  font-family: "poppins";
+  
+}
 .notifi-container {
   margin: 20px;
 }
 
 .user-table {
-  width: 100%;
+  width: 84%;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   border-radius: 8px;
+  margin-left: 246px;
   margin-top: 20px;
 }
 
 .user-table th, .user-table td {
-  border: 1px solid #e0e0e0;
-  padding: 16px;
+  border: 1px solid #f4f4f4;
+  padding: 8px;
   text-align: left;
 }
 
 .user-table th {
   background-color: #f5f5f5;
-  color: #333;
+  color: #0b5485;
 }
 
 .user-table tr:hover {
@@ -126,7 +130,9 @@
   transition: background-color 0.3s ease;
 }
 
-
+.navbar{
+  
+}
 
 .icon-container {
   text-align: center;
@@ -138,9 +144,25 @@
 }
 
 .active {
-  background-color: #e3f2fd;
+  background-color: #f4f4f4;
 }
 
 .expired {
   background-color: #ffebee;
+}
+.insurance_heading{
+  font-size: 25px;
+  align-self: center;
+  font-family: "poppins";
+  color: #0b5485;
+font-weight: 800;
+}
+.navbar{
+  background-color: #3498DB;
+  font-family: "poppins";
+
+}
+.logo{
+  background-color: #3498DB;
+
 }

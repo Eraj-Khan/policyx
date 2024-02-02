@@ -95,6 +95,7 @@ const InsurranceOffer = () => {
   }, []);
   return (
     <div>
+    <div> </div>
       <div className="ml-4 flex items-center md:ml-6 notification">
         {/* Profile dropdown */}
         <Menu as="div" className="relative ml-3">
