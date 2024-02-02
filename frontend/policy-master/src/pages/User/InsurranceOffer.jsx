@@ -144,7 +144,7 @@ const InsurranceOffer = () => {
       </div>
 
       <div className="notifi-container">
-        {notification.map((data) => (
+        {notification?.map((data) => (
           <div
             style={{ position: "relative" }}
             key={data.case_id}

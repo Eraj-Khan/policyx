@@ -1,6 +1,6 @@
 /* YourComponent.css */
 
-.notifi-container {
+/* .notifi-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -14,14 +14,14 @@
 }
 
 .user-item {
-  flex: 0 0 calc(33.333% - 20px); /* Three items in a row with spacing */
+  flex: 0 0 calc(33.333% - 20px); 
   position: relative;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
-  margin-bottom: 20px; /* Added margin to create space between rows */
+  margin-bottom: 20px; 
 }
 
 .user-item:hover {
@@ -30,14 +30,14 @@
 
 .user-image {
   width: 100%;
-  height: 150px; /* Adjust the height as needed */
+  height: 150px; 
   object-fit: cover;
 }
 
 .user-item ul {
   list-style-type: none;
   margin: 0;
-  padding: 20px; /* Padding for the content area */
+  padding: 20px; 
 }
 
 .user-item li {
@@ -49,7 +49,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px; /* Adjust the height based on your design */
+  height: 100px;
   object-fit: cover;
 }
 .notification-heading{
@@ -71,4 +71,76 @@
 .notification {
   justify-content: right;
   background: rgb(96, 158, 217);
+} */
+
+.notifi-container {
+  margin: 20px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.user-table th, .user-table td {
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.user-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.status {
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.bid-place {
+  background-color: #3498DB;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.icon-container {
+  text-align: center;
+}
+
+.icon-container i {
+  color: #ff4081;
+  font-size: 18px;
+}
+
+.active {
+  background-color: #e3f2fd;
+}
+
+.expired {
+  background-color: #ffebee;
 }

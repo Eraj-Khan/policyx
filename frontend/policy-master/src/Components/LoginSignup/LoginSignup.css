@@ -1,13 +1,17 @@
-.popup{
+.pop-container{
     display:flex;
     flex-direction:column;
     margin:auto;
     margin-top: 125px;
     width: 600px;
-    background:#ded4cb;
+    background:#e8e1f6;
     padding-bottom: 30px;
     border-radius: 15px;
 }
+
+/* .login-back{
+    background-color: #0c5ba0;
+} */
 
 .headers{
     display: flex;

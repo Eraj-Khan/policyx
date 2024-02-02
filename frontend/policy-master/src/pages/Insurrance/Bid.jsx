@@ -73,6 +73,9 @@ const handleSubmit = () =>{
   )
     .then((response) => {
       console.log("response", response.data);
+      setTimeout(()=>{
+        swal("Package Updated")
+      },100)
     })
     .catch((error) => {
       console.log("error", error);

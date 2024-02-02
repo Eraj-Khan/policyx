@@ -343,7 +343,8 @@ const role= "normal";
             </Popover.Panel>
           </Transition>
         </Popover>
-      <div className="popup">
+        <div className="login-back">
+      <div className="pop-container">
       <div className="headers">
         <div className="text">{action}</div>
         <div className="underline"></div>
@@ -449,10 +450,15 @@ const role= "normal";
           {action === "Sign Up" ? (
             <div></div>
           ) : (
+            <>
             <div className="account">
               
              Create an Account <span onClick={handleSignUp}>Sign Up</span>
             </div>
+            <div className="account">
+   <a href="/companysignup" >Sign in as Company</a>
+</div>
+            </>
           )}
             {action === "Sign In" ? (
             <div></div>
@@ -466,6 +472,8 @@ const role= "normal";
         {/* )} */}
         </div>
       </div>
+      
+    </div>
     </div>
   );
 };

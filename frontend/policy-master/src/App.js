@@ -25,7 +25,7 @@ import Packages from "./pages/Insurrance/Packages.jsx";
 function App() {
   return (
     <div>
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
 
@@ -53,10 +53,9 @@ function App() {
           <Route path="/packages" element={<Packages/>}></Route>
           </Route>
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
       <Toaster />
-      <UserDash/>
-      {/* <Company/> */}
+   
     </div>
   );
 }
