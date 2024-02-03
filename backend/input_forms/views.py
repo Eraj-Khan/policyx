@@ -109,23 +109,33 @@ def get_ai_recommendation(request, case_id):
     
 @api_view(['GET'])
 def insurance_buyer_dashboard(request, user_id):
-    total_cases_user= UserInformation.objects.filter(user_id=user_id).aggregate(total_cases=Count('id'))['total_cases']
+    # total_cases_user= UserInformation.objects.filter(user_id=user_id).aggregate(total_cases=Count('id'))['total_cases']
+    total_bids =  CompanyPackages.objects.filter(case_user_id=user_id).aggregate(total_bids=Count('id'))['total_bids']
+
     # total_cases = UserInformation.objects.aggregate(total_cases=Count('id'))['total_cases']
     total_companies = User.objects.filter(role='company').aggregate(total_companies=Count('id'))['total_companies']
     # total_companies = CompanyUser.objects.aggregate(total_companies=Count('id'))['total_companies']
     total_premium = CompanyPackages.objects.filter(case_user_id=user_id, is_accepted=True).values_list('monthly_coverage', flat=True)
     user_plan = CompanyPackages.objects.filter(case_user_id=user_id, is_accepted=True).values_list('accidental_emergencies','ambulance_services_expenses','hospitalization_room_charges',
                                                                                                         'surgery','dental_and_vision_care','other_medical_expenses')
+    print(user_plan)
+
+    result = []
+    for i in range(len(user_plan[0])):
+        total = sum(t[i] for t in user_plan if t[i] is not None)
+        result.append(total)
+
     user_plan_dict = {
-    'accidental_emergencies': user_plan[0][0],
-    'ambulance_services_expenses': user_plan[0][1],
-    'hospitalization_room_charges': user_plan[0][2],
-    'surgery': user_plan[0][3],
-    'dental_and_vision_care': user_plan[0][4],
-    'other_medical_expenses': user_plan[0][5]
+    'accidental_emergencies': result[0],
+    'ambulance_services_expenses': result[1],
+    'hospitalization_room_charges': result[2],
+    'surgery': result[3],
+    'dental_and_vision_care': result[4],
+    'other_medical_expenses': result[5]
 }
 
-    return Response({"total_case":total_cases_user,
+    return Response({"total_bids":total_bids,
+                    # "total_case":total_cases_user,
                      "total_companies":total_companies,
                      "total_premium": sum(total_premium),                     
                      "user_plan":user_plan_dict
