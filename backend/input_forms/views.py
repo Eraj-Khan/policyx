@@ -12,9 +12,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from input_forms.models import UserInformation
 from ai_prediction.serializers import UserInformationSerializer
-from accounts.models import User
+from accounts.models import User,CompanyUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user
+from django.db.models import Count
+from dashboard.models import CompanyPackages
 
 def make_ai_prediction_request(case_id):
     # ai_prediction_endpoint = 'http://127.0.0.1:8000/ai-prediction/all-users/'
@@ -104,3 +106,15 @@ def get_ai_recommendation(request, case_id):
         return Response(response_data)
     except UserInformation.DoesNotExist:
         return Response({'message': 'Case not found'}, status=404)
+    
+@api_view(['GET'])
+def insurance_buyer_dashboard(request, user_id):
+    total_cases_user= UserInformation.objects.filter(user_id=user_id).aggregate(total_cases=Count('id'))['total_cases']
+    # total_cases = UserInformation.objects.aggregate(total_cases=Count('id'))['total_cases']
+    total_companies = User.objects.filter(role='company').aggregate(total_companies=Count('id'))['total_companies']
+    # total_companies = CompanyUser.objects.aggregate(total_companies=Count('id'))['total_companies']
+    total_premium = CompanyPackages.objects.filter(case_user_id=user_id, is_accepted=True).values_list('monthly_coverage', flat=True)
+    return Response({"total_case":total_cases_user,
+                     "total_companies":total_companies,
+                     "total_premium": sum(total_premium)
+})
