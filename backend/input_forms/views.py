@@ -119,20 +119,22 @@ def insurance_buyer_dashboard(request, user_id):
     user_plan = CompanyPackages.objects.filter(case_user_id=user_id, is_accepted=True).values_list('accidental_emergencies','ambulance_services_expenses','hospitalization_room_charges',
                                                                                                         'surgery','dental_and_vision_care','other_medical_expenses')
     print(user_plan)
+    if user_plan:
+        result = []
+        for i in range(len(user_plan[0])):
+            total = sum(t[i] for t in user_plan if t[i] is not None)
+            result.append(total)
 
-    result = []
-    for i in range(len(user_plan[0])):
-        total = sum(t[i] for t in user_plan if t[i] is not None)
-        result.append(total)
-
-    user_plan_dict = {
-    'accidental_emergencies': result[0],
-    'ambulance_services_expenses': result[1],
-    'hospitalization_room_charges': result[2],
-    'surgery': result[3],
-    'dental_and_vision_care': result[4],
-    'other_medical_expenses': result[5]
-}
+        user_plan_dict = {
+        'accidental_emergencies': result[0],
+        'ambulance_services_expenses': result[1],
+        'hospitalization_room_charges': result[2],
+        'surgery': result[3],
+        'dental_and_vision_care': result[4],
+        'other_medical_expenses': result[5]
+        }
+    else:
+        user_plan_dict = {}
 
     return Response({"total_bids":total_bids,
                     # "total_case":total_cases_user,
