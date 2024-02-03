@@ -201,13 +201,16 @@ const Register = () => {
   const [budget, setBudget] = useState("");
 
 
-  const calculateBmi = () => {
-    if (height && weight) {
+  const calculateBmi = (value = 0) => {
+    if (height && value) {
       // Convert height from feet to meters
-      const heightInMeters = height * 0.3048;
-      const weightInKg = weight;
+      const heightInMeters = (parseFloat(height) * 0.3048).toFixed(2); 
+    const weightInKg = parseFloat(value); 
+
   
-      const calculatedBmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
+      console.log("height", heightInMeters);
+      console.log("weight", weightInKg)
+      const calculatedBmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(1);
   
       setBmi(calculatedBmi);
     } else {
@@ -222,8 +225,11 @@ const Register = () => {
   };
 
   const handleWeightChange = (e) => {
-    setWeight(e.target.value);
-    calculateBmi();
+    const value = e.target.value;
+    
+      setWeight(value);
+      calculateBmi(value);
+    
   };
   const navigate = useNavigate();
 
@@ -488,20 +494,23 @@ const Register = () => {
                 </div> */}
 
                   <div className="calculate">
-                    <input
-                      type="number"
-                      value={height}
-                      onChange={handleHeightChange}
-                      placeholder="Height(ft)"
-                    />
-
-                    <input
-                      type="number"
-                      value={weight}
-                      onChange={handleWeightChange}
-                      placeholder="Weight(kg)"
-                    />
-                  </div>
+                  <input
+                        type="number"
+                        value={height}
+                        onChange={handleHeightChange}
+                        placeholder="Height(ft)"
+                        min="0"
+                        step="any"
+                      />
+                      <input
+                        type="text"
+                        value={weight}
+                        onChange={handleWeightChange}
+                        placeholder="Weight(kg)"
+                        min="0"
+                        step="any"
+                      />
+                       </div> 
                   <div className="bmi">
                     <input
                       type="text"
