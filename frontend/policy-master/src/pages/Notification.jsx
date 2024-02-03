@@ -129,9 +129,9 @@ export const Notification = () => {
           <>
             
             <div key={data.case_id} className="notification-item">
-        <li className="case_id"> CASE ID: {data.case_id}</li>
-        <li className="age">AGE:  {data.age}</li>
-        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li>
+     <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
+        {/* <li className="age">AGE:  {data.age}</li>
+        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
       </div>
           </>
         ))}

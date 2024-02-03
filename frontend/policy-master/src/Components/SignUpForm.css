@@ -1,12 +1,5 @@
 /* SignupPage.css */
-.signup-container {
-  display: flex;
-  align-items: center;
-  height: 50%;
-  background-color: #e05353;
-  margin-top: 126px;
-  gap: 50px;
-}
+
 
 .signup-card {
   cursor: pointer;
@@ -24,34 +17,59 @@
 }
 
 .signup-card.user {
-  border: 2px solid #3498db;
-  margin-left: 285px;
-  height: 112px;
-  width: 166px;
+    margin-left: 797px;
+    height: 112px;
+    width: 166px;
+    display: flex;
+    font-family: "poppins";
+    margin-top: 180px;
+    position: absolute;
+    border: 2px solid #0b5485;
 }
 
 .signup-card.company {
-  border: 2px solid #e74c3c;
-  margin-left: 215px;
-  height: 112px;
-  width: 166px;
+    margin-left: 521px;
+    height: 112px;
+    width: 166px;
+    display: flex;
+   font-family: "poppins";
+    margin-top: 180px;
+    position: absolute;
+    border: 2px solid #0b5485;
+}
+.signup-card.company:hover {
+    background-color: rgb(215, 231, 250);
+    border: 2px solid rgb(22, 54, 122);;
+}
+.signup-card.user:hover {
+    background-color: rgb(215, 231, 250);
+    border: 2px solid rgb(22, 54, 122);
 }
 
-.signup-card.selected {
-  border: 2px solid #27ae60;
-}
 
 .selected-option-button {
-    margin-top: 245px;
+    margin-top: 343px;
     padding: 10px;
-    background-color: #27ae60;
+    background-color: #0b5485;
     color: #fff;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     width: 200px;
     border-radius: 19px;
     gap: 3px;
     position: absolute;
-    margin-left: 620px;
+    margin-left: 644px;
+    font-family:"poppins";
+    text-align: center;
+}
+
+.selectone{
+    font-size: 40px;
+    font-weight: 20px;
+    font-family: "poppins";
+    color: #0b5485;
+    margin-left: 505px;
+    margin-top: 90px;
+    position: absolute;
+    font-weight: 600;
 }

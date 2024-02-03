@@ -29,6 +29,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
+          <Route path="signinas" element={<SignUpForm/>}></Route>
 
           <Route element={<LoginProtected/>}>
           <Route path="/login" element={<LoginSignup />}></Route>
@@ -54,9 +55,9 @@ function App() {
           <Route path="/packages" element={<Packages/>}></Route>
           </Route>
         </Routes>
-      </BrowserRouter> 
-      {/* <Toaster />
-   {/* <SignUpForm/> */}
+      </BrowserRouter>  
+      <Toaster />
+  
     </div>
   );
 }

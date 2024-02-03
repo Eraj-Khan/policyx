@@ -294,11 +294,11 @@ export default function App() {
                 <div>
                   <div className="hidden md:flex md:items-center md:space-x-6">
                     <a
-                      href="/login"
+                      href="/signinas"
                       className="inline-flex items-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-base font-medium text-white hover:bg-sky-400"
 
                     >
-                      Login / Register
+                      Sign In / Sign Up
                     </a>
                     {/* <a
                   href="#"
