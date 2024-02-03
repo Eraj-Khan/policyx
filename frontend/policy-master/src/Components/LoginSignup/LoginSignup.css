@@ -1,12 +1,12 @@
 .popup{
-    display:flex;
-    flex-direction:column;
-    margin:auto;
-    margin-top: 125px;
-    width: 600px;
-    background:#ded4cb;
+    display: flex;
+    flex-direction: column;
+  
+    box-shadow: 0 13px 13px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
     padding-bottom: 30px;
     border-radius: 15px;
+    font-family: "poppins";
 }
 
 .headers{
@@ -15,11 +15,11 @@
     align-items: center;
     gap: 9px;
     width: 100%;
-    margin-top:30px;
+    margin-top: 15px;
 }
 
 .text{
-    color: #63b3ed;
+    color:#3498DB;
     font-size: 48px;
     font-weight: 700;
 }
@@ -33,15 +33,15 @@
   margin-top: 15px; 
   display: flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 3px !important;
+
 }
 
 .input{
     display: flex;
     align-items: center;
-    margin-left: 30px ;
     width: 480px;
-    height: 80px;
+    height: 50px !important;
     border-radius: 6px;
 }
 
@@ -49,16 +49,15 @@
     margin: 0px 20px;
 }
 
-.input input{
-    height: 50px;
-    width: 430px;    
-    background:#fff;
-    border: none;
-    outline:none;
-    color:black;
-    font-size: 19px;
-    padding-left: 12px;
-    border-radius: 10px;
+.input .place{
+       /* height: 50px; */
+       width: 430px;
+       /* border: none; */
+       outline: none;
+       color: black;
+       font-size: 15px;
+       padding-left: 12px;
+       border-radius: 10px;
 }
 
 .forgot-password{
@@ -79,19 +78,21 @@ font-size: 18px;
     justify-content: center;
     margin-top: 20px;
 }
-.submit{
-    display: flex;
+.submittion{
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    width: 130px;
+    width: 130%;
     height: 50px;
-margin: auto;
-    color: #fff;
+margin: auto; */
     background: #4299e1;
-    border-radius: 5px;
+   
+    cursor: pointer;
+    color: #fff;
+    border-radius: 6px;
     font-size: 19px;
     font-weight: 700;
-    cursor: pointer;
+    padding: 10px 170px 10px 170px;
 
 }
 .forgot-password span {
@@ -111,32 +112,31 @@ margin: auto;
 }
 .inputsmall{
   
-    display:flex;
+    display: flex;
     align-items: center;
-    margin-left: 50px;
-    width: 460px;
+    margin: auto;
+    width: 90%;
     height: 80px;
     border-radius: 6px;
     gap: 10px;
 }
 .inputsmall input{
-    height: 50px;
-    width: 172px;
+   
+ 
     background: #fff;
-    border: none;
     outline: none;
     color: black;
-    font-size: 19px;
-    padding-left: 10px;
+    font-size: 15px;
     border-radius: 10px;
 }
 .inputsmall img{
 
     margin-right: 10px;
 }
-.container{
-    width: 100%;
-    max-width: 1530px;
+.sign_up_main{
+ background-size: cover;
+ height: 100vh;
+    background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881b6, #4491c7, #5f9ace, #76a3d5, #8aacdc, #a5b2d9, #b8bad5, #c6c3d1, #cecdcf);
 }
 .account span{
     cursor: pointer;
@@ -148,8 +148,27 @@ margin: auto;
 }
 .account{
     margin-top: 10px;
+    text-align: center;
+
 }
 .submit:hover{
     background-color: #0c5ba0;
 }
+.signup_img .sign_img img{
+width: 70%;
+margin: 130px;
 
+}
+.signup_img {
+    display: flex;
+}
+.signup_popup{
+    margin: auto;
+    width: 27%;
+    position: relative;
+    top: 20px;
+    left: 60px;
+}
+.username_input{
+    position: relative;
+    left: 23px;}

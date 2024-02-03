@@ -105,3 +105,24 @@ width: 80%;
   font-family: "Poppins";
 
  }
+ .promotions h2{
+  font-family: "Space Grotesk";
+  font-weight: 900;
+  color: #3498DB;
+ }
+ .promotions{
+  font-family: "Poppins";
+
+ }
+ .footer1{
+  background-color: #3498DB;
+
+ }
+ .CTA_section{
+  background-color: #3498DB;
+
+ }
+ .testimonial{
+  background-color: #3498DB;
+
+ } 

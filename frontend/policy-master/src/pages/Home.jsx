@@ -512,15 +512,15 @@ export default function App() {
             {/* Logo Cloud */}
             <div className=" ourpartners bg-white pt-20 ">
               <div className="mx-auto max-w-9xl py-16 px-6 lg:px-10 ">
-                <h2 className="mt-2 text-3xl font-bold tracking-tight  sm:text-4xl text-center">
+                <h2 className="mt-2 text-4xl font-bold tracking-tight  sm:text-4xl text-center">
                   Our Partners
                 </h2>
-                <p className="mx-auto mt-5 max-w-prose text-2xl">
+                <p className="mx-auto mt-5 max-w-prose text-lg">
                   Our panel consists of trusted household names from the
                   insurance industry.
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                  <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                  <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 animate__animated animate__pulse">
                     <img className="h-20" src={img2} alt="#" />
                   </div>
                   <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
@@ -541,100 +541,12 @@ export default function App() {
           </div>
 
             {/* Feature section with grid */}
-            <div className="relative bg-white py-16 sm:py-24  ">
-              <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-                <p className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
-                  Why Choose us
-                </p>
-                <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
-                  To provide solutions that protect the future of our customers
-                </p>
-                <div className="mt-12">
-                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 pb-12 ">
-                    {features.map((feature) => (
-                      <div key={feature.name} className="pt-6">
-                        <div className="flow-root rounded-lg bg-gray-50 px-6 pb-8">
-                          <div className="-mt-6">
-                            <div>
-                              <span className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-sky-500 to-sky-300 p-3 shadow-lg">
-                                <FontAwesomeIcon
-                                  className="h-6 w-6 text-white"
-                                  aria-hidden="true"
-                                />
-                              </span>
-                            </div>
-                            <h3 className="mt-8 text-lg font-medium tracking-tight text-sky-600">
-                              {feature.name}
-                            </h3>
-                            <p className="mt-5 text-base text-sky-400">
-                              {feature.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial section */}
-            <div className="bg-gradient-to-r from-sky-500 to-sky-300 pb-16 lg:relative lg:z-10 lg:pb-0">
-              <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
-                <div className="relative lg:-my-8">
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
-                  />
-                  <div className="mx-auto max-w-md px-6 sm:max-w-3xl lg:h-full lg:p-0">
-                    <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                      <img
-                        className="object-cover lg:h-full lg:w-full"
-                        src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
-                  <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0 lg:py-20">
-                    <blockquote>
-                      <div>
-                        <svg
-                          className="h-12 w-12 text-white opacity-25"
-                          fill="currentColor"
-                          viewBox="0 0 32 32"
-                          aria-hidden="true"
-                        >
-                          <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                        </svg>
-                        <p className="mt-6 text-2xl font-medium text-white">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          Sed urna nulla vitae laoreet augue. Amet feugiat est
-                          integer dolor auctor adipiscing nunc urna, sit.
-                        </p>
-                      </div>
-                      <footer className="mt-6">
-                        <p className="text-base font-medium text-white">
-                          Judith Black
-                        </p>
-                        <p className="text-base font-medium text-white">
-                          CEO at PureInsights
-                        </p>
-                      </footer>
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Blog section */}
-            <div className="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+            <div className=" promotions relative bg-gray-50 py-16 sm:py-24 lg:py-32">
               <div className="relative">
                 <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-                  <p className="mt-2 text-xl font-bold tracking-tight text-sky-600 sm:text-5xl">
+                  <h2 className="mt-2 text-4xl font-bold tracking-tight  sm:text-5xl">
                     Promotions
-                  </p>
+                  </h2>
                   {/* <p className="mx-auto mt-5 max-w-prose text-xl text-orange-400">
                   Phasellus lorem quam molestie id quisque diam aenean nulla in.
                   Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend
@@ -706,8 +618,99 @@ export default function App() {
               </div>
             </div>
 
+
+            {/* Testimonial section */}
+            <div className="testimonial pb-16 lg:relative lg:z-10 lg:pb-0">
+              <div className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+                <div className="relative lg:-my-8">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden"
+                  />
+                  <div className="mx-auto max-w-md px-6 sm:max-w-3xl lg:h-full lg:p-0">
+                    <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
+                      <img
+                        className="object-cover lg:h-full lg:w-full"
+                        src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
+                  <div className="mx-auto max-w-md px-6 sm:max-w-2xl lg:max-w-none lg:px-0 lg:py-20">
+                    <blockquote>
+                      <div>
+                        <svg
+                          className="h-12 w-12 text-white opacity-25"
+                          fill="currentColor"
+                          viewBox="0 0 32 32"
+                          aria-hidden="true"
+                        >
+                          <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                        </svg>
+                        <p className="mt-6 text-2xl font-medium text-white">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          Sed urna nulla vitae laoreet augue. Amet feugiat est
+                          integer dolor auctor adipiscing nunc urna, sit.
+                        </p>
+                      </div>
+                      <footer className="mt-6">
+                        <p className="text-base font-medium text-white">
+                          Judith Black
+                        </p>
+                        <p className="text-base font-medium text-white">
+                          CEO at PureInsights
+                        </p>
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Blog section */}
+            <div className="relative bg-white py-16 sm:py-24  ">
+              <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
+                <p className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
+                  Why Choose us
+                </p>
+                <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
+                  To provide solutions that protect the future of our customers
+                </p>
+                <div className="mt-12">
+                  <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 pb-12 ">
+                    {features.map((feature) => (
+                      <div key={feature.name} className="pt-6">
+                        <div className="flow-root rounded-lg bg-gray-50 px-6 pb-8">
+                          <div className="-mt-6">
+                            <div>
+                              <span className="inline-flex items-center justify-center rounded-md bg-gradient-to-r from-sky-500 to-sky-300 p-3 shadow-lg">
+                                <FontAwesomeIcon
+                                  className="h-6 w-6 text-white"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </div>
+                            <h3 className="mt-8 text-lg font-medium tracking-tight text-sky-600">
+                              {feature.name}
+                            </h3>
+                            <p className="mt-5 text-base text-sky-400">
+                              {feature.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+         
             {/* CTA Section */}
-            <div className="relative bg-gradient-to-r from-sky-500 to-sky-300">
+            <div className="relative CTA_section">
               <div className="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
                 <img
                   className="h-full w-full object-cover"
@@ -719,12 +722,12 @@ export default function App() {
                   className="absolute inset-0 bg-gradient-to-r from-sky-500 mix-blend-multiply"
                 />
               </div>
-              <div className="relative mx-auto max-w-md py-12 px-6 sm:max-w-7xl sm:py-20 md:py-28 lg:px-8 lg:py-32">
+              <div className=" relative mx-auto max-w-md py-12 px-6 sm:max-w-7xl sm:py-20 md:py-28 lg:px-8 lg:py-32">
                 <div className="md:ml-auto md:w-1/2 md:pl-10">
                   {/* <h2 className="text-lg font-semibold text-gray-300">
                   Award winning support
                 </h2> */}
-                <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                <p className="mt-2 text-3xl font-bold  text-white sm:text-4xl">
                   About Us
                 </p>
                 <p className="mt-3 text-lg text-white">
@@ -756,7 +759,7 @@ export default function App() {
           </div>
 
           <div className="footer1 mt-60">
-            <footer className="bg-sky-300 " aria-labelledby="footer-heading">
+            <footer className="" aria-labelledby="footer-heading">
               <h2 id="footer-heading" className="sr-only">
                 Footer
               </h2>
