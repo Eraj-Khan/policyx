@@ -16,10 +16,13 @@
     margin-left: 268px;
     font-family: "poppins";
 font-size: 14px;
+border-radius: 8px;
+
   }
   
   .user-pack-table th, .user-pack-table td {
-    border: 1px solid #ddd;
+    border: 1px solid ;
+    border-color: #c9c9c98e;
     padding: 5px;
     text-align: left;
   }

@@ -268,6 +268,25 @@ export const Company = () => {
       ],
     }
   );
+
+  const [packages,setPackages] = useState([]);
+
+  const getPackAges = async  ()=>{
+    try {
+      let payload = localStorage.getItem('user');
+      let parsedPayload = JSON.parse(payload);
+
+      const {company_name} = parsedPayload;
+      const response = await axios.get(
+        `http://127.0.0.1:8000/company_dashboard/list_company_packages/${company_name}`
+      );
+      const {Packages} = response.data;
+     
+      setPackages(Packages);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
   
   const getStats = async () => {
     try {
@@ -362,6 +381,7 @@ export const Company = () => {
     getStats();
     getPackages();
     countBidGet();
+    getPackAges();
   }, []);
 
 
@@ -843,50 +863,36 @@ export const Company = () => {
               </div>
 
               <ul role="list" className="divide-y divide-gray-200">
-                {applications.map((application) => (
-                  <li key={application.applicant.email}>
+                {packages.map((application) => (
+                  <li key={application?.case_id}>
                     <a
-                      href={application.href}
+                      
                       className="block hover:bg-gray-50"
                     >
                       <div className="flex items-center px-4 py-4 sm:px-6">
                         <div className="flex min-w-0 flex-1 items-center">
                           <div className="flex-shrink-0 ">
-                            <img
-                              className="h-12 w-12 rounded-full"
-                              src={application.applicant.imageUrl}
-                              alt=""
-                            />
+                           
                           </div>
                           <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                             <div>
                               <p className="truncate text-sm font-medium text-indigo-600">
-                                {application.applicant.name}
+                                {application?.case_id}
                               </p>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <EnvelopeIcon
-                                  className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
-                                  aria-hidden="true"
-                                />
+                               
                                 <span className="truncate">
-                                  {application.applicant.email}
+                                  {application?.monthly_coverage}
                                 </span>
                               </p>
+                              <p className="mt-2 flex items-center text-sm text-gray-500">
+                               
+                               <span className="truncate">
+                                 {application?.updated_at?.split("T")[0]}
+                               </span>
+                             </p>
                             </div>
-                            <div className="hidden md:block">
-                              <div>
-                                <p className="text-sm text-gray-500">
-                                  Applied on{" "}
-                                  <time dateTime={application.date}>
-                                    {application.dateFull}
-                                  </time>
-                                </p>
-                                <p className="mt-2 flex items-center text-sm ">
-                                  {/* <CheckCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" aria-hidden="true" /> */}
-                                  {application.stage}
-                                </p>
-                              </div>
-                            </div>
+                           
                           </div>
                         </div>
                       </div>

@@ -455,9 +455,9 @@ const role= "normal";
               
              Create an Account <span onClick={handleSignUp}>Sign Up</span>
             </div>
-            <div className="account">
+            {/* <div className="account">
    <a href="/companysignup" >Sign in as Company</a>
-</div>
+</div> */}
             </>
           )}
             {action === "Sign In" ? (

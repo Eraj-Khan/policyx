@@ -74,6 +74,9 @@
 } */
 tbody{
   font-family: "poppins";
+ 
+    background-color: #f4f4f4;
+
   
 }
 .notifi-container {
@@ -91,8 +94,8 @@ tbody{
 }
 
 .user-table th, .user-table td {
-  border: 1px solid #f4f4f4;
-  padding: 8px;
+  border: 1px solid ;
+    border-color: #c9c9c98e;  padding: 8px;
   text-align: left;
 }
 
@@ -130,9 +133,7 @@ tbody{
   transition: background-color 0.3s ease;
 }
 
-.navbar{
-  
-}
+
 
 .icon-container {
   text-align: center;
@@ -143,9 +144,7 @@ tbody{
   font-size: 18px;
 }
 
-.active {
-  background-color: #f4f4f4;
-}
+
 
 .expired {
   background-color: #ffebee;
