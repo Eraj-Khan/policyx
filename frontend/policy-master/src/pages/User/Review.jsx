@@ -220,7 +220,8 @@ const Review = () => {
  
      let payload = Object.assign(data, {
       recommended_value:recommendedValue,
-      age:data.age
+      age:data.age,
+      id_user:data.user
     });
     axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
     .then((response)=>{

@@ -107,9 +107,9 @@ const applications = [
 ];
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Users", href: "/userList", icon: UsersIcon, current: false },
+  { name: "Register Cases", href: "/userList", icon: UsersIcon, current: false },
   {
-    name: "Packages Offered",
+    name: "Offered Packages",
     href: "/packages",
     icon: FolderIcon,
     current: false,

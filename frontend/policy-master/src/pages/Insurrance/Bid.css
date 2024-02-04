@@ -1,13 +1,26 @@
 .panel {
   display: flex;
-  gap: 45px;
-
+  /* gap: 45px; */
+  /* margin: auto; */
+  /* position: absolute; */
   padding: 20px;
-  background-color: #afbfd4;
-  /* border-radius: 12px;  */
+  margin-left: 255px;
+  gap: 33px;
+  /* right: 2px; */
+  justify-content: center;
+  /* border-radius: 12px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  background-image: linear-gradient(to bottom right, #9fb2bc, #f0f0f0);
+}
+.bid-select{
+  color: #5e5e5e;
+}
+.bid-input{
+  color: #5e5e5e;
+
+}
+select{
+  border:1px solid #ddd;
 }
 
 .bid_cont {
@@ -16,31 +29,38 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 25px;
   border: 1px solid #ddd;
-  transition: box-shadow 0.3s ease;
-  width: 40%;
+  width: 48%;
+  margin-top: -45px;
+  box-shadow: 0 13px 13px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-  background-image: linear-gradient(to bottom right, #ffffff, #f0f0f0);
-}
+  background-color: #f4f4f4;}
 
 .bid-label {
   display: block;
   margin-bottom: 1px;
-  color: #333;
-  font-size: 20px;
-  font-weight: bold;
+  font-family: "poppins";
+  
+  color: #396291;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
-
 .card-styleh3 {
-  font-size: 34px;
+  font-size: 30px;
   margin-bottom: 15px;
   margin-left: 15px;
-  font-family: auto;
+  color: #396291;
+  font-weight: 600;
+
+  font-family: 'Poppins';
+  /* font-family: auto; */
 }
 .card-style p {
-  font-size: 20px;
-  margin-bottom: 15px;
+  font-size: 18px;
+  margin-bottom: 27.5px;
+  
+  font-family: 'Poppins';
   margin-left: 20px;
 }
 
@@ -67,6 +87,7 @@ bid-input:focus {
   color: #fff;
   padding: 12px;
   border: none;
+  font-family: 'Poppins';
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -76,37 +97,49 @@ bid-input:focus {
 .place-bid:hover {
   background-color: #396291;
 }
-
 .card-style {
   border: 1px solid #ccc;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 26%;
-  background: #f9f9f9;
-  height: 603px;
-}
+/* padding: 10px; */
+margin-top: -45px;
+padding-top: 22px;
+border-radius: 12px;
+width: 48%;
+background: #f9f9f9;
+letter-spacing: 0.5px;
+padding-left: 10px;
+box-shadow: 0 13px 13px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+height: 671px;
 
+background-color: #f4f4f4;
+}
 .send-button {
   background-color: #4c6daf;
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
-  width: 315px;
+  margin-top: 9px;
+  /* width: 315px; */
+  width: 91%;
   margin-left: 20px;
+  font-family: 'Poppins';
 }
 
-.send-button :hover {
+
+.send-button:hover {
   background-color: #396291;
 }
-.nav {
-  background: rgb(96, 158, 217);
-  height: 76px;
+.bid_heading{
+ letter-spacing: 0.8px;
+    font-size: 30px;
+    align-self: center;
+    font-family: "poppins";
+    color: #0b5485;
+    font-weight: 800;
+text-align: center;
 }
+
 
 /* .bid_button{
     flex-direction: column;

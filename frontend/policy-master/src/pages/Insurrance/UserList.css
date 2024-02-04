@@ -164,5 +164,47 @@ font-weight: 800;
 }
 .logo{
   background-color: #3498DB;
-
 }
+/* .case_search input{
+  width: 20%;
+  margin-left: 267px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-top: -20px;
+} */
+
+.search-filter-container {
+  display: flex;
+  gap: 10px;
+}
+
+.case_search input {
+  width: 45%;
+  margin-left: 247px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  
+}
+
+.status-filter {
+  display: flex;
+  gap: 10px; 
+  margin-left: 650px;
+}
+
+.status-filter button {
+  padding: 8px 34px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.status-filter button.active {
+  background-color: #3498DB;
+  color: #fff;
+}
+
+

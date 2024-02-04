@@ -33,8 +33,8 @@ import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
 const nav = [
 
 
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
+  { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
+  { name: 'Register Cases', href: '#', icon: UsersIcon, current: true },
   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
@@ -62,16 +62,33 @@ function classNames(...classes) {
 
 const UserList = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigation = useNavigate();
 
-  const handleBidClick = (caseId, case_user) => {
+  const filteredData = notificationinfo.filter((item) =>
+  item.case_id.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+const filteredByStatus = filteredData.filter((item) => {
+  if (statusFilter === "all") {
+    return true; // Show all items
+  } else if (statusFilter === "active") {
+    return !item.is_expired && !item.is_completed;
+  } else if (statusFilter === "completed") {
+    return item.is_completed;
+  }
+  return false;
+});
+
+  const handleBidClick = (caseId, id_user) => {
     // Handle the click event and redirect to the next page using React Router
     // For now, it just logs the caseI
     navigation("/bid", {
       state: {
         case_id: caseId,
-        case_user: case_user,
+        id_user: id_user,
         payload: null,
       },
     });
@@ -345,6 +362,39 @@ const UserList = () => {
       </div> */}
 
       <div className="notifi-container">
+      <div className="search-filter-container">
+<div className="case_search">
+      <input 
+        type="text"
+        placeholder="Search by Case ID"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      </div>
+
+
+      <div className="status-filter">
+          <button
+            className={statusFilter === "all" ? "active" : ""}
+            onClick={() => setStatusFilter("all")}
+          >
+            All
+          </button>
+          <button
+            className={statusFilter === "active" ? "active" : ""}
+            onClick={() => setStatusFilter("active")}
+          >
+            Active
+          </button>
+          <button
+            className={statusFilter === "completed" ? "active" : ""}
+            onClick={() => setStatusFilter("completed")}
+          >
+            Completed
+          </button>
+        </div>
+        </div>
+      
         <table className="user-table">
           <thead>
             <tr>
@@ -368,7 +418,7 @@ const UserList = () => {
 
           </thead>
           <tbody>
-            {notificationinfo.map((data) => (
+            {filteredByStatus.map((data) => (
               <tr
                 key={data.case_id}
                 className={data?.is_expired ? "expired" : "active"}
@@ -404,7 +454,7 @@ const UserList = () => {
                 <td>
                   <button
                     className="bid-place"
-                    onClick={() => handleBidClick(data.case_id, data.id)}
+                    onClick={() => handleBidClick(data.case_id, data.id_user)}
                   >
                     Place bid
                   </button>
