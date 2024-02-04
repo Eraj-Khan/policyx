@@ -3,6 +3,7 @@ from accounts.models import User
 
 class CompanyDashboard(models.Model):
     case_id = models.CharField(max_length=255, unique=True, default=1)
+    id_user = models.ForeignKey(User,on_delete=models.CASCADE,null=False)
     age = models.IntegerField(max_length=255, null=True, blank=True)
     gender =  models.CharField(max_length=255, default='', null=True, blank=True)
     bmi = models.FloatField(max_length=255, default=25, null=True)
