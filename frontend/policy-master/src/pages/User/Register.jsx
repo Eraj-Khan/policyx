@@ -205,13 +205,16 @@ const Register = () => {
   const [budget, setBudget] = useState("");
 
 
-  const calculateBmi = () => {
-    if (height && weight) {
+  const calculateBmi = (value = 0) => {
+    if (height && value) {
       // Convert height from feet to meters
-      const heightInMeters = height * 0.3048;
-      const weightInKg = weight;
+      const heightInMeters = (parseFloat(height) * 0.3048).toFixed(2); 
+    const weightInKg = parseFloat(value); 
+
   
-      const calculatedBmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(2);
+      console.log("height", heightInMeters);
+      console.log("weight", weightInKg)
+      const calculatedBmi = (weightInKg / (heightInMeters * heightInMeters)).toFixed(1);
   
       setBmi(calculatedBmi);
     } else {
@@ -226,8 +229,11 @@ const Register = () => {
   };
 
   const handleWeightChange = (e) => {
-    setWeight(e.target.value);
-    calculateBmi();
+    const value = e.target.value;
+    
+      setWeight(value);
+      calculateBmi(value);
+    
   };
   const navigate = useNavigate();
 

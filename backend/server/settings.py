@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'input_forms',
     'ai_prediction',
     'dashboard',
-    'django_bg_task'
+    'django_bg_task',
 ]
 
 MIDDLEWARE = [
@@ -108,17 +108,17 @@ WSGI_APPLICATION = 'server.wsgi.application'
 #         'rest_framework.permissions.IsAuthenticated',
 #     ],
 # }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'policyY',
+        'NAME': 'policyX',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
         'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
