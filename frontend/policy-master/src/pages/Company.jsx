@@ -22,6 +22,7 @@ import {
   EnvelopeOpenIcon
 } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
+import logotwo from "../image/logo-2.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
@@ -341,7 +342,7 @@ export const Company = () => {
         "http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/"
       );
 
-      const mappedData = packageStats.labels.map((label, index) => {
+      const mappedData = packageStats.labels?.map((label, index) => {
         const monthData = response.data.find(
           (data) => data.month_name === index + 1
         );
@@ -487,14 +488,18 @@ export const Company = () => {
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className=" sidebar-menu flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
-            <div className="flex flex-shrink-0 items-center px-4">
+            <div className="flex flex-shrink-0">
               {/* <img
             className="h-12 w-auto"
             src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
             alt="Your Company"
           /> */}
               <div className="logo">
-                <h1>Logo Here</h1>
+              <img
+              
+              src={logotwo} 
+              
+            />
               </div>
             </div>
             <div className="mt-5 flex flex-1 flex-col">
@@ -799,38 +804,39 @@ export const Company = () => {
             <div className="overflow-hidden bg-white sm:rounded-md">
               <div className="recentleads">
                 {" "}
-                <h1>Recent Leads</h1>
+                <h1>Recent Bids</h1>
               </div>
 
-              <ul role="list" className="divide-y divide-gray-200">
-                {packages.map((application) => (
-                  <li key={application?.case_id}>
+              <ul  role="list" className="list_leads ">
+                {packages?.map((application) => (
+                  <li  key={application?.case_id}>
                     <a className="block hover:bg-gray-50">
-                      <div className="flex px-4 py-4 sm:px-6">
+                      <div className="flex px-4 py-8 sm:px-12">
                         <div className=" ">
                           <div className=" "></div>
-                          <div className="recent_leads">
+                          <div >
                             <div>
                               <div>
-                              <p className="truncate text-sm font-medium text-indigo-600">
-                               <span>CASE ID</span> {application?.case_id}
+                              <p className="truncate text-sm font-medium text-gray-600">
+                               <span className="head">CASE ID :</span> {application?.case_id}
                               </p></div>
                               <div>
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <span className="truncate">
-                                <span>Monthly Premium</span>  {application?.monthly_coverage}
+                              <p className="mt-2 flex items-center text-sm text-gray-600">
+                                <span className="truncate text-sm text-gray-600">
+                                <span className="head">Monthly Premium :</span>  {application?.monthly_coverage}
                                 </span>
                               </p></div>
                               <div>
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <span className="truncate">
-                                 <span>Annual Coverage</span> {application?.total_annual_coverage}
+                              <p className="mt-2 flex items-center text-sm text-gray-600">
+                                <span className="truncate text-sm text-gray-600">
+                                 <span className="head">Annual Coverage :</span> {application?.total_annual_coverage}
                                 </span>
                               </p></div>
-                             <div> <p className="mt-2 flex items-center text-sm text-gray-500">
-                                <span className="truncate">
-                                 Created At {application?.updated_at?.split("T")[0]}
-                                </span>
+                             <div> <p className="mt-2 flex items-center text-sm text-gray-600">
+                             <span className="truncate text-sm text-gray-600">
+                                <span className=" head">
+                                 Created At :  </span>  {application?.updated_at?.split("T")[0]}
+                              </span> 
                               </p></div>
                             </div>
                           </div>

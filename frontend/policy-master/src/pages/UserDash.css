@@ -85,7 +85,7 @@
     width: 20%;
     position: absolute;
     left: 712px;
-    top: 115px;
+    top: 110px;
     z-index: 0;
 }
 
@@ -175,6 +175,13 @@ background-color: #3498DB;
     width: 50%;
     height: 55px;
 }
+.plans_main_heading{
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #3498DB;
+    text-align: center;
+    font-size: 30px;
+}
 .chart44{    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 600px;
     /* margin-top: 90px; */
@@ -183,6 +190,34 @@ background-color: #3498DB;
     margin-left: 45px;}
     .card_table{
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 50%;
+        border: 4px solid #3498DB;
+
+    }
+    .animate_animated.animate_pulse {
+        animation-iteration-count: infinite;
+        --animate-duration: 4s;
+    }
+    .cards_list{
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 0.7px;
+
+    }
+    .cards_list li{
+        margin-bottom: 18px;
+    }
+    .card_head li{
+        font-family: "Poppins";
+
+    }
+    .card_table .plans-head{
+        color:#0b5485 ;
+font-weight: 600;
+font-size: 20px;
+    }
+    .card_table button{
+        margin-top: 20px;
     }
     .user_nav{
         background-color: #3498DB;

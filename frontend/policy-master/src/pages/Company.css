@@ -86,22 +86,37 @@ font-weight: 600;
     background-color: #3498DB;
   } 
   .leads{
-    width: 69%;
+    width: 76%;
     margin-top: 65px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 18px;
-    height: 560px;
-    margin-left: 362px;
+    padding: 25px;
+    padding-left: 40px;
+
+    height: 270px;
+    margin-left: 320px;
+}
+li .head{
+    font-family: "Poppins";
+color:#0b5485 ;
+font-size: 15px;
+font-weight: 600;
 }
 .recentleads{
     font-family: "Poppins";
     font-weight: 600;
     color: #3498DB;
     font-size: 30px;}
-.recent_leads{
+
+  .list_leads{
     display: flex;
+
+  }
+  .logo img {
+    width: 80%;
+    margin-left: 18px;
+
 }
-  
+ 
   .chartleads{
    gap: 34px;
     display: flex;

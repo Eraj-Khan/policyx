@@ -12,6 +12,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useParams } from "react-router";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import logotwo from "../../image/logo-2.png";
 
 import {
   Bars3BottomLeftIcon,
@@ -294,7 +295,19 @@ const Review = () => {
          <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="logo flex flex-grow flex-col overflow-y-auto  pt-5">
-      <h1>logo here</h1>
+   
+            {/* <img
+            className="h-12 w-auto"
+            src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
+            alt="Your Company"
+          /> */}
+             <div className="logo">
+              <img
+              
+              src={logotwo} 
+              
+            />
+              </div>
         <div className="mt-5 flex flex-1 flex-col">
           <nav className="navbar flex-1 space-y-2 px-2 pb-4">
             {nav.map((item) => (

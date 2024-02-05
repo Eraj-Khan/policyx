@@ -22,6 +22,7 @@ import img5 from "../image/takaful.png"
 import img6 from "../image/ubl.png"
 import styles from './Home.css'
 import img7 from "../image/4412.jpg"
+import logotwo from "../image/logo-2.png"
 
 
 const IMAGES = [
@@ -262,16 +263,23 @@ export default function App() {
                 className="relative mx-auto flex max-w-7xl items-center justify-between px-6"
                 aria-label="Global"
               >
-                <div className="flex flex-1 items-center">
-                  <div className="flex w-full items-center justify-between md:w-auto">
-                    <a href="#">
-                      <span className="sr-only">Your Company</span>
-                      <img
-                        className="h-8 w-auto sm:h-10"
-                        src="https://tailwindui.com/img/logos/mark.svg?from-color=teal&from-shade=200&to-color=cyan&to-shade=400&toShade=400"
-                        alt=""
-                      />
-                    </a>
+                <div className="flex flex-1 ">
+                  <div className="">
+                  <div className="homelogo flex flex-grow flex-col overflow-y-auto  pt-5">
+     
+     {/* <img
+     className="h-12 w-auto"
+     src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
+     alt="Your Company"
+   /> */}
+      <div className="homelogo">
+       <img className='home_logo'
+       
+       src={logotwo} 
+       
+     />
+       </div>
+       </div>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
                         <span className="sr-only">Open main menu</span>

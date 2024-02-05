@@ -5,6 +5,7 @@ import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import "animate.css";
+import logotwo from "../image/logo-2.png";
 
 import "@fontsource/space-grotesk";
 import {
@@ -197,10 +198,7 @@ const footerNavigation = {
 };
 const navigation = [
   { name: "User Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Insurance Offers", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Customer Service", href: "#", icon: UsersIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
+  { name: "Insurance Offers", href: "/insurranceoffer", icon: FolderIcon, current: false },
   {
     name: "Apply For Insurance",
     href: "/register",
@@ -298,7 +296,9 @@ export const UserDash = () => {
     try {
       let user = localStorage.getItem("user");
       let parsePayload = JSON.parse(user);
-       const response = await axios.get(`http://127.0.0.1:8000/get_insurance_buyer_dashboard_data/${parsePayload.id}`);
+      const response = await axios.get(
+        `http://127.0.0.1:8000/get_insurance_buyer_dashboard_data/${parsePayload.id}`
+      );
       const { total_bids, total_companies, total_premium, user_plan } =
         response.data;
       setCounts([
@@ -310,16 +310,16 @@ export const UserDash = () => {
         {
           value: total_companies,
           text: "Total Companies",
-          imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
+          imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
         },
         {
           value: total_premium,
           text: "Total Premium",
-          imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
+          imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
         },
       ]);
 
-      if (user_plan){
+      if (user_plan) {
         setUser_plan(user_plan);
       }
     } catch (error) {
@@ -327,29 +327,28 @@ export const UserDash = () => {
     }
   };
 
-  useEffect(()=>
-      {
-        let user =localStorage.getItem("user")
-        let parsedPayload = JSON.parse(user)
-     const fetchData = async () => {
+  useEffect(() => {
+    let user = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(user);
+    const fetchData = async () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
           //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
-  
+
         // Set the entire JSON object to data
-        const {Bids}= response.data;
+        const { Bids } = response.data;
         setNotificationCount(Bids.length);
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
     getCount();
-      }, []);
+  }, []);
 
   return (
     <div>
@@ -447,15 +446,20 @@ export const UserDash = () => {
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className=" user_nav flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
-          <div className="flex flex-shrink-0 items-center px-4">
-            {/* <img
+        <div className="flex flex-shrink-0">
+              {/* <img
             className="h-12 w-auto"
             src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
             alt="Your Company"
           /> */}
-            <div className="logo">
-              <h1>Logo Here</h1>
-            </div>
+              <div className="logo">
+              <img
+              
+              src={logotwo} 
+              
+            />
+              </div>
+          
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-2 px-2">
@@ -467,7 +471,7 @@ export const UserDash = () => {
                     item.current
                       ? "bg-sky-600 text-white"
                       : "text-indigo-100 hover:bg-sky-600",
-                    "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                    "group flex items-center px-2 py-2 text-md font-medium rounded-md"
                   )}
                 >
                   <item.icon
@@ -518,7 +522,7 @@ export const UserDash = () => {
               >
                 <span className="sr-only">View notifications</span>
                 <BellIcon className="h-6 w-6" aria-hidden="true" />
-                <span className="inline-flex items-center rounded-full bg-red-100 px-3 py-0.5 text-sm font-medium text-red-800">
+                <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
                   {notificationCount}
                 </span>
               </a>
@@ -526,10 +530,10 @@ export const UserDash = () => {
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
-                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="w-6 rounded-full"
+                      className="w-5 rounded-full"
                       src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                       alt=""
                     />
@@ -544,23 +548,28 @@ export const UserDash = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className=" signout-menu absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {userNavigation.map((item) => (
                       <Menu.Item key={item.name}>
                         {({ active }) => (
                           <a
                             href={item.href}
                             className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
+                              active ? "bg-sky-500" : "",
+                                "block px-4 py-2 rounded-md hover:text-white"
+                              )}
                           >
                             {item.name}
                           </a>
                         )}
                       </Menu.Item>
                     ))}
-                    <button onClick={handlelogOut}>Sign Out</button>
+                    <button
+                      className="signout-button  hover:text-white hover:rounded-md hover:bg-sky-500 p-2 pl-4"
+                      onClick={handlelogOut}
+                    >
+                      Sign Out
+                    </button>
                   </Menu.Items>
                 </Transition>
               </Menu>
@@ -573,10 +582,7 @@ export const UserDash = () => {
               <h1>Welcome</h1>
 
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Repudiandae eligendi officiis deserunt corrupti! Recusandae
-                facilis, at fuga, id aliquid nisi unde reprehenderit minima
-                magnam eum delectus cumque aliquam. Cumque, est?
+              Unlock a world of simplicity with coverage that clicks – insurance made just for you. Effortless protection, personalized for your peace of mind.
               </p>
               <img
                 className="image8 animate_animated animate_pulse"
@@ -659,7 +665,7 @@ export const UserDash = () => {
           {counts.map((person) => (
             <li
               key={person.email}
-              className="animate_animated animate_pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+              className="animate__animated animate__pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
             >
               <div className="flex flex-1 flex-col p-6">
                 <div className=" money_icon flex-shrink-0 rounded-full" alt="">
@@ -689,99 +695,41 @@ export const UserDash = () => {
           className=" card_table lg:col-span-1 lg:col-start-3"
         >
           <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
-            <h2
-              id="timeline-title"
-              className="text-lg font-medium text-gray-900"
-            >
-              Timeline
+            <h2 id="timeline-title" className=" plans_main_heading">
+              Recent Plans
             </h2>
 
             {/* Activity Feed */}
             <div className="mt-6 flow-root">
-              <ul role="list" className="-mb-8">
-                <li>{user_plan?.accidental_emergencies}</li>
-                <li>{user_plan?.ambulance_services_expenses}</li>
-                <li>{user_plan?.hospitalization_room_charges}</li>
-                <li>{user_plan?.surgery}</li>
-                <li>{user_plan?.dental_and_vision_care}</li>
-                <li>{user_plan?.other_medical_expenses}</li>
+              <ul role="list" className="cards_list mb-8">
+                <li>
+                  <span className="plans-head">Accidental : </span>
+                  {user_plan?.accidental_emergencies}
+                </li>
+                <li>
+                  <span className="plans-head">Ambulance Expense : </span>
+                  {user_plan?.ambulance_services_expenses}
+                </li>
+                <li>
+                  <span className="plans-head">Hospital Room Charges : </span>
+                  {user_plan?.hospitalization_room_charges}
+                </li>
+                <li>
+                  <span className="plans-head">Surgery : </span>
+                  {user_plan?.surgery}
+                </li>
+                <li>
+                  <span className="plans-head">Dental & Vision : </span>
+                  {user_plan?.dental_and_vision_care}
+                </li>
+                <li>
+                  <span className="plans-head">Others : </span>
+                  {user_plan?.other_medical_expenses}
+                </li>
               </ul>
-            </div>
-            <div className="justify-stretch mt-6 flex flex-col">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Advance to offer
-              </button>
             </div>
           </div>
         </section>
-        <div className="chart44">
-          <div className="sales">
-            <h1>Sales</h1>
-          </div>
-          <CChart
-            type="line"
-            data={{
-              labels: [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-              ],
-
-              datasets: [
-                {
-                  label: "Highest Sale",
-                  backgroundColor: "rgba(220, 220, 220, 0.2)",
-                  borderColor: "#3498DB",
-                  pointBackgroundColor: "rgba(220, 220, 220, 1)",
-                  pointBorderColor: "#fff",
-                  data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
-                },
-                {
-                  label: "Lowest Sale",
-                  backgroundColor: "rgba(151, 187, 205, 0.2)",
-                  borderColor: "#0b5485",
-                  pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                  pointBorderColor: "#fff",
-                  data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
-                },
-              ],
-            }}
-            options={{
-              plugins: {
-                legend: {
-                  labels: {
-                    color: "--cui-body-color",
-                  },
-                },
-              },
-              scales: {
-                x: {
-                  grid: {
-                    color: "--cui-border-color-translucent",
-                  },
-                  ticks: {
-                    color: "--cui-body-color",
-                  },
-                },
-                y: {
-                  grid: {
-                    color: "--cui-border-color-translucent",
-                  },
-                  ticks: {
-                    color: "--cui-body-color",
-                  },
-                },
-              },
-            }}
-          />
-        </div>
       </div>
     </div>
   );

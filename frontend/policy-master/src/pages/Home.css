@@ -12,7 +12,12 @@
     animation-iteration-count: infinite;
     --animate-duration: 4s;
 
-  } 
+  }
+  .homelogo .home_logo {
+    width: 100%;} 
+    .homelogo{
+      width: 150px;
+    }
 
   .main{
     display: flex;
