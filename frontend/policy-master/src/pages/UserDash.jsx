@@ -5,8 +5,10 @@ import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import 'animate.css';
+import HomeChat from '../Components/Homechat'
 
-import "@fontsource/space-grotesk";
+
+import "@fontsource/space-grotesk"; 
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -571,7 +573,9 @@ export const UserDash = () => {
 
         </ul>
       </div>
-      <div className="main_cards">
+      <div className="main_cards"> 
+     <HomeChat/>
+    
       <section aria-labelledby="timeline-title" className=" card_table lg:col-span-1 lg:col-start-3">
               <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
                 <h2 id="timeline-title" className="text-lg font-medium text-gray-900">
