@@ -18,6 +18,7 @@ import UserNotification from "./pages/User/UserNotification.jsx";
 import ProtectedUser from "./Components/PrivateRoute/ProtectedUser.jsx";
 import ProtectedCompany from "./Components/PrivateRoute/ProtectedCompany.jsx";
 import LoginProtected from "./Components/PrivateRoute/LoginProtected.jsx";
+
 function App() {
   return (
     <div>
