@@ -20,12 +20,10 @@ import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 const nav = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: false },
-  { name: "Register Cases", href: "#", icon: UsersIcon, current: false },
+  { name: "Dashboard", href: "/company", icon: HomeIcon, current: false },
+  { name: "Register Cases", href: "/userlist", icon: UsersIcon, current: false },
   { name: "Offered Packages", href: "#", icon: FolderIcon, current: true },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+  
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -318,7 +316,7 @@ const Packages = () => {
             <th>Ambulance Expense</th>
             <th>Surgery</th>
             <th>Status</th>
-            <th></th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

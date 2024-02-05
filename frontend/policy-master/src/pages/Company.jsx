@@ -19,13 +19,14 @@ import {
   InboxIcon,
   UsersIcon,
   XMarkIcon,
+  EnvelopeOpenIcon
 } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
   CursorArrowRaysIcon,
-  EnvelopeOpenIcon,
+
 } from "@heroicons/react/24/outline";
 import "../pages/Company.css";
 import { CChart } from "@coreui/react-chartjs";
@@ -107,16 +108,21 @@ const applications = [
 ];
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Register Cases", href: "/userList", icon: UsersIcon, current: false },
+  {
+    name: "Register Cases",
+    href: "/userList",
+    icon: UsersIcon,
+    current: false,
+  },
   {
     name: "Offered Packages",
     href: "/packages",
     icon: FolderIcon,
     current: false,
   },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+ 
+  
+  
 ];
 
 const handlelogOut = () => {
@@ -255,39 +261,37 @@ export const Company = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
   const [statistic, setStatistic] = useState(null);
-  const [countBid, setCountBid] = useState([0,0]);
-  const [packageStats, setPackageStats] = useState(
-    {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
-      datasets: [
-        {
-          label: "Packages",
-          backgroundColor: "#3498DB",
-          data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
-        },
-      ],
-    }
-  );
+  const [countBid, setCountBid] = useState([0, 0]);
+  const [packageStats, setPackageStats] = useState({
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        label: "Packages",
+        backgroundColor: "#3498DB",
+        data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+      },
+    ],
+  });
 
-  const [packages,setPackages] = useState([]);
+  const [packages, setPackages] = useState([]);
 
-  const getPackAges = async  ()=>{
+  const getPackAges = async () => {
     try {
-      let payload = localStorage.getItem('user');
+      let payload = localStorage.getItem("user");
       let parsedPayload = JSON.parse(payload);
 
-      const {company_name} = parsedPayload;
+      const { company_name } = parsedPayload;
       const response = await axios.get(
         `http://127.0.0.1:8000/company_dashboard/list_company_packages/${company_name}`
       );
-      const {Packages} = response.data;
-     
+      const { Packages } = response.data;
+
       setPackages(Packages);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
-  
+  };
+
   const getStats = async () => {
     try {
       const response = await axios.get(
@@ -307,10 +311,14 @@ export const Company = () => {
     }
   };
 
-  const countBidGet = async () =>{
+  const countBidGet = async () => {
     try {
+      let payload = localStorage.getItem("user");
+      let parsedPayload = JSON.parse(payload);
+
+      const { company_name } = parsedPayload;
       const response = await axios.get(
-        "http://127.0.0.1:8000/company_dashboard/count_bids/adam/"
+        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}`
       );
       // Set the entire JSON object to data
       // {
@@ -320,30 +328,29 @@ export const Company = () => {
       //   "total_accepted_packages": 3,
       //   "total_revenue": 8872
       // }
-      const {
-        total_bids_count,
-        accepted_bids_count
-      } = response.data
-      setCountBid([total_bids_count,accepted_bids_count]);
+      const { total_bids_count, accepted_bids_count } = response.data;
+      setCountBid([total_bids_count, accepted_bids_count]);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
 
-  const getPackages = async () =>{
+  const getPackages = async () => {
     try {
       const response = await axios.get(
         "http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/"
       );
 
       const mappedData = packageStats.labels.map((label, index) => {
-        const monthData = response.data.find((data) => data.month_name === index + 1);
+        const monthData = response.data.find(
+          (data) => data.month_name === index + 1
+        );
         const count = monthData ? monthData.count : 0;
 
         return count;
       });
 
-      setPackageStats(prevChartData => ({
+      setPackageStats((prevChartData) => ({
         ...prevChartData,
         datasets: [
           {
@@ -352,11 +359,10 @@ export const Company = () => {
           },
         ],
       }));
-     
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -384,9 +390,6 @@ export const Company = () => {
     getPackAges();
   }, []);
 
-
-
- 
   return (
     <div className="main-dashboard">
       <div className="sidebar">
@@ -628,128 +631,114 @@ export const Company = () => {
         <div className="stats">
           <h3 className=" ">Last 3 Months</h3>
 
-          <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+          <dl className=" stats_report mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-0 shadow sm:px-6 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
-                  {/* <item.icon
+                  <EnvelopeOpenIcon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    /> */}
+                    />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Total Cases
                 </p>
               </dt>
-              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_cases}</p>
+              <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
+                <p className="text-2xl font-semibold text-gray-900">
+                  {statistic?.total_cases}
+                </p>
               </dd>
             </div>
 
             <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
-                  {/* <item.icon
+                  <EnvelopeIcon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    /> */}
+                    />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Completed Cases
+                <p className="ml-14 truncate text-sm font-medium text-gray-500">
+                  Completed Cases
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_completed_cases}</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {statistic?.total_completed_cases}
+                </p>
               </dd>
             </div>
 
             <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
-                  {/* <item.icon
+                  <UsersIcon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    /> */}
+                    />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Average Age
                 </p>
               </dt>
-              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                <p className="text-2xl font-semibold text-gray-900">{statistic?.average_age?.toFixed(1)}</p>
+              <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
+                <p className="text-2xl font-semibold text-gray-900">
+                  {statistic?.average_age?.toFixed(1)}
+                </p>
               </dd>
             </div>
 
-            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-2 pt-5 pb-5 shadow sm:px-3 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
-                  {/* <item.icon
+                  <CheckCircleIcon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    /> */}
+                    />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Accepted Package
+                 Bids Accepted
                 </p>
               </dt>
-              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_accepted_packages}</p>
+              <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
+                <p className="text-2xl font-semibold text-gray-900">
+                  {statistic?.total_accepted_packages}
+                </p>
               </dd>
             </div>
 
-            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-10 shadow sm:px-6 sm:pt-6">
+            <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-5 shadow sm:px-6 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
-                  {/* <item.icon
+                  <ChartBarIcon
                       className="h-6 w-6 text-white"
                       aria-hidden="true"
-                    /> */}
+                    />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Total Revenue
                 </p>
               </dt>
-              <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                <p className="text-2xl font-semibold text-gray-900">{statistic?.total_revenue}</p>
+              <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
+                <p className="text-2xl font-semibold text-gray-900">
+                  {statistic?.total_revenue}
+                </p>
               </dd>
             </div>
           </dl>
         </div>
 
         <div className="chartmain">
-          <div className="chart22">
-            <div className="sales">
-              <h1>Sales</h1>
-            </div>
+        <div className="chart11">
             <CChart
-              type="line"
+              type="doughnut"
               data={{
-                labels: [
-                  "January",
-                  "February",
-                  "March",
-                  "April",
-                  "May",
-                  "June",
-                  "July",
-                ],
-
+                labels: ["Total Bids Count", "Total Bids Accepted"],
                 datasets: [
                   {
-                    label: "Highest Sale",
-                    backgroundColor: "rgba(220, 220, 220, 0.2)",
-                    borderColor: "#3498DB",
-                    pointBackgroundColor: "rgba(220, 220, 220, 1)",
-                    pointBorderColor: "#fff",
-                    data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
-                  },
-                  {
-                    label: "Lowest Sale",
-                    backgroundColor: "rgba(151, 187, 205, 0.2)",
-                    borderColor: "#0b5485",
-                    pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                    pointBorderColor: "#fff",
-                    data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+                    backgroundColor: ["#3498DB", "	#20b2aa"],
+                    data: countBid,
                   },
                 ],
               }}
@@ -757,24 +746,6 @@ export const Company = () => {
                 plugins: {
                   legend: {
                     labels: {
-                      color: "--cui-body-color",
-                    },
-                  },
-                },
-                scales: {
-                  x: {
-                    grid: {
-                      color: "--cui-border-color-translucent",
-                    },
-                    ticks: {
-                      color: "--cui-body-color",
-                    },
-                  },
-                  y: {
-                    grid: {
-                      color: "--cui-border-color-translucent",
-                    },
-                    ticks: {
                       color: "--cui-body-color",
                     },
                   },
@@ -821,40 +792,9 @@ export const Company = () => {
           </div>
         </div>
         <div
-          className="        chartleads
-"
+          className="chartleads"
         >
-          <div className="chart11">
-            <CChart
-              type="doughnut"
-              data={{
-                labels: [
-                  "Total Bids Count",
-                  "Total Bids Accepted",
-                
-                ],
-                datasets: [
-                  {
-                    backgroundColor: [
-                      "#41B883",
-                      "#E46651",
-                     
-                    ],
-                    data: countBid,
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    labels: {
-                      color: "--cui-body-color",
-                    },
-                  },
-                },
-              }}
-            />
-          </div>
+        
           <div className="leads">
             <div className="overflow-hidden bg-white sm:rounded-md">
               <div className="recentleads">
@@ -865,34 +805,34 @@ export const Company = () => {
               <ul role="list" className="divide-y divide-gray-200">
                 {packages.map((application) => (
                   <li key={application?.case_id}>
-                    <a
-                      
-                      className="block hover:bg-gray-50"
-                    >
-                      <div className="flex items-center px-4 py-4 sm:px-6">
-                        <div className="flex min-w-0 flex-1 items-center">
-                          <div className="flex-shrink-0 ">
-                           
-                          </div>
-                          <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                    <a className="block hover:bg-gray-50">
+                      <div className="flex px-4 py-4 sm:px-6">
+                        <div className=" ">
+                          <div className=" "></div>
+                          <div className="recent_leads">
                             <div>
+                              <div>
                               <p className="truncate text-sm font-medium text-indigo-600">
-                                {application?.case_id}
-                              </p>
+                               <span>CASE ID</span> {application?.case_id}
+                              </p></div>
+                              <div>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
-                               
                                 <span className="truncate">
-                                  {application?.monthly_coverage}
+                                <span>Monthly Premium</span>  {application?.monthly_coverage}
                                 </span>
-                              </p>
+                              </p></div>
+                              <div>
                               <p className="mt-2 flex items-center text-sm text-gray-500">
-                               
-                               <span className="truncate">
-                                 {application?.updated_at?.split("T")[0]}
-                               </span>
-                             </p>
+                                <span className="truncate">
+                                 <span>Annual Coverage</span> {application?.total_annual_coverage}
+                                </span>
+                              </p></div>
+                             <div> <p className="mt-2 flex items-center text-sm text-gray-500">
+                                <span className="truncate">
+                                 Created At {application?.updated_at?.split("T")[0]}
+                                </span>
+                              </p></div>
                             </div>
-                           
                           </div>
                         </div>
                       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { Popover, Transition } from "@headlessui/react";
+
 import { Fragment } from "react";
 import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
@@ -11,13 +11,34 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useParams } from "react-router";
+import { Dialog, Menu, Transition } from "@headlessui/react";
 
-const navigation = [
-  { name: "Home", href: "#" },
-  { name: "Insurance", href: "#" },
-  { name: "About Us", href: "#" },
-  { name: "Contact Us", href: "#" },
+import {
+  Bars3BottomLeftIcon,
+  BellIcon,
+  CalendarIcon,
+  ChartBarIcon,
+  FolderIcon,
+  HomeIcon,
+  InboxIcon,
+  UsersIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+
+const nav = [
+  { name: "Dashboard", href: "/userdash", icon: HomeIcon, current: false },
+  { name: "Insurance Offers", href: "#", icon: UsersIcon, current: true },
+  { name: "Apply For Insurance", href: "/register", icon: FolderIcon, current: false }
+ 
 ];
+const userNavigation = [
+  { name: "Your Profile", href: "#" },
+  { name: "Settings", href: "#" },
+  { name: "Sign out", href: "#" },
+];
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 const features = [
   {
     name: "100% Free",
@@ -195,6 +216,7 @@ const Review = () => {
   const [data, setData] = useState(null);
   const [recommendedValue, setRecommendedValue] = useState("");
   const [budgetValue, setBudgetValue] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleCheckBoxChange = (value, checkboxName) => {
     setRecommendedValue(value)
@@ -227,7 +249,7 @@ const Review = () => {
     .then((response)=>{
       console.log("response", response.data)
       setTimeout(()=>{
-        swal("Successfully Logged In")
+        swal("Case submitted and notify to company")
       },100)
     })
     .catch((error)=>{
@@ -269,120 +291,125 @@ const Review = () => {
 
   return (
     <div className=" ">
-      <Popover as="header" className="relative">
-        <div className="bg-sky-300	 pt-6 pb-6">
-          <nav
-            className="relative mx-auto flex max-w-7xl items-center justify-between px-6"
-            aria-label="Global"
-          >
-            <div className="flex flex-1 items-center">
-              <div className="flex w-full items-center justify-between md:w-auto">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/mark.svg?from-color=teal&from-shade=200&to-color=cyan&to-shade=400&toShade=400"
-                    alt=""
-                  />
-                </a>
-                <div className="-mr-2 flex items-center md:hidden">
-                  <Popover.Button className="focus-ring-inset inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white">
-                    <span className="sr-only">Open main menu</span>
-                    {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
-                  </Popover.Button>
-                </div>
-              </div>
-              <div className="hidden space-x-8 md:ml-10 md:flex">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className=" text-xl font-medium text-white hover:text-sky-600"
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="hidden md:flex md:items-center md:space-x-6">
+         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+      {/* Sidebar component, swap this element with another sidebar if you like */}
+      <div className="logo flex flex-grow flex-col overflow-y-auto  pt-5">
+      <h1>logo here</h1>
+        <div className="mt-5 flex flex-1 flex-col">
+          <nav className="navbar flex-1 space-y-2 px-2 pb-4">
+            {nav.map((item) => (
               <a
-                href="/login"
-                className="inline-flex items-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-base font-medium text-white hover:bg-sky-400"
+                key={item.name}
+                href={item.href}
+                className={classNames(
+                  item.current ? 'bg-sky-600 text-white' : 'text-indigo-100 hover:bg-sky-600',
+                  'group flex items-center px-2 py-2 text-md font-medium rounded-md'
+                )}
               >
-                Log out
+                <item.icon className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
+                {item.name}
               </a>
-              {/* <a
-                    href="#"
-                    className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
-                  >
-                    Start free trial
-                  </a> */}
-            </div>
+            ))}
           </nav>
         </div>
-
-        <Transition
-          as={Fragment}
-          enter="duration-150 ease-out"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="duration-100 ease-in"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
+      </div>
+    </div>
+    <div className="flex flex-1 flex-col md:pl-64">
+      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+        <button
+          type="button"
+          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          onClick={() => setSidebarOpen(true)}
         >
-          <Popover.Panel
-            focus
-            className="absolute inset-x-0 top-0 origin-top transform p-2 transition md:hidden"
-          >
-            <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
-              <div className="flex items-center justify-between px-5 pt-4">
-                <div>
+          <span className="sr-only">Open sidebar</span>
+          <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+        </button>
+        <div className="flex flex-1 justify-between px-4">
+          <div className="flex flex-1">
+            <div className="insurance_heading"><h1>Case Details</h1></div>
+            {/* <form className="flex w-full md:ml-0" action="#" method="GET">
+              <label htmlFor="search-field" className="sr-only">
+                Search
+              </label>
+              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
+                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <input
+                  id="search-field"
+                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
+                  placeholder="Search"
+                  type="search"
+                  name="search"
+                />
+              </div>
+            </form> */}
+          </div>
+          <div className="ml-4 flex items-center md:ml-6">
+            {/* <button
+              type="button"
+              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              <span className="sr-only">View notifications</span>
+              <BellIcon className="h-6 w-6" aria-hidden="true" />
+            </button> */}
+
+            {/* Profile dropdown */}
+            <Menu as="div" className="relative ml-3">
+              {/* <div>
+                <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <span className="sr-only">Open user menu</span>
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?from-color=teal&from-shade=500&to-color=cyan&to-shade=600&toShade=600"
+                    className="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                   />
-                </div>
-                <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
-                    <span className="sr-only">Close menu</span>
-                    {/* <XMarkIcon className="h-6 w-6" aria-hidden="true" /> */}
-                  </Popover.Button>
-                </div>
-              </div>
-              <div className="pt-5 pb-6">
-                <div className="space-y-1 px-2">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
+                </Menu.Button>
+              </div> */}
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  {userNavigation.map((item) => (
+                    <Menu.Item key={item.name}>
+                      {({ active }) => (
+                        <a
+                          href={item.href}
+                          className={classNames(
+                            active ? 'bg-gray-100' : '',
+                            'block px-4 py-2 text-sm text-gray-700'
+                          )}
+                        >
+                          {item.name}
+                        </a>
+                      )}
+                    </Menu.Item>
                   ))}
-                </div>
-                <div className="mt-6 px-5">
-                  <a
-                    href="#"
-                    className="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
-                  >
-                    Start free trial
-                  </a>
-                </div>
-                <div className="mt-6 px-5">
-                  <p className="text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
-                    <a href="#" className="text-gray-900 hover:underline">
-                      Login
-                    </a>
-                  </p>
-                </div>
-              </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
+        </div>
+      </div>
+
+      <main>
+        <div className="py-6">
+         
+          {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+            <div className="py-4">
+              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
             </div>
-          </Popover.Panel>
-        </Transition>
-      </Popover>
+            
+          </div> */}
+        </div>
+      </main>
+    </div>
 
 
 
@@ -491,111 +518,7 @@ const Review = () => {
           </button>
         </div>
       </div>
-      <footer className="bg-sky-300" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">
-          Footer
-        </h2>
-        <div className="mx-auto max-w-md px-6 pt-12 sm:max-w-7xl lg:px-8 lg:pt-16">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8 xl:col-span-1">
-              <img
-                className="h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=gray&shade=300"
-                alt="Company name"
-              />
-              <p className="text-base text-white">
-                Making the world a better place through constructing elegant
-                hierarchies.
-              </p>
-              <div className="flex space-x-6">
-                {footerNavigation.social.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
-                    <span className="sr-only">{item.name}</span>
-                    {/* <item.//icon className="h-6 w-6" aria-hidden="true" /> */}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-base font-medium text-white">
-                    Solutions
-                  </h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.solutions.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-white">Support</h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.support.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-base font-medium text-white">Company</h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.company.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-white"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-12 md:mt-0">
-                  <h3 className="text-base font-medium text-white">Legal</h3>
-                  <ul role="list" className="mt-4 space-y-4">
-                    {footerNavigation.legal.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-base text-white hover:text-white"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-12 border-t border-gray-200 py-8">
-            <p className="text-base text-gray-600 xl:text-center">
-              &copy; 2020 Your Company, Inc. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+     
     </div>
   );
 };

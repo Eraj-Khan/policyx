@@ -25,9 +25,10 @@ import {
 const nav = [
 
 
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
-  { name: 'Register Cases', href: '#', icon: UsersIcon, current: true },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+  { name: 'Dashboard', href: '/company', icon: HomeIcon, current: false },
+  { name: 'Register Cases', href: '/userlist', icon: UsersIcon, current: false },
+  { name: 'Offered Packages', href: '/packages', icon: FolderIcon, current: false},
+  { name: "Bid Packages", href: "#", icon: InboxIcon, current: true },
   
 ]
 const userNavigation = [
@@ -382,7 +383,7 @@ const handleSubmit = () =>{
           </>
         )}
 
-        <label className="bid-label" htmlFor="bidInput">Enter Monthly Coverage</label>
+        <label className="bid-label" htmlFor="bidInput">Enter Monthly Premium</label>
         <input
         className="bid-input"
           type="number"
@@ -402,7 +403,7 @@ const handleSubmit = () =>{
           <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
           <p>Company Id: {submittedData.company_id}</p>
           <p>Company Name: {submittedData.company_name}</p>
-          <p>Monthly Coverage: {submittedData.monthly_coverage}</p>
+          <p>Monthly Premium: {submittedData.monthly_coverage}</p>
           <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
           <p>Surgery: {submittedData.surgery}</p>
    

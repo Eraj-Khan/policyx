@@ -33,12 +33,10 @@ import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
 const nav = [
 
 
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
+  { name: 'Dashboard', href: '/company', icon: HomeIcon, current: false },
   { name: 'Register Cases', href: '#', icon: UsersIcon, current: true },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  { name: 'Packages Offered', href: '/packages', icon: FolderIcon, current: false },
+
 ]
 const userNavigation = [
 
@@ -408,6 +406,7 @@ const filteredByStatus = filteredData.filter((item) => {
               <th>Selected Value</th>
               <th>Children</th>
               <th>Employment Status</th>
+              <th>Marital</th>
               <th>Gender</th>
               <th>Region</th>
               <th>Status</th>
@@ -443,6 +442,7 @@ const filteredByStatus = filteredData.filter((item) => {
                 <td>{data.recommended_value}</td>
                 <td>{data.children}</td>
                 <td>{data.employment_status}</td>
+                <td>{data.marital_status}</td>
                 <td>{data.gender}</td>
                 <td>{data.region}</td>
                 <td className="status">

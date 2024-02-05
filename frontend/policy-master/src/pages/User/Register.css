@@ -14,7 +14,8 @@
     padding-bottom: 30px;
     align-items: center;
     border-radius: 20px;
-
+    font-size: 16px;
+    font-family: 'Poppins';
     width: 517px;
     background-color: #f4f4f4;
   
@@ -183,6 +184,8 @@ margin-right: 5px;
   }
   .main{
     display: flex;
+    margin-top: -50px;
+
   }
   .budget{
   

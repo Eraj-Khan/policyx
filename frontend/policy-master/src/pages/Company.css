@@ -12,7 +12,7 @@
 }
 .chartmain{
 display: flex;
-gap: 20px;
+gap: 75px;
 margin-top: 50px;
 
 }
@@ -20,11 +20,14 @@ nav{
     font-family: "Poppins";
    
 }
+.stats_report{
+    height: 107px;
+}
 .chart11{
   
-    width: 570px;
-    margin-top: 60px;
-   margin-left: 300px;
+    width: 435px;
+    margin-top: -13px;
+    margin-left: 300px;
 }
 .chart22{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -83,19 +86,21 @@ font-weight: 600;
     background-color: #3498DB;
   } 
   .leads{
-    width: 590px;
+    width: 69%;
     margin-top: 65px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 18px;
     height: 560px;
+    margin-left: 362px;
 }
 .recentleads{
     font-family: "Poppins";
     font-weight: 600;
     color: #3498DB;
-    font-size: 30px;
+    font-size: 30px;}
+.recent_leads{
+    display: flex;
 }
-    
   
   .chartleads{
    gap: 34px;
