@@ -22,7 +22,7 @@ import {
   EnvelopeOpenIcon
 } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
-import logotwo from "../image/logo-2.png";
+import logotwo from "../image/logo1.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
 import {
@@ -478,22 +478,18 @@ export const Company = () => {
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0" aria-hidden="true">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
+               
               </div>
             </div>
           </Dialog>
         </Transition.Root>
 
-        {/* Static sidebar for desktop */}
+   
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
+        
           <div className=" sidebar-menu flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
             <div className="flex flex-shrink-0">
-              {/* <img
-            className="h-12 w-auto"
-            src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
-            alt="Your Company"
-          /> */}
+            
               <div className="logo">
               <img
               
@@ -538,23 +534,7 @@ export const Company = () => {
             </button>
             <div className="flex flex-1 justify-between px-4">
               <div className="flex flex-1">
-                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-              <label htmlFor="search-field" className="sr-only">
-                Search
-              </label>
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                  placeholder="Search"
-                  type="search"
-                  name="search"
-                />
-              </div>
-            </form> */}
+             
               </div>
               <div className="ml-4 flex items-center md:ml-6">
                 <a

@@ -19,7 +19,7 @@ import "../Insurrance/Packages.css";
 import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
-import logotwo from "../../image/logo-2.png"
+import logotwo from "../../image/logo1.png"
 const nav = [
   { name: "Dashboard", href: "/company", icon: HomeIcon, current: false },
   { name: "Register Cases", href: "/userlist", icon: UsersIcon, current: false },

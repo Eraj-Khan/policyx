@@ -4,7 +4,7 @@ import { Dialog, Menu, Transition } from "@headlessui/react";
 import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
-import logotwo from "../../image/logo-2.png";
+import logotwo from "../../image/logo1.png";
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -32,12 +32,15 @@ import "../User/InsurranceOffer.css";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 
-
 const nav = [
   { name: "Dashboard", href: "/userdash", icon: HomeIcon, current: false },
   { name: "Insurance Offers", href: "#", icon: UsersIcon, current: true },
-  { name: "Apply For Insurance", href: "/register", icon: FolderIcon, current: false }
- 
+  {
+    name: "Apply For Insurance",
+    href: "/register",
+    icon: FolderIcon,
+    current: false,
+  },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -52,10 +55,7 @@ const InsurranceOffer = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
   const handleBidClick = (caseId, company_name) => {
-    // Handle the click event and redirect to the next page using React Router
-    // For now, it just logs the caseId
     console.log(`Place bid for case ID: ${caseId}`);
     axios
       .put(
@@ -64,9 +64,9 @@ const InsurranceOffer = () => {
       )
       .then((response) => {
         console.log(response.data);
-        setTimeout(()=>{
-            swal("Package Accepted and Notified to Company")
-          },100)
+        setTimeout(() => {
+          swal("Package Accepted and Notified to Company");
+        }, 100);
       })
       .catch((error) => {
         console.log(error);
@@ -82,10 +82,8 @@ const InsurranceOffer = () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-          //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
 
-        // Set the entire JSON object to data
         const { Bids } = response.data;
 
         setNotification(Bids);
@@ -99,57 +97,54 @@ const InsurranceOffer = () => {
   }, []);
   return (
     <div>
-    <div>
-    <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-      {/* Sidebar component, swap this element with another sidebar if you like */}
-      <div className="logo flex flex-grow flex-col overflow-y-auto  pt-5">
-      <div className="flex flex-shrink-0">
-              {/* <img
-            className="h-12 w-auto"
-            src="https://www.pinclipart.com/picdir/middle/336-3368754_healthcare-it-solution-provider-health-insurance-logo-png.png"
-            alt="Your Company"
-          /> */}
+      <div>
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+          <div className="logo flex flex-grow flex-col overflow-y-auto  pt-5">
+            <div className="flex flex-shrink-0">
               <div className="logo">
-              <img
-              
-              src={logotwo} 
-              
-            />
+                <img src={logotwo} />
               </div>
             </div>
-        <div className="mt-5 flex flex-1 flex-col">
-          <nav className="navbar flex-1 space-y-2 px-2 pb-4">
-            {nav.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={classNames(
-                  item.current ? 'bg-sky-600 text-white' : 'text-indigo-100 hover:bg-sky-600',
-                  'group flex items-center px-2 py-2 text-md font-medium rounded-md'
-                )}
-              >
-                <item.icon className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
-                {item.name}
-              </a>
-            ))}
-          </nav>
+            <div className="mt-5 flex flex-1 flex-col">
+              <nav className="navbar flex-1 space-y-2 px-2 pb-4">
+                {nav.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-sky-600 text-white"
+                        : "text-indigo-100 hover:bg-sky-600",
+                      "group flex items-center px-2 py-2 text-md font-medium rounded-md"
+                    )}
+                  >
+                    <item.icon
+                      className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div className="flex flex-1 flex-col md:pl-64">
-      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-        <button
-          type="button"
-          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-          onClick={() => setSidebarOpen(true)}
-        >
-          <span className="sr-only">Open sidebar</span>
-          <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
-        </button>
-        <div className="flex flex-1 justify-between px-4">
-          <div className="flex flex-1">
-            <div className="bid_heading"><h1>Insurance Offers</h1></div>
-            {/* <form className="flex w-full md:ml-0" action="#" method="GET">
+        <div className="flex flex-1 flex-col md:pl-64">
+          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+            <button
+              type="button"
+              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <div className="flex flex-1 justify-between px-4">
+              <div className="flex flex-1">
+                <div className="bid_heading">
+                  <h1>Insurance Offers</h1>
+                </div>
+                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
               <label htmlFor="search-field" className="sr-only">
                 Search
               </label>
@@ -166,9 +161,9 @@ const InsurranceOffer = () => {
                 />
               </div>
             </form> */}
-          </div>
-          <div className="ml-4 flex items-center md:ml-6">
-            {/* <button
+              </div>
+              <div className="ml-4 flex items-center md:ml-6">
+                {/* <button
               type="button"
               className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
@@ -176,9 +171,9 @@ const InsurranceOffer = () => {
               <BellIcon className="h-6 w-6" aria-hidden="true" />
             </button> */}
 
-            {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
-              {/* <div>
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  {/* <div>
                 <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
@@ -188,52 +183,50 @@ const InsurranceOffer = () => {
                   />
                 </Menu.Button>
               </div> */}
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {userNavigation.map((item) => (
-                    <Menu.Item key={item.name}>
-                      {({ active }) => (
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      {userNavigation.map((item) => (
+                        <Menu.Item key={item.name}>
+                          {({ active }) => (
+                            <a
+                              href={item.href}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              {item.name}
+                            </a>
                           )}
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  ))}
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                        </Menu.Item>
+                      ))}
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <main>
-        <div className="py-6">
-         
-          {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+          <main>
+            <div className="py-6">
+              {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
             <div className="py-4">
               <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
             </div>
             
           </div> */}
+            </div>
+          </main>
         </div>
-      </main>
-    </div>
-       </div>
-    
+      </div>
 
       <div className="notification-container_1">
         {notification?.map((data) => (
@@ -242,66 +235,55 @@ const InsurranceOffer = () => {
             key={data.case_id}
             className="insurrance-item"
           >
-            
-          
             <div key={data.case_id} className="notif-item">
-            <span style={{ }}>
-              {!data?.is_expired ? "active" : "expired"}
-            </span>
-              <li className="case_id"> <label>Case id:</label> {data.case_id}</li>
-              <li className="company_name"><label>Company Name:</label>{data.company_name}</li>
-              <li className="recommended"><label> Monthly Coverage:</label> {data.monthly_coverage}</li>
+              <span style={{}}>{!data?.is_expired ? "active" : "expired"}</span>
+              <li className="case_id">
+                {" "}
+                <label>Case id:</label> {data.case_id}
+              </li>
+              <li className="company_name">
+                <label>Company Name:</label>
+                {data.company_name}
+              </li>
               <li className="recommended">
-               <label> dental:</label> {data.dental_and_vision_care}
+                <label> Monthly Coverage:</label> {data.monthly_coverage}
+              </li>
+              <li className="recommended">
+                <label> dental:</label> {data.dental_and_vision_care}
               </li>
               <li className="recommended">
                 {" "}
-               <label> Annual Coverage:</label> {data.total_annual_coverage}
+                <label> Annual Coverage:</label> {data.total_annual_coverage}
               </li>
               <li className="recommended">
                 {" "}
-               <label>Accidental Emergencies:</label>  {data.accidental_emergencies}
+                <label>Accidental Emergencies:</label>{" "}
+                {data.accidental_emergencies}
               </li>
               <li className="recommended">
                 {" "}
-              <label> Hospitalization Room Charges:</label> {" "}
+                <label> Hospitalization Room Charges:</label>{" "}
                 {data.hospitalization_room_charges}
               </li>
               <li className="recommended">
                 {" "}
-               <label> Other Medical Expenses:</label> {data.other_medical_expenses}
+                <label> Other Medical Expenses:</label>{" "}
+                {data.other_medical_expenses}
               </li>
 
               <button
-              className="insur-place"
-              onClick={() => handleBidClick(data.case_id, data.company_name)}
-            >
-              Accept
-            </button>
-
-          
+                className="insur-place"
+                onClick={() => handleBidClick(data.case_id, data.company_name)}
+              >
+                Accept
+              </button>
             </div>
             <img
               className="insur-image"
-              src={card} // Add the image source to each data item
+              src={card} 
               alt={`Profile - ${data.case_id}`}
             />
-            {/* <ul>
-              <li className="case_id">CASE ID: {data.case_id}</li>
-              <div className="inline-info">
-                <li className="age">AGE: {data.age}</li>
-                <li className="income">Income: {data.income}</li>
-              </div>
-              <li className="recommended">
-                SELECTED VALUE: {data.recommended_value}
-              </li>
-            </ul> */}
-
-          
-
-          
           </div>
-
         ))}
       </div>
     </div>

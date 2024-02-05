@@ -25,7 +25,7 @@ import "@fontsource/poppins";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import "../Insurrance/UserList.css";
-import logotwo from "../../image/logo-2.png";
+import logotwo from "../../image/logo1.png";
 
 import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
 

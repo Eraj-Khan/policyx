@@ -1,7 +1,32 @@
 
-.nav-bar{
+.nav-bar{  background-color: #3498DB;
+  height: 90px;
+
+}
+.main_footer{
+   background-color: #3498DB;
+
+}
+.main_footer{
+  font-family: 'Poppins';
+}
+.about_us{
+  font-family: 'Poppins';
   background-color: #3498DB;
 
+}
+.testimonial{
+  font-family: 'Poppins';
+  background-color: #3498DB;
+}
+.nav-bar .nav_menu{
+  margin-top: 10px;
+}
+.visit{
+  font-family: 'Poppins';
+}
+.nav_menu{
+  margin-top: -10px;
 }
 
   .main-images{
@@ -14,9 +39,17 @@
 
   }
   .homelogo .home_logo {
-    width: 100%;} 
+    width: 100%;
+    position: relative;
+    /* margin-top: -50px; */
+    top: -44px;} 
     .homelogo{
-      width: 150px;
+      width: 112px;
+    }
+    .signin_signup{
+      top:-30px;
+      position: relative;
+
     }
 
   .main{

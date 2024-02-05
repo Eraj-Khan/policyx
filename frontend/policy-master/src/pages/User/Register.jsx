@@ -318,12 +318,7 @@ const Register = () => {
       <main>
         <div className="py-6">
          
-          {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-            <div className="py-4">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
-            </div>
-            
-          </div> */}
+
         </div>
       </main>
     </div>
@@ -382,31 +377,7 @@ const Register = () => {
                     />
                     <label htmlFor="female"> Female </label>
                   </div>
-                  {/* <div className="select3">
-                  <div className="bmi">
-                    <label htmlFor="bmi" id="bmi_label">
-                      BMI:
-                    </label>
-                    <input
-                      type="text"
-                      name="bmi"
-                      id="bmi"
-                      value={bmi}
-                      onChange={(e) => setBmi(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="children">
-                    <label htmlFor="children">Children:</label>
-                    <input
-                      type="number"
-                      name="children"
-                      id="children"
-                      value={children}
-                      onChange={(e) => setChildren(e.target.value)}
-                    />
-                  </div>
-                </div> */}
+                
 
                   <div className="calculate">
                     <input
@@ -505,14 +476,11 @@ const Register = () => {
                     />
                   </div>
                   <div className="education">
-                    {/* <label htmlFor="education">
-    {" "}
-    <h1 className="educationheading"> Education </h1>
-  </label> */}
+    
                     <select
                       name="education"
                       id="education"
-                      value={education} // Initially set to an empty string
+                      value={education} 
                       onChange={(e) => setEducation(e.target.value)}
                     >
                       <option value="" disabled selected hidden>
@@ -550,14 +518,11 @@ const Register = () => {
                     </div>
 
                     <div className="region">
-                      {/* <label htmlFor="education">
-    {" "}
-    <h1 className="educationheading"> Education </h1>
-  </label> */}
+  
                       <select
                         name="region"
                         id="region"
-                        value={region} // Initially set to an empty string
+                        value={region} 
                         onChange={(e) => setRegion(e.target.value)}
                       >
                         <option value="" disabled selected hidden>
@@ -568,17 +533,7 @@ const Register = () => {
                       </select>
                     </div>
                 
-{/* 
-                  <div className="budget">
-                    <input
-                      type="number"
-                      name="budget"
-                      id="budget"
-                      value={budget}
-                      onChange={(e) => setBudget(e.target.value)}
-                      placeholder="Budget(PKR)"
-                    />
-                  </div> */}
+
 
                   <div className="button">
                     <button
