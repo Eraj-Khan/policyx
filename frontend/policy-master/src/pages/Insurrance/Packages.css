@@ -1,0 +1,83 @@
+/* .user-pack{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width:350px;
+    margin-top: 15px;
+} */
+.user-pack-table {
+    width: 82%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 268px;
+    font-family: "poppins";
+font-size: 14px;
+border-radius: 8px;
+
+  }
+  
+  .user-pack-table th, .user-pack-table td {
+    border: 1px solid ;
+    border-color: #c9c9c98e;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  .user-pack-table th {
+    background-color: #f2f2f2;
+    color: #0b5485;
+
+  }
+  
+  .user-pack-table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .bid-update {
+    background-color: #3498DB;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fas.fa-heart {
+    color: red;
+  }
+  .package_search input{
+    width: 20%;
+    margin-left: 267px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-top: -20px;
+  }
+  .packages_heading{
+    font-size: 25px;
+    align-self: center;
+    font-family: "poppins";
+    color: #0b5485;
+  font-weight: 800;    
+  }
+  .package_sidebar{
+    background-color: #3498DB;
+
+  }
+  .logo_package{
+    background-color: #3498DB;
+
+  }

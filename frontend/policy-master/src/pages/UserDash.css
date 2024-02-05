@@ -1,39 +1,47 @@
-.stats{
+.stats {
     width: 1193px;
     margin-left: 292px;
 }
-.stats_content{
+
+.stats_content {
     margin-left: -35px;
     width: 105%;
-    margin-top: 37px; 
+    margin-top: 37px;
 }
-.chart1{
-  
+
+.chart1 {
+
     width: 574px;
     margin-top: 55px;
-    margin-left: -5px;  
+    margin-left: -5px;
 }
-.chart2{
+
+.chart2 {
     width: 650px;
     margin-top: 90px;
     margin-left: 275px;
 }
-.chart12{
+
+.chart12 {
     display: flex;
 }
-.content{
+
+.content {
     margin-left: 190px;
 }
+
 .partner {
     margin-left: 332px;
     width: 70%;
 }
-.footer{
+
+.footer {
     margin-left: 255px;
 
     margin-top: 360px;
 }
-.color-image{
+
+.color-image {
     background-color: #3498DB;
     width: 100%;
     margin-left: 10px;
@@ -41,18 +49,21 @@
     height: 300px;
     border-radius: 50px;
 }
-.image_color_background{
+
+.image_color_background {
     display: flex;
     margin-top: 45px;
 
 }
-.image7{
+
+.image7 {
     position: absolute;
     right: 26px;
     top: 110px;
     width: 35%;
 }
-.color-image h1{
+
+.color-image h1 {
     font-family: "Poppins";
     font-weight: 600;
     color: white;
@@ -60,7 +71,8 @@
     margin-left: 30px;
     margin-top: 43px;
 }
-.color-image p{
+
+.color-image p {
     font-family: "Poppins";
     font-weight: 600;
     color: white;
@@ -68,14 +80,146 @@
     margin-left: 30px;
     max-width: 50%;
 }
-.color-image .image8{
+
+.color-image .image8 {
     width: 20%;
     position: absolute;
     left: 712px;
-    top: 115px;
-    z-index: 0;}
-   .animate__animated.animate__pulse{
+    top: 110px;
+    z-index: 0;
+}
+
+.animate_animated.animate_pulse {
+    animation-iteration-count: infinite;
+    --animate-duration: 4s;
+
+}
+
+.money_icon {
+    align-self: center;
+}
+
+.icon_cards ul {
+    margin-left: 385px;
+    margin-top: 50px;
+
+}
+
+.icon_cards ul li {
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
+    border: 5px solid #3498DB;
+}
+.main_cards{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    /* margin: auto; */
+    margin-top: 70px;
+margin-left: 200px;
+    padding-bottom: 100px;
+    justify-content: center;
+}
+.card_1_img{
+    display: flex;
+    gap: 20px;
+}
+.card_2_img{
+    display: flex;
+    gap: 20px;
+}
+.card_heading1{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 40px;
+}
+.card_img2{
+    width: 80px;
+}
+.card_heading2{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 40px;
+}
+.card_1{
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 50px;
+    background-color: rgba(245, 245, 245, 0.836);
+    border: 3px solid #3498DB;
+    color: #3498DB;
+    width: 35%;
+
+
+}
+.card_2{
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 50px;
+    background-color: rgba(245, 245, 245, 0.836);
+    border: 3px solid #3498DB;
+    color: #3498DB;
+
+
+}
+.card_1 button{
+    border-radius: 50px;
+    width: 50%;
+    background-color: #3498DB;
+    height: 55px;
+    font-family: "Poppins";
+
+}
+.card_2 button{
+    font-family: "Poppins";
+background-color: #3498DB;
+    border-radius: 50px;
+    width: 50%;
+    height: 55px;
+}
+.plans_main_heading{
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #3498DB;
+    text-align: center;
+    font-size: 30px;
+}
+.chart44{    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 600px;
+    /* margin-top: 90px; */
+    height: 440px;
+    padding: 20px;
+    margin-left: 45px;}
+    .card_table{
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: 50%;
+        border: 4px solid #3498DB;
+
+    }
+    .animate_animated.animate_pulse {
         animation-iteration-count: infinite;
         --animate-duration: 4s;
-    
-      } 
+    }
+    .cards_list{
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 0.7px;
+
+    }
+    .cards_list li{
+        margin-bottom: 18px;
+    }
+    .card_head li{
+        font-family: "Poppins";
+
+    }
+    .card_table .plans-head{
+        color:#0b5485 ;
+font-weight: 600;
+font-size: 20px;
+    }
+    .card_table button{
+        margin-top: 20px;
+    }
+    .user_nav{
+        background-color: #3498DB;
+
+    }

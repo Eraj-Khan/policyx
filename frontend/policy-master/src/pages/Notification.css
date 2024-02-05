@@ -1,6 +1,7 @@
 .notification {
   justify-content: right;
 }
+
 .notification-head {
     font-style: normal;
     font-size: 26px;
@@ -24,28 +25,42 @@
   margin-top: -55px;
 }
 .notification-container {
-  margin: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  /* margin: 20px; */
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  width: 73%;
+  padding-top: 25px;
+height: 210px;
+  gap: 20px;
+  justify-content: center;
+  box-shadow: 0 13px 13px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 5px;
-  background-color: #b3cde2;
   margin-top: 62px;
+}
+.notification-pending{
+  padding-left: 10px;
+
 }
 .notification-container li {
     list-style-type: none;
     margin-bottom: 8px;
   }
   .notification-item {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
+    font-size: 16px;
+    border-bottom: 1px solid;
+    border-bottom-color: #4c6daf;
+    font-family: 'Poppins';
+    height: 50px;
+    padding-top: 16px;
+    /* border: 1px solid #ddd; */
     background-color: #fff;
-    box-shadow: 0 5px 2px grey;
     gap: 2px;
-    height: 99px;
-   
-    
-  }
+}
+.vl{
+    border-color: #0b5485;
+    border-left: 1px solid ;
+}
   .notification-item li {
     list-style-type: none;
     margin-bottom: 8px;
@@ -60,6 +75,23 @@
   .notification-item li.recommended {
     font-weight: bold;
     color: #76797c;
+  }
+  .notification-completed h1{
+    background-color: #6EC531;
+    color: white;
+    width: 111px;
+    font-family: 'Poppins';
+    border-radius: 20px;
+    padding: 11px;
+  }
+  .notification-pending h1{
+    background-color: #0b5485;
+    color: white;
+    width: 90px;
+    font-family: 'Poppins';
+
+    border-radius: 20px;
+    padding: 11px;
   }
 /* Notification.css */
 

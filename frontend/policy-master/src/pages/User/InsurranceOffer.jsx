@@ -1,6 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
 import React from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+import "@fontsource/poppins";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/400.css";
+import logotwo from "../../image/logo1.png";
 import {
   Bars3BottomLeftIcon,
   BellIcon,
@@ -22,19 +26,21 @@ import {
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 import "../Insurrance/UserList.css";
-import bluess from "../../image/bluess.jpg";
+import card from "../../image/card-image.jpg";
 import "../User/InsurranceOffer.css";
 
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
-
-const navigation = [
-  { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Users", href: "#", icon: UsersIcon, current: false },
-  { name: "Users Review", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
+const nav = [
+  { name: "Dashboard", href: "/userdash", icon: HomeIcon, current: false },
+  { name: "Insurance Offers", href: "#", icon: UsersIcon, current: true },
+  {
+    name: "Apply For Insurance",
+    href: "/register",
+    icon: FolderIcon,
+    current: false,
+  },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -47,10 +53,9 @@ function classNames(...classes) {
 
 const InsurranceOffer = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleBidClick = (caseId, company_name) => {
-    // Handle the click event and redirect to the next page using React Router
-    // For now, it just logs the caseId
     console.log(`Place bid for case ID: ${caseId}`);
     axios
       .put(
@@ -59,6 +64,9 @@ const InsurranceOffer = () => {
       )
       .then((response) => {
         console.log(response.data);
+        setTimeout(() => {
+          swal("Package Accepted and Notified to Company");
+        }, 100);
       })
       .catch((error) => {
         console.log(error);
@@ -74,10 +82,8 @@ const InsurranceOffer = () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-          //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
 
-        // Set the entire JSON object to data
         const { Bids } = response.data;
 
         setNotification(Bids);
@@ -91,115 +97,192 @@ const InsurranceOffer = () => {
   }, []);
   return (
     <div>
-      <div className="ml-4 flex items-center md:ml-6 notification">
-        {/* Profile dropdown */}
-        <Menu as="div" className="relative ml-3">
-          <div>
-            <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
-              <span className="sr-only">Open user menu</span>
-              <img
-                className="w-10 rounded-full"
-                src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
-                alt=""
-              />
-            </Menu.Button>
+      <div>
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+          <div className="logo flex flex-grow flex-col overflow-y-auto  pt-5">
+            <div className="flex flex-shrink-0">
+              <div className="logo">
+                <img src={logotwo} />
+              </div>
+            </div>
+            <div className="mt-5 flex flex-1 flex-col">
+              <nav className="navbar flex-1 space-y-2 px-2 pb-4">
+                {nav.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-sky-600 text-white"
+                        : "text-indigo-100 hover:bg-sky-600",
+                      "group flex items-center px-2 py-2 text-md font-medium rounded-md"
+                    )}
+                  >
+                    <item.icon
+                      className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              {userNavigation.map((item) => (
-                <Menu.Item key={item.name}>
-                  {({ active }) => (
-                    <a
-                      href={item.href}
-                      className={classNames(
-                        active ? "bg-gray-100" : "",
-                        "block px-4 py-2 text-sm text-gray-700"
-                      )}
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </Menu.Item>
-              ))}
-            </Menu.Items>
-          </Transition>
-        </Menu>
-      </div>
-      <div className="bellicon">
-        <h1 className="notification-heading text-sky-600">Insurrance Offers</h1>
+        </div>
+        <div className="flex flex-1 flex-col md:pl-64">
+          <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+            <button
+              type="button"
+              className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+            <div className="flex flex-1 justify-between px-4">
+              <div className="flex flex-1">
+                <div className="bid_heading">
+                  <h1>Insurance Offers</h1>
+                </div>
+                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
+              <label htmlFor="search-field" className="sr-only">
+                Search
+              </label>
+              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
+                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <input
+                  id="search-field"
+                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
+                  placeholder="Search"
+                  type="search"
+                  name="search"
+                />
+              </div>
+            </form> */}
+              </div>
+              <div className="ml-4 flex items-center md:ml-6">
+                {/* <button
+              type="button"
+              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              <span className="sr-only">View notifications</span>
+              <BellIcon className="h-6 w-6" aria-hidden="true" />
+            </button> */}
 
-        <span className="sr-only">View notifications</span>
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  {/* <div>
+                <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <span className="sr-only">Open user menu</span>
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </Menu.Button>
+              </div> */}
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      {userNavigation.map((item) => (
+                        <Menu.Item key={item.name}>
+                          {({ active }) => (
+                            <a
+                              href={item.href}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              {item.name}
+                            </a>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
+            </div>
+          </div>
+
+          <main>
+            <div className="py-6">
+              {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+            <div className="py-4">
+              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+            </div>
+            
+          </div> */}
+            </div>
+          </main>
+        </div>
       </div>
 
-      <div className="notifi-container">
+      <div className="notification-container_1">
         {notification?.map((data) => (
           <div
             style={{ position: "relative" }}
             key={data.case_id}
             className="insurrance-item"
           >
-            <img
-              className="insur-image"
-              src={bluess} // Add the image source to each data item
-              alt={`Profile - ${data.case_id}`}
-            />
-            <span style={{ position: "absolute", top: 0, right: 10 }}>
-              {!data?.is_expired ? "active" : "expired"}
-            </span>
-            <div key={data.case_id} className="notification-item">
-              <li className="case_id"> CASE ID: {data.case_id}</li>
-              <li className="age">Company Name: {data.company_name}</li>
-              <li className="recommended"> Company Bid: {data.company_bid}</li>
+            <div key={data.case_id} className="notif-item">
+              <span style={{}}>{!data?.is_expired ? "active" : "expired"}</span>
+              <li className="case_id">
+                {" "}
+                <label>Case id:</label> {data.case_id}
+              </li>
+              <li className="company_name">
+                <label>Company Name:</label>
+                {data.company_name}
+              </li>
               <li className="recommended">
-                dental: {data.dental_and_vision_care}
+                <label> Monthly Coverage:</label> {data.monthly_coverage}
+              </li>
+              <li className="recommended">
+                <label> dental:</label> {data.dental_and_vision_care}
               </li>
               <li className="recommended">
                 {" "}
-                Annual Coverage: {data.total_annual_coverage}
+                <label> Annual Coverage:</label> {data.total_annual_coverage}
               </li>
               <li className="recommended">
                 {" "}
-                Accidental Emergencies: {data.accidental_emergencies}
+                <label>Accidental Emergencies:</label>{" "}
+                {data.accidental_emergencies}
               </li>
               <li className="recommended">
                 {" "}
-                Hospitalization Room Charges:{" "}
+                <label> Hospitalization Room Charges:</label>{" "}
                 {data.hospitalization_room_charges}
               </li>
               <li className="recommended">
                 {" "}
-                Other Medical Expenses: {data.other_medical_expenses}
+                <label> Other Medical Expenses:</label>{" "}
+                {data.other_medical_expenses}
               </li>
-            </div>
-            {/* <ul>
-              <li className="case_id">CASE ID: {data.case_id}</li>
-              <div className="inline-info">
-                <li className="age">AGE: {data.age}</li>
-                <li className="income">Income: {data.income}</li>
-              </div>
-              <li className="recommended">
-                SELECTED VALUE: {data.recommended_value}
-              </li>
-            </ul> */}
 
-            <button
-              className="insur-place"
-              onClick={() => handleBidClick(data.case_id, data.company_name)}
-            >
-              Accept
-            </button>
-
-            <div className="icon-container">
-              <i className="fas fa-heart"></i>
+              <button
+                className="insur-place"
+                onClick={() => handleBidClick(data.case_id, data.company_name)}
+              >
+                Accept
+              </button>
             </div>
+            <img
+              className="insur-image"
+              src={card} 
+              alt={`Profile - ${data.case_id}`}
+            />
           </div>
         ))}
       </div>
