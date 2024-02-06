@@ -22,3 +22,5 @@ class CompanyUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyUser
         fields = ['company_name','business_type','business_address','contact_person','company_number','industry','terms_and_conditions_accepted']
+
+    

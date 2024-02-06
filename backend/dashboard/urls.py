@@ -10,9 +10,9 @@ urlpatterns = [
     path('list_all_users/<str:case_id>/', list_all_users, name='all_users'),
     path('accept_package/<str:case_id>/<str:company_name>', accept_package, name='accept_package'),
     path('list_company_packages/<str:company_name>/', list_company_packages, name='list_company_packages'),
-    path('statistics/', get_statistics, name='get_statistics'),
-    path('monthly_completed_cases/', get_monthly_completed_cases, name='get_monthly_completed_cases'),
-    path('average_package_coverage/', get_average_package_coverage, name='get_average_package_coverage'),
-    path('count_bids/<str:company_name>/', count_bids, name='count_accepted_bids'),
+    path('statistics/<str:id>', get_statistics, name='get_statistics'),
+    path('monthly_completed_cases/<str:id_user>/', get_monthly_completed_cases, name='get_monthly_completed_cases'),
+    path('average_package_coverage/<str:id_user>/', get_average_package_coverage, name='get_average_package_coverage'),
+    path('count_bids/<str:company_name>/<str:id_user>/', count_bids, name='count_accepted_bids'),
 
 ]
