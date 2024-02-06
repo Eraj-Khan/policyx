@@ -40,7 +40,7 @@ const Packages = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigation = useNavigate();
 
-  const filteredData = data.filter((item) =>
+  const filteredData = data?.filter((item) =>
     item.case_id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -333,7 +333,7 @@ const Packages = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((data) => (
+          {filteredData?.map((data) => (
             <tr key={data.case_id}>
               {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
               <td>{data.case_id}</td>
