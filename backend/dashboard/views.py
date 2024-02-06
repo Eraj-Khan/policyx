@@ -193,7 +193,7 @@ def get_statistics(request):
             'total_completed_cases': total_completed_cases,
             'average_age': average_age,
             'total_accepted_packages': total_accepted_packages,
-            'total_revenue': total_revenue,
+            'total_revenue': tid_userotal_revenue,
 
         }
 
@@ -204,9 +204,9 @@ def get_statistics(request):
 
 
 @api_view(['GET'])
-def get_monthly_completed_cases(request):
+def get_monthly_completed_cases(requests, id_user):
     try:
-        monthly_completed_cases = CompanyDashboard.objects.filter(is_completed=True) \
+        monthly_completed_cases = CompanyDashboard.objects.filter(id_user=id_user ,is_completed=True) \
             .annotate(month=TruncMonth('created_at')) \
             .annotate(month_name=Extract('month', 'month')) \
             .values('month_name') \
@@ -218,9 +218,9 @@ def get_monthly_completed_cases(request):
         return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 @api_view(['GET'])
-def get_average_package_coverage(request):
+def get_average_package_coverage(request, id_user):
     try:
-        average_coverage = CompanyPackages.objects.filter(is_accepted=True) \
+        average_coverage = CompanyPackages.objects.filter(case_user_id=id_user, is_accepted=True) \
             .aggregate(avg_coverage=Avg('total_annual_coverage'))['avg_coverage']
 
         return Response({'average_coverage': average_coverage}, status=status.HTTP_200_OK)
@@ -229,11 +229,11 @@ def get_average_package_coverage(request):
         return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
-def count_bids(request, company_name):
+def count_bids(request, company_name,id_user):
     try:
-        total_bids_count = CompanyPackages.objects.filter(company_name=company_name).count()
+        total_bids_count = CompanyPackages.objects.filter(case_user_id=id_user,company_name=company_name).count()
 
-        accepted_bids_count = CompanyPackages.objects.filter(company_name=company_name, is_accepted=True).count()
+        accepted_bids_count = CompanyPackages.objects.filter(case_user_id=id_user,company_name=company_name, is_accepted=True).count()
 
         return Response({'total_bids_count': total_bids_count, 'accepted_bids_count': accepted_bids_count}, status=status.HTTP_200_OK)
 
