@@ -38,8 +38,9 @@ def get_tokens_for_user(user):
 
 class CustomUserRegistrationView(UserViewSet):
     def perform_create(self, serializer):
+        
         additional_data = {
-            'company_name': self.request.data.get('company_name', None),
+            'company_name': self.request.data.get('company_name', None).lower(),
             'business_type': self.request.data.get('business_type', None),
             'business_address': self.request.data.get('business_address', None),
             'contact_person': self.request.data.get('contact_person', None),
@@ -78,6 +79,7 @@ class CustomUserRegistrationView(UserViewSet):
 class CompanyUserCreateView(APIView):
     def post(self, request):
         data = request.data
+        
         serializer = CompanyUserSerializer(data=data)
         if serializer.is_valid():
             user = authenticate(

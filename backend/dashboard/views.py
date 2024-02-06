@@ -9,7 +9,7 @@ from django.db.models.functions import TruncMonth,Extract
 from django.core.mail import send_mass_mail
 from django.conf import settings
 from django.db import models, IntegrityError
-from accounts.models import User
+from accounts.models import User,CompanyUser
 from input_forms.views import UserInformation,UserInformationSerializer
     
 @api_view(['POST'])
@@ -178,13 +178,15 @@ def notify_company_email(company_name):
         pass
 
 @api_view(['GET'])
-def get_statistics(request):
+def get_statistics(request,id):
     try:
+        get_user=CompanyUser.objects.get(user_id=id)
+        print(get_user.company_name)
         total_cases = CompanyDashboard.objects.count()
         total_completed_cases = CompanyDashboard.objects.filter(is_completed=True).count()
         average_age = CompanyDashboard.objects.filter(is_completed=True).aggregate(avg_age=Avg('age'))['avg_age']
-        total_accepted_packages = CompanyPackages.objects.filter(is_accepted=True).count()
-        total_revenue = CompanyPackages.objects.filter(is_accepted=True).aggregate(total_revenue=Sum('total_annual_coverage'))['total_revenue']
+        total_accepted_packages = CompanyPackages.objects.filter(company_name=get_user.company_name,is_accepted=True).count()
+        total_revenue = CompanyPackages.objects.filter(company_name=get_user.company_name,is_accepted=True).aggregate(total_revenue=Sum('total_annual_coverage'))['total_revenue']
 
 
 
@@ -193,7 +195,7 @@ def get_statistics(request):
             'total_completed_cases': total_completed_cases,
             'average_age': average_age,
             'total_accepted_packages': total_accepted_packages,
-            'total_revenue': tid_userotal_revenue,
+            'total_revenue': total_revenue,
 
         }
 
