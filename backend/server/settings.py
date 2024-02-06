@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'ai_prediction',
     'dashboard',
     'django_bg_task',
+    'chatbot'
 ]
 
 MIDDLEWARE = [
@@ -111,13 +112,14 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'policyX',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': 'nabeelx',
+        'USER': 'policyx',
+        'PASSWORD': 'policyx',
         'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
         'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
+
 
 
 # Password validation
