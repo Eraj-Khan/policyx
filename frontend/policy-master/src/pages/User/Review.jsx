@@ -444,7 +444,7 @@ const Review = () => {
               checked={predictedAI}
               onChange={() => handleCheckBoxChange(data.ai_suggested,"predictedAI")}
             />
-            Predicted AI  {data?.ai_suggested}
+           AI Suggested Budget <span className="your_budget">"{data?.ai_suggested}"</span>
           </label>
           </div>
 
@@ -456,14 +456,12 @@ const Review = () => {
               checked={budget}
               onChange={() => handleCheckBoxChange(data.budgetValue,"budget")}
             />
-            Budget {data?.budgetValue}
+            Your Budget {data?.budgetValue}
           </label>
         </div>
         {budget && (
         <div className="budget-input-container">
-          <label htmlFor="budgetInput" className="checked-label">
-            Enter Budget:
-          </label>
+          <label htmlFor="budgetInput" className="checked-label-budget">Enter Your Budget:</label>
           <input
           
             type="text"

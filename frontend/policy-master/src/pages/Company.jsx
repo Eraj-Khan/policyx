@@ -625,8 +625,8 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Cases
+                <p className="ml-16 truncate font-medium text-gray-500">
+                  Registered Cases
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
@@ -644,7 +644,7 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-14 truncate text-sm font-medium text-gray-500">
+                <p className="ml-14 truncate  font-medium text-gray-500">
                   Completed Cases
                 </p>
               </dt>
@@ -663,7 +663,7 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                <p className="ml-16 truncate  font-medium text-gray-500">
                   Average Age
                 </p>
               </dt>
@@ -682,9 +682,8 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                 Bids Accepted
-                </p>
+                <p className="ml-16 truncate  font-medium text-gray-500">
+Your Bids                </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
                 <p className="text-2xl font-semibold text-gray-900">
@@ -701,8 +700,8 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Revenue
+                <p className="ml-16 truncate  font-medium text-gray-500">
+                  Your Revenue
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
