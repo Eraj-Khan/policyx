@@ -80,6 +80,24 @@ const filteredByStatus = filteredData.filter((item) => {
   return false;
 });
 
+function formatDate(dateTimeString) {
+  const dateTime = new Date(dateTimeString);
+  const dateOptions = { 
+    year: 'numeric', 
+    month: '2-digit', 
+    day: '2-digit'
+  };
+  const timeOptions = {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  };
+  const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+  const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
+  return `${formattedDate} ${formattedTime}`;
+}
+
   const handleBidClick = (caseId, id_user) => {
     // Handle the click event and redirect to the next page using React Router
     // For now, it just logs the caseI
@@ -429,7 +447,7 @@ const filteredByStatus = filteredData.filter((item) => {
 
           </thead>
           <tbody>
-            {filteredByStatus.map((data) => (
+            {filteredByStatus.reverse().map((data) => (
               <tr
                 key={data.case_id}
                 className={data?.is_expired ? "expired" : "active"}
@@ -462,7 +480,10 @@ const filteredByStatus = filteredData.filter((item) => {
                   {data.is_expired ? 'Expired' : data.is_completed ? 'Completed' : 'Active'}
                  
                 </td>
-                <td>{data.created_at?.split('T')[0]}</td>
+                {/* <td>{data.created_at?.split('T')[0]}</td> */}
+                <td>{data.created_at ? formatDate(data.created_at) : ''}</td>
+
+
                 <td>
                   <button
                     className="bid-place"

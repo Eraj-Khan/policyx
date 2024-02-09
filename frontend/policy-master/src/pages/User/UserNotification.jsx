@@ -45,6 +45,7 @@ export const UserNotification = () => {
   useEffect(() => {
     let user = localStorage.getItem("user");
     let parsedPayload = JSON.parse(user);
+   
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -161,7 +162,7 @@ export const UserNotification = () => {
       <div className="notif-contain">
         <div className="notif-itm">
 
-        {notification.map((data) => (
+        {notification?.map((data) => (
           <>
            
             <div key={data.case_id} className="notif-itm">

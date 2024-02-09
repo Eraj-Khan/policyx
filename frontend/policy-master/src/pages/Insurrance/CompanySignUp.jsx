@@ -70,9 +70,16 @@ const CompanySignup = () => {
 
 
   const handleSignUpClick = async () => {
-   
+  
+
+
       try {
-        // give api path for calling signUp api on get('/api/signup)
+
+        if (!contact_person || !email || !phone_number || !industry || !username || !password) {
+          swal('Please enter all the required fields.');
+          return; 
+        }
+       
         const response = await axios.post('http://127.0.0.1:8000/accounts/api/auth/users/', {
           email,
           username,
@@ -90,7 +97,10 @@ const CompanySignup = () => {
         });
   
         console.log(response.data);
+
+        
         if (response.status === 201) {
+          
           // setIsLoggedIn(true);
           sessionStorage.clear();
           sessionStorage.setItem("company_name", company_name);

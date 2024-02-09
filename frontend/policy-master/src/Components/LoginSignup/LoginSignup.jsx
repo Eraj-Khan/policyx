@@ -43,6 +43,8 @@ const LoginSignup = () => {
   const [passwordError, setPasswordError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const[passwordMatch, setPasswordMatch] = useState(true);
+  
+
  
   const navigate = useNavigate();
   
@@ -57,10 +59,22 @@ const role= "normal";
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setPasswordError('');
-    setPasswordMatch(e.target.value === confirm_password)
+    const newPassword = e.target.value;
+    console.log('New Password:', newPassword);
+  
+    setPassword(newPassword);
+    setPasswordMatch(newPassword === confirm_password);
+  
+    if (newPassword.length < 6) {
+      console.log('Password length less than 6');
+      setPasswordError('Password must be at least 6 characters long.');
+    } else {
+      setPasswordError('');
+    }
   };
+  
+ 
+  
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
@@ -69,6 +83,10 @@ const role= "normal";
 
 
   const handleSignUpClick = async () => {
+    if (!first_name || !last_name || !username || !email || !password || !confirm_password) {
+      swal( "Please fill out all the required fields");
+      return;
+    }
     if(passwordMatch){
       try {
         // give api path for calling signUp api on get('/api/signup)
@@ -206,6 +224,7 @@ const role= "normal";
             placeholder="Firstname"
             onChange={(e) => setFirstName(e.target.value)}
             value={first_name}
+            required
           />
 
           {/* <img src={user_icon} alt="" /> */}
@@ -214,6 +233,7 @@ const role= "normal";
             placeholder="Lastname"
             onChange={(e) => setLastName(e.target.value)}
             value={last_name}
+            required
           />
         </div>
 
@@ -224,6 +244,7 @@ const role= "normal";
             placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
             value={username}
+            required
           />
         </div>
       </div>
@@ -252,6 +273,7 @@ const role= "normal";
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            required
           />
         </div>
         <div className="input">
@@ -261,8 +283,12 @@ const role= "normal";
             placeholder="Password"
             onChange={handlePasswordChange}
             value={password}
+            required
           />
+          
+
         </div>
+        {passwordError && <p className="error-message">{passwordError}</p>}
         {
           action === "Sign In" ? <div></div> : 
           <div className="input">
@@ -272,6 +298,7 @@ const role= "normal";
             placeholder="ConfirmPassword"
             onChange={handleConfirmPasswordChange}
             value={confirm_password}
+            required
           />
         </div>
         }      

@@ -172,3 +172,8 @@ margin: 130px;
 .username_input{
     position: relative;
     left: 23px;}
+.error-message{
+    font-size: 10px;
+    margin-left: 25px;
+    color: red;
+}

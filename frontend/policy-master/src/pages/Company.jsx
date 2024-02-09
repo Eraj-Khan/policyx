@@ -276,6 +276,18 @@ export const Company = () => {
 
   const [packages, setPackages] = useState([]);
 
+  function formatNumber(num) {
+    if (num < 1000) {
+        return num.toString();
+    } else if (num < 1000000) {
+        return (num / 1000).toFixed(1) + 'K';
+    } else if (num < 1000000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else {
+        return (num / 1000000000).toFixed(1) + 'B';
+    }
+}
+
   const getPackAges = async () => {
     try {
       let payload = localStorage.getItem("user");
@@ -707,7 +719,7 @@ export const Company = () => {
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
                 <p className="text-2xl font-semibold text-gray-900">
-                  {statistic?.total_revenue}
+                  {formatNumber(statistic?.total_revenue)}
                 </p>
               </dd>
             </div>
