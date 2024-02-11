@@ -365,7 +365,7 @@ const Packages = () => {
           </tr>
         </thead>
         <tbody>
-        {filteredByStatus?.map((data) => (
+        {filteredByStatus.reverse()?.map((data) => (
           // {filteredData?.map((data) => (
             <tr key={data.case_id}>
               {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}

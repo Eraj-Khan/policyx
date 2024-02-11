@@ -642,9 +642,9 @@ export const Company = () => {
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
-                <p className="text-2xl font-semibold text-gray-900">
-                  {statistic?.total_cases}
-                </p>
+              <a href="/userlist"  className="text-2xl font-semibold text-gray-900">
+  {statistic?.total_cases}
+</a>
               </dd>
             </div>
 

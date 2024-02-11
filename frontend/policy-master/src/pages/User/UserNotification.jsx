@@ -54,7 +54,7 @@ export const UserNotification = () => {
 
         const { Bids } = response.data;
 
-        setNotification(Bids);
+        setNotification(Bids.reverse());
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

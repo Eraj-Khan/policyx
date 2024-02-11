@@ -89,7 +89,7 @@ const role= "normal";
     }
     if(passwordMatch){
       try {
-        // give api path for calling signUp api on get('/api/signup)
+      
         const response = await axios.post('http://localhost:8000/accounts/api/auth/users/', {
           first_name,
           last_name,
@@ -193,26 +193,7 @@ const role= "normal";
   };
 
 
-  // const handleChange = (field, value) => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [field]: value,
-  //   }));
-  // };
-
-  // const handleAction = () => {
-  //   if (action === "Login") {
-  //     console.log("Logging in with:", formData);
-  //   } else if (action === "Sign Up") {
-  //     console.log("Signing up with:", formData);
-  //   } else {
-  //     console.log("Forget Password for:", formData.email);
-
-  //     // setFormData({ firstname:"", lastname:"",name: "", email: "", password: "", confirmpassword:""});
-  //   }
-
-  //   // setFormData({ firstname:"", lastname:"", name: "", email: "", password: "",confirmpassword:""});
-  // };
+  
  
   const dynamicFields =
     action === "Sign In" || action === "Forget Password" ? null : (

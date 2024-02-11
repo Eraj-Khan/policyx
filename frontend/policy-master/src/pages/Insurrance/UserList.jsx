@@ -488,6 +488,8 @@ function formatDate(dateTimeString) {
                   <button
                     className="bid-place"
                     onClick={() => handleBidClick(data.case_id, data.id_user)}
+                    disabled={data.is_completed} // Disable if already accepted
+                    style={{ cursor: data.is_completed ? 'not-allowed' : 'pointer',backgroundColor: data.is_completed ? 'grey' : ''}}
                   >
                     Place bid
                   </button>

@@ -52,9 +52,9 @@ export const Notification = () => {
         // Set the entire JSON object to data
        
         let isRemainingNotifications = response.data?.filter((e)=> e.is_completed === false);
-        setNotificationInfo(isRemainingNotifications);
+        setNotificationInfo(isRemainingNotifications.reverse());
         let isCompletedData = response.data?.filter((e)=> e.is_completed === true);
-        setIsCompleted(isCompletedData);
+        setIsCompleted(isCompletedData.reverse());
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
