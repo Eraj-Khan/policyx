@@ -39,19 +39,12 @@
 
   }
   .homelogo .home_logo {
-    width: 100%;
-    position: relative;
+    width: 10%;
+    position: absolute;
     /* margin-top: -50px; */
-    top: -44px;} 
-    .homelogo{
-      width: 112px;
-    }
-    .signin_signup{
-      top:-30px;
-      position: relative;
-
-    }
-
+    top: -40px;} 
+   
+ 
   .main{
     display: flex;
   }

@@ -1,76 +1,3 @@
-/* .com-signup{
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 80px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background:#ded4cb;
-
-}
-
-.sign-up-input{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 430px;
-}
-
-.input-email{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 438px;
-    border-radius: 7px;
-    border: none;
-}
-
-.input-phonenumber{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 438px;
-    border-radius: 7px;
-    border: none;  
-}
-.input-password{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    height: 50px;
-    width: 438px;
-    border-radius: 7px;
-    border: none;
-}
-.text-sign{
-    color: #63b3ed;
-    font-size: 48px;
-    font-weight: 700;
-    position:absolute;
-    margin-top: -65px;
-}
-.underline-sign{
-    width:61px;
-    height:7px;
-    background: #63b3ed;
-    border-radius: 9px;
-    margin-left: 186px;
-    position: absolute;
-    margin-top: 7px;
-}
-.submit_btn{
-    background-color: #4c84af;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.inputs-cont{
-margin-top: 60px;
-} */
 
 .popup_company{
     display: flex;
@@ -220,8 +147,8 @@ font-size: 18px;
 
 .company_signup_img{
     background-size: cover;
-    height: 770px;
-       background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881b6, #4491c7, #5f9ace, #76a3d5, #8aacdc, #a5b2d9, #b8bad5, #c6c3d1, #cecdcf);
+    height: 785px;
+    background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881b6, #4491c7, #5f9ace, #76a3d5, #8aacdc, #a5b2d9, #b8bad5, #c6c3d1, #cecdcf);
    }
    .company_signup_popup .company_sign_img img{
     
