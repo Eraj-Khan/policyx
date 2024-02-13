@@ -34,7 +34,7 @@ const nav = [
 
 
   { name: 'Dashboard', href: '/company', icon: HomeIcon, current: false },
-  { name: 'Register Cases', href: '#', icon: UsersIcon, current: true },
+  { name: 'Registered Cases', href: '#', icon: UsersIcon, current: true },
   { name: 'Packages Offered', href: '/packages', icon: FolderIcon, current: false },
 
 ]

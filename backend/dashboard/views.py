@@ -50,8 +50,6 @@ def place_package(requests):
     except Exception as e:
         return Response({'error': f'error occurred {e}'})
 
-
-
 @api_view(['GET'])
 def list_all_packages(request,case_id):
     company_dashboard_data = CompanyDashboard.objects.get(case_id=case_id)

@@ -22,7 +22,7 @@ import "@fontsource/poppins/400.css";
 import logotwo from "../../image/logo1.png"
 const nav = [
   { name: "Dashboard", href: "/company", icon: HomeIcon, current: false },
-  { name: "Register Cases", href: "/userlist", icon: UsersIcon, current: false },
+  { name: "Registered Cases", href: "/userlist", icon: UsersIcon, current: false },
   { name: "Offered Packages", href: "#", icon: FolderIcon, current: true },
   
 ];
@@ -274,7 +274,7 @@ const Packages = () => {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    {userNavigation.map((item) => (
+                    {userNavigation?.map((item) => (
                       <Menu.Item key={item.name}>
                         {({ active }) => (
                           <a
@@ -333,7 +333,7 @@ const Packages = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((data) => (
+          { filteredData?.map((data) => (
             <tr key={data.case_id}>
               {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
               <td>{data.case_id}</td>
@@ -355,7 +355,7 @@ const Packages = () => {
                 </button>
               </td>
             </tr>
-          ))}
+          )) }
         </tbody>
       </table>
     </div>

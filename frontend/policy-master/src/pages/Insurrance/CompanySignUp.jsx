@@ -72,7 +72,20 @@ const CompanySignup = () => {
   const handleSignUpClick = async () => {
    
       try {
+        console.log(email,
+          username,
+       
+          role,
+          password,
+          company_name,
+          business_type,
+          business_address,
+          contact_person,
+          phone_number,
+          industry,
+          terms_and_conditions_accepted,)
         // give api path for calling signUp api on get('/api/signup)
+        // company_name=company_name.toLowerCase()
         const response = await axios.post('http://127.0.0.1:8000/accounts/api/auth/users/', {
           email,
           username,
@@ -88,7 +101,7 @@ const CompanySignup = () => {
           industry,
           terms_and_conditions_accepted,
         });
-  
+        
         console.log(response.data);
         if (response.status === 201) {
           // setIsLoggedIn(true);
@@ -147,7 +160,10 @@ const CompanySignup = () => {
         password,
       });
       if (response.status === 200) {
-        setIsLoggedIn(true);
+        if(localStorage.getItem("user"==null)){
+
+        }else{
+          setIsLoggedIn(true);
         // sessionStorage.clear();
         // sessionStorage.setItem("username", username);
         // sessionStorage.setItem("password", password);
@@ -171,6 +187,7 @@ const CompanySignup = () => {
           navigate('/company')
           swal("Successfully Logged In")
         },100)
+        }
       }
      else {
         swal("Please sign in with correct credentials.");
@@ -211,7 +228,7 @@ const CompanySignup = () => {
           className="sign-up-input"
           type="text"
           value={company_name}
-          onChange={(e) => setCompanyName(e.target.value)}
+          onChange={(e) => setCompanyName(e.target.value.toLowerCase())}
           placeholder=" Company Name"
           required
         />
@@ -244,6 +261,7 @@ const CompanySignup = () => {
   
 
   return (
+   
    
     <div className="">
   

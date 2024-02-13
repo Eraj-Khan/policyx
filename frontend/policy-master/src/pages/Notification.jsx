@@ -121,7 +121,7 @@ export const Notification = () => {
                 leaveTo="transform opacity-0 scale-95"
               >
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {userNavigation.map((item) => (
+                  {userNavigation?.map((item) => (
                     <Menu.Item key={item.name}>
                       {({ active }) => (
                         <a
@@ -153,7 +153,7 @@ export const Notification = () => {
     <div className="notification-container">
        <div className="notification-completed">
         <h1>Completed</h1>
-       {isCompleted.map((data) => (
+       {isCompleted?.map((data) => (
           <>
             
             <div key={data.case_id} className="notification-item">
@@ -168,17 +168,21 @@ export const Notification = () => {
                   
       <div className="notification-pending">
       <h1>Pending</h1>
-        {notificationinfo.map((data) => (
-          <>
-            
-            <div key={data.case_id} className="notification-item">
-            <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
-        {/* <li className="case_id"> CASE ID: {data.case_id}</li>
-        <li className="age">AGE:  {data.age}</li>
-        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
-      </div>
-          </>
-        ))}
+        {(()=>{
+          if(notificationinfo){
+            {notificationinfo?.map((data) => (
+              <>
+                
+                <div key={data?.case_id} className="notification-item">
+                <div> Insurance Request from <span className="recommended">{data?.case_id}</span> with recommended value <span className="case_id">{data?.recommended_value}</span></div>
+            {/* <li className="case_id"> CASE ID: {data.case_id}</li>
+            <li className="age">AGE:  {data.age}</li>
+            <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
+          </div>
+              </>
+            ))}
+          }
+        })()}
       </div>
     </div>
     </div>

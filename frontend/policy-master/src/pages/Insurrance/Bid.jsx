@@ -28,7 +28,7 @@ const nav = [
 
 
   { name: 'Dashboard', href: '/company', icon: HomeIcon, current: false },
-  { name: 'Register Cases', href: '/userlist', icon: UsersIcon, current: false },
+  { name: 'Registered Cases', href: '/userlist', icon: UsersIcon, current: false },
   { name: 'Offered Packages', href: '/packages', icon: FolderIcon, current: false},
   { name: "Bid Packages", href: "#", icon: InboxIcon, current: true },
   
@@ -417,8 +417,8 @@ const handleSubmit = () =>{
           <p>Company Id: {submittedData.company_id}</p>
           <p>Company Name: {submittedData.company_name}</p>
           <p>Monthly Premium: {submittedData.monthly_coverage}</p>
-          <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
-          <p>Surgery: {submittedData.surgery}</p>
+          <p>Ambulance Services: {submittedData.ambulance_services_expenses ? submittedData.ambulance_services_expenses : "None"}</p>
+          <p>Surgery: {submittedData.surgery ? submittedData.surgery : "None"}</p>
    
           <button className="send-button" onClick={handleSubmit}>
             {dataPayload? "Update": "Send"}
