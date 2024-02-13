@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "@fontsource/poppins";
 import "@fontsource/poppins/800.css";
 import "@fontsource/space-grotesk";
-
+import { useNavigate } from "react-router";
 import "animate.css";
 import "@fontsource/poppins";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -207,9 +207,10 @@ const footerNavigation = {
 };
 
 export default function App() {
+  const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const springApi = useSpringRef();
-
+  
   const transitions = useTransition(activeIndex, {
     from: {
       clipPath: "polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%)",
@@ -246,13 +247,34 @@ export default function App() {
     loop: true,
     ref: springApi,
   });
-
+  
   useLayoutEffect(() => {
     springApi.start();
   }, [activeIndex]);
 
   return (
-    <div className={styles.container}>
+   <>
+    {(()=>{
+      if(localStorage.getItem("user")){
+        var userDataString = localStorage.getItem('user');  
+        // Parse the JSON string to an object
+        var userData = JSON.parse(userDataString);
+        
+        // Get the "role" value from the object
+        var role = userData.role;
+        
+        // Log the "role" value
+        console.log(role);
+        if(role=="normal"){
+          navigate("/userDash")
+        }
+        else{
+          navigate("/company")
+        }
+
+      }else{
+        return(
+          <div className={styles.container}>
       <div className="bg-white">
         <div className="relative overflow-hidden">
           <Popover as="header" className="relative">
@@ -790,5 +812,11 @@ export default function App() {
         </div>
       </div>
     </div>
+        )
+      }
+    })()}
+   </>
+    
+    
   );
 }

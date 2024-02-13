@@ -249,7 +249,7 @@ const Review = () => {
     .then((response)=>{
       console.log("response", response.data)
       setTimeout(()=>{
-        swal("Case submitted and notify to company")
+        swal("Case submitted and notified to companies.")
       },100)
     })
     .catch((error)=>{

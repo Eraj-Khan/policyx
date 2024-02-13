@@ -31,6 +31,7 @@ dt p{
     width: 435px;
     margin-top: -13px;
     margin-left: 300px;
+    border: 1px solid red;
 }
 .chart22{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

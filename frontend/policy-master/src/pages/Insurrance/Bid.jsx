@@ -28,7 +28,7 @@ const nav = [
 
 
   { name: 'Dashboard', href: '/company', icon: HomeIcon, current: false },
-  { name: 'Register Cases', href: '/userlist', icon: UsersIcon, current: false },
+  { name: 'Registered Cases', href: '/userlist', icon: UsersIcon, current: false },
   { name: 'Offered Packages', href: '/packages', icon: FolderIcon, current: false},
   { name: "Bid Packages", href: "#", icon: InboxIcon, current: true },
   
@@ -476,23 +476,24 @@ const handleSubmit = () =>{
         <button className="place-bid" onClick={handleBid}>Place Bid</button>
       </div>
         
-      {Object.keys(errors).length === 0 && submittedData && (
-  <div className="card-style">
-    <h3 className="card-styleh3">Insurance Package</h3>
-    <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
-    <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
-    <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
-    <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
-    <p>Company Id: {submittedData.company_id}</p>
-    <p>Company Name: {submittedData.company_name}</p>
-    <p>Monthly Premium: {submittedData.monthly_coverage}</p>
-    <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
-    <p>Surgery: {submittedData.surgery}</p>
-    <button className="send-button" onClick={handleSubmit}>
-      {dataPayload ? "Update" : "Send"}
-    </button>
-  </div>
-)}
+      {submittedData && (
+        <div className="card-style">
+          <h3 className="card-styleh3">Insurrance Package</h3>
+          <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
+          <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
+          <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
+          <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
+          <p>Company Id: {submittedData.company_id}</p>
+          <p>Company Name: {submittedData.company_name}</p>
+          <p>Monthly Premium: {submittedData.monthly_coverage}</p>
+          <p>Ambulance Services: {submittedData.ambulance_services_expenses ? submittedData.ambulance_services_expenses : "None"}</p>
+          <p>Surgery: {submittedData.surgery ? submittedData.surgery : "None"}</p>
+   
+          <button className="send-button" onClick={handleSubmit}>
+            {dataPayload? "Update": "Send"}
+          </button>
+        </div>
+      )}
     </main>
     </>
   );

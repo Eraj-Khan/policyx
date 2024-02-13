@@ -110,7 +110,7 @@ const applications = [
 const navigation = [
   { name: "Company Dashboard", href: "#", icon: HomeIcon, current: true },
   {
-    name: "Register Cases",
+    name: "Registered Cases",
     href: "/userList",
     icon: UsersIcon,
     current: false,
@@ -130,8 +130,9 @@ const handlelogOut = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("token");
   localStorage.removeItem("refresh-token");
+  localStorage.removeItem("notification");
   window.location.reload();
-  window.location.reload();
+ 
 };
 
 const userNavigation = [
@@ -307,8 +308,13 @@ export const Company = () => {
 
   const getStats = async () => {
     try {
+      let payload = localStorage.getItem("user");
+      let parsedPayload = JSON.parse(payload);
+
+      const { id } = parsedPayload;
+      console.log(parsedPayload)
       const response = await axios.get(
-        "http://127.0.0.1:8000/company_dashboard/statistics/"
+        `http://127.0.0.1:8000/company_dashboard/statistics/${id}`
       );
       // Set the entire JSON object to data
       // {
@@ -318,9 +324,10 @@ export const Company = () => {
       //   "total_accepted_packages": 3,
       //   "total_revenue": 8872
       // }
+      console.log(response)
       setStatistic(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data111:", error);
     }
   };
 
@@ -344,7 +351,7 @@ export const Company = () => {
       const { total_bids_count, accepted_bids_count } = response.data;
       setCountBid([total_bids_count, accepted_bids_count]);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data222:", error);
     }
   };
 

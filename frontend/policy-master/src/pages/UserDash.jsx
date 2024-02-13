@@ -413,7 +413,7 @@ export const UserDash = () => {
                 </div>
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
                   <nav className="space-y-1 px-2">
-                    {navigation.map((item) => (
+                    {navigation?.map((item) => (
                       <a
                         key={item.name}
                         href={item.href}
@@ -639,27 +639,27 @@ export const UserDash = () => {
               <ul role="list" className="cards_list mb-8">
                 <li>
                   <span className="plans-head">Accidental : </span>
-                  {user_plan?.accidental_emergencies}
+                  {user_plan?.accidental_emergencies ? user_plan?.accidental_emergencies : "None" }
                 </li>
                 <li>
                   <span className="plans-head">Ambulance Expense : </span>
-                  {user_plan?.ambulance_services_expenses}
+                  {user_plan?.ambulance_services_expenses ? user_plan?.ambulance_services_expenses : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Hospital Room Charges : </span>
-                  {user_plan?.hospitalization_room_charges}
+                  {user_plan?.hospitalization_room_charges ? user_plan?.hospitalization_room_charges : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Surgery : </span>
-                  {user_plan?.surgery}
+                  {user_plan?.surgery ? user_plan?.surgery : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Dental & Vision : </span>
-                  {user_plan?.dental_and_vision_care}
+                  {user_plan?.dental_and_vision_care ? user_plan?.dental_and_vision_care : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Others : </span>
-                  {user_plan?.other_medical_expenses}
+                  {user_plan?.other_medical_expenses ? user_plan?.other_medical_expenses : "None"}
                 </li>
               </ul>
             </div>

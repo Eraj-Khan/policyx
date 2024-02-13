@@ -164,8 +164,8 @@ export const UserNotification = () => {
 
       <div className="notif-contain">
         <div className="notif-itm">
-
-        {notification?.map((data) => (
+        {notification ? notification?.map((data) => (
+          
           <>
            
             <div key={data.case_id} className="notif-itm">
@@ -184,7 +184,10 @@ export const UserNotification = () => {
         <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li> */}
             </div>
           </>
-        ))}
+        )) :<h1 style={{
+          textAlign:"center"
+        }}>No 
+          Notifications found! </h1>}
       </div>
       </div>
     </div>
