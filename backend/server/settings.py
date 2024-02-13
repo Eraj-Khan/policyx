@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'ai_prediction',
     'dashboard',
     'django_bg_task',
+    'chatbot'
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,7 @@ DATABASES = {
         'PORT': '5432',          # Leave empty to use the default PostgreSQL port (usually 5432)
     }
 }
+
 
 
 # Password validation
@@ -191,9 +193,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'aliumair9316@gmail.com'
-EMAIL_HOST_PASSWORD = 'csnf suxh lxpd ucrb'
-DEFAULT_FROM_EMAIL = 'aliumair9316@gmail.com'
+EMAIL_HOST_USER = 'policyxnotify@gmail.com'
+EMAIL_HOST_PASSWORD = 'bfkd jwha jolx xweg'
+DEFAULT_FROM_EMAIL = 'policyxnotify@gmail.com'
 
 
 CORS_ALLOWED_ORIGINS = [

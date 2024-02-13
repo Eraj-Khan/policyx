@@ -12,7 +12,7 @@
     margin-top: 25px;
 }
 .insur-place {
-    background-color: #4c6daf;
+    background-color: #3498DB;
     width: 100%;
     font-family: 'Poppins';
     padding: 10px;
@@ -23,6 +23,10 @@
     /* margin-top: -13px; */
     font-weight: 600;
     letter-spacing: 0.7px;
+}
+.insur-place:hover{
+    background-color: #1587d3;
+
 }
 .notif-item li {
     list-style-type: none;

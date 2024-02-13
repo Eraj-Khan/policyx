@@ -7,6 +7,7 @@ import {
   CalendarIcon,
   ChartBarIcon,
   FolderIcon,
+  ChevronDoubleLeftIcon,
   HomeIcon,
   InboxIcon,
   UsersIcon,
@@ -73,6 +74,8 @@ export const UserNotification = () => {
         
         <div className="flex flex-1 justify-between px-4">
           <div className="flex flex-1">
+          <div className="w-8 h-8 mt-4">  <a href="./userdash" id="backLink">
+                                     <ChevronDoubleLeftIcon></ChevronDoubleLeftIcon></a></div>
             <div className="notify_heading"><h1>Notifications</h1></div>
             {/* <form className="flex w-full md:ml-0" action="#" method="GET">
               <label htmlFor="search-field" className="sr-only">
