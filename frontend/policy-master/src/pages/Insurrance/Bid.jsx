@@ -73,20 +73,28 @@ const Bid = () => {
   ];
 
   const [formData, setFormData] = useState({
-    total_annual_coverage: 0,
-    accidental_emergencies: 0,
-    hospitalization_room_charges: 0,
-    dental_and_vision_care: 0,
-    other_medical_expenses: 0,
+    total_annual_coverage:"" ,
+    accidental_emergencies: "",
+    hospitalization_room_charges: "",
+    dental_and_vision_care: "",
+    other_medical_expenses: "",
     case_id: case_id,
     company_id: parsedPayload?.id,
     company_name: parsedPayload?.company_name,
-    monthly_coverage: 0,
-    ambulance_services_expenses: 0,
-    surgery: 0,
+    monthly_coverage: "",
+    ambulance_services_expenses: "",
+    surgery: "",
     case_user:Id
    
    
+  });
+
+  const [errors, setErrors] = useState({
+    total_annual_coverage: "",
+    accidental_emergencies: "",
+    hospitalization_room_charges: "",
+    dental_and_vision_care: "",
+    monthly_coverage: "",
   });
   const dataPayload = statePayload.state.payload;
  useEffect(()=> {
@@ -150,9 +158,45 @@ const handleSubmit = () =>{
       delete temp.surgery;
       delete temp.ambulance_services_expenses
     }
+
+    let tempErrors = {};
+
+    // Check for empty required fields
+    if (!formData.total_annual_coverage) {
+      tempErrors.total_annual_coverage = "Total Annual Coverage is required.";
+    }
+    if (!formData.accidental_emergencies) {
+      tempErrors.accidental_emergencies = "Accidental Emergencies is required.";
+    }
+    if (!formData.hospitalization_room_charges) {
+      tempErrors.hospitalization_room_charges =
+        "Hospitalization Room Charges is required.";
+    }
+    if (!formData.dental_and_vision_care) {
+      tempErrors.dental_and_vision_care = "Dental and Vision Care is required.";
+    }
+    if (!formData.monthly_coverage) {
+      tempErrors.monthly_coverage = "Monthly Coverage is required.";
+    }
+
+   
+   
+
+    
+    if (Object.keys(tempErrors).length === 0) {
+   
+      console.log("Form submitted:", formData);
+    }
     console.log("formData", temp);
     setSubmittedData(temp); 
    
+    setErrors(tempErrors);
+
+  // If there are no errors, proceed with bid
+  if (Object.keys(tempErrors).length === 0) {
+    // Handle the bid submission or other actions
+    console.log("Form submitted:", formData);
+  }
     };
 
  
@@ -308,11 +352,14 @@ const handleSubmit = () =>{
           onChange={(e) => {
             setPlan_type(e.target.value);
           }}
+         
         >
-          <option value="">Select Plan</option>
+          <option value="" required>Select Plan </option>
+        
           {plans.map((e) => (
             <option value={e.plan}>{e.plan}</option>
           ))}
+       
         </select>
 
         <label  className="bid-label" htmlFor="bidInput">Total Annual Coverage</label>
@@ -324,7 +371,11 @@ const handleSubmit = () =>{
           onChange={(e) =>
             setFormData({...formData, total_annual_coverage: e.target.value })
           }
+          required
         />
+          {errors.total_annual_coverage && (
+          <p className="err-msg">{errors.total_annual_coverage}</p>
+        )}
         <label  className="bid-label" htmlFor="bidInput">Accidental Emergencies</label>
         <input
         className="bid-input"
@@ -334,7 +385,11 @@ const handleSubmit = () =>{
           onChange={(e) =>
             setFormData({...formData,  accidental_emergencies: e.target.value })
           }
+          required
         />
+          {errors.accidental_emergencies && (
+          <p className="err-msg">{errors.accidental_emergencies}</p>
+        )}
 
         <label className="bid-label" htmlFor="bidInput">Hospitalization Room Charges</label>
         <input
@@ -345,7 +400,11 @@ const handleSubmit = () =>{
           onChange={(e) =>
             setFormData({...formData,  hospitalization_room_charges: e.target.value })
           }
+          required
         />
+          {errors.hospitalization_room_charges && (
+          <p className="err-msg">{errors.hospitalization_room_charges}</p>
+        )}
 
         <label className="bid-label" htmlFor="bidInput">Dental and Vision Care</label>
         <input
@@ -356,8 +415,11 @@ const handleSubmit = () =>{
           onChange={(e) =>
             setFormData({...formData,  dental_and_vision_care: e.target.value })
           }
+          required
         />
-
+         {errors.dental_and_vision_care && (
+          <p className="err-msg">{errors.dental_and_vision_care}</p>
+        )}
         <label className="bid-label" htmlFor="bidInput">Other Medical Expenses</label>
         <input
         className="bid-input"
@@ -368,6 +430,9 @@ const handleSubmit = () =>{
             setFormData({...formData,  other_medical_expenses: e.target.value })
           }
         />
+        {errors.other_medical_expenses && (
+          <p className="err-msg">{errors.other_medical_expenses}</p>
+        )}
         {plan_type === "Premium" && (
           <>
             <label className="bid-label" htmlFor="bidInput">Ambulance Services Expenses</label>
@@ -399,32 +464,35 @@ const handleSubmit = () =>{
         <label className="bid-label" htmlFor="bidInput">Enter Monthly Premium</label>
         <input
         className="bid-input"
-          type="number"
+          type="text"
           id="bidInput"
           value={formData.monthly_coverage}
           onChange={(e) => setFormData({...formData,  monthly_coverage: e.target.value })}
+          required
         />
+          {errors.monthly_coverage && (
+          <p className="err-msg">{errors.monthly_coverage}</p>
+        )}
         <button className="place-bid" onClick={handleBid}>Place Bid</button>
       </div>
         
-      {submittedData && (
-        <div className="card-style">
-          <h3 className="card-styleh3">Insurrance Package</h3>
-          <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
-          <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
-          <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
-          <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
-          <p>Company Id: {submittedData.company_id}</p>
-          <p>Company Name: {submittedData.company_name}</p>
-          <p>Monthly Premium: {submittedData.monthly_coverage}</p>
-          <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
-          <p>Surgery: {submittedData.surgery}</p>
-   
-          <button className="send-button" onClick={handleSubmit}>
-            {dataPayload? "Update": "Send"}
-          </button>
-        </div>
-      )}
+      {Object.keys(errors).length === 0 && submittedData && (
+  <div className="card-style">
+    <h3 className="card-styleh3">Insurance Package</h3>
+    <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
+    <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
+    <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
+    <p>Dental and Vision Care: {submittedData.dental_and_vision_care}</p>
+    <p>Company Id: {submittedData.company_id}</p>
+    <p>Company Name: {submittedData.company_name}</p>
+    <p>Monthly Premium: {submittedData.monthly_coverage}</p>
+    <p>Ambulance Services: {submittedData.ambulance_services_expenses}</p>
+    <p>Surgery: {submittedData.surgery}</p>
+    <button className="send-button" onClick={handleSubmit}>
+      {dataPayload ? "Update" : "Send"}
+    </button>
+  </div>
+)}
     </main>
     </>
   );

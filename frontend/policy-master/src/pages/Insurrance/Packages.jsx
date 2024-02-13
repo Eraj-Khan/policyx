@@ -38,12 +38,22 @@ const Packages = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("all");
   const navigation = useNavigate();
 
   const filteredData = data?.filter((item) =>
     item.case_id.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  const filteredByStatus = filteredData.filter((item) => {
+    if (statusFilter === "all") {
+      return true; 
+    } else if (statusFilter === "active") {
+      return !item.is_expired && !item.is_accepted;
+    } else if (statusFilter === "accepted") {
+      return item.is_accepted;
+    }
+    return false;
+  });
   const handleUpdate = (payload) => {
     navigation("/bid", {
       state: {
@@ -63,7 +73,7 @@ const Packages = () => {
           `http://127.0.0.1:8000/company_dashboard/list_company_packages/${parsedPayload.company_name}` //1b9dfc29d3ffa4ddf87ad27973808d5c82646a0cf2232e3396e765ad3ff17388/"
         );
 
-        // Set the entire JSON object to data
+        
 
         const { Packages } = response.data;
         setData(Packages);
@@ -315,7 +325,29 @@ const Packages = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <div className="status-filt">
+          <button
+            className={statusFilter === "all" ? "active" : ""}
+            onClick={() => setStatusFilter("all")}
+          >
+            All
+          </button>
+          <button
+            className={statusFilter === "active" ? "active" : ""}
+            onClick={() => setStatusFilter("active")}
+          >
+            Active
+          </button>
+          <button
+            className={statusFilter === "accepted" ? "active" : ""}
+            onClick={() => setStatusFilter("accepted")}
+          >
+            Accepted
+          </button>
+        </div>
+      
       </div>
+      
       <table className="user-pack-table">
         <thead>
           <tr>
@@ -333,7 +365,8 @@ const Packages = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredData?.map((data) => (
+        {filteredByStatus.reverse()?.map((data) => (
+          // {filteredData?.map((data) => (
             <tr key={data.case_id}>
               {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
               <td>{data.case_id}</td>
@@ -345,11 +378,15 @@ const Packages = () => {
               <td>{data.total_annual_coverage}</td>
               <td>{data.ambulance_services_expenses}</td>
               <td>{data.surgery}</td>
-              <td>{!data?.is_expired ? "active" : "expired"}</td>
+              {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
+              <td>{data.is_expired ? 'Expired' : data.is_accepted ? 'Accepted' : 'Active'}</td>
               <td>
                 <button
                   className="bid-update"
                   onClick={() => handleUpdate(data)}
+                
+                  disabled={data.is_accepted} // Disable if already accepted
+                  style={{ cursor: data.is_accepted ? 'not-allowed' : 'pointer',backgroundColor: data.is_accepted ? 'grey' : ''}}
                 >
                   Update
                 </button>

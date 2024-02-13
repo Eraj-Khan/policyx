@@ -140,6 +140,10 @@ background-color: #f4f4f4;
 text-align: center;
 }
 
+.err-msg{
+  color:rgb(219, 143, 143);
+}
+
 
 /* .bid_button{
     flex-direction: column;
