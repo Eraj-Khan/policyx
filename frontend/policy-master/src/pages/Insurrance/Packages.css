@@ -12,7 +12,7 @@
 .user-pack-table {
     width: 82%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 55px;
     margin-left: 268px;
     font-family: "poppins";
 font-size: 14px;
@@ -23,7 +23,7 @@ border-radius: 8px;
   .user-pack-table th, .user-pack-table td {
     border: 1px solid ;
     border-color: #c9c9c98e;
-    padding: 5px;
+    padding: 4px;
     text-align: left;
   }
   
@@ -48,6 +48,10 @@ border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
   }
+  .bid-update:hover{
+    background-color: #1587d3;
+
+  }
   
   .icon-container {
     display: flex;
@@ -59,13 +63,15 @@ border-radius: 8px;
     color: red;
   }
   .package_search input{
-    width: 20%;
-    margin-left: 267px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-sizing: border-box;
-    margin-top: -20px;
+  width: 19%;
+  margin-left: 275px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  
   }
+
   .packages_heading{
     font-size: 25px;
     align-self: center;
@@ -81,3 +87,32 @@ border-radius: 8px;
     background-color: #3498DB;
 
   }
+
+  .status-filter {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .status-filt {
+    display: flex;
+    gap: 10px;
+    /* margin-left: 650px; */
+    /* justify-content: flex-end; */
+    position: absolute;
+    right: 10px;
+  }
+  
+  .status-filt button {
+    padding: 8px 28px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    width: 35%;
+  }
+  
+  .status-filt button.active {
+    background-color: #3498DB;
+    color: #fff;
+  }
+  

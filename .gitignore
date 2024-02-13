@@ -4,5 +4,5 @@ venv/
 **/migrations/*.pyc
 **/migrations/__pycache__/
 
-
+/backend/chatbot/.env
 __pycache__/

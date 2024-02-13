@@ -86,7 +86,7 @@ const InsurranceOffer = () => {
 
         const { Bids } = response.data;
 
-        setNotification(Bids);
+        setNotification(Bids.reverse());
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -236,7 +236,13 @@ const InsurranceOffer = () => {
             className="insurrance-item"
           >
             <div key={data.case_id} className="notif-item">
-              <span style={{}}>{!data?.is_expired ? "active" : "expired"}</span>
+              <span style={{}}>
+                {data.is_expired
+                  ? "Expired"
+                  : data.is_accepted
+                  ? "Accepted"
+                  : "Active"}
+              </span>
               <li className="case_id">
                 {" "}
                 <label>Case id:</label> {data.case_id}
@@ -274,13 +280,20 @@ const InsurranceOffer = () => {
               <button
                 className="insur-place"
                 onClick={() => handleBidClick(data.case_id, data.company_name)}
+                disabled={data.is_expired || data.is_accepted}
+                style={{
+                  cursor:
+                    data.is_expired || data.is_accepted
+                      ? "not-allowed"
+                      : "pointer",
+                }}
               >
-                Accept
+                {data.is_accepted ? "Accepted" : "Accept"}
               </button>
             </div>
             <img
               className="insur-image"
-              src={card} 
+              src={card}
               alt={`Profile - ${data.case_id}`}
             />
           </div>

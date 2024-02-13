@@ -23,6 +23,9 @@ nav{
 .stats_report{
     height: 107px;
 }
+dt p{
+    font-size: 13px;
+}
 .chart11{
   
     width: 435px;

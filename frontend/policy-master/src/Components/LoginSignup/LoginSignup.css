@@ -135,8 +135,8 @@ margin: auto; */
 }
 .sign_up_main{
  background-size: cover;
- height: 100dvh;
-    background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881b6, #4491c7, #5f9ace, #76a3d5, #8aacdc, #a5b2d9, #b8bad5, #c6c3d1, #cecdcf);
+ height: 785px;
+ background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881b6, #4491c7, #5f9ace, #76a3d5, #8aacdc, #a5b2d9, #b8bad5, #c6c3d1, #cecdcf);
 }
 .account span{
     cursor: pointer;
@@ -172,3 +172,8 @@ margin: 130px;
 .username_input{
     position: relative;
     left: 23px;}
+.error-message{
+    font-size: 10px;
+    margin-left: 25px;
+    color: red;
+}

@@ -277,6 +277,18 @@ export const Company = () => {
 
   const [packages, setPackages] = useState([]);
 
+  function formatNumber(num) {
+    if (num < 1000) {
+        return num.toString();
+    } else if (num < 1000000) {
+        return (num / 1000).toFixed(1) + 'K';
+    } else if (num < 1000000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else {
+        return (num / 1000000000).toFixed(1) + 'B';
+    }
+}
+
   const getPackAges = async () => {
     try {
       let payload = localStorage.getItem("user");
@@ -632,14 +644,14 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Cases
+                <p className="ml-16 truncate font-medium text-gray-500">
+                  Registered Cases
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
-                <p className="text-2xl font-semibold text-gray-900">
-                  {statistic?.total_cases}
-                </p>
+              <a href="/userlist"  className="text-2xl font-semibold text-gray-900">
+  {statistic?.total_cases}
+</a>
               </dd>
             </div>
 
@@ -651,7 +663,7 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-14 truncate text-sm font-medium text-gray-500">
+                <p className="ml-14 truncate  font-medium text-gray-500">
                   Completed Cases
                 </p>
               </dt>
@@ -670,7 +682,7 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
+                <p className="ml-16 truncate  font-medium text-gray-500">
                   Average Age
                 </p>
               </dt>
@@ -689,9 +701,8 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                 Bids Accepted
-                </p>
+                <p className="ml-16 truncate  font-medium text-gray-500">
+Your Bids                </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
                 <p className="text-2xl font-semibold text-gray-900">
@@ -708,13 +719,13 @@ export const Company = () => {
                       aria-hidden="true"
                     />
                 </div>
-                <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                  Total Revenue
+                <p className="ml-16 truncate  font-medium text-gray-500">
+                  Your Revenue
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
                 <p className="text-2xl font-semibold text-gray-900">
-                  {statistic?.total_revenue}
+                  {formatNumber(statistic?.total_revenue)}
                 </p>
               </dd>
             </div>

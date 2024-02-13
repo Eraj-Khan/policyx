@@ -391,6 +391,7 @@ const Register = () => {
                       value={height}
                       onChange={handleHeightChange}
                       placeholder="Height(ft)"
+                      required
                     />
 
                     <input
@@ -398,6 +399,7 @@ const Register = () => {
                       value={weight}
                       onChange={handleWeightChange}
                       placeholder="Weight(kg)"
+                      required
                     />
                   </div>
                   <div className="bmi">
@@ -419,6 +421,7 @@ const Register = () => {
                       value="Employed"
                       checked={employment === "Employed"}
                       onChange={() => setEmployment("Employed")}
+                      required
                     />
                     <label htmlFor="employed"> Employed </label>
                     <input
@@ -455,13 +458,17 @@ const Register = () => {
                       id="maritalStatus"
                       value={maritalStatus}
                       onChange={(e) => setMaritalStatus(e.target.value)}
+                      required
                     >
-                      <option value="" disabled selected hidden>
+                      <option value="" disabled selected hidden
+                      required>
                         <span className="maritalcolor">Marital Status</span>
+                      
                       </option>
                       <option value="Married">Married</option>
                       <option value="Unmarried">Unmarried</option>
                       <option value="Other">Other</option>
+                
                     </select>
                   </div>
                   <div className="children">
@@ -479,6 +486,7 @@ const Register = () => {
                         }
                       }}
                       placeholder="Children"
+                      required
                     />
                   </div>
                   <div className="education">
@@ -488,6 +496,7 @@ const Register = () => {
                       id="education"
                       value={education} 
                       onChange={(e) => setEducation(e.target.value)}
+                      required
                     >
                       <option value="" disabled selected hidden>
                         Education
@@ -510,6 +519,7 @@ const Register = () => {
                         value="Yes"
                         checked={smoker === "Yes"}
                         onChange={() => setSmoker("Yes")}
+                        required
                       />
                       <label htmlFor="smokerYes"> Yes </label>
                       <input
@@ -530,6 +540,7 @@ const Register = () => {
                         id="region"
                         value={region} 
                         onChange={(e) => setRegion(e.target.value)}
+                        required
                       >
                         <option value="" disabled selected hidden>
                           Region
@@ -544,7 +555,7 @@ const Register = () => {
                   <div className="button">
                     <button
                       type="submit"
-                      className="flex w-full justify-center rounded-md border border-transparent bg-sky-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="flex w-full justify-center "
                     >
                       Proceed
                     </button>

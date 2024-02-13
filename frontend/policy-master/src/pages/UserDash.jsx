@@ -6,7 +6,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import "animate.css";
 import logotwo from "../image/logo1.png";
-
+import HomeChat from '../Components/Homechat'
 import "@fontsource/space-grotesk";
 import {
   Bars3BottomLeftIcon,
@@ -624,6 +624,7 @@ export const UserDash = () => {
         </ul>
       </div>
       <div className="main_cards">
+      <HomeChat/>
         <section
           aria-labelledby="timeline-title"
           className=" card_table lg:col-span-1 lg:col-start-3"

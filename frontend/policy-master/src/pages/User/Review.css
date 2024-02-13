@@ -73,7 +73,15 @@
   padding-bottom: 20px;
 }
 
-
+.checked-label-budget{
+  padding-left: 5px;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  padding-top: 5px;
+  color: #333;
+  font-family: "poppins";
+}
 
 .checked-label {
   display: block;
@@ -93,7 +101,7 @@
   margin-left: 14px;
   padding: 12px;
   color: white;
-  background-color: #4c6daf;
+  background-color: #3498DB;
   ;
   border-radius: 8px;
   width: 94%;
@@ -126,7 +134,7 @@ padding-top: 20px;
 }
 
 .proceed-button {
-  background-color: #4c6daf;
+  background-color: #3498DB;
   color: #ffffff;
   padding: 14px 28px;
   border: none;
@@ -139,7 +147,7 @@ padding-top: 20px;
 }
 
 .proceed-button:hover {
-  background-color: rgb(71, 116, 156);;
+  background-color: #1587d3;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -155,7 +163,7 @@ padding-top: 20px;
   padding: 12px;
   color: #333;
   text-align: start;
-  background-color: #4c6daf;
+  background-color: #3498DB;
   border-radius: 8px;
   width: 96.5%;
 
@@ -178,4 +186,8 @@ width: 95%;
 font-weight: 600;
 font-size: 20px;
 color:#0b5485 ;
+}
+.your_budget{
+  font-family: "poppins";
+font-weight: bold;
 }
