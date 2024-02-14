@@ -326,7 +326,8 @@ export const Company = () => {
 
       const { company_name } = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}`
+        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}/2/`
+       
       );
       // Set the entire JSON object to data
       // {
@@ -350,7 +351,7 @@ export const Company = () => {
 
       const {id_user} = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/${id_user}`
+        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/2/`
       );
 
       const mappedData = packageStats.labels?.map((label, index) => {

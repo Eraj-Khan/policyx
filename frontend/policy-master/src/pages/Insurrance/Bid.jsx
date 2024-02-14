@@ -366,6 +366,7 @@ const handleSubmit = () =>{
         <input
         className="bid-input"
           type="number"
+          min={0}
           id="total_annual_coverage"
           value={formData.total_annual_coverage}
           onChange={(e) =>
@@ -380,6 +381,8 @@ const handleSubmit = () =>{
         <input
         className="bid-input"
           type="number"
+          min={0}
+
           id="accidental_emergencies"
           value={formData.accidental_emergencies}
           onChange={(e) =>
@@ -395,6 +398,8 @@ const handleSubmit = () =>{
         <input
         className="bid-input"
           type="number"
+          min={0}
+
           id="hospitalization_room_charges"
           value={formData.hospitalization_room_charges}
           onChange={(e) =>
@@ -410,6 +415,8 @@ const handleSubmit = () =>{
         <input
         className="bid-input"
           type="number"
+          min={0}
+
           id="dental_and_vision_care"
           value={formData.dental_and_vision_care}
           onChange={(e) =>
@@ -424,6 +431,8 @@ const handleSubmit = () =>{
         <input
         className="bid-input"
           type="number"
+          min={0}
+
           id="other_medical_expenses"
           value={formData.other_medical_expenses}
           onChange={(e) =>
@@ -439,6 +448,8 @@ const handleSubmit = () =>{
             <input
             className="bid-input"
               type="number"
+              min={0}
+
               id="ambulance_services_expenses"
               value={formData.ambulance_services_expenses}
               onChange={(e) =>
@@ -454,6 +465,8 @@ const handleSubmit = () =>{
             <input
             className="bid-input"
               type="number"
+              min={0}
+
               id="surgery"
               value={formData.surgery}
               onChange={(e) => setFormData({...formData,  surgery: e.target.value })}
