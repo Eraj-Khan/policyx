@@ -24,6 +24,15 @@ const PopChat = (props) => {
     }
   };
 
+  const renderMessageWithLineBreaks = (message) => {
+    return message.split('\n').map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ));
+  };
+
   const handleSend = () => {
     const get = props.getMessage;
     get(msg);
@@ -45,11 +54,11 @@ const PopChat = (props) => {
               props.messages.map((msg, i) =>
                 msg.type === "query" ? (
                   <p className="right" key={i}>
-                    <span>{msg.value}</span>
+                    <span>{renderMessageWithLineBreaks(msg.value)}</span>
                   </p>
                 ) : (
                   <p className="left" key={i}>
-                    <span>{msg.value}</span>
+                    <span>{renderMessageWithLineBreaks(msg.value)}</span>
                   </p>
                 )
               )}
