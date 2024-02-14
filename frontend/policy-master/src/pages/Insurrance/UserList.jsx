@@ -28,6 +28,19 @@ import "../Insurrance/UserList.css";
 import logotwo from "../../image/logo1.png";
 
 import { Link, Navigate, useNavigate, useNavigation } from "react-router-dom";
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 
 
 const nav = [
@@ -128,8 +141,92 @@ function formatDate(dateTimeString) {
 
     fetchData();
   }, []);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  const [packageData, setPackageData] = useState([]);
+  const [case_id,setCaseId]=useState("")
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/company_dashboard/list_packages_and_bids/${case_id}`);
+        setPackageData(response.data['Placed Packages']);
+        console.log(packageData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [case_id]);
   return (
-  
+    <>
+   <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+       <h1 style={{
+        textAlign:"center",
+        marginBottom:"10px",
+        fontWeight:"bold",
+       }}>Bids from Other Companies</h1>
+      <table>
+        
+           {packageData ? packageData?.map((packageItem) => (
+            <>
+            <thead>
+              <tr key={packageItem.id}>
+                <th className="th">Case Id</th>
+                <th className="th">Company Name</th>
+                <th className="th">Accidental Emergencies</th>
+                <th className="th">Ambulance Services</th>
+                <th className="th">Dental & Vision</th>
+                <th className="th">Hospitalization</th>
+                <th className="th">Monthly Coverage</th>
+                <th className="th">Other Medical Expenses</th>
+                <th className="th">Surgery</th>
+                <th className="th">Annual Coverage</th>
+              </tr>
+           </thead>
+        <tbody>
+          <tr>
+            <td>{packageItem.case_id ? packageItem.case_id : "-"}</td>
+            <td>{packageItem.company_name ? packageItem.company_name : "-"}</td>
+            <td>{ packageItem.accidental_emergencies ? packageItem.accidental_emergencies : "-"}</td>
+            <td>{packageItem.ambulance_services_expenses ? packageItem.ambulance_services_expenses : "-"}</td>
+            <td>{ packageItem.dental_and_vision_care ? packageItem.dental_and_vision_care : "-"}</td>
+            <td>{ packageItem.hospitalization_room_charges ? packageItem.hospitalization_room_charges : "-"}</td>
+            <td>{packageItem.monthly_coverage ? packageItem.monthly_coverage : "-"}</td>
+            <td>{packageItem.other_medical_expenses ? packageItem.other_medical_expenses : "-"}</td>
+            <td>{ packageItem.surgery ? packageItem.surgery : "-"}</td>
+            <td>{packageItem.total_annual_coverage ? packageItem.total_annual_coverage : "-"}</td>
+          </tr>
+        </tbody></>
+                    )):<h1 style={{
+                      textAlign:"center",
+                    }}>No bids available.</h1>}
+      </table>
+      <button style={{
+        backgroundColor:"#3498DB"
+        ,marginTop:"10px"
+      }} onClick={()=>{
+        closeModal()
+      }}>Close</button>
+      </Modal>
+ 
     <div>
     <Transition.Root show={sidebarOpen} as={Fragment}>
       <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
@@ -493,6 +590,21 @@ function formatDate(dateTimeString) {
                   >
                     Place bid
                   </button>
+                  <button
+                    className="bid-place"
+                    style={{
+                      marginTop:"10px"
+                    }}
+
+                    onClick={()=>{
+                      setCaseId(data.case_id)
+                        openModal()
+                        
+                        console.log(data.case_id);
+                    }}
+                  >
+                    View Other bids
+                  </button>
                 </td>
                 <hr/>
 
@@ -502,6 +614,7 @@ function formatDate(dateTimeString) {
         </table>
       </div>
       </div>
+      </>
   );
 };
 
