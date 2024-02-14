@@ -140,7 +140,7 @@ const handleSubmit = () =>{
       .then((response) => {
         console.log("response", response.data);
         setTimeout(()=>{
-          swal("Package Send")
+          swal("Package Has Been Sent")
         },100)
       })
       .catch((error) => {

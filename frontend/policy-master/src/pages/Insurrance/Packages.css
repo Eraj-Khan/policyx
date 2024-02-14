@@ -16,15 +16,17 @@
     margin-left: 268px;
     font-family: "poppins";
 font-size: 14px;
+height: auto;
 border-radius: 8px;
 
   }
   
   .user-pack-table th, .user-pack-table td {
-    border: 1px solid ;
+    border: 1px solid;
     border-color: #c9c9c98e;
     padding: 4px;
-    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   
   .user-pack-table th {
@@ -63,12 +65,12 @@ border-radius: 8px;
     color: red;
   }
   .package_search input{
-  width: 19%;
-  margin-left: 275px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  box-sizing: border-box;
-  position: absolute;
+    width: 20%;
+    margin-left: 267px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    position: absolute;
   
   }
 
@@ -108,7 +110,7 @@ border-radius: 8px;
     background-color: #fff;
     color: #333;
     cursor: pointer;
-    width: 35%;
+    width: 36%;
   }
   
   .status-filt button.active {

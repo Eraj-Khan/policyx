@@ -17,13 +17,16 @@ tbody{
   overflow: hidden;
   border-radius: 8px;
   margin-left: 246px;
-  margin-top: 20px;
+  height: auto;
+  margin-top: 15px;
 }
 
 .user-table th, .user-table td {
-  border: 1px solid ;
-    border-color: #c9c9c98e;  padding: 7px;
-  text-align: left;
+  border: 1px solid;
+  border-color: #c9c9c98e;
+  padding: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .user-table th {
@@ -50,7 +53,7 @@ tbody{
   background-color: #3498DB;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -110,7 +113,7 @@ font-weight: 800;
 }
 
 .case_search input {
-  width: 45%;
+  width: 70%;
   margin-left: 247px;
   border: 1px solid #ddd;
   border-radius: 6px;

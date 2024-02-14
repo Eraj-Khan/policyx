@@ -65,7 +65,7 @@ const InsurranceOffer = () => {
       .then((response) => {
         console.log(response.data);
         setTimeout(() => {
-          swal("Package Accepted and Notified to Company");
+          swal("Package Accepted And Notified To Company");
         }, 100);
       })
       .catch((error) => {
