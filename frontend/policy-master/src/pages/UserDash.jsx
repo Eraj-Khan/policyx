@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, } from "react";
 import React from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import "@fontsource/poppins";
@@ -90,22 +90,22 @@ const timeline = [
   },
 ];
 const people = [
-  {
-    value: "10",
-    text: "Total Cases",
-    imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
-  },
+  // {
+  //   value: "10",
+  //   text: "Total Cases",
+  //   imageUrl: "https://img.icons8.com/?size=80&id=n5lvtrpv0CbJ&format=png",
+  // },
 
-  {
-    value: "5",
-    text: "Companies",
-    imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
-  },
-  {
-    value: "3,000",
-    text: "Total Paid",
-    imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
-  },
+  // {
+  //   value: "5",
+  //   text: "Companies",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
+  // },
+  // {
+  //   value: "3,000",
+  //   text: "Total Paid",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
+  // },
 ];
 const footerNavigation = {
   solutions: [
@@ -305,17 +305,18 @@ export const UserDash = () => {
         {
           value: total_bids,
           text: "Total Bids",
-          imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
+      
+          imageUrl: "https://img.icons8.com/?size=80&id=kCq3SDy5KqvN&format=png",
         },
         {
           value: total_companies,
-          text: "Total Companies",
-          imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
+          text: "Companies",
+          imageUrl: "https://img.icons8.com/?size=50&id=8F2vAFv2ZjZH&format=png",
         },
         {
           value: total_premium,
           text: "Total Premium",
-          imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
+          imageUrl: "https://img.icons8.com/?size=50&id=4256&format=png",
         },
       ]);
 
@@ -334,10 +335,10 @@ export const UserDash = () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-          
+
         );
 
-       
+
         const { Bids } = response.data;
         setNotificationCount(Bids.length);
         console.log("data", response.data);
@@ -349,6 +350,7 @@ export const UserDash = () => {
     fetchData();
     getCount();
   }, []);
+
 
   return (
     <div>
@@ -442,20 +444,20 @@ export const UserDash = () => {
         </Dialog>
       </Transition.Root>
 
-     
+
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-  
+
         <div className=" user_nav flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
-        <div className="flex flex-shrink-0">
-            
-              <div className="logo">
+          <div className="flex flex-shrink-0">
+
+            <div className="logo">
               <img
-              
-              src={logotwo} 
-              
-            />
-              </div>
-          
+
+                src={logotwo}
+
+              />
+            </div>
+
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-2 px-2">
@@ -523,6 +525,8 @@ export const UserDash = () => {
                 </span>
               </a>
 
+
+
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
@@ -552,8 +556,8 @@ export const UserDash = () => {
                             href={item.href}
                             className={classNames(
                               active ? "bg-sky-500" : "",
-                                "block px-4 py-2 rounded-md hover:text-white"
-                              )}
+                              "block px-4 py-2 rounded-md hover:text-white"
+                            )}
                           >
                             {item.name}
                           </a>
@@ -578,10 +582,10 @@ export const UserDash = () => {
               <h1>Welcome</h1>
 
               <p>
-              Unlock a world of simplicity with coverage that clicks – insurance made just for you. Effortless protection, personalized for your peace of mind.
+                Unlock a world of simplicity with coverage that clicks – insurance made just for you. Effortless protection, personalized for your peace of mind.
               </p>
               <img
-                className="image8 animate_animated animate_pulse"
+                className="image8 animate__animated animate__pulse animate__infinite	infinite"
                 src={img8}
                 alt=""
               />
@@ -592,39 +596,39 @@ export const UserDash = () => {
           </main>
         </div>
       </div>
-     
-    
+
+
       <div className="icon_cards">
-        <ul role="list" className="grid grid-cols-1 lg:grid-cols-3">
+        <ul role="list" className="grid lg:grid-cols-3">
           {counts.map((person) => (
             <li
               key={person.email}
-              className="animate__animated animate__pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+              className="animate__animated animate__pulse divide-gray-200 rounded-lg bg-white text-center shadow"
             >
-              <div className="flex flex-1 flex-col p-6">
-                <div className=" money_icon flex-shrink-0 rounded-full" alt="">
+              <div className=" main_card_ui">
+
+                <div className="cards_ui">
+                  <h3 className="  font-medium text-gray-900">
+                    {person.value}
+                  </h3>
+                  <dl className=" icon_text ">
+                    <dd className="text-gray-500">{person.text}</dd>
+                  </dl>
+                </div>
+                <div className=" money_icon " alt="">
                   <img
-                    className="mx-auto h-30 w-30 flex-shrink-0 "
+                    className="  "
                     src={person.imageUrl}
                     alt=""
                   />{" "}
                 </div>
-
-                <h3 className="mt-6 text-lg font-medium text-gray-900">
-                  {person.value}
-                </h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between">
-                  <dt className="sr-only">Title</dt>
-                  <dd className="text-lg text-gray-500">{person.text}</dd>
-                  <dt className="sr-only">Role</dt>
-                </dl>
               </div>
             </li>
           ))}
         </ul>
       </div>
       <div className="main_cards">
-      <HomeChat/>
+        <HomeChat />
         <section
           aria-labelledby="timeline-title"
           className=" card_table lg:col-span-1 lg:col-start-3"
@@ -639,7 +643,7 @@ export const UserDash = () => {
               <ul role="list" className="cards_list mb-8">
                 <li>
                   <span className="plans-head">Accidental : </span>
-                  {user_plan?.accidental_emergencies ? user_plan?.accidental_emergencies : "None" }
+                  {user_plan?.accidental_emergencies ? user_plan?.accidental_emergencies : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Ambulance Expense : </span>
@@ -667,8 +671,11 @@ export const UserDash = () => {
         </section>
       </div>
     </div>
+
   );
 };
+
+
 
 export default UserDash;
 

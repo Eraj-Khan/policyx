@@ -12,7 +12,28 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="signup-container">
+    
+    <div className=" app signup-container">
+        <div class="boxes">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
       <div className="selectone"><h1>Join as a Company Or User</h1></div>
       <div className='cards_signinup'>
         <div
