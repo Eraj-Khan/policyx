@@ -37,23 +37,38 @@
   }
 }
 
-table {
+.ReactModalPortal table {
   width: 800px;
   height: 200px;
   border-collapse: collapse;
 }
 
-th {
-  border-bottom: 1px solid black;
-  border: 2px solid black;
+.ReactModalPortal th {
+  border: 1px solid;
+  border-color: #2e2e2e8e;
   
 }
 
-td {
+.ReactModalPortal td {
+  border: 1px solid;
+  border-color: #2e2e2e8e;
   text-align: center;
-  border: 2px solid black;
 }
 
-.th{
+.ReactModalPortal  .th{
   padding: 20px !important;
+  /* font-size: 14px; */
+  color: #0b5485;
+
+  font-family: 'Poppins';
+}
+.ReactModalPortal h1{
+  font-size: 25px;
+  align-self: center;
+  font-family: "poppins";
+  color: #0b5485;
+  font-weight: 800;
+}
+.ReactModalPortal button{
+  background-color: #3498DB ;
 }

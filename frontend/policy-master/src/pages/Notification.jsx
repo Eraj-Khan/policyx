@@ -10,6 +10,7 @@ import {
   HomeIcon,
   InboxIcon,
   UsersIcon,
+  ChevronDoubleLeftIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
@@ -50,10 +51,10 @@ export const Notification = () => {
         );
 
         // Set the entire JSON object to data
-       
-        let isRemainingNotifications = response.data?.filter((e)=> e.is_completed === false);
+
+        let isRemainingNotifications = response.data?.filter((e) => e.is_completed === false);
         setNotificationInfo(isRemainingNotifications);
-        let isCompletedData = response.data?.filter((e)=> e.is_completed === true);
+        let isCompletedData = response.data?.filter((e) => e.is_completed === true);
         setIsCompleted(isCompletedData);
         console.log("data", response.data);
       } catch (error) {
@@ -65,14 +66,16 @@ export const Notification = () => {
   }, []);
   return (
     <div>
-        <div className="flex flex-1 flex-col ">
-      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-      
-        
-        <div className="flex flex-1 justify-between px-4">
-          <div className="flex flex-1">
-            <div className="notify_heading"><h1>Notifications</h1></div>
-            {/* <form className="flex w-full md:ml-0" action="#" method="GET">
+      <div className="flex flex-1 flex-col ">
+        <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+
+
+          <div className="flex flex-1 justify-between px-4">
+            <div className="flex flex-1">
+            <div className="w-8 h-8 mt-4">  <a href="./company" id="backLink">
+                                     <ChevronDoubleLeftIcon></ChevronDoubleLeftIcon></a></div>
+  <div className="notify_heading"><h1>Notifications</h1></div>
+              {/* <form className="flex w-full md:ml-0" action="#" method="GET">
               <label htmlFor="search-field" className="sr-only">
                 Search
               </label>
@@ -89,9 +92,9 @@ export const Notification = () => {
                 />
               </div>
             </form> */}
-          </div>
-          <div className="ml-4 flex items-center md:ml-6">
-            {/* <button
+            </div>
+            <div className="ml-4 flex items-center md:ml-6">
+              {/* <button
               type="button"
               className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
@@ -99,9 +102,9 @@ export const Notification = () => {
               <BellIcon className="h-6 w-6" aria-hidden="true" />
             </button> */}
 
-            {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
-              {/* <div>
+              {/* Profile dropdown */}
+              <Menu as="div" className="relative ml-3">
+                {/* <div>
                 <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
@@ -111,80 +114,76 @@ export const Notification = () => {
                   />
                 </Menu.Button>
               </div> */}
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {userNavigation?.map((item) => (
-                    <Menu.Item key={item.name}>
-                      {({ active }) => (
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  ))}
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {userNavigation.map((item) => (
+                      <Menu.Item key={item.name}>
+                        {({ active }) => (
+                          <a
+                            href={item.href}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
+                          >
+                            {item.name}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            </div>
           </div>
         </div>
-      </div>
 
-      <main>
-        <div className="py-6">
-         
-          
-        </div>
-      </main>
-    </div>
-    <div className="notification-container">
-       <div className="notification-completed">
-        <h1>Completed</h1>
-       {isCompleted?.map((data) => (
-          <>
-            
-            <div key={data.case_id} className="notification-item">
-     <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
-        {/* <li className="age">AGE:  {data.age}</li>
-        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
-      </div>
-          </>
-        ))}
-        </div> 
-        <div class="vl"></div>
-                  
-      <div className="notification-pending">
-      <h1>Pending</h1>
-        {(()=>{
-          if(notificationinfo){
-            {notificationinfo?.map((data) => (
-              <>
-                
-                <div key={data?.case_id} className="notification-item">
-                <div> Insurance Request from <span className="recommended">{data?.case_id}</span> with recommended value <span className="case_id">{data?.recommended_value}</span></div>
-            {/* <li className="case_id"> CASE ID: {data.case_id}</li>
-            <li className="age">AGE:  {data.age}</li>
-            <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
+        <main>
+          <div className="py-6">
+
+
           </div>
-              </>
-            ))}
-          }
-        })()}
+        </main>
       </div>
-    </div>
+      <div className="notification-container">
+        <div className="notification-completed">
+          <h1>Completed</h1>
+          {isCompleted.map((data) => (
+            <>
+
+              <div key={data.case_id} className="notification-item">
+                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
+                {/* <li className="age">AGE:  {data.age}</li>
+        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
+              </div>
+            </>
+          ))}
+        </div>
+        <div class="vl"></div>
+
+        <div className="notification-pending">
+          <h1>Pending</h1>
+          {notificationinfo.map((data) => (
+            <>
+
+              <div key={data.case_id} className="notification-item">
+                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
+                {/* <li className="case_id"> CASE ID: {data.case_id}</li>
+        <li className="age">AGE:  {data.age}</li>
+        <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

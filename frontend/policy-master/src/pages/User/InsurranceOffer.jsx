@@ -65,7 +65,7 @@ const InsurranceOffer = () => {
       .then((response) => {
         console.log(response.data);
         setTimeout(() => {
-          swal("Package Accepted and Notified to Company");
+          swal("Package Accepted And Notified To Company");
         }, 100);
       })
       .catch((error) => {
@@ -240,8 +240,8 @@ const InsurranceOffer = () => {
                 {data.is_expired
                   ? "Expired"
                   : data.is_accepted
-                  ? "Accepted"
-                  : "Active"}
+                    ? "Accepted"
+                    : "Active"}
               </span>
               <li className="case_id">
                 {" "}
@@ -288,7 +288,7 @@ const InsurranceOffer = () => {
                       : "pointer",
                 }}
               >
-                {data.is_accepted ? "Accepted" : "Accept"}
+                {data.is_accepted ? "Accepted" : (data.is_expired ? "Expired" : "Accept")}
               </button>
             </div>
             <img
