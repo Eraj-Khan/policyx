@@ -491,7 +491,7 @@ const handleSubmit = () =>{
         
       {submittedData && (
         <div className="card-style">
-          <h3 className="card-styleh3">Insurrance Package</h3>
+          <h3 className="card-styleh3">Review Insurance Package</h3>
           <p>Total Annual Coverage: {submittedData.total_annual_coverage}</p>
           <p>Accidental Emergencies: {submittedData.accidental_emergencies}</p>
           <p>Hospitalization Room Charges: {submittedData.hospitalization_room_charges}</p>
