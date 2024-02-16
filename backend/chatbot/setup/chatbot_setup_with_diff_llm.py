@@ -2,7 +2,7 @@ import os
 import pickle
 from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
-# from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_community.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
@@ -36,12 +36,6 @@ insrunction_prompt =  '''
      4. Home insurance
     each offering specific coverage options tailored to different needs and risks
     
-    Question: who is adolf hitler?
-    PolicyX Chatbot: Sorry, I can only provide you insurance and our platform policyX related queries. What would you like to know about policyX?
-
-    Question: what do you know about world war 3?
-    PolicyX Chatbot: Sorry, I can only provide you insurance and our platform policyX related queries. What would you like to know about policyX?
-
     {question}
     PolicyX Chatbot:
 '''
@@ -52,9 +46,7 @@ insrunction_prompt =  '''
 # ----------------
 # {context}"""
 system_template = """ You are responsible for providing information only related to our platform policyX and information 
-related to insurance to the insurance buyers. If insurance buyers ask any irrelevant questions or questions that are not related to insurance, 
-respond with: "Sorry, I would only be able to provide insurance and our platform policyX related queries
-Use the following pieces of context to answer the users question. if the following context doesnot contain answer and question is related to
+related to insurance to the insurance buyers. if the following context doesnot contain answer and question is related to
 insurance just think and answer.
 
 ----------------
@@ -82,7 +74,7 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
-        separator="\\n",
+        separator="\n",
         chunk_size=300,
         chunk_overlap=100,
         length_function=len
@@ -106,9 +98,9 @@ def get_vectorstore_and_chain(pdf_folder_path):
     text_chunks = get_text_chunks(raw_text)
 
     # Create vector store
-    # vectorstore = FAISS.from_texts(texts=text_chunks, embedding=OpenAIEmbeddings())
-    embeddings = HuggingFaceEmbeddings()
-    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=OpenAIEmbeddings())
+    # embeddings = HuggingFaceEmbeddings()
+    # vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
 
 
     llm = ChatOpenAI()
@@ -138,13 +130,15 @@ def get_vectorstore_and_chain(pdf_folder_path):
     return vectorstore, conversation_chain
 
 if __name__ == "__main__":
-    load_dotenv()
-    openai.api_key= "hello"
+    # load_dotenv()
+    os.environ["openai_api_key"]= "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"
+
+
+    # openai.api_key= "hello"
     # openai.api_key = os.environ.get("OPENAI_API_KEY")
     # GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
     # print("API_KEY",GOOGLE_API_KEY)
     # os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-
     pdf_folder_path = "./pdfs"
     vectorstore, conversation_chain = save_to_dir_vectorstore_and_chain(pdf_folder_path)
 

@@ -326,7 +326,7 @@ export const Company = () => {
 
       const { company_name } = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}/2/`
+        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}/11/`
        
       );
       // Set the entire JSON object to data
@@ -351,7 +351,7 @@ export const Company = () => {
 
       const {id_user} = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/2/`
+        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/11/`
       );
 
       const mappedData = packageStats.labels?.map((label, index) => {
@@ -567,9 +567,11 @@ export const Company = () => {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="w-5 rounded-full"
-                        src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
+                        src="https://icons8.com/icon/103408/company"
                         alt=""
                       />
+
+
                     </Menu.Button>
                   </div>
                   <Transition

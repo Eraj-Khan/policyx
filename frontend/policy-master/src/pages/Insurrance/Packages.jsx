@@ -44,7 +44,7 @@ const Packages = () => {
   const filteredData = data?.filter((item) =>
     item.case_id.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const filteredByStatus = filteredData.filter((item) => {
+  const filteredByStatus = filteredData ? filteredData.filter((item) => {
     if (statusFilter === "all") {
       return true; 
     } else if (statusFilter === "active") {
@@ -53,7 +53,8 @@ const Packages = () => {
       return item.is_accepted;
     }
     return false;
-  });
+  }) : [];
+
   const handleUpdate = (payload) => {
     navigation("/bid", {
       state: {
@@ -365,34 +366,38 @@ const Packages = () => {
           </tr>
         </thead>
         <tbody>
-        {filteredByStatus.reverse()?.map((data) => (
-          // {filteredData?.map((data) => (
-            <tr key={data.case_id}>
-              {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
-              <td>{data.case_id}</td>
-              <td>{data.company_name}</td>
-              <td>{data.accidental_emergencies}</td>
-              <td>{data.dental_and_vision_care}</td>
-              <td>{data.hospitalization_room_charges}</td>
-              <td>{data.monthly_coverage}</td>
-              <td>{data.total_annual_coverage}</td>
-              <td>{data.ambulance_services_expenses}</td>
-              <td>{data.surgery}</td>
-              {/* <td>{!data?.is_expired ? "active" : "expired"}</td> */}
-              <td>{data.is_expired ? 'Expired' : data.is_accepted ? 'Accepted' : 'Active'}</td>
-              <td>
-                <button
-                  className="bid-update"
-                  onClick={() => handleUpdate(data)}
-                
-                  disabled={data.is_accepted} // Disable if already accepted
-                  style={{ cursor: data.is_accepted ? 'not-allowed' : 'pointer',backgroundColor: data.is_accepted ? 'grey' : ''}}
-                >
-                  Update
-                </button>
-              </td>
-            </tr>
-          )) }
+        {filteredByStatus && filteredByStatus.length > 0 ? (
+  filteredByStatus.reverse().map((data) => (
+    <tr key={data.case_id}>
+      <td>{data.case_id}</td>
+      <td>{data.company_name}</td>
+      <td>{data.accidental_emergencies}</td>
+      <td>{data.dental_and_vision_care}</td>
+      <td>{data.hospitalization_room_charges}</td>
+      <td>{data.monthly_coverage}</td>
+      <td>{data.total_annual_coverage}</td>
+      <td>{data.ambulance_services_expenses}</td>
+      <td>{data.surgery}</td>
+      <td>{data.is_expired ? 'Expired' : data.is_accepted ? 'Accepted' : 'Active'}</td>
+      <td>
+        <button
+          className="bid-update"
+          onClick={() => handleUpdate(data)}
+          disabled={data.is_accepted} // Disable if already accepted
+          style={{ cursor: data.is_accepted ? 'not-allowed' : 'pointer', backgroundColor: data.is_accepted ? 'grey' : '' }}
+        >
+          Update
+        </button>
+      </td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td colSpan="11">No data available</td>
+  </tr>
+)}
+
+
         </tbody>
       </table>
     </div>
