@@ -104,15 +104,15 @@ background-image: linear-gradient(to right top, #0b5485, #1d6395, #2b72a6, #3881
 height:100vh;
 width:100%;
 }
-ul{
+.animation_li {
   display:block;
   width:100%;
   height:inherit;
 }
-ul{
+.animation_li {
   list-style-type:none;
 }
-li:nth-child(1)
+.animation_li li:nth-child(1)
 {
   position:absolute;
   left:10%;
@@ -120,7 +120,7 @@ li:nth-child(1)
   width:50px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(2)
+.animation_li  li:nth-child(2)
 {
   position:absolute;
   left:30%;
@@ -128,7 +128,8 @@ li:nth-child(2)
   width:60px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(3)
+
+.animation_li  li:nth-child(3)
 {
   position:absolute;
   left:50%;
@@ -136,7 +137,7 @@ li:nth-child(3)
   width:180px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(4)
+.animation_li  li:nth-child(4)
 {
   position:absolute;
   left:80%;
@@ -144,7 +145,7 @@ li:nth-child(4)
   width:20px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(5)
+.animation_li li:nth-child(5)
 {
   position:absolute;
   left:10%;
@@ -152,7 +153,7 @@ li:nth-child(5)
   width:20px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(6)
+.animation_li li:nth-child(6)
 {
   position:absolute;
   right:10%;
@@ -160,14 +161,15 @@ li:nth-child(6)
   width:20px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(7)
+.animation_li li:nth-child(7)
 {
   position:absolute;
   right:40%;
   height:100px;
   width:100px;
   background:rgba(255,255,255,.2);
-}li:nth-child(8)
+}
+.animation_li li:nth-child(8)
 {
   position:absolute;
   left:10%;
@@ -175,35 +177,39 @@ li:nth-child(7)
   width:140px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(9)
+.animation_li li:nth-child(9)
 {
   position:absolute;
   right:80%;
   height:50px;
   width:50px;
   background:rgba(255,255,255,.2);
-}li:nth-child(10)
+}
+.animation_li li:nth-child(10)
 {
   position:absolute;
   right:20%;
   height:50px;
   width:50px;
   background:rgba(255,255,255,.2);
-}li:nth-child(11)
+}
+.animation_li li:nth-child(11)
 {
   position:absolute;
   right:40%;
   height:70px;
   width:70px;
   background:rgba(255,255,255,.2);
-}li:nth-child(12)
+}
+.animation_li li:nth-child(12)
 {
   position:absolute;
   right:80%;
   height:190px;
   width:190px;
   background:rgba(255,255,255,.2);
-}li:nth-child(13)
+}
+.animation_li li:nth-child(13)
 {
   position:absolute;
   right:60%;
@@ -211,7 +217,7 @@ li:nth-child(9)
   width:50px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(14)
+.animation_li li:nth-child(14)
 {
   position:absolute;
   right:50%;
@@ -219,7 +225,7 @@ li:nth-child(14)
   width:150px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(15)
+.animation_li li:nth-child(15)
 {
   position:absolute;
   right:20%;
@@ -227,7 +233,7 @@ li:nth-child(15)
   width:120px;
   background:rgba(255,255,255,.2);
 }
-li:nth-child(16)
+.animation_li li:nth-child(16)
 {
   position:absolute;
   left:50%;
@@ -237,7 +243,7 @@ li:nth-child(16)
 }
 
 
-li{
+.animation_li li{
   animation:animate 25s linear 1s infinite;
 }
 

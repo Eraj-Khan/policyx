@@ -112,7 +112,7 @@
 .icon_cards ul li {
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: 5px solid #3498DB;
-    padding: 20px;
+    padding: 30px;
 
 }
 .main_cards{
@@ -240,4 +240,5 @@ font-size: 20px;
         .cards_ui{
             font-size: 16px;
             margin-top: 7px;
-            font-family: 'Poppins';        }
+            font-weight: 600;
+            font-family: 'Poppins';     }

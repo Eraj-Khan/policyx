@@ -15,7 +15,7 @@ const SignUpForm = () => {
     
     <div className=" app signup-container">
         <div class="boxes">
-    <ul>
+    <ul className='animation_li'>
       <li></li>
       <li></li>
       <li></li>

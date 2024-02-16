@@ -13,6 +13,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router";
 import Login_img from "../../image/login.png"
+import logotwo from "../../image/logo1.png";
 
 // import { act } from "react-dom/test-utils";
 const navigation = [
@@ -236,7 +237,9 @@ const role= "normal";
   return (
    
     <div className="sign_up_main">
-   
+    <div className="signup_logo">
+<img className="w-28 h-28 ml-10" src={logotwo} alt="" />
+  </div>
         <div className="signup_img">
        <div className="signup_popup">
       <div className="popup">
