@@ -6,7 +6,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import "animate.css";
 import logotwo from "../image/logo1.png";
-import HomeChat from '../Components/Homechat'
+import HomeChat from "../Components/Homechat";
 import "@fontsource/space-grotesk";
 import {
   Bars3BottomLeftIcon,
@@ -198,7 +198,12 @@ const footerNavigation = {
 };
 const navigation = [
   { name: "User Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Insurance Offers", href: "/insurranceoffer", icon: FolderIcon, current: false },
+  {
+    name: "Insurance Offers",
+    href: "/insurranceoffer",
+    icon: FolderIcon,
+    current: false,
+  },
   {
     name: "Apply For Insurance",
     href: "/register",
@@ -277,20 +282,36 @@ export const UserDash = () => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [counts, setCounts] = useState([]);
   const [user_plan, setUser_plan] = useState(null);
+  const [userName, setUserName] = useState("");
 
-  // {
-  //   "total_bids": 1,
-  //   "total_companies": 0,
-  //   "total_premium": 23,
-  //   "user_plan": {
-  //     "accidental_emergencies": 3,
-  //     "ambulance_services_expenses": 20000,
-  //     "hospitalization_room_charges": 20000,
-  //     "surgery": 2,
-  //     "dental_and_vision_care": 12,
-  //     "other_medical_expenses": 23
-  //   }
-  // }
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = String(number);
+    const suffixNum = Math.floor(numString.length / 3);
+
+    let shortNumber = parseFloat(
+      (suffixNum !== 0
+        ? number / Math.pow(1000, suffixNum)
+        : number
+      ).toPrecision(2)
+    );
+
+    if (!Number.isInteger(shortNumber)) {
+      shortNumber = shortNumber.toFixed(1);
+    }
+
+    return shortNumber + suffixes[suffixNum];
+  }
+
+  useEffect(() => {
+    let payload = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(payload);
+
+    const { user_name } = parsedPayload;
+
+    
+    setUserName(user_name);
+  }, []);
 
   const getCount = async () => {
     try {
@@ -313,7 +334,7 @@ export const UserDash = () => {
           imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
         },
         {
-          value: total_premium,
+          value:  formatNumber (total_premium),
           text: "Total Premium",
           imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
         },
@@ -334,10 +355,8 @@ export const UserDash = () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-          
         );
 
-       
         const { Bids } = response.data;
         setNotificationCount(Bids.length);
         console.log("data", response.data);
@@ -442,20 +461,12 @@ export const UserDash = () => {
         </Dialog>
       </Transition.Root>
 
-     
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-  
         <div className=" user_nav flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
-        <div className="flex flex-shrink-0">
-            
-              <div className="logo">
-              <img
-              
-              src={logotwo} 
-              
-            />
-              </div>
-          
+          <div className="flex flex-shrink-0">
+            <div className="logo">
+              <img src={logotwo} />
+            </div>
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-2 px-2">
@@ -492,25 +503,7 @@ export const UserDash = () => {
             <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="flex flex-1 justify-between px-4">
-            <div className="flex flex-1">
-              {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-              <label htmlFor="search-field" className="sr-only">
-                Search
-              </label>
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                  placeholder="Search"
-                  type="search"
-                  name="search"
-                />
-              </div>
-            </form> */}
-            </div>
+            <div className="flex flex-1"></div>
             <div className="ml-4 flex items-center md:ml-6">
               <a
                 href="/usernotification"
@@ -526,13 +519,31 @@ export const UserDash = () => {
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
-                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                  {/* <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="w-5 rounded-full"
                       src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                       alt=""
-                    />
+                    /> */}
+                  <Menu.Button className="flex flex-row rounded-full p-1 bg-sky-100 profile_user items-center  text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span>
+                    <div className="w-5 px-2 rounded-full">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-10 h-10 user_font"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="company-info">{userName}</div>
                   </Menu.Button>
                 </div>
                 <Transition
@@ -552,8 +563,8 @@ export const UserDash = () => {
                             href={item.href}
                             className={classNames(
                               active ? "bg-sky-500" : "",
-                                "block px-4 py-2 rounded-md hover:text-white"
-                              )}
+                              "block px-4 py-2 rounded-md hover:text-white"
+                            )}
                           >
                             {item.name}
                           </a>
@@ -575,10 +586,12 @@ export const UserDash = () => {
         <div className="">
           <main className="image_color_background ">
             <div className="color-image">
-              <h1>Welcome</h1>
+              <h1>Welcome {userName},</h1>
 
               <p>
-              Unlock a world of simplicity with coverage that clicks – insurance made just for you. Effortless protection, personalized for your peace of mind.
+                Unlock a world of simplicity with coverage that clicks –
+                insurance made just for you. Effortless protection, personalized
+                for your peace of mind.
               </p>
               <img
                 className="image8 animate_animated animate_pulse"
@@ -592,8 +605,7 @@ export const UserDash = () => {
           </main>
         </div>
       </div>
-     
-    
+
       <div className="icon_cards">
         <ul role="list" className="grid grid-cols-1 lg:grid-cols-3">
           {counts.map((person) => (
@@ -624,7 +636,7 @@ export const UserDash = () => {
         </ul>
       </div>
       <div className="main_cards">
-      <HomeChat/>
+        <HomeChat />
         <section
           aria-labelledby="timeline-title"
           className=" card_table lg:col-span-1 lg:col-start-3"
@@ -639,15 +651,21 @@ export const UserDash = () => {
               <ul role="list" className="cards_list mb-8">
                 <li>
                   <span className="plans-head">Accidental : </span>
-                  {user_plan?.accidental_emergencies ? user_plan?.accidental_emergencies : "None" }
+                  {user_plan?.accidental_emergencies
+                    ? user_plan?.accidental_emergencies
+                    : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Ambulance Expense : </span>
-                  {user_plan?.ambulance_services_expenses ? user_plan?.ambulance_services_expenses : "None"}
+                  {user_plan?.ambulance_services_expenses
+                    ? user_plan?.ambulance_services_expenses
+                    : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Hospital Room Charges : </span>
-                  {user_plan?.hospitalization_room_charges ? user_plan?.hospitalization_room_charges : "None"}
+                  {user_plan?.hospitalization_room_charges
+                    ? user_plan?.hospitalization_room_charges
+                    : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Surgery : </span>
@@ -655,11 +673,15 @@ export const UserDash = () => {
                 </li>
                 <li>
                   <span className="plans-head">Dental & Vision : </span>
-                  {user_plan?.dental_and_vision_care ? user_plan?.dental_and_vision_care : "None"}
+                  {user_plan?.dental_and_vision_care
+                    ? user_plan?.dental_and_vision_care
+                    : "None"}
                 </li>
                 <li>
                   <span className="plans-head">Others : </span>
-                  {user_plan?.other_medical_expenses ? user_plan?.other_medical_expenses : "None"}
+                  {user_plan?.other_medical_expenses
+                    ? user_plan?.other_medical_expenses
+                    : "None"}
                 </li>
               </ul>
             </div>
@@ -671,5 +693,3 @@ export const UserDash = () => {
 };
 
 export default UserDash;
-
-

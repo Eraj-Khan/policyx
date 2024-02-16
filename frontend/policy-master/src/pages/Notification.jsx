@@ -43,6 +43,24 @@ export const Notification = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
   const [isCompleted, setIsCompleted] = useState([]);
 
+  function formatDate(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+    const dateOptions = { 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit'
+    };
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+    const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -160,7 +178,7 @@ export const Notification = () => {
             <>
 
               <div key={data.case_id} className="notification-item">
-                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
+                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span><span className="date">{data.updated_at ? formatDate(data.updated_at) : ''}</span></div>
                 {/* <li className="age">AGE:  {data.age}</li>
         <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}
               </div>
@@ -175,7 +193,7 @@ export const Notification = () => {
             <>
 
               <div key={data.case_id} className="notification-item">
-                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span></div>
+                <div> Insurance Request from <span className="recommended">{data.case_id}</span> with recommended value <span className="case_id">{data.recommended_value}</span><span className="date">{data.updated_at ? formatDate(data.updated_at) : ''}</span></div>
                 {/* <li className="case_id"> CASE ID: {data.case_id}</li>
         <li className="age">AGE:  {data.age}</li>
         <li className="recommended">SELECTED VALUE:  {data.recommended_value}</li> */}

@@ -223,3 +223,9 @@ font-size: 20px;
         background-color: #3498DB;
 
     }
+    .user_font{
+        color: #3498DB;
+    }
+    .profile_user{
+        width: 175px;
+    }

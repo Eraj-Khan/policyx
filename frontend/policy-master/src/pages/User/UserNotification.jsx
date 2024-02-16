@@ -43,10 +43,29 @@ function classNames(...classes) {
 export const UserNotification = () => {
   const [notification, setNotification] = useState([]);
 
+
+  function formatDate(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+    const dateOptions = { 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit'
+    };
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+    const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
+
   useEffect(() => {
     let user = localStorage.getItem("user");
     let parsedPayload = JSON.parse(user);
-   
+
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -66,18 +85,21 @@ export const UserNotification = () => {
   }, []);
 
   return (
-
     <div>
       <div className="flex flex-1 flex-col ">
-      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
-      
-        
-        <div className="flex flex-1 justify-between px-4">
-          <div className="flex flex-1">
-          <div className="w-8 h-8 mt-4">  <a href="./userdash" id="backLink">
-                                     <ChevronDoubleLeftIcon></ChevronDoubleLeftIcon></a></div>
-            <div className="notify_heading"><h1>Notifications</h1></div>
-            {/* <form className="flex w-full md:ml-0" action="#" method="GET">
+        <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
+          <div className="flex flex-1 justify-between px-4">
+            <div className="flex flex-1">
+              <div className="w-8 h-8 mt-4">
+                {" "}
+                <a href="./userdash" id="backLink">
+                  <ChevronDoubleLeftIcon></ChevronDoubleLeftIcon>
+                </a>
+              </div>
+              <div className="notify_heading">
+                <h1>Notifications</h1>
+              </div>
+              {/* <form className="flex w-full md:ml-0" action="#" method="GET">
               <label htmlFor="search-field" className="sr-only">
                 Search
               </label>
@@ -94,9 +116,9 @@ export const UserNotification = () => {
                 />
               </div>
             </form> */}
-          </div>
-          <div className="ml-4 flex items-center md:ml-6">
-            {/* <button
+            </div>
+            <div className="ml-4 flex items-center md:ml-6">
+              {/* <button
               type="button"
               className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
@@ -104,9 +126,9 @@ export const UserNotification = () => {
               <BellIcon className="h-6 w-6" aria-hidden="true" />
             </button> */}
 
-            {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
-              {/* <div>
+              {/* Profile dropdown */}
+              <Menu as="div" className="relative ml-3">
+                {/* <div>
                 <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   <span className="sr-only">Open user menu</span>
                   <img
@@ -116,82 +138,91 @@ export const UserNotification = () => {
                   />
                 </Menu.Button>
               </div> */}
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {userNavigation.map((item) => (
-                    <Menu.Item key={item.name}>
-                      {({ active }) => (
-                        <a
-                          href={item.href}
-                          className={classNames(
-                            active ? 'bg-gray-100' : '',
-                            'block px-4 py-2 text-sm text-gray-700'
-                          )}
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  ))}
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {userNavigation.map((item) => (
+                      <Menu.Item key={item.name}>
+                        {({ active }) => (
+                          <a
+                            href={item.href}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {item.name}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            </div>
           </div>
         </div>
-      </div>
 
-      <main>
-        <div className="py-6">
-         
-          {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <main>
+          <div className="py-6">
+            {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
             <div className="py-4">
               <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
             </div>
             
           </div> */}
-        </div>
-      </main>
-    </div>
-    
+          </div>
+        </main>
+      </div>
 
       <div className="notif-contain">
         <div className="notif-itm">
-        {notification ? notification?.map((data) => (
-          
-          <>
-           
-            <div key={data.case_id} className="notif-itm">
+          {notification ? (
+            notification?.map((data) => (
+              <>
+                <div key={data.case_id} className="notif-itm">
+                  <div className="notif">
+                    <BellIcon className=" h-6 w-6" aria-hidden="true" />
+                    <p>
+                      Package received from Company{" "}
+                      <span className="notif_company_name">
+                        {data.company_name}
+                      </span>{" "}
+                      against this case
+                      <span className="notif_case_id"> {data.case_id}</span>
+                      <span className="userdate">{data.updated_at ? formatDate(data.updated_at) : ''}</span>
+                    </p>
+                  </div>
 
-              <div className="notif">
-                             <BellIcon className=" h-6 w-6" aria-hidden="true" /><p>Package received from Company <span className="notif_company_name">{data.company_name}</span> against this case
-                <span className="notif_case_id">  {data.case_id}</span></p>
-              </div>
-              
-              {/* <li className="age">Company Name:  {data.company_name}</li>
+                  {/* <li className="age">Company Name:  {data.company_name}</li>
         <li className="recommended"> Company Bid: {data.company_bid}</li>
         <li className="recommended">dental:  {data.dental_and_vision_care}</li>  
         <li className="recommended"> Annual Coverage: {data.total_annual_coverage}</li>
         <li className="recommended"> Accidental Emergencies: {data.accidental_emergencies}</li>
         <li className="recommended"> Hospitalization Room Charges: {data.hospitalization_room_charges}</li>
         <li className="recommended"> Other Medical Expenses: {data.other_medical_expenses}</li> */}
-            </div>
-          </>
-        )) :<h1 style={{
-          textAlign:"center"
-        }}>No 
-          Notifications found! </h1>}
-      </div>
+                </div>
+              </>
+            ))
+          ) : (
+            <h1
+              style={{
+                textAlign: "center",
+              }}
+            >
+              No Notifications found!{" "}
+            </h1>
+          )}
+        </div>
       </div>
     </div>
-    
   );
 };
 export default UserNotification;
