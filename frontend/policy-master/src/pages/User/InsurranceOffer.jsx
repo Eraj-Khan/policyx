@@ -304,13 +304,7 @@ const InsurranceOffer = () => {
               <button
                className="insur-place"
                onClick={() => {
-                // handleBidClick(data.case_id, data.company_name)
-               if( acceptedBids.includes(data.case_id)){
-                console.log("this is working");
-               }else{
-                console.log(acceptedBids);
-                console.log("This is  not working");
-               }
+                handleBidClick(data.case_id, data.company_name)
               }}
                disabled={
                   data.is_accepted==false && acceptedBids.includes(data.case_id)
