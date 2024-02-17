@@ -85,35 +85,30 @@
     width: 20%;
     position: absolute;
     left: 712px;
-    top: 115px;
+    top: 110px;
     z-index: 0;
 }
 
-.image8  .animate_animated.animate_pulse {
+.animate_animated.animate_pulse {
     animation-iteration-count: infinite;
     --animate-duration: 4s;
 
 }
-/* 
+
 .money_icon {
     align-self: center;
-} */
+}
 
 .icon_cards ul {
-    /* margin-left: 265px; */
+    margin-left: 385px;
     margin-top: 50px;
-    gap: -10px;
-    margin-left: 300px;
-    justify-items: center;
 
 }
 
-
 .icon_cards ul li {
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
     border: 5px solid #3498DB;
-    padding: 30px;
-
 }
 .main_cards{
     display: flex;
@@ -226,19 +221,11 @@ font-size: 20px;
     }
     .user_nav{
         background-color: #3498DB;
+
     }
-    .main_card_ui{
-        display: flex;
-        gap: 35px;
-        font-size: 20px;
+    .user_font{
+        color: #3498DB;
     }
-  
-    .money_icon img{
-        position: relative;
-        /* right: 20px; */
-        width: 50px;  }
-        .cards_ui{
-            font-size: 16px;
-            margin-top: 7px;
-            font-weight: 600;
-            font-family: 'Poppins';     }
+    .profile_user{
+        width: 175px;
+    }

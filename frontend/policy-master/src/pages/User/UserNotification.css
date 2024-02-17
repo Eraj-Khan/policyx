@@ -49,3 +49,11 @@ background-color: #f4f4f4;
   padding-left: 45px;
 
 }
+.userdate {
+  display: flex;
+  align-items: end;
+  font-size: 17px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin-top: -28px;
+}
