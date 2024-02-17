@@ -245,7 +245,7 @@ const Review = () => {
       age:data.age,
       id_user:data.user
     });
-    axios.post(`http://127.0.0.1:8000/company_dashboard/create_case/`, payload)
+    axios.post('http://127.0.0.1:8000/company_dashboard/create_case/payload')
     .then((response)=>{
       console.log("response", response.data)
       setTimeout(()=>{
@@ -267,7 +267,7 @@ const Review = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/get_data_by_case_id/${case_id}` 
+         ` http://127.0.0.1:8000/get_data_by_case_id/${case_id}` 
         );
   
         console.log("API Response:", response.data);
@@ -444,7 +444,7 @@ const Review = () => {
               checked={predictedAI}
               onChange={() => handleCheckBoxChange(data.ai_suggested,"predictedAI")}
             />
-           AI Suggested Monthly Budget <span className="your_budget">"{data?.ai_suggested}"</span>
+           AI Suggested Budget <span className="your_budget">"{data?.ai_suggested}"</span>
           </label>
           </div>
 
@@ -487,4 +487,3 @@ const Review = () => {
 };
 
 export default Review;
-

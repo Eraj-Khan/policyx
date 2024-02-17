@@ -95,3 +95,20 @@
 .date{
   margin-left: 38px;
 }
+.tab_notifications{
+
+      /* width: 800px; */
+    /* position: absolute; */
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 12px;
+    margin-top: 10px;
+  
+}
+.main_tab{
+  width: 70%;
+  font-family: 'Poppins';
+  top: -40px;
+  margin: auto;
+  position: relative;
+}

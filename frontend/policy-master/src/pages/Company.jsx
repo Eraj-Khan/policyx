@@ -368,9 +368,9 @@ export const Company = () => {
       let payload = localStorage.getItem("user");
       let parsedPayload = JSON.parse(payload);
 
-      const { id_user } = parsedPayload;
+      const { company_name } = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/11/`
+        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/${company_name}`
       );
 
       const mappedData = packageStats.labels?.map((label, index) => {

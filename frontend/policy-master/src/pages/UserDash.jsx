@@ -280,6 +280,7 @@ function classNames(...classes) {
 export const UserDash = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [notification, setNotification] = useState([]);
   const [counts, setCounts] = useState([]);
   const [user_plan, setUser_plan] = useState(null);
   const [userName, setUserName] = useState("");
@@ -309,7 +310,6 @@ export const UserDash = () => {
 
     const { user_name } = parsedPayload;
 
-    
     setUserName(user_name);
   }, []);
 
@@ -334,7 +334,7 @@ export const UserDash = () => {
           imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
         },
         {
-          value:  formatNumber (total_premium),
+          value: formatNumber(total_premium),
           text: "Total Premium",
           imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
         },
@@ -359,6 +359,7 @@ export const UserDash = () => {
 
         const { Bids } = response.data;
         setNotificationCount(Bids.length);
+        setNotification(Bids);
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -368,6 +369,24 @@ export const UserDash = () => {
     fetchData();
     getCount();
   }, []);
+
+  function formatDate(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+    const dateOptions = { 
+      year: 'numeric', 
+      month: '2-digit', 
+      day: '2-digit'
+    };
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+    const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
 
   return (
     <div>
@@ -505,7 +524,7 @@ export const UserDash = () => {
           <div className="flex flex-1 justify-between px-4">
             <div className="flex flex-1"></div>
             <div className="ml-4 flex items-center md:ml-6">
-              <a
+              {/* <a
                 href="/usernotification"
                 className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
               >
@@ -514,7 +533,66 @@ export const UserDash = () => {
                 <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
                   {notificationCount}
                 </span>
-              </a>
+              </a> */}
+
+              <Menu as="div" className="relative ml-3">
+                <div>
+                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 p-1 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span>
+
+                    {/* <Menu.Button className="flex flex-row rounded-full p-1 bg-sky-100 profile_user items-center  text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span> */}
+                    <a
+                      
+                      className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                    >
+                      <span className="sr-only">View notifications</span>
+                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                      <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
+                  {notificationCount}
+                </span>
+                    </a>
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className=" signout-menu absolute right-0 z-10 mt-2 min-w-[460px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {notification.map((item, i) => (
+                      <Menu.Item key={i}>
+                        {({ active }) => (
+                          <div className="pointer-events-auto min-w-[400px] m-3 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                            <div className="p-4">
+                              <div className="flex items-start">
+                                <div className="ml-3 w-0 flex-1 pt-0.5">
+                                  <a href="/insurranceoffer" className="text-md font-medium text-gray-900">
+                                    Package received from Company{" "}
+                                    <span className="notif_company_name">
+                                      {item.company_name}
+                                    </span>{" "}
+                                    against this case
+                                  </a>
+                                  <p className="mt-1 text-sm text-gray-500">
+                                  <span className="notif_case_id"> {item.case_id}</span>
+                      <span className="userdate">{item.updated_at ? formatDate(item.updated_at) : ''}</span>
+
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Items>
+                </Transition>
+              </Menu>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
