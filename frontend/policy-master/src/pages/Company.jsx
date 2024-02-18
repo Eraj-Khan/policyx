@@ -325,18 +325,16 @@ export const Company = () => {
       let parsedPayload = JSON.parse(payload);
 
       const { company_name } = parsedPayload;
+
+      const { id } = parsedPayload;
+      console.log(id);
+      const lowercaseCompanyName = company_name.toLowerCase();
+      console.log(lowercaseCompanyName);
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}/2/`
+        `http://127.0.0.1:8000/company_dashboard/count_bids/${lowercaseCompanyName}/`
        
       );
-      // Set the entire JSON object to data
-      // {
-      //   "total_cases": 8,
-      //   "total_completed_cases": 3,
-      //   "average_age": 44.333333333333336,
-      //   "total_accepted_packages": 3,
-      //   "total_revenue": 8872
-      // }
+      
       const { total_bids_count, accepted_bids_count } = response.data;
       setCountBid([total_bids_count, accepted_bids_count]);
     } catch (error) {

@@ -43,9 +43,8 @@ class CompanyPackages(models.Model):
     is_accepted=models.BooleanField(default=False,null=True)
     is_expired = models.BooleanField(default=False)
 
-    
     class Meta:
         unique_together = ('case_user','case_id', 'company_name')
-    
+  
     def __str__(self):
         return self.case_id

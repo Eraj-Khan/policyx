@@ -55,6 +55,10 @@ const InsurranceOffer = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+
+
+
+
   const handleBidClick = (caseId, company_name) => {
     console.log(`Place bid for case ID: ${caseId}`);
     axios
@@ -74,6 +78,7 @@ const InsurranceOffer = () => {
   };
 
   const [notification, setNotification] = useState([]);
+  const [acceptedBids, setAcceptedBids] = useState([]);
   useEffect(() => {
     let user = localStorage.getItem("user");
     let parsedPayload = JSON.parse(user);
@@ -87,6 +92,14 @@ const InsurranceOffer = () => {
         const { Bids } = response.data;
 
         setNotification(Bids.reverse());
+        const acceptedBids = notification.filter(bid => bid.is_accepted === true);
+
+        // Extract case_id values from the filtered array
+        const acceptedCaseIds = acceptedBids.map(bid => bid.case_id);
+        setAcceptedBids(acceptedCaseIds);
+        console.log(acceptedBids);
+        console.log(notification);
+        // setAcceptedBids([])
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -229,10 +242,11 @@ const InsurranceOffer = () => {
       </div>
 
       <div className="notification-container_1">
-        {notification?.map((data) => (
+        {notification?.map((data,index) => (
+          
           <div
             style={{ position: "relative" }}
-            key={data.case_id}
+            key={index}
             className="insurrance-item"
           >
             <div key={data.case_id} className="notif-item">
@@ -276,19 +290,31 @@ const InsurranceOffer = () => {
                 <label> Other Medical Expenses:</label>{" "}
                 {data.other_medical_expenses}
               </li>
+              <li className="recommended">
+                {" "}
+                <label> Surgery:</label>{" "}
+                {data.surgery ? data.surgery : "-"}
+              </li>
+              <li className="recommended">
+                {" "}
+                <label> Ambulance Expense:</label>{" "}
+                {data.ambulance_services_expenses ? data.ambulance_services_expenses : "-"}
+              </li>
 
               <button
-                className="insur-place"
-                onClick={() => handleBidClick(data.case_id, data.company_name)}
-                disabled={data.is_expired || data.is_accepted}
-                style={{
-                  cursor:
-                    data.is_expired || data.is_accepted
-                      ? "not-allowed"
-                      : "pointer",
-                }}
-              >
-                {data.is_accepted ? "Accepted" : (data.is_expired ? "Expired" : "Accept")}
+               className="insur-place"
+               onClick={() => {
+                handleBidClick(data.case_id, data.company_name)
+              }}
+               disabled={
+                  data.is_accepted==false && acceptedBids.includes(data.case_id)
+               }
+               style={{
+                 cursor:
+                   data.is_expired || data.is_accepted ? "not-allowed" : "pointer",
+               }}
+             >
+               {data.is_accepted ? "Accepted" : data.is_expired ? "Expired" : "Accept" } 
               </button>
             </div>
             <img
