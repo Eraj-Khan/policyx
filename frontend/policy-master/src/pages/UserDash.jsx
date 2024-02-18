@@ -90,22 +90,22 @@ const timeline = [
   },
 ];
 const people = [
-  {
-    value: "10",
-    text: "Total Cases",
-    imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
-  },
+  // {
+  //   value: "10",
+  //   text: "Total Cases",
+  //   imageUrl: "https://img.icons8.com/?size=80&id=n5lvtrpv0CbJ&format=png",
+  // },
 
-  {
-    value: "5",
-    text: "Companies",
-    imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
-  },
-  {
-    value: "3,000",
-    text: "Total Paid",
-    imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
-  },
+  // {
+  //   value: "5",
+  //   text: "Companies",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
+  // },
+  // {
+  //   value: "3,000",
+  //   text: "Total Paid",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
+  // },
 ];
 const footerNavigation = {
   solutions: [
@@ -322,23 +322,24 @@ export const UserDash = () => {
       );
       const { total_bids, total_companies, total_premium, user_plan } =
         response.data;
-      setCounts([
-        {
-          value: total_bids,
-          text: "Total Bids",
-          imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
-        },
-        {
-          value: total_companies,
-          text: "Total Companies",
-          imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
-        },
-        {
-          value: formatNumber(total_premium),
-          text: "Total Premium",
-          imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
-        },
-      ]);
+        setCounts([
+          {
+            value: total_bids,
+            text: "Total Bids",
+        
+            imageUrl: "https://img.icons8.com/?size=80&id=kCq3SDy5KqvN&format=png",
+          },
+          {
+            value: total_companies,
+            text: "Companies",
+            imageUrl: "https://img.icons8.com/?size=50&id=8F2vAFv2ZjZH&format=png",
+          },
+          {
+            value: formatNumber (total_premium),
+            text: "Total Premium",
+            imageUrl: "https://img.icons8.com/?size=50&id=4256&format=png",
+          },
+        ]);
 
       if (user_plan) {
         setUser_plan(user_plan);
@@ -372,9 +373,9 @@ export const UserDash = () => {
 
   function formatDate(dateTimeString) {
     const dateTime = new Date(dateTimeString);
-    const dateOptions = { 
-      year: 'numeric', 
-      month: '2-digit', 
+    const dateOptions = {
+      year: 'numeric',
+      month: '2-digit',
       day: '2-digit'
     };
     const timeOptions = {
@@ -543,14 +544,14 @@ export const UserDash = () => {
                     {/* <Menu.Button className="flex flex-row rounded-full p-1 bg-sky-100 profile_user items-center  text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                     <span className="sr-only">Open user menu</span> */}
                     <a
-                      
+
                       className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                     >
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
                       <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
-                  {notificationCount}
-                </span>
+                        {notificationCount}
+                      </span>
                     </a>
                   </Menu.Button>
                 </div>
@@ -577,10 +578,11 @@ export const UserDash = () => {
                                       {item.company_name}
                                     </span>{" "}
                                     against this case
+                                    <span className="notif_case_id"> {item.case_id}</span>
+
                                   </a>
                                   <p className="mt-1 text-sm text-gray-500">
-                                  <span className="notif_case_id"> {item.case_id}</span>
-                      <span className="userdate">{item.updated_at ? formatDate(item.updated_at) : ''}</span>
+                                    <span className="userdate_date">{item.updated_at ? formatDate(item.updated_at) : ''}</span>
 
                                   </p>
                                 </div>
@@ -672,8 +674,7 @@ export const UserDash = () => {
                 for your peace of mind.
               </p>
               <img
-                className="image8 animate_animated animate_pulse"
-                src={img8}
+                className="image8 animate__animated animate__pulse animate__infinite	infinite" src={img8}
                 alt=""
               />
             </div>
@@ -683,35 +684,37 @@ export const UserDash = () => {
           </main>
         </div>
       </div>
-
-      <div className="icon_cards">
-        <ul role="list" className="grid grid-cols-1 lg:grid-cols-3">
+    
+      <div className="icon_cards ">
+        <ul role="list" className="grid lg:grid-cols-3">
           {counts.map((person) => (
             <li
               key={person.email}
-              className="animate_animated animate_pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+              className="animate__animated animate__pulse divide-gray-200 rounded-lg bg-white text-center shadow"
             >
-              <div className="flex flex-1 flex-col p-6">
-                <div className=" money_icon flex-shrink-0 rounded-full" alt="">
+                <div className=" money_icon " alt="">
                   <img
-                    className="mx-auto h-30 w-30 flex-shrink-0 "
+                    className="  "
                     src={person.imageUrl}
                     alt=""
                   />{" "}
                 </div>
+              <div className=" main_card_ui">
 
-                <h3 className="mt-6 text-lg font-medium text-gray-900">
-                  {person.value}
-                </h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between">
-                  <dt className="sr-only">Title</dt>
-                  <dd className="text-lg text-gray-500">{person.text}</dd>
-                  <dt className="sr-only">Role</dt>
-                </dl>
+                <div className="cards_ui">
+                  <h3 className="  font-medium text-gray-900">
+                    {person.value}
+                  </h3>
+                  <dl className=" icon_text ">
+                    <dd className="text-gray-500">{person.text}</dd>
+                  </dl>
+                </div>
+              
               </div>
             </li>
           ))}
         </ul>
+        
       </div>
       <div className="main_cards">
         <HomeChat />
@@ -728,35 +731,44 @@ export const UserDash = () => {
             <div className="mt-6 flow-root">
               <ul role="list" className="cards_list mb-8">
                 <li>
-                  <span className="plans-head">Accidental : </span>
+                  <span className="plans-head">
+                  <img className="" src="https://img.icons8.com/?size=50&id=u1oJtpnFCyqx&format=png" alt="" />
+                    Accidental : </span>
                   {user_plan?.accidental_emergencies
                     ? user_plan?.accidental_emergencies
                     : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Ambulance Expense : </span>
+                  <span className="plans-head">
+                    <img className="" src="https://img.icons8.com/?size=50&id=950&format=png" alt="" />Ambulance Expense : </span>
                   {user_plan?.ambulance_services_expenses
                     ? user_plan?.ambulance_services_expenses
                     : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Hospital Room Charges : </span>
+                  <span className="plans-head"><img className=""  src="https://img.icons8.com/?size=50&id=109556&format=png" alt="" />Hospital Room Charges : </span>
                   {user_plan?.hospitalization_room_charges
                     ? user_plan?.hospitalization_room_charges
                     : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Surgery : </span>
+                  <span className="plans-head"><img className="" src="https://img.icons8.com/?size=50&id=Gzalxz6LmRhn&format=png" alt="" />Surgery : </span>
                   {user_plan?.surgery ? user_plan?.surgery : "None"}
                 </li>
+                <div class="vl"></div>
+
                 <li>
-                  <span className="plans-head">Dental & Vision : </span>
+                  <span className="plans-head"><img className="" src="https://img.icons8.com/?size=50&id=4948&format=png" alt="" />Dental & Vision : </span>
                   {user_plan?.dental_and_vision_care
                     ? user_plan?.dental_and_vision_care
                     : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Others : </span>
+                  <span className="plans-head"> <img className="" src="https://img.icons8.com/?size=50&id=b1C583IQGpBS&format=png" alt="" />Others : </span>
                   {user_plan?.other_medical_expenses
                     ? user_plan?.other_medical_expenses
                     : "None"}

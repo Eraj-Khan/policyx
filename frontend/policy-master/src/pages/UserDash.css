@@ -85,7 +85,7 @@
     width: 20%;
     position: absolute;
     left: 712px;
-    top: 110px;
+    top: 116px;
     z-index: 0;
 }
 
@@ -100,22 +100,29 @@
 }
 
 .icon_cards ul {
-    margin-left: 385px;
+    /* margin-left: 265px; */
     margin-top: 50px;
+    gap: -10px;
+    margin-left: 300px;
+    justify-items: center;
 
 }
+
 
 .icon_cards ul li {
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 50%;
-    border: 5px solid #3498DB;
+    box-shadow: 12px 23px 0px 0px #3498dbb2, 0 0px 27px 0 rgba(0, 0, 0, 0.19);
+    /* border: 5px solid #3498DB; */
+    padding: 60px;
+
 }
+
+
 .main_cards{
     display: flex;
     position: relative;
     flex-direction: row;
     /* margin: auto; */
-    margin-top: 70px;
+    margin-top: 105px;
 margin-left: 200px;
     padding-bottom: 100px;
     justify-content: center;
@@ -190,7 +197,7 @@ background-color: #3498DB;
     margin-left: 45px;}
     .card_table{
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: 50%;
+        width: 40%;
         border: 4px solid #3498DB;
 
     }
@@ -200,7 +207,7 @@ background-color: #3498DB;
     }
     .cards_list{
         font-size: 18px;
-        text-align: center;
+
         letter-spacing: 0.7px;
 
     }
@@ -214,6 +221,7 @@ background-color: #3498DB;
     .card_table .plans-head{
         color:#0b5485 ;
 font-weight: 600;
+margin-left: 90px;
 font-size: 20px;
     }
     .card_table button{
@@ -229,3 +237,54 @@ font-size: 20px;
     .profile_user{
         width: 175px;
     }
+    .main_card_ui{
+        display: flex;
+        gap: 35px;
+        font-size: 20px;
+    }
+    .money_icon img{
+        /* right: 20px; */
+        left: 11px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: white;
+        width: 55px;
+        border-radius: 8px;
+        border: 4px solid #3498DB;
+
+        padding: 5px;
+        position: absolute;
+        top: -21px; }
+        .cards_ui{
+            margin-top: 7px;
+            font-weight: 600;
+            font-family: 'Poppins';     }
+            .userdate_date {
+                display: flex;
+                /* align-items: end; */
+                margin-left: 235px;
+                font-size: 14x;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                margin-top: -3px;
+              }
+              .plans-head img{
+                position: absolute;
+                width: 65px;
+                box-shadow: 0 1px 1px 0 rgba(93, 33, 190, 0.2), 0 1px 8px 0 rgba(60, 183, 255, 0.5);
+                padding: 10px;
+                margin-top: -20px;
+                border-radius: 15px;
+                background-color: #fcfcfc;
+              }
+              .cards_list .vl {
+                border-left: 2px solid #0b5485;
+                height: 20px;
+                margin-left: 32px;
+                margin-top: 21px;
+                margin-bottom: 30px;
+            
+}
+.icon_cards{
+    padding-top: 50px;
+
+}

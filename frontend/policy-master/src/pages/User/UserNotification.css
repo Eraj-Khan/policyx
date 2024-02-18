@@ -52,7 +52,7 @@ background-color: #f4f4f4;
 .userdate {
   display: flex;
   align-items: end;
-  font-size: 17px;
+  font-size: 17x;
   flex-wrap: nowrap;
   flex-direction: column;
   margin-top: -28px;

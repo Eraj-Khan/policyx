@@ -815,22 +815,29 @@ export const Company = () => {
               <ul role="list" className="list_leads ">
                 {packages?.map((application) => (
                   <li key={application?.case_id}>
-                    <a className="block hover:bg-gray-50">
-                      <div className="flex px-4 py-8 sm:px-12">
-                        <div className=" ">
-                          <div className=" "></div>
+                    <a className="block mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pb-10 pl-6">
+                      <div className="relative bids_cards rounded-lg bg-white  pt-5 pb-0 shadow  sm:pt-6">
+                        <div className="cards_biding ">
+                        <div class="go-corner" href="#">
+      <div class="go-arrow">
+        →
+      </div>
+    </div>
                           <div>
-                            <div>
+                            <div >
                               <div>
-                                <p className="truncate text-sm font-medium text-gray-600">
-                                  <span className="head">CASE ID :</span>{" "}
+                                <p className="truncate text-sm font-medium text-gray-600 mb-6">
+                                  <span className="head ">
+                                    <img src="https://img.icons8.com/?size=50&id=18755&format=png" alt="" />
+                                    CASE ID :</span>{" "}
                                   {application?.case_id}
                                 </p>
                               </div>
                               <div>
-                                <p className="mt-2 flex items-center text-sm text-gray-600">
-                                  <span className="truncate text-sm text-gray-600">
+                                <p className="flex items-center text-sm text-gray-600">
+                                  <span className="truncate text-sm text-gray-600 mb-6">
                                     <span className="head">
+                                      <img src="https://img.icons8.com/?size=80&id=42326&format=png" alt="" />
                                       Monthly Premium :
                                     </span>{" "}
                                     {application?.monthly_coverage}
@@ -838,9 +845,10 @@ export const Company = () => {
                                 </p>
                               </div>
                               <div>
-                                <p className="mt-2 flex items-center text-sm text-gray-600">
+                                <p className=" flex items-center text-sm text-gray-600 mb-6">
                                   <span className="truncate text-sm text-gray-600">
                                     <span className="head">
+                                      <img src="https://img.icons8.com/?size=80&id=5Mne4khPeMtK&format=png" alt="" />
                                       Annual Coverage :
                                     </span>{" "}
                                     {application?.total_annual_coverage}
@@ -849,9 +857,10 @@ export const Company = () => {
                               </div>
                               <div>
                                 {" "}
-                                <p className="mt-2 flex items-center text-sm text-gray-600">
+                                <p className=" flex items-center text-sm text-gray-600 mb-6">
                                   <span className="truncate text-sm text-gray-600">
-                                    <span className=" head">Created At : </span>{" "}
+                                    <span className=" head">
+                                      <img src="https://img.icons8.com/?size=50&id=23&format=png" alt="" />Created At : </span>{" "}
                                     {application?.updated_at?.split("T")[0]}
                                   </span>
                                 </p>

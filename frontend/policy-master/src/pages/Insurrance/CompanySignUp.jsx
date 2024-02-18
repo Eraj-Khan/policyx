@@ -420,7 +420,7 @@ const CompanySignup = () => {
         </div>
       </div>
       <div className="company_sign_img ">
-          <img className="animate_animated animate_pulse " src={Login_img} alt="" />
+          <img className="animate__animated animate__pulse animate__infinite	infinite animate__slower	3s" src={Login_img} alt="" />
         </div>
     </div>
     </div>

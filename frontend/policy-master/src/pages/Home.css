@@ -7,6 +7,11 @@
    background-color: #3498DB;
 
 }
+.choose_heading{
+  font-family: 'Poppins';
+  font-weight: 600;
+
+}
 .main_footer{
   font-family: 'Poppins';
 }
@@ -75,10 +80,10 @@ width: 80%;
     --animate-duration: 2s;
 
     margin-top: 40px;
-    font-family: "Space Grotesk";
+    font-family: "Poppins";
     font-size: 50px;
     color: #3498DB;
-    font-weight: 900;
+    font-weight: 600;
     letter-spacing: -1.5px;
     line-height: 1.2;
   }
@@ -113,8 +118,8 @@ width: 80%;
     letter-spacing: -1.5px;
     line-height: 1.2;
     font-size: 45px;
-    font-weight: 900;
-    font-family: "Space Grotesk";
+    font-weight: 600;
+    font-family: 'Poppins';
 
   }
   .content_img p{
@@ -126,8 +131,8 @@ width: 80%;
     font-size: 20px;
   }
   .ourpartners h2 {
-    font-family: "Space Grotesk";
-    font-weight: 900;
+    font-family: "Poppins";
+    font-weight: 600;
 
     color: #3498DB;
   }
