@@ -19,16 +19,13 @@ import {
   InboxIcon,
   UsersIcon,
   XMarkIcon,
-  EnvelopeOpenIcon
+  EnvelopeOpenIcon,
 } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 import logotwo from "../image/logo1.png";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
-import {
-  CursorArrowRaysIcon,
-
-} from "@heroicons/react/24/outline";
+import { CursorArrowRaysIcon } from "@heroicons/react/24/outline";
 import "../pages/Company.css";
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
@@ -121,9 +118,6 @@ const navigation = [
     icon: FolderIcon,
     current: false,
   },
- 
-  
-  
 ];
 
 const handlelogOut = () => {
@@ -132,7 +126,6 @@ const handlelogOut = () => {
   localStorage.removeItem("refresh-token");
   localStorage.removeItem("notification");
   window.location.reload();
- 
 };
 
 const userNavigation = [
@@ -276,6 +269,33 @@ export const Company = () => {
   });
 
   const [packages, setPackages] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+
+
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = String(number);
+    const suffixNum = Math.floor(numString.length / 3);
+    
+    let shortNumber = parseFloat((suffixNum !== 0 ? (number / Math.pow(1000, suffixNum)) : number).toPrecision(2));
+    
+    if (!Number.isInteger(shortNumber)) {
+      shortNumber = shortNumber.toFixed(1);
+    }
+    
+    return shortNumber + suffixes[suffixNum];
+  }
+  
+
+  useEffect(() => {
+    let payload = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(payload);
+
+    const { company_name } = parsedPayload;
+
+    // Set company name in state
+    setCompanyName(company_name);
+  }, []);
 
   const getPackAges = async () => {
     try {
@@ -300,7 +320,7 @@ export const Company = () => {
       let parsedPayload = JSON.parse(payload);
 
       const { id } = parsedPayload;
-      console.log(parsedPayload)
+      console.log(parsedPayload);
       const response = await axios.get(
         `http://127.0.0.1:8000/company_dashboard/statistics/${id}`
       );
@@ -312,7 +332,7 @@ export const Company = () => {
       //   "total_accepted_packages": 3,
       //   "total_revenue": 8872
       // }
-      console.log(response)
+      console.log(response);
       setStatistic(response.data);
     } catch (error) {
       console.error("Error fetching data111:", error);
@@ -326,8 +346,7 @@ export const Company = () => {
 
       const { company_name } = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}/2/`
-       
+        `http://127.0.0.1:8000/company_dashboard/count_bids/${company_name}`
       );
       // Set the entire JSON object to data
       // {
@@ -349,9 +368,9 @@ export const Company = () => {
       let payload = localStorage.getItem("user");
       let parsedPayload = JSON.parse(payload);
 
-      const {id_user} = parsedPayload;
+      const { company_name } = parsedPayload;
       const response = await axios.get(
-        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/2/`
+        `http://127.0.0.1:8000/company_dashboard/monthly_completed_cases/${company_name}`
       );
 
       const mappedData = packageStats.labels?.map((label, index) => {
@@ -489,25 +508,16 @@ export const Company = () => {
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="w-14 flex-shrink-0" aria-hidden="true">
-               
-              </div>
+              <div className="w-14 flex-shrink-0" aria-hidden="true"></div>
             </div>
           </Dialog>
         </Transition.Root>
 
-   
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-        
           <div className=" sidebar-menu flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
             <div className="flex flex-shrink-0">
-            
               <div className="logo">
-              <img
-              
-              src={logotwo} 
-              
-            />
+                <img src={logotwo} />
               </div>
             </div>
             <div className="mt-5 flex flex-1 flex-col">
@@ -545,9 +555,7 @@ export const Company = () => {
               <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
             </button>
             <div className="flex flex-1 justify-between px-4">
-              <div className="flex flex-1">
-             
-              </div>
+              <div className="flex flex-1"></div>
               <div className="ml-4 flex items-center md:ml-6">
                 <a
                   href="/notification"
@@ -563,13 +571,27 @@ export const Company = () => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <Menu.Button className="flex flex-row p-1  profile_company items-center bg-sky-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="w-5 rounded-full"
-                        src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
-                        alt=""
-                      />
+                      <div className="w-5 px-2 rounded-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-8 h-8 company_font"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M7.5 5.25a3 3 0 0 1 3-3h3a3 3 0 0 1 3 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0 1 12 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 0 1 7.5 5.455V5.25Zm7.5 0v.09a49.488 49.488 0 0 0-6 0v-.09a1.5 1.5 0 0 1 1.5-1.5h3a1.5 1.5 0 0 1 1.5 1.5Zm-3 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                            clipRule="evenodd"
+                          />
+                          <path d="M3 18.4v-2.796a4.3 4.3 0 0 0 .713.31A26.226 26.226 0 0 0 12 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 0 1-6.477-.427C4.047 21.128 3 19.852 3 18.4Z" />
+                        </svg>
+                      </div>
+
+                      <div className="company-info">
+                        {companyName}
+                      </div>
                     </Menu.Button>
                   </div>
                   <Transition
@@ -615,27 +637,21 @@ export const Company = () => {
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 <h1 className="dashboard">Dashboard</h1>
               </div>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                {/* Replace with your content */}
-                {/* <div className="py-4">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
-            </div> */}
-                {/* /End replace */}
-              </div>
+              
             </div>
           </main>
         </div>
         <div className="stats">
-          <h3 className=" ">Last 3 Months</h3>
+          <h3 className=" ">{companyName} Statistics</h3>
 
           <dl className=" stats_report mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
             <div className=" report-cards relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-0 shadow sm:px-6 sm:pt-6">
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
                   <EnvelopeOpenIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Total Cases
@@ -652,9 +668,9 @@ export const Company = () => {
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
                   <EnvelopeIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <p className="ml-14 truncate text-sm font-medium text-gray-500">
                   Completed Cases
@@ -671,9 +687,9 @@ export const Company = () => {
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
                   <UsersIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Average Age
@@ -690,12 +706,12 @@ export const Company = () => {
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
                   <CheckCircleIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
-                 Bids Accepted
+                  Bids Accepted
                 </p>
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
@@ -709,9 +725,9 @@ export const Company = () => {
               <dt>
                 <div className=" icons absolute rounded-md p-3 ">
                   <ChartBarIcon
-                      className="h-6 w-6 text-white"
-                      aria-hidden="true"
-                    />
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
                 </div>
                 <p className="ml-16 truncate text-sm font-medium text-gray-500">
                   Total Revenue
@@ -719,7 +735,7 @@ export const Company = () => {
               </dt>
               <dd className="ml-16 flex items-baseline pb-3 sm:pb-3">
                 <p className="text-2xl font-semibold text-gray-900">
-                  {statistic?.total_revenue}
+                  {formatNumber(statistic?.total_revenue)}
                 </p>
               </dd>
             </div>
@@ -727,7 +743,7 @@ export const Company = () => {
         </div>
 
         <div className="chartmain">
-        <div className="chart11">
+          <div className="chart11">
             <CChart
               type="doughnut"
               data={{
@@ -788,10 +804,7 @@ export const Company = () => {
             />
           </div>
         </div>
-        <div
-          className="chartleads"
-        >
-        
+        <div className="chartleads">
           <div className="leads">
             <div className="overflow-hidden bg-white sm:rounded-md">
               <div className="recentleads">
@@ -799,37 +812,59 @@ export const Company = () => {
                 <h1>Recent Bids</h1>
               </div>
 
-              <ul  role="list" className="list_leads ">
+              <ul role="list" className="list_leads ">
                 {packages?.map((application) => (
-                  <li  key={application?.case_id}>
-                    <a className="block hover:bg-gray-50">
-                      <div className="flex px-4 py-8 sm:px-12">
-                        <div className=" ">
-                          <div className=" "></div>
-                          <div >
-                            <div>
+                  <li key={application?.case_id}>
+                    <a className="block mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pb-10 pl-6">
+                      <div className="relative bids_cards rounded-lg bg-white  pt-5 pb-0 shadow  sm:pt-6">
+                        <div className="cards_biding ">
+                        <div class="go-corner" href="#">
+      <div class="go-arrow">
+        →
+      </div>
+    </div>
+                          <div>
+                            <div >
                               <div>
-                              <p className="truncate text-sm font-medium text-gray-600">
-                               <span className="head">CASE ID :</span> {application?.case_id}
-                              </p></div>
+                                <p className="truncate text-sm font-medium text-gray-600 mb-6">
+                                  <span className="head ">
+                                    <img src="https://img.icons8.com/?size=50&id=18755&format=png" alt="" />
+                                    CASE ID :</span>{" "}
+                                  {application?.case_id}
+                                </p>
+                              </div>
                               <div>
-                              <p className="mt-2 flex items-center text-sm text-gray-600">
-                                <span className="truncate text-sm text-gray-600">
-                                <span className="head">Monthly Premium :</span>  {application?.monthly_coverage}
-                                </span>
-                              </p></div>
+                                <p className="flex items-center text-sm text-gray-600">
+                                  <span className="truncate text-sm text-gray-600 mb-6">
+                                    <span className="head">
+                                      <img src="https://img.icons8.com/?size=80&id=42326&format=png" alt="" />
+                                      Monthly Premium :
+                                    </span>{" "}
+                                    {application?.monthly_coverage}
+                                  </span>
+                                </p>
+                              </div>
                               <div>
-                              <p className="mt-2 flex items-center text-sm text-gray-600">
-                                <span className="truncate text-sm text-gray-600">
-                                 <span className="head">Annual Coverage :</span> {application?.total_annual_coverage}
-                                </span>
-                              </p></div>
-                             <div> <p className="mt-2 flex items-center text-sm text-gray-600">
-                             <span className="truncate text-sm text-gray-600">
-                                <span className=" head">
-                                 Created At :  </span>  {application?.updated_at?.split("T")[0]}
-                              </span> 
-                              </p></div>
+                                <p className=" flex items-center text-sm text-gray-600 mb-6">
+                                  <span className="truncate text-sm text-gray-600">
+                                    <span className="head">
+                                      <img src="https://img.icons8.com/?size=80&id=5Mne4khPeMtK&format=png" alt="" />
+                                      Annual Coverage :
+                                    </span>{" "}
+                                    {application?.total_annual_coverage}
+                                  </span>
+                                </p>
+                              </div>
+                              <div>
+                                {" "}
+                                <p className=" flex items-center text-sm text-gray-600 mb-6">
+                                  <span className="truncate text-sm text-gray-600">
+                                    <span className=" head">
+                                      <img src="https://img.icons8.com/?size=50&id=23&format=png" alt="" />Created At : </span>{" "}
+                                    {application?.updated_at?.split("T")[0]}
+                                  </span>
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>

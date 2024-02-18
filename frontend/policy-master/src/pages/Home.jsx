@@ -417,8 +417,8 @@ export default function App() {
                   <div className="main-heading">
                     <h1 className=" animate__animated animate__bounce ">
                       {" "}
-                      We have helped power <br></br>
-                      <span> 500+ comparisons</span>{" "}
+                      Hassle-Free Insurance <br></br>
+                      <span> Find Coverage That's Right For You</span>{" "}
                     </h1>
                     <p className="main-paragraph">
                       Thousands of customers have already benefitted through our
@@ -457,8 +457,8 @@ export default function App() {
               </div>
               <div className="content_img">
                 <h2 className="mt-2  ">
-                  We have helped power 500+ people
-                </h2>
+                Hassle-Free Insurance <br></br>
+                      <span> Find Coverage That's Right For You</span>                </h2>
                 <p className="mx-auto mt-5 max-w-prose text-xl  max-w-100">
                 PolicyX is a game-changer! The simplicity of registration, coupled with AI-driven budget suggestions, made  insurance decision stress-free.
                 </p>
@@ -497,9 +497,10 @@ export default function App() {
         </div>
 
         {/* Feature section with grid */}
+        <div className="choose_heading">
         <div className="relative bg-white py-16 sm:py-24  ">
-          <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8">
-            <p className="mt-2 text-3xl font-bold tracking-tight text-sky-600 sm:text-4xl">
+          <div className="mx-auto max-w-md px-6 text-center sm:max-w-3xl lg:max-w-7xl lg:px-8 ">
+            <p className="   text-sky-600 sm:text-4xl">
               Why Choose us
             </p>
             <p className="mx-auto mt-5 max-w-prose text-xl text-sky-400">
@@ -519,10 +520,10 @@ export default function App() {
                             />
                           </span>
                         </div>
-                        <h3 className="mt-8 text-lg font-medium tracking-tight text-sky-600">
+                        <h3 className="mt-8 text-lg font-medium  text-sky-600">
                           {feature.name}
                         </h3>
-                        <p className="mt-5 text-base text-sky-400">
+                        <p className="mt-5 text-md text-sky-400">
                           {feature.description}
                         </p>
                       </div>
@@ -533,7 +534,7 @@ export default function App() {
             </div>
           </div>
         </div>
-
+</div>
         {/* Testimonial section */}
         <div className="testimonial  pb-16 lg:relative lg:z-10 lg:pb-0">
           <div className=" lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">

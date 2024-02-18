@@ -16,12 +16,7 @@ import {
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/20/solid";
-import {
-  CursorArrowRaysIcon,
-  EnvelopeOpenIcon,
-} from "@heroicons/react/24/outline";
+
 
 import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
@@ -144,45 +139,14 @@ const InsurranceOffer = () => {
                 <div className="bid_heading">
                   <h1>Insurance Offers</h1>
                 </div>
-                {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-              <label htmlFor="search-field" className="sr-only">
-                Search
-              </label>
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                  placeholder="Search"
-                  type="search"
-                  name="search"
-                />
-              </div>
-            </form> */}
+                
               </div>
               <div className="ml-4 flex items-center md:ml-6">
-                {/* <button
-              type="button"
-              className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="h-6 w-6" aria-hidden="true" />
-            </button> */}
+           
 
-                {/* Profile dropdown */}
+               
                 <Menu as="div" className="relative ml-3">
-                  {/* <div>
-                <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </Menu.Button>
-              </div> */}
+               
                   <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
@@ -217,12 +181,7 @@ const InsurranceOffer = () => {
 
           <main>
             <div className="py-6">
-              {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-            <div className="py-4">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
-            </div>
-            
-          </div> */}
+           
             </div>
           </main>
         </div>
@@ -240,8 +199,8 @@ const InsurranceOffer = () => {
                 {data.is_expired
                   ? "Expired"
                   : data.is_accepted
-                    ? "Accepted"
-                    : "Active"}
+                  ? "Accepted"
+                  : "Active"}
               </span>
               <li className="case_id">
                 {" "}
@@ -255,7 +214,7 @@ const InsurranceOffer = () => {
                 <label> Monthly Coverage:</label> {data.monthly_coverage}
               </li>
               <li className="recommended">
-                <label> dental:</label> {data.dental_and_vision_care}
+                <label> Dental:</label> {data.dental_and_vision_care}
               </li>
               <li className="recommended">
                 {" "}
@@ -276,6 +235,17 @@ const InsurranceOffer = () => {
                 <label> Other Medical Expenses:</label>{" "}
                 {data.other_medical_expenses}
               </li>
+              {data.ambulance_services_expenses && (
+                <li className="recommended">
+                  <label> Ambulance Expense:</label>
+                  {data.ambulance_services_expenses}
+                </li>
+              )}
+              {data.surgery && (
+                <li className="recommended">
+                  <label> Surgery:</label> {data.surgery}
+                </li>
+              )}
 
               <button
                 className="insur-place"
@@ -288,7 +258,11 @@ const InsurranceOffer = () => {
                       : "pointer",
                 }}
               >
-                {data.is_accepted ? "Accepted" : (data.is_expired ? "Expired" : "Accept")}
+                {data.is_accepted
+                  ? "Accepted"
+                  : data.is_expired
+                  ? "Expired"
+                  : "Accept"}
               </button>
             </div>
             <img

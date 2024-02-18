@@ -12,6 +12,8 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router";
+import logotwo from "../../image/logo1.png";
+
 import Login_img from "../../image/login.png"
 // import { act } from "react-dom/test-utils";
 const navigation = [
@@ -277,7 +279,9 @@ const CompanySignup = () => {
    
    
     <div className="">
-  
+  <div className="signup_logo">
+<img className="w-28 h-28 ml-10" src={logotwo} alt="" />
+  </div>
         <div className="company_signup_img">
        <div className="company_signup_popup">
      <div className="company_popup_signin">
@@ -416,7 +420,7 @@ const CompanySignup = () => {
         </div>
       </div>
       <div className="company_sign_img ">
-          <img className="animate_animated animate_pulse " src={Login_img} alt="" />
+          <img className="animate__animated animate__pulse animate__infinite	infinite animate__slower	3s" src={Login_img} alt="" />
         </div>
     </div>
     </div>

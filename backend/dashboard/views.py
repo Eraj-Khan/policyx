@@ -229,11 +229,11 @@ def get_average_package_coverage(request, id_user):
         return Response({'error': f'Error occurred: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
-def count_bids(request, company_name,id_user):
+def count_bids(request, company_name):
     try:
-        total_bids_count = CompanyPackages.objects.filter(case_user_id=id_user,company_name=company_name).count()
+        total_bids_count = CompanyPackages.objects.filter(company_name=company_name).count()
 
-        accepted_bids_count = CompanyPackages.objects.filter(case_user_id=id_user,company_name=company_name, is_accepted=True).count()
+        accepted_bids_count = CompanyPackages.objects.filter(company_name=company_name, is_accepted=True).count()
 
         return Response({'total_bids_count': total_bids_count, 'accepted_bids_count': accepted_bids_count}, status=status.HTTP_200_OK)
 

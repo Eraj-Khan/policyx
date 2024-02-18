@@ -6,7 +6,7 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/400.css";
 import "animate.css";
 import logotwo from "../image/logo1.png";
-import HomeChat from '../Components/Homechat'
+import HomeChat from "../Components/Homechat";
 import "@fontsource/space-grotesk";
 import {
   Bars3BottomLeftIcon,
@@ -90,22 +90,22 @@ const timeline = [
   },
 ];
 const people = [
-  {
-    value: "10",
-    text: "Total Cases",
-    imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
-  },
+  // {
+  //   value: "10",
+  //   text: "Total Cases",
+  //   imageUrl: "https://img.icons8.com/?size=80&id=n5lvtrpv0CbJ&format=png",
+  // },
 
-  {
-    value: "5",
-    text: "Companies",
-    imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
-  },
-  {
-    value: "3,000",
-    text: "Total Paid",
-    imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
-  },
+  // {
+  //   value: "5",
+  //   text: "Companies",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=24836&format=png",
+  // },
+  // {
+  //   value: "3,000",
+  //   text: "Total Paid",
+  //   imageUrl: "https://img.icons8.com/?size=50&id=8322&format=png",
+  // },
 ];
 const footerNavigation = {
   solutions: [
@@ -198,7 +198,12 @@ const footerNavigation = {
 };
 const navigation = [
   { name: "User Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Insurance Offers", href: "/insurranceoffer", icon: FolderIcon, current: false },
+  {
+    name: "Insurance Offers",
+    href: "/insurranceoffer",
+    icon: FolderIcon,
+    current: false,
+  },
   {
     name: "Apply For Insurance",
     href: "/register",
@@ -275,22 +280,38 @@ function classNames(...classes) {
 export const UserDash = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [notification, setNotification] = useState([]);
   const [counts, setCounts] = useState([]);
   const [user_plan, setUser_plan] = useState(null);
+  const [userName, setUserName] = useState("");
 
-  // {
-  //   "total_bids": 1,
-  //   "total_companies": 0,
-  //   "total_premium": 23,
-  //   "user_plan": {
-  //     "accidental_emergencies": 3,
-  //     "ambulance_services_expenses": 20000,
-  //     "hospitalization_room_charges": 20000,
-  //     "surgery": 2,
-  //     "dental_and_vision_care": 12,
-  //     "other_medical_expenses": 23
-  //   }
-  // }
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M", "B", "T"];
+    const numString = String(number);
+    const suffixNum = Math.floor(numString.length / 3);
+
+    let shortNumber = parseFloat(
+      (suffixNum !== 0
+        ? number / Math.pow(1000, suffixNum)
+        : number
+      ).toPrecision(2)
+    );
+
+    if (!Number.isInteger(shortNumber)) {
+      shortNumber = shortNumber.toFixed(1);
+    }
+
+    return shortNumber + suffixes[suffixNum];
+  }
+
+  useEffect(() => {
+    let payload = localStorage.getItem("user");
+    let parsedPayload = JSON.parse(payload);
+
+    const { user_name } = parsedPayload;
+
+    setUserName(user_name);
+  }, []);
 
   const getCount = async () => {
     try {
@@ -301,23 +322,24 @@ export const UserDash = () => {
       );
       const { total_bids, total_companies, total_premium, user_plan } =
         response.data;
-      setCounts([
-        {
-          value: total_bids,
-          text: "Total Bids",
-          imageUrl: "https://img.icons8.com/?size=50&id=21449&format=png",
-        },
-        {
-          value: total_companies,
-          text: "Total Companies",
-          imageUrl: "https://img.icons8.com/?size=50&id=53373&format=png",
-        },
-        {
-          value: total_premium,
-          text: "Total Premium",
-          imageUrl: "https://img.icons8.com/?size=50&id=22136&format=png",
-        },
-      ]);
+        setCounts([
+          {
+            value: total_bids,
+            text: "Total Bids",
+        
+            imageUrl: "https://img.icons8.com/?size=80&id=kCq3SDy5KqvN&format=png",
+          },
+          {
+            value: total_companies,
+            text: "Companies",
+            imageUrl: "https://img.icons8.com/?size=50&id=8F2vAFv2ZjZH&format=png",
+          },
+          {
+            value: formatNumber (total_premium),
+            text: "Total Premium",
+            imageUrl: "https://img.icons8.com/?size=50&id=4256&format=png",
+          },
+        ]);
 
       if (user_plan) {
         setUser_plan(user_plan);
@@ -334,12 +356,11 @@ export const UserDash = () => {
       try {
         const response = await axios.get(
           `http://127.0.0.1:8000/company_dashboard/list_user_packages/${parsedPayload.id}`
-          
         );
 
-       
         const { Bids } = response.data;
         setNotificationCount(Bids.length);
+        setNotification(Bids);
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -349,6 +370,24 @@ export const UserDash = () => {
     fetchData();
     getCount();
   }, []);
+
+  function formatDate(dateTimeString) {
+    const dateTime = new Date(dateTimeString);
+    const dateOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    };
+    const timeOptions = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+    const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
 
   return (
     <div>
@@ -442,20 +481,12 @@ export const UserDash = () => {
         </Dialog>
       </Transition.Root>
 
-     
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-  
         <div className=" user_nav flex flex-grow flex-col overflow-y-auto bg-sky-400 pt-5">
-        <div className="flex flex-shrink-0">
-            
-              <div className="logo">
-              <img
-              
-              src={logotwo} 
-              
-            />
-              </div>
-          
+          <div className="flex flex-shrink-0">
+            <div className="logo">
+              <img src={logotwo} />
+            </div>
           </div>
           <div className="mt-5 flex flex-1 flex-col">
             <nav className="flex-1 space-y-2 px-2">
@@ -492,27 +523,9 @@ export const UserDash = () => {
             <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="flex flex-1 justify-between px-4">
-            <div className="flex flex-1">
-              {/* <form className="flex w-full md:ml-0" action="#" method="GET">
-              <label htmlFor="search-field" className="sr-only">
-                Search
-              </label>
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center">
-                  <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <input
-                  id="search-field"
-                  className="block h-full w-full border-transparent py-2 pl-8 pr-3 text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-gray-400 focus:outline-none focus:ring-0 sm:text-sm"
-                  placeholder="Search"
-                  type="search"
-                  name="search"
-                />
-              </div>
-            </form> */}
-            </div>
+            <div className="flex flex-1"></div>
             <div className="ml-4 flex items-center md:ml-6">
-              <a
+              {/* <a
                 href="/usernotification"
                 className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
               >
@@ -521,18 +534,96 @@ export const UserDash = () => {
                 <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
                   {notificationCount}
                 </span>
-              </a>
+              </a> */}
+
+              <Menu as="div" className="relative ml-3">
+                <div>
+                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-400 p-1 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span>
+
+                    {/* <Menu.Button className="flex flex-row rounded-full p-1 bg-sky-100 profile_user items-center  text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span> */}
+                    <a
+
+                      className="flex justify-center items-center rounded-full hover:bg-sky-400 bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                    >
+                      <span className="sr-only">View notifications</span>
+                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                      <span className="inline-flex items-center rounded-full bg-sky-100 px-3 py-0.5 text-sm font-medium text-sky-600">
+                        {notificationCount}
+                      </span>
+                    </a>
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className=" signout-menu absolute right-0 z-10 mt-2 min-w-[460px] origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {notification.map((item, i) => (
+                      <Menu.Item key={i}>
+                        {({ active }) => (
+                          <div className="pointer-events-auto min-w-[400px] m-3 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                            <div className="p-4">
+                              <div className="flex items-start">
+                                <div className="ml-3 w-0 flex-1 pt-0.5">
+                                  <a href="/insurranceoffer" className="text-md font-medium text-gray-900">
+                                    Package received from Company{" "}
+                                    <span className="notif_company_name">
+                                      {item.company_name}
+                                    </span>{" "}
+                                    against this case
+                                    <span className="notif_case_id"> {item.case_id}</span>
+
+                                  </a>
+                                  <p className="mt-1 text-sm text-gray-500">
+                                    <span className="userdate_date">{item.updated_at ? formatDate(item.updated_at) : ''}</span>
+
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </Menu.Item>
+                    ))}
+                  </Menu.Items>
+                </Transition>
+              </Menu>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">
                 <div>
-                  <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                  {/* <Menu.Button className="flex max-w-xs items-center hover:bg-sky-600 rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="w-5 rounded-full"
                       src="https://e7.pngegg.com/pngimages/881/852/png-clipart-computer-icons-drop-down-list-arrow-font-awesome-down-arrow-angle-hand.png"
                       alt=""
-                    />
+                    /> */}
+                  <Menu.Button className="flex flex-row rounded-full p-1 bg-sky-100 profile_user items-center  text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    <span className="sr-only">Open user menu</span>
+                    <div className="w-5 px-2 rounded-full">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-10 h-10 user_font"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="company-info">{userName}</div>
                   </Menu.Button>
                 </div>
                 <Transition
@@ -552,8 +643,8 @@ export const UserDash = () => {
                             href={item.href}
                             className={classNames(
                               active ? "bg-sky-500" : "",
-                                "block px-4 py-2 rounded-md hover:text-white"
-                              )}
+                              "block px-4 py-2 rounded-md hover:text-white"
+                            )}
                           >
                             {item.name}
                           </a>
@@ -575,14 +666,15 @@ export const UserDash = () => {
         <div className="">
           <main className="image_color_background ">
             <div className="color-image">
-              <h1>Welcome</h1>
+              <h1>Welcome {userName},</h1>
 
               <p>
-              Unlock a world of simplicity with coverage that clicks – insurance made just for you. Effortless protection, personalized for your peace of mind.
+                Unlock a world of simplicity with coverage that clicks –
+                insurance made just for you. Effortless protection, personalized
+                for your peace of mind.
               </p>
               <img
-                className="image8 animate_animated animate_pulse"
-                src={img8}
+                className="image8 animate__animated animate__pulse animate__infinite	infinite" src={img8}
                 alt=""
               />
             </div>
@@ -592,39 +684,40 @@ export const UserDash = () => {
           </main>
         </div>
       </div>
-     
     
-      <div className="icon_cards">
-        <ul role="list" className="grid grid-cols-1 lg:grid-cols-3">
+      <div className="icon_cards ">
+        <ul role="list" className="grid lg:grid-cols-3">
           {counts.map((person) => (
             <li
               key={person.email}
-              className="animate__animated animate__pulse col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+              className="animate__animated animate__pulse divide-gray-200 rounded-lg bg-white text-center shadow"
             >
-              <div className="flex flex-1 flex-col p-6">
-                <div className=" money_icon flex-shrink-0 rounded-full" alt="">
+                <div className=" money_icon " alt="">
                   <img
-                    className="mx-auto h-30 w-30 flex-shrink-0 "
+                    className="  "
                     src={person.imageUrl}
                     alt=""
                   />{" "}
                 </div>
+              <div className=" main_card_ui">
 
-                <h3 className="mt-6 text-lg font-medium text-gray-900">
-                  {person.value}
-                </h3>
-                <dl className="mt-1 flex flex-grow flex-col justify-between">
-                  <dt className="sr-only">Title</dt>
-                  <dd className="text-lg text-gray-500">{person.text}</dd>
-                  <dt className="sr-only">Role</dt>
-                </dl>
+                <div className="cards_ui">
+                  <h3 className="  font-medium text-gray-900">
+                    {person.value}
+                  </h3>
+                  <dl className=" icon_text ">
+                    <dd className="text-gray-500">{person.text}</dd>
+                  </dl>
+                </div>
+              
               </div>
             </li>
           ))}
         </ul>
+        
       </div>
       <div className="main_cards">
-      <HomeChat/>
+        <HomeChat />
         <section
           aria-labelledby="timeline-title"
           className=" card_table lg:col-span-1 lg:col-start-3"
@@ -638,28 +731,47 @@ export const UserDash = () => {
             <div className="mt-6 flow-root">
               <ul role="list" className="cards_list mb-8">
                 <li>
-                  <span className="plans-head">Accidental : </span>
-                  {user_plan?.accidental_emergencies ? user_plan?.accidental_emergencies : "None" }
+                  <span className="plans-head">
+                  <img className="" src="https://img.icons8.com/?size=50&id=u1oJtpnFCyqx&format=png" alt="" />
+                    Accidental : </span>
+                  {user_plan?.accidental_emergencies
+                    ? user_plan?.accidental_emergencies
+                    : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Ambulance Expense : </span>
-                  {user_plan?.ambulance_services_expenses ? user_plan?.ambulance_services_expenses : "None"}
+                  <span className="plans-head">
+                    <img className="" src="https://img.icons8.com/?size=50&id=950&format=png" alt="" />Ambulance Expense : </span>
+                  {user_plan?.ambulance_services_expenses
+                    ? user_plan?.ambulance_services_expenses
+                    : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Hospital Room Charges : </span>
-                  {user_plan?.hospitalization_room_charges ? user_plan?.hospitalization_room_charges : "None"}
+                  <span className="plans-head"><img className=""  src="https://img.icons8.com/?size=50&id=109556&format=png" alt="" />Hospital Room Charges : </span>
+                  {user_plan?.hospitalization_room_charges
+                    ? user_plan?.hospitalization_room_charges
+                    : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Surgery : </span>
+                  <span className="plans-head"><img className="" src="https://img.icons8.com/?size=50&id=Gzalxz6LmRhn&format=png" alt="" />Surgery : </span>
                   {user_plan?.surgery ? user_plan?.surgery : "None"}
                 </li>
+                <div class="vl"></div>
+
                 <li>
-                  <span className="plans-head">Dental & Vision : </span>
-                  {user_plan?.dental_and_vision_care ? user_plan?.dental_and_vision_care : "None"}
+                  <span className="plans-head"><img className="" src="https://img.icons8.com/?size=50&id=4948&format=png" alt="" />Dental & Vision : </span>
+                  {user_plan?.dental_and_vision_care
+                    ? user_plan?.dental_and_vision_care
+                    : "None"}
                 </li>
+                <div class="vl"></div>
                 <li>
-                  <span className="plans-head">Others : </span>
-                  {user_plan?.other_medical_expenses ? user_plan?.other_medical_expenses : "None"}
+                  <span className="plans-head"> <img className="" src="https://img.icons8.com/?size=50&id=b1C583IQGpBS&format=png" alt="" />Others : </span>
+                  {user_plan?.other_medical_expenses
+                    ? user_plan?.other_medical_expenses
+                    : "None"}
                 </li>
               </ul>
             </div>
@@ -671,5 +783,3 @@ export const UserDash = () => {
 };
 
 export default UserDash;
-
-
