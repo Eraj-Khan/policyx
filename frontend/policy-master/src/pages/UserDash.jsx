@@ -200,7 +200,7 @@ const navigation = [
   { name: "User Dashboard", href: "#", icon: HomeIcon, current: true },
   {
     name: "Insurance Offers",
-    href: "/insurranceoffer",
+    href: "/InsuranceOffer",
     icon: FolderIcon,
     current: false,
   },
@@ -572,7 +572,7 @@ export const UserDash = () => {
                             <div className="p-4">
                               <div className="flex items-start">
                                 <div className="ml-3 w-0 flex-1 pt-0.5">
-                                  <a href="/insurranceoffer" className="text-md font-medium text-gray-900">
+                                  <a href="/InsuranceOffer" className="text-md font-medium text-gray-900">
                                     Package received from Company{" "}
                                     <span className="notif_company_name">
                                       {item.company_name}

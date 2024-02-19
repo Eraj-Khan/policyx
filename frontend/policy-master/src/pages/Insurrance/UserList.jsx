@@ -103,12 +103,12 @@ function formatDate(dateTimeString) {
   const timeOptions = {
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
-    hour12: false
+    hour12: true  
+
   };
-  const formattedDate = dateTime.toLocaleDateString('en-US', dateOptions);
+  const formattedDate = dateTime.toLocaleDateString('en-GB', dateOptions);
   const formattedTime = dateTime.toLocaleTimeString('en-US', timeOptions);
-  return `${formattedDate} ${formattedTime}`;
+  return `${formattedDate.replaceAll('/', '-')} ${formattedTime}`;
 }
 
   const handleBidClick = (caseId, id_user) => {
@@ -182,7 +182,7 @@ function formatDate(dateTimeString) {
         textAlign:"center",
         marginBottom:"10px",
         fontWeight:"bold",
-       }}>Bids from Other Companies</h1>
+       }}>Bids from all Companies</h1>
       <table>
         
            {packageData ? packageData?.map((packageItem) => (
@@ -195,7 +195,7 @@ function formatDate(dateTimeString) {
                 <th className="th">Ambulance Services</th>
                 <th className="th">Dental & Vision</th>
                 <th className="th">Hospitalization</th>
-                <th className="th">Monthly Coverage</th>
+                <th className="th">Monthly Premium</th>
                 <th className="th">Other Medical Expenses</th>
                 <th className="th">Surgery</th>
                 <th className="th">Annual Coverage</th>
@@ -603,7 +603,7 @@ function formatDate(dateTimeString) {
                         console.log(data.case_id);
                     }}
                   >
-                    View Other bids
+                    View all bids
                   </button>
                 </td>
                 <hr/>
