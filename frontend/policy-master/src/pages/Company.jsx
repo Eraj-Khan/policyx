@@ -324,14 +324,7 @@ export const Company = () => {
       const response = await axios.get(
         `http://127.0.0.1:8000/company_dashboard/statistics/${id}`
       );
-      // Set the entire JSON object to data
-      // {
-      //   "total_cases": 8,
-      //   "total_completed_cases": 3,
-      //   "average_age": 44.333333333333336,
-      //   "total_accepted_packages": 3,
-      //   "total_revenue": 8872
-      // }
+     
       console.log(response);
       setStatistic(response.data);
     } catch (error) {

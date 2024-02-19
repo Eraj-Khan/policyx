@@ -22,7 +22,7 @@ import { CChart } from "@coreui/react-chartjs";
 import axios from "axios";
 import "../Insurrance/UserList.css";
 import card from "../../image/card-image.jpg";
-import "../User/InsurranceOffer.css";
+import "../User/InsuranceOffer.css";
 
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
@@ -46,7 +46,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const InsurranceOffer = () => {
+const InsuranceOffer = () => {
   const [notificationinfo, setNotificationInfo] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -69,6 +69,8 @@ const InsurranceOffer = () => {
   };
 
   const [notification, setNotification] = useState([]);
+  const [acceptedBids, setAcceptedBids] = useState([]);
+
   useEffect(() => {
     let user = localStorage.getItem("user");
     let parsedPayload = JSON.parse(user);
@@ -82,6 +84,14 @@ const InsurranceOffer = () => {
         const { Bids } = response.data;
 
         setNotification(Bids.reverse());
+        const acceptedBids = notification.filter(bid => bid.is_accepted === true);
+
+        // Extract case_id values from the filtered array
+        const acceptedCaseIds = acceptedBids.map(bid => bid.case_id);
+        setAcceptedBids(acceptedCaseIds);
+        console.log(acceptedBids);
+        console.log(notification);
+        // setAcceptedBids([])
         console.log("data", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -214,7 +224,7 @@ const InsurranceOffer = () => {
                 <label> Monthly Coverage:</label> {data.monthly_coverage}
               </li>
               <li className="recommended">
-                <label> Dental:</label> {data.dental_and_vision_care}
+                <label> dental:</label> {data.dental_and_vision_care}
               </li>
               <li className="recommended">
                 {" "}
@@ -235,34 +245,31 @@ const InsurranceOffer = () => {
                 <label> Other Medical Expenses:</label>{" "}
                 {data.other_medical_expenses}
               </li>
-              {data.ambulance_services_expenses && (
-                <li className="recommended">
-                  <label> Ambulance Expense:</label>
-                  {data.ambulance_services_expenses}
-                </li>
-              )}
-              {data.surgery && (
-                <li className="recommended">
-                  <label> Surgery:</label> {data.surgery}
-                </li>
-              )}
+              <li className="recommended">
+                {" "}
+                <label> Surgery:</label>{" "}
+                {data.surgery ? data.surgery : "-"}
+              </li>
+              <li className="recommended">
+                {" "}
+                <label> Ambulance Expense:</label>{" "}
+                {data.ambulance_services_expenses ? data.ambulance_services_expenses : "-"}
+              </li>
 
               <button
-                className="insur-place"
-                onClick={() => handleBidClick(data.case_id, data.company_name)}
-                disabled={data.is_expired || data.is_accepted}
-                style={{
-                  cursor:
-                    data.is_expired || data.is_accepted
-                      ? "not-allowed"
-                      : "pointer",
-                }}
-              >
-                {data.is_accepted
-                  ? "Accepted"
-                  : data.is_expired
-                  ? "Expired"
-                  : "Accept"}
+               className="insur-place"
+               onClick={() => {
+                handleBidClick(data.case_id, data.company_name)
+              }}
+               disabled={
+                  data.is_accepted==false && acceptedBids.includes(data.case_id)
+               }
+               style={{
+                 cursor:
+                   data.is_expired || data.is_accepted ? "not-allowed" : "pointer",
+               }}
+             >
+               {data.is_accepted ? "Accepted" : data.is_expired ? "Expired" : "Accept" } 
               </button>
             </div>
             <img
@@ -277,4 +284,4 @@ const InsurranceOffer = () => {
   );
 };
 
-export default InsurranceOffer;
+export default InsuranceOffer;
